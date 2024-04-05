@@ -1,4 +1,7 @@
 
+</div>
+        </div>
+
 <!-- Library Bundle Script -->
 <script src="assets/js/core/libs.min.js"></script>
 
