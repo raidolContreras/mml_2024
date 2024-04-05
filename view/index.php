@@ -9,7 +9,7 @@
         include 'extras/css.php';
     ?>
 
-    <body class="auto dark theme-color-blue">
+    <body class="auto theme-color-blue">
         <?php
             include 'extras/header.php';
         ?>

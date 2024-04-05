@@ -17,7 +17,7 @@
           </svg>
           </button>
           <div class="col-lg-2 col-lg-3 navbar-brand">
-            <a href="index.html" class="navbar-brand">
+            <a href="index" class="navbar-brand">
               <!--Logo start-->
               <svg class="icon-30 text-primary" width="30" class="text-primary" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"></rect>
@@ -62,11 +62,15 @@
                 <button class="btn-close float-end"></button>
              </div>
              <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link active" href="index-horizontal.html"> Horizontal </a></li>
-                <li class="nav-item"><a class="nav-link " href="index-dual-horizontal.html"> Dual Horizontal </a></li>
-                <li class="nav-item"><a class="nav-link " href="index-dual-compact.html"><span class="item-name">Dual Compact</span></a></li>
-                <li class="nav-item"><a class="nav-link " href="index-boxed.html"> Boxed Horizontal </a></li>
-                <li class="nav-item"><a class="nav-link " href="index-boxed-fancy.html"> Boxed Fancy</a></li>
+                <li class="nav-item"><a class="nav-link active" href="Home" id="dashboard">  </a></li>
+                <li class="nav-item"><a class="nav-link " href="Admin" id="admin">  </a></li>
+                <li class="nav-item"><a class="nav-link " href="Team" id="team">  </a></li>
+                <li class="nav-item"><a class="nav-link " href="Trees" id="trees">  </a></li>
+                <li class="nav-item"><a class="nav-link " href="Structure" id="structure">  </a></li>
+                <li class="nav-item"><a class="nav-link " href="Matriz" id="matriz">  </a></li>
+                <li class="nav-item"><a class="nav-link " href="Reports" id="reports">  </a></li>
+                <li class="nav-item"><a class="nav-link " href="Events" id="events">  </a></li>
+                <li class="nav-item"><a class="nav-link " href="Summary" id="summary">  </a></li>
              </ul>
           </div> <!-- container-fluid.// -->
           </nav>
@@ -81,15 +85,15 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item dropdown">
                   <a href="#" class="search-toggle nav-link" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img src="assets/images/Flag/flag001.png" class="img-fluid rounded-circle" alt="user" style="height: 30px; min-width: 30px; width: 30px;">
+                  <img src="" class="img-fluid rounded-circle languaje-selected" alt="user" style="height: 30px; min-width: 30px; width: 30px;">
                   <span class="bg-primary"></span>
                   </a>
                   <div class="sub-drop dropdown-menu dropdown-menu-end p-0" aria-labelledby="dropdownMenuButton2">
                       <div class="card shadow-none m-0 border-0">
                           <div class=" p-0 ">
                               <ul class="list-group list-group-flush">
-                                  <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="assets/images/Flag/flag-03.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>Español</a></li>
-                                  <li class="iq-sub-card list-group-item active" active><a class="p-0" href="#"><img src="assets/images/Flag/flag001.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>English</a></li>
+                                  <li class="iq-sub-card list-group-item" id="spanish"><a class="p-0" href="#"><img src="assets/images/Flag/flag-03.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>Español</a></li>
+                                  <li class="iq-sub-card list-group-item" id="english"><a class="p-0" href="#"><img src="assets/images/Flag/flag001.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>English</a></li>
                               </ul>
                           </div>
                       </div>
@@ -109,9 +113,9 @@
                   </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="app/user-profile.html">Perfil</a></li>
+                  <li><a class="dropdown-item" href="app/user-profile">Perfil</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="auth/sign-in.html">Cerrar sesión</a></li>
+                  <li><a class="dropdown-item" href="auth/sign-in">Cerrar sesión</a></li>
                 </ul>
               </li>
             </ul>

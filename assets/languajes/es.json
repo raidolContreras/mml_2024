@@ -1,4 +1,15 @@
 {
-    "home_title": "Inicio",
-    "welcome_message": "¡Bienvenido!"
+    "dashboard": "Tablero",
+    "admin": "Administrador",
+    "team": "Equipo",
+    "trees": "Árboles",
+    "structure": "Estructura",
+    "matriz": "Matriz",
+    "reports": "Reportes",
+    "events": "Eventos",
+    "summary": "Resumen",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "register": "Registrar",
+    "email": "Correo electrónico"
 }

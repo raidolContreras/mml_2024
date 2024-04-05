@@ -1,4 +1,15 @@
 {
-    "home_title": "Home",
-    "welcome_message": "Welcome!"
+    "dashboard": "Dashboard",
+    "admin": "Administrator",
+    "team": "Team",
+    "trees": "Trees",
+    "structure": "Structure",
+    "matriz": "Matriz",
+    "reports": "Reports",
+    "events": "Events",
+    "summary": "Summary",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "email": "E mail"
 }
