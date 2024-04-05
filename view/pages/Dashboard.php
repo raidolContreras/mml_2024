@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between flex-wrap">
                     <div class="header-title">
-                        <h4 class="card-title">Proceso</h4>            
+                        <h4 class="card-title progress-title"></h4>            
                     </div>
                 </div>
                 <div class="card-body">

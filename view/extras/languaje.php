@@ -26,11 +26,14 @@
                 $('#reports').html(translations.reports);
                 $('#events').html(translations.events);
                 $('#summary').html(translations.summary);
+
+
+                $('.progress-title').text(translations.progress);
             })
             .catch(error => console.error('Error al cargar las traducciones: ', error));
     }
 
     // Uso
-    cargarTraducciones('es');
+    cargarTraducciones('en');
 
 </script>
