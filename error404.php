@@ -4,121 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error 404 - Página no encontrada</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #01643D, #008080); /* Fondo degradado */
-            color: #ffffff;
-            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
         }
         .container {
-            max-width: 90%;
+            text-align: center;
+            max-width: 400px;
             padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .logo {
-            width: 100px;
-            margin-bottom: 20px;
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)); /* Sombra en el logo */
+        .error-code {
+            font-size: 72px;
+            color: #F44336;
+            margin-bottom: 10px;
+            animation: pulse 1s infinite alternate;
+        }
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.1);
+            }
         }
         .error-message {
-            font-size: 3em;
+            font-size: 24px;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra en el texto */
+            animation: slideIn 1s ease;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .return-home {
-            background-color: #ffffff;
-            color: #01643D;
+            background-color: #4CAF50;
+            color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border-radius: 30px; /* Bordes redondeados */
+            border-radius: 4px;
+            padding: 12px 24px;
+            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transiciones suaves */
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra suave */
+            transition: background-color 0.3s;
             text-decoration: none;
+            margin-top: 20px;
             display: inline-block;
+            animation: fadeIn 1s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
         .return-home:hover {
-            background-color: #f2f2f2;
-            transform: translateY(-2px); /* Levantar ligeramente al pasar el cursor */
-            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
-        }
-        .description {
-            font-size: 1.5em;
-            margin-bottom: 40px;
-        }
-        .illustration-container {
-            margin-bottom: 50px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            background-color: #388E3C;
         }
         .illustration {
-            max-width: 30%;
-            height: auto;
-            border-radius: 10px; /* Bordes redondeados */
-            transition: transform 0.5s;
-        }
-        .illustration-container:hover .illustration {
-            transform: scale(1.1); /* Efecto de escala al pasar el cursor */
-        }
-        .illustration-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        .illustration-container:hover .illustration-overlay {
-            opacity: 1;
-        }
-        .illustration-text {
-            color: #fff;
-            font-size: 1.5em;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            max-width: 250px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="view/assets/images/logo.png" alt="Logo" class="logo">
-        <h1 class="error-message">¡Oops! Error 404</h1>
-        <p class="description">
-            Lo sentimos, la página que estás buscando no se pudo encontrar.
-        </p>
-        <div class="illustration-container" onclick="home()">
-            <img src="view/assets/images/error404/placeholder.png" alt="Ilustración 404" class="illustration" id="errorImage">
-            <div class="illustration-overlay">
-                <div class="illustration-text">Haz clic para volver al inicio</div>
-            </div>
+        <div class="error-code">
+            404
         </div>
+        <div class="error-message">¡Ups! Parece que esta página no existe.</div>
+        <a href="./" class="return-home">Volver al inicio</a>
     </div>
 </body>
 </html>
-
-
-    <!-- <script>
-        var images = ['01.png', '02.png', '03.png', '04.png', '05.png'];
-        var randomNumber = Math.floor(Math.random() * images.length);
-        var errorImage = document.getElementById('errorImage');
-        errorImage.src = 'view/assets/images/error404/' + images[randomNumber];
-        function home(){
-            window.location.href = 'inicio';
-        }
-    </script> -->

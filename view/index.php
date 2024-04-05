@@ -10,9 +10,6 @@
     ?>
 
     <body class="auto theme-color-blue">
-        <?php
-            include 'extras/header.php';
-        ?>
         <div class="conatiner-fluid content-inner pb-0">
             <div class="row">
                 <?php

@@ -19,14 +19,9 @@
           <div class="col-lg-2 col-lg-3 navbar-brand">
             <a href="index" class="navbar-brand">
               <!--Logo start-->
-              <svg class="icon-30 text-primary" width="30" class="text-primary" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"></rect>
-                  <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"></rect>
-                  <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"></rect>
-                  <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"></rect>
-              </svg>
+              <img style="width: 2rem; height:auto" src="assets/images/logo.png" alt="logo Edradix">
               <!--logo End-->
-              <h4 class="logo-title">Hope UI</h4>
+              <h4 class="logo-title">Edradix</h4>
           </a>
           </div>
           <!-- Horizontal Menu Start -->
@@ -40,37 +35,27 @@
                    <!--Logo start-->
                    <div class="logo-main">
                        <div class="logo-normal">
-                           <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
-                               <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
-                               <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
-                               <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
-                           </svg>
-                       </div>
-                       <div class="logo-mini">
-                           <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
-                               <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
-                               <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
-                               <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
-                           </svg>
+                          <img style="width: 2rem; height:auto" src="assets/images/logo.png" alt="logo Edradix">
+                        </div>
+                        <div class="logo-mini">
+                         <img style="width: 2rem; height:auto" src="assets/images/logo.png" alt="logo Edradix">
                        </div>
                    </div>
                    <!--logo End-->
-                   <h4 class="logo-title">Hope UI</h4>
+                   <h4 class="logo-title">Edradix</h4>
                 </div>
                 <button class="btn-close float-end"></button>
              </div>
              <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link active" href="Home" id="dashboard">  </a></li>
-                <li class="nav-item"><a class="nav-link " href="Admin" id="admin">  </a></li>
-                <li class="nav-item"><a class="nav-link " href="Team" id="team">  </a></li>
-                <li class="nav-item"><a class="nav-link " href="Trees" id="trees">  </a></li>
-                <li class="nav-item"><a class="nav-link " href="Structure" id="structure">  </a></li>
-                <li class="nav-item"><a class="nav-link " href="Matriz" id="matriz">  </a></li>
-                <li class="nav-item"><a class="nav-link " href="Reports" id="reports">  </a></li>
-                <li class="nav-item"><a class="nav-link " href="Events" id="events">  </a></li>
-                <li class="nav-item"><a class="nav-link " href="Summary" id="summary">  </a></li>
+                <li class="nav-item"><a class="nav-link" href="Dashboard" id="dashboard">  </a></li>
+                <li class="nav-item"><a class="nav-link" href="Admin" id="admin">  </a></li>
+                <li class="nav-item"><a class="nav-link" href="Team" id="team">  </a></li>
+                <li class="nav-item"><a class="nav-link" href="Trees" id="trees">  </a></li>
+                <li class="nav-item"><a class="nav-link" href="Structure" id="structure">  </a></li>
+                <li class="nav-item"><a class="nav-link" href="Matriz" id="matriz">  </a></li>
+                <li class="nav-item"><a class="nav-link" href="Reports" id="reports">  </a></li>
+                <li class="nav-item"><a class="nav-link" href="Events" id="events">  </a></li>
+                <li class="nav-item"><a class="nav-link" href="Summary" id="summary">  </a></li>
              </ul>
           </div> <!-- container-fluid.// -->
           </nav>

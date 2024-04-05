@@ -31,6 +31,6 @@
     }
 
     // Uso
-    cargarTraducciones('en');
+    cargarTraducciones('es');
 
 </script>
