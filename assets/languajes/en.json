@@ -12,5 +12,9 @@
     "login": "Login",
     "logout": "Logout",
     "register": "Register",
-    "email": "E mail"
+    "email": "E mail",
+    "accept": "Accept",
+    "deny": "Deny",
+    "cancel": "Cancel",
+    "profile": "Profile"
 }

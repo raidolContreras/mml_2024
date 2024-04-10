@@ -35,3 +35,14 @@
 <?php
      include 'view/extras/languaje.php';
 ?>
+
+<script>
+	
+function showAlertBootstrap(title, message) {
+    var accept = translations.accept; // Usar las traducciones cargadas
+    $('#modalLabel').text(title);
+    $('.modal-body-extra').html(message);
+    $('.modal-footer-extra').html('<button type="button" class="btn btn-success" data-bs-dismiss="modal">'+accept+'</button>');
+    $('#alertModal').modal('show');
+}
+</script>
