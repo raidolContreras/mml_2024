@@ -17,7 +17,7 @@ $(document).ready(function () {
 			success: function (response) {
 
 			    if (response === 'ok') {
-                    window.location.href = '/';
+                    window.location.href = './';
 			    }else if (response === 'status off') {
 					showAlertBootstrap('Usuario deshabilitado', 'Comuníquese con el administrador de la plataforma, para cualquier aclaración.');
 			    }else {

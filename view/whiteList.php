@@ -18,6 +18,7 @@
         
         if (in_array($pagina, $navs)) {
             include "view/extras/header.php";
+            include "view/modals.php";
         }
 
         if ($pagina == 'Dashboard'){
@@ -39,6 +40,10 @@
         } elseif ($pagina == 'Team'){
             include "view/pages/team/$pagina.php";
         } else {
+            if ($pagina == 'Login') {
+                header("Location: ./");
+                exit();
+            }
             include "error404.php";
         }
 

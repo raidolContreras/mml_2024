@@ -113,7 +113,7 @@
 							<li>
 								<hr class="dropdown-divider">
 							</li>
-							<li><a class="dropdown-item" href="auth/sign-in">Cerrar sesión</a></li>
+							<li onclick="logout()"><a class="dropdown-item">Cerrar sesión</a></li>
 						</ul>
 					</li>
 				</ul>

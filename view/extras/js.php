@@ -45,4 +45,18 @@ function showAlertBootstrap(title, message) {
     $('.modal-footer-extra').html('<button type="button" class="btn btn-success" data-bs-dismiss="modal">'+accept+'</button>');
     $('#alertModal').modal('show');
 }
+function logout() {
+    // Realiza la solicitud Ajax para cerrar la sesión
+    $.ajax({
+        type: "POST",
+        url: "controller/ajax/logout.php", // Cambia esto con la ruta correcta a tu script de logout
+        success: function (response) {
+            // Redirige a la página de inicio después de cerrar sesión
+            window.location.href = './';
+        },
+        error: function (error) {
+            console.log("Error en la solicitud Ajax:", error);
+        }
+    });
+}
 </script>
