@@ -25,7 +25,6 @@ async function cargarTraducciones(idioma) {
 cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     // Ahora puedes usar las traducciones en cualquier lugar de tu código
     $('#dashboard').html(translations.dashboard);
-    $('#admin').html(translations.admin);
     $('#team').html(translations.team);
     $('#trees').html(translations.trees);
     $('#structure').html(translations.structure);
@@ -33,8 +32,49 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('#reports').html(translations.reports);
     $('#events').html(translations.events);
     $('#summary').html(translations.summary);
+
+    $('#admin').html(translations.admin);
     $('.Admin').html(translations.admin);
     $('.profile').html(translations.profile);
+
+    // Apartado del administrador
+    $('.settings').html(translations.settings);
+    <?php
+
+    // Definir un array asociativo que mapee las páginas a las clases y elementos correspondientes
+    $pageMappings = [
+        'Admin' => ['.settings', '#admin'],
+        'Users' => ['.users', '#admin'],
+        'Projects' => ['.projects', '#admin'],
+        'Teams' => ['.teams', '#admin'],
+        'EventSettings' => ['.events', '#admin'],
+        'Dashboard' => '#dashboard',
+        'Team' => '#team',
+        'Trees' => '#trees',
+        'Structure' => '#structure',
+        'Matriz' => '#matriz',
+        'Reports' => '#reports',
+        'Events' => '#events',
+        'Summary' => '#summary'
+    ];
+
+    // Verificar si la página actual está mapeada y agregar las clases y activar los elementos correspondientes
+    if (array_key_exists($pagina, $pageMappings)) {
+        // Si la página está asociada a clases y elementos específicos
+        if (is_array($pageMappings[$pagina])) {
+            foreach ($pageMappings[$pagina] as $element) {
+                echo "$('$element').addClass('active');";
+            }
+        } else { // Si la página está asociada a un solo elemento
+            echo "$('$pageMappings[$pagina]').addClass('active');";
+        }
+    }
+    ?>
+
+    $('.users').html(translations.users);
+    $('.projects').html(translations.projects);
+    $('.teams').html(translations.teams);
+    $('.events').html(translations.events);
 
     $('.progress-title').text(translations.progress);
 });

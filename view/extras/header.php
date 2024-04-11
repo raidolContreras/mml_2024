@@ -16,7 +16,7 @@
 				</svg>
 			</button>
 			<div class="col-lg-2 col-lg-3 navbar-brand">
-				<a href="index" class="navbar-brand">
+				<a href="./" class="navbar-brand">
 					<!--Logo start-->
 					<img style="width: 2rem; height:auto" src="assets/images/logo.png" alt="logo Edradix">
 					<!--logo End-->
@@ -46,7 +46,7 @@
 						<button class="btn-close float-end"></button>
 					</div>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="Dashboard" id="dashboard"> </a></li>
+						<li class="nav-item"><a class="nav-link" href="./" id="dashboard"> </a></li>
 						<li class="nav-item"><a class="nav-link" href="Admin" id="admin"> </a></li>
 						<li class="nav-item"><a class="nav-link" href="Team" id="team"> </a></li>
 						<li class="nav-item"><a class="nav-link" href="Trees" id="trees"> </a></li>

@@ -4,7 +4,13 @@
 
 	$navs = [
 		'Dashboard',
+        // Admin URLs
 		'Admin',
+		'Users',
+		'Projects',
+		'Teams',
+		'EventSettings',
+
         'Events',
         'Matriz',
         'Reports',
@@ -23,8 +29,26 @@
 
         if ($pagina == 'Dashboard'){
             include "view/pages/$pagina.php";
-        } elseif ($pagina == 'Admin'){
-            include "view/pages/admin/$pagina.php";
+        } elseif ($pagina == 'Admin' || $pagina == 'Users' || $pagina == 'Projects' || $pagina == 'Teams' || $pagina == 'EventSettings'){
+
+            include "view/pages/admin/Admin.php";
+            
+            if ($pagina == 'Admin') {
+                include "view/pages/admin/Settings.php";
+            }
+            if ($pagina == 'Users') {
+                include "view/pages/admin/Users.php";
+            }
+            if ($pagina == 'Projects') {
+                include "view/pages/admin/Projects.php";
+            }
+            if ($pagina == 'Teams') {
+                include "view/pages/admin/Teams.php";
+            }
+            if ($pagina == 'EventSettings') {
+                include "view/pages/admin/EventSettings.php";
+            }
+
         } elseif ($pagina == 'Events'){
             include "view/pages/events/$pagina.php";
         } elseif ($pagina == 'Matriz'){

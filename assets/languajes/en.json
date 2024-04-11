@@ -16,5 +16,9 @@
     "accept": "Accept",
     "deny": "Deny",
     "cancel": "Cancel",
-    "profile": "Profile"
+    "profile": "Profile",
+    "settings": "Settings",
+    "users": "Users",
+    "projects": "Projects",
+    "teams": "Teams"
 }

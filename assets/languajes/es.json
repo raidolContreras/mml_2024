@@ -16,5 +16,9 @@
     "accept": "Aceptar",
     "deny": "Denegar",
     "cancel": "Cancelar",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "settings": "Configuración",
+    "users": "Usuarios",
+    "projects": "Proyectos",
+    "teams": "Equipos"
 }
