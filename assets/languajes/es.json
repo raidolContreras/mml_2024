@@ -12,5 +12,9 @@
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "register": "Registrar",
-    "email": "Correo electrónico"
+    "email": "Correo electrónico",
+    "accept": "Aceptar",
+    "deny": "Denegar",
+    "cancel": "Cancelar",
+    "profile": "Perfil"
 }
