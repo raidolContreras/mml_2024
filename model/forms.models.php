@@ -4,18 +4,25 @@ include "conection.php";
 
 class FormsModel {
     static public function mdlGetUsers($email) {
+        $pdo = Conexion::conectar();
         if ($email !== null) {
-            $pdo = Conexion::conectar();
             $sql = "SELECT * FROM users WHERE email = :email";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetch();
 
-            $stmt->closeCursor();
-            $stmt = null;
-            return $result;
+        } else {
+            $sql = "SELECT * FROM users";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
         }
+
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
     }
 
     static public function mdlChangeLanguage($language, $idUser){
@@ -32,4 +39,5 @@ class FormsModel {
         $stmt->closeCursor();
         $stmt = null;
     }
+
 }
