@@ -25,5 +25,16 @@
       <!-- RTL Css -->
       <link rel="stylesheet" href="assets/css/rtl.min.css"/>
       
+      <link rel="stylesheet" href="assets/css/style.css"/>
+      <?php 
+	    $pagina = $_GET['pagina'] ?? 'Dashboard';
+      if($pagina == 'Admin'){
+      } elseif($pagina == 'Users') {
+          // Importar librerías de Dropzone
+          echo '<link href="assets/vendor/dropzone/dropzone.css" rel="stylesheet">';
+      }
+      
+
+   ?>
       
   </head>

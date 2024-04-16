@@ -81,6 +81,14 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.action').html(translations.action);
     $('.product').html(translations.product);
 
+    $('.addUser_btn').html(translations.addUser_btn);
+    $('.users_list').html(translations.users_list);
+    $('.name').html(translations.name);
+    $('.email').html(translations.email);
+    $('.project').html(translations.project);
+    $('.user_type').html(translations.user_type);
+    $('.actions').html(translations.actions);
+
     $('.users').html(translations.users);
     $('.projects').html(translations.projects);
     $('.teams').html(translations.teams);

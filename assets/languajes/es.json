@@ -29,5 +29,11 @@
     "objetive": "Objetivo",
     "result": "Resultado",
     "action": "Acción",
-    "product": "Producto"
+    "product": "Producto",
+    "addUser_btn": "Agregar usuarios",
+    "users_list": "Lista de usuarios",
+    "name": "Nombre",
+    "project": "Proyecto",
+    "user_type": "Tipo de usuario",
+    "actions": "Acciones"
 }

@@ -1,0 +1,33 @@
+
+.dropzone .dz-preview .dz-progress {
+    height: 10px !important;
+    top: 85% !important;
+  }
+  
+.dropzone {
+border-style: dashed !important;
+}
+  
+.rounded-button {
+  top: -15% !important;
+  left: 85%;
+  margin-top: 5px;
+  cursor: pointer !important;
+  background-color: red;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1000;
+}
+
+
+.subtitulo-sup {
+  font-size: 10px;
+}
