@@ -34,6 +34,9 @@
 
 <?php
      include 'view/extras/languaje.php';
+     if($pagina == 'Admin'){
+        echo '<script src="assets/js/ajax_request/adminSettings.js"></script>';
+     } 
 ?>
 
 <script>
@@ -59,4 +62,5 @@ function logout() {
         }
     });
 }
+
 </script>

@@ -55,7 +55,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
         'Matriz' => '#matriz',
         'Reports' => '#reports',
         'Events' => '#events',
-        'Summary' => '#summary'
+        'Summary' => '#summary',
     ];
 
     // Verificar si la página actual está mapeada y agregar las clases y activar los elementos correspondientes
@@ -70,6 +70,16 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
         }
     }
     ?>
+    
+    $('.current_project').html(translations.current_project);
+    $('.color_settings').html(translations.color_settings);
+    $('.problem').html(translations.problem);
+    $('.effect').html(translations.effect);
+    $('.cause').html(translations.cause);
+    $('.objetive').html(translations.objetive);
+    $('.result').html(translations.result);
+    $('.action').html(translations.action);
+    $('.product').html(translations.product);
 
     $('.users').html(translations.users);
     $('.projects').html(translations.projects);

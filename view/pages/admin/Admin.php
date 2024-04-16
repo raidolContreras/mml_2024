@@ -7,3 +7,4 @@
         <a class="btn btn-link events" href="EventSettings"></a>
     </nav>
 </div>
+

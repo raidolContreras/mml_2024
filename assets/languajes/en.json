@@ -20,5 +20,14 @@
     "settings": "Settings",
     "users": "Users",
     "projects": "Projects",
-    "teams": "Teams"
+    "teams": "Teams",
+    "current_project": "Current project",
+    "color_settings": "Color configuration",
+    "problem": "Problem",
+    "effect": "Effect",
+    "cause": "Cause",
+    "objetive": "Objetive",
+    "result": "Result",
+    "action": "Action",
+    "product": "Product"
 }
