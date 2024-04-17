@@ -119,4 +119,19 @@ class FormsModel {
 		$stmt = null;
 	}
 
+    static public function mdlAddEvent($eventName){
+        $pdo = Conexion::conectar();
+        $sql = "INSERT INTO events (eventName) VALUES (:eventName)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventName', $eventName, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
 }

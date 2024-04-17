@@ -26,4 +26,40 @@ $(document).ready(function () {
             }
         ],
     });
+
+    $('#sendButton').on('click', function () {
+
+        var eventName = $('#eventName').val();
+
+        // Validar si los campos están vacíos
+        if (eventName === '') {
+            // Mostrar un mensaje de error si algún campo está vacío
+            $('#eventModal').modal('hide');
+            showAlertBootstrap1('¡Alerta!','Por favor, completa todos los campos.', 'eventModal');
+            return; // Detener el envío del formulario si hay campos vacíos
+        }
+        
+        // Enviar los datos mediante AJAX
+        $.ajax({
+            type: 'POST',
+            url: 'controller/ajax/ajax.form.php', 
+            data: {eventName: eventName},
+            success: function (response) {
+                console.log(response);
+                $('#eventModal').modal('hide');
+                if (response === 'ok') {
+                    showAlertBootstrap('¡Éxito!', 'El evento ha sido creado exitosamente.');
+                    $('#eventName').val('');
+                    $('#eventSettings').DataTable().ajax.reload();
+                } else {
+                    
+                    showAlertBootstrap1('¡Alerta!', 'El evento no se ha creado, intentalo de nuevo.', 'eventModal');
+                }
+            },
+            error: function (xhr, status, error) {
+                // Manejar errores aquí
+                console.error(xhr.responseText);
+            }
+        });
+    });
 });

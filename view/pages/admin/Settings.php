@@ -6,10 +6,6 @@
         <div class="col-md-6 offset-md-3">
             <label for="projectSelect" class="form-label current_project"></label>
             <select class="form-select" id="projectSelect">
-                <option value="" selected>Select a project</option>
-                <option value="project1">Project 1</option>
-                <option value="project2">Project 2</option>
-                <option value="project3">Project 3</option>
             </select>
             
             <label class="form-label mt-3 color_settings"></label>
@@ -48,6 +44,11 @@
                 <div class="col-6">
                     <label for="productColor" class="form-label col-3 product"></label>
                     <input type="text" class="form-control col-9" id="productColor" value="#000000"  data-coloris>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12 text-end">
+                    <button type="button" class="btn btn-success save" id="sendButton">Guardar</button>
                 </div>
             </div>
         </div>

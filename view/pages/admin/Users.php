@@ -44,17 +44,13 @@
                 <div class="form-group mt-3">
                     <label for="projectSelect" class="form-label current_project"></label>
                     <select class="form-select" id="projectSelect">
-                        <option value="" selected>Selecciona un proyecto</option>
-                        <option value="project1">Proyecto 1</option>
-                        <option value="project2">Proyecto 2</option>
-                        <option value="project3">Proyecto 3</option>
                         <!-- Agrega más opciones según sea necesario -->
                     </select>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success accept" id="uploadButton"></button>
+                <button type="button" class="btn btn-success accept" id="sendButton"></button>
             </div>
         </div>
     </div>

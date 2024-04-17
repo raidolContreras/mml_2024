@@ -57,7 +57,12 @@ class FormsController {
     }
     
 	static public function ctrAddLogo($data){
-		$addLogo = FormsModel::mdlAddLogo($data);
-    	return $addLogo;
+		$response = FormsModel::mdlAddLogo($data);
+    	return $response;
+	}
+    
+	static public function ctrAddEvent($eventName){
+		$response = FormsModel::mdlAddEvent($eventName);
+    	return $response;
 	}
 }

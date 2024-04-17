@@ -34,6 +34,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('#summary').html(translations.summary);
 
     $('#admin').html(translations.admin);
+    $('.save').html(translations.save);
     $('.Admin').html(translations.admin);
     $('.profile').html(translations.profile);
 

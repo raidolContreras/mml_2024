@@ -87,4 +87,10 @@ if (isset($_POST['idProject']) && isset($_FILES['logo'])) {
 			echo json_encode(array('status' => 'error', 'message' => 'Solo se permiten archivos de imagen (jpg, jpeg, png).'));
 		}
 	}
+
+}
+
+if (isset($_POST['eventName'])) {
+	$result = FormsController::ctrAddEvent($_POST['eventName']);
+	echo $result;
 }

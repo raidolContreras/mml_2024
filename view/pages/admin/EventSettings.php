@@ -36,7 +36,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success accept" id="uploadButton"></button>
+                <button type="button" class="btn btn-success accept" id="sendButton"></button>
             </div>
         </div>
     </div>
