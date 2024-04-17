@@ -88,6 +88,26 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.project').html(translations.project);
     $('.user_type').html(translations.user_type);
     $('.actions').html(translations.actions);
+    
+    $('.addProject_btn').html(translations.addProject_btn);
+    $('.project_list').html(translations.project_list);
+    $('.exampleModalLabel').html(translations.exampleModalLabel);
+    $('.projectName').html(translations.projectName);
+    $('.projectLink').html(translations.projectLink);
+    $('.projectColor').html(translations.projectColor);
+    $('.projectLogo').html(translations.projectLogo);
+    $('.accept').html(translations.accept);
+    $('.cancel').html(translations.cancel);
+    
+    $('.team_list').html(translations.team_list);
+    $('.addTeam_btn').html(translations.addTeam_btn);
+    $('.teamName').html(translations.teamName);
+    $('.description').html(translations.description);
+    $('.school').html(translations.school);
+    
+    $('.event_list').html(translations.event_list);
+    $('.eventName').html(translations.eventName);
+    $('.addEvent_btn').html(translations.addEvent_btn);
 
     $('.users').html(translations.users);
     $('.projects').html(translations.projects);

@@ -3,7 +3,7 @@
 class FormsController {
     
     static public function ctrLogin($email, $password){
-        $response = FormsModel::mdlGetUsers($email);
+        $response = FormsModel::mdlGetUsers('email', $email);
         
 		$cryptPassword = crypt($password, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
         if (!empty($response)){
@@ -20,6 +20,10 @@ class FormsController {
         } else {
             return 'Error: Email does not contain';
         }
+    }
+
+    static public function ctrGetUsers($item, $value){
+        return FormsModel::mdlGetUsers($item, $value);
     }
 
     static public function ctrChangeLanguage($language, $idUser){

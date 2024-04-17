@@ -1,4 +1,63 @@
 $(document).ready(function () {
+    var language = document.getElementById('language').value;
+
+    $('#users').DataTable({
+        // Resto de tus opciones de configuración...
+        initComplete: function(settings, json) {
+            // Esto inicializa los tooltips después de que DataTables ha terminado de cargar los datos por primera vez
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        },
+        drawCallback: function(settings) {
+            // Esto reinicializa los tooltips cada vez que DataTables redibuja la tabla (ej., paginación)
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        },
+        ajax: {
+            url: 'controller/ajax/getUsers.php',
+            dataSrc: ''
+        },
+        columns: [
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return data.firstname + ' ' + data.lastname;
+                }
+            },
+            {
+                data: 'email'
+            },
+            {
+                data: null,
+                render: function(data) {
+                    return '';
+                }
+            },
+            {
+                data: null,
+                render: function(data, type) {
+                    var level = "";
+                    if (data.level == 0) {
+                        level = translations.admin;
+                    } else if(data.level == 1) {
+                        level = translations.standar;
+                    } else {
+                        level = translations.student;
+                    }
+                    return level;
+                } 
+            },
+            {
+                data: null,
+                render: function(data) {
+                    return '';
+                }
+            }
+        ],
+        // Aquí establecemos la configuración de idioma basada en la variable language
+        language: language === 'es' ? {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+        } : {}
+    });
+
     var myDropzone = new Dropzone("#addUsersDropzone", {
         maxFiles: 1,
         url: "controller/ajax/ajax.form.php",

@@ -40,7 +40,13 @@
          // Importar librerías de Dropzone
          echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
          echo '<script src="assets/js/ajax_request/getUsers.js"></script>';
-     }
+        } elseif($pagina == 'Projects') {
+            // Importar librerías de Dropzone
+            echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
+            echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>';
+            echo '<script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>';
+            echo '<script src="assets/js/ajax_request/getProjects.js"></script>';
+    }
 ?>
 
 <script>

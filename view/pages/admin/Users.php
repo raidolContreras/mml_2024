@@ -39,7 +39,6 @@
                 <!-- Dropzone para cargar archivos -->
                 <div class="col-md-12">
                     <div id="addUsersDropzone" class="dropzone"></div>
-                    <input type="hidden" id="addUsers" name="addUsers" />
                 </div>
                 <!-- Lista desplegable de proyectos -->
                 <div class="form-group mt-3">
@@ -54,9 +53,10 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success" id="uploadButton" disabled>Aceptar</button>
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success accept" id="uploadButton"></button>
             </div>
         </div>
     </div>
 </div>
+<input type="hidden" id="language" value="<?php echo $_SESSION['language']; ?>">

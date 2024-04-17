@@ -30,9 +30,12 @@
 	    $pagina = $_GET['pagina'] ?? 'Dashboard';
       if($pagina == 'Admin'){
       } elseif($pagina == 'Users') {
-          // Importar librerías de Dropzone
-          echo '<link href="assets/vendor/dropzone/dropzone.css" rel="stylesheet">';
-      }
+        // Importar librerías de Dropzone
+        echo '<link href="assets/vendor/dropzone/dropzone.css" rel="stylesheet">';
+    }elseif($pagina == 'Projects') {
+        // Importar librerías de Dropzone
+        echo '<link href="assets/vendor/dropzone/dropzone.css" rel="stylesheet">';
+    }
       
 
    ?>
