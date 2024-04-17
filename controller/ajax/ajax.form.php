@@ -35,3 +35,22 @@ if (isset($_POST['language']) && isset($_POST['user'])) {
     }
     echo $result;
 }
+
+if (isset($_POST['teamName']) && isset($_POST['description']) && isset($_POST['school'])) {
+    $data = array(
+        'teamName' => $_POST['teamName'],
+        'description' => $_POST['description'],
+        'school' => $_POST['school']
+    );
+    $result = FormsController::ctrAddTeam($data);
+    echo $result;
+}
+
+if (isset($_POST['projectName']) && isset($_POST['projectLink'])) {
+    $data = array(
+        'projectName' => $_POST['projectName'],
+        'projectLink' => $_POST['projectLink']
+    );
+    $result = FormsController::ctrAddProject($data);
+    echo $result;
+}

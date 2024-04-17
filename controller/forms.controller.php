@@ -30,4 +30,29 @@ class FormsController {
         $response = FormsModel::mdlChangeLanguage($language, $idUser);
         return $response;
     }
+
+    static public function ctrGetProject() {
+        $response = FormsModel::mdlGetProject();
+        return $response;
+    }
+
+    static public function ctrGetTeams() {
+        $response = FormsModel::mdlGetTeams();
+        return $response;
+    }
+
+    static public function ctrGetEvents() {
+        $response = FormsModel::mdlGetEvents();
+        return $response;
+    }
+
+    static public function ctrAddTeam($data) {
+        $response = FormsModel::mdlAddTeam($data);
+        return $response;
+    }
+
+    static public function ctrAddProject($data) {
+        $response = FormsModel::mdlAddProject($data);
+        return $response;
+    }
 }

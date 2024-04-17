@@ -59,4 +59,3 @@
         </div>
     </div>
 </div>
-<input type="hidden" id="language" value="<?php echo $_SESSION['language']; ?>">

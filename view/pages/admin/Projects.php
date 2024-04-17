@@ -12,8 +12,6 @@
                     <tr>
                         <th class="projectName"></th>
                         <th class="projectLink"></th>
-                        <th class="projectColor"></th>
-                        <th class="projectLogo"></th>
                         <th class="actions"></th>
                     </tr>
                 </thead>
@@ -33,29 +31,24 @@
             <div class="modal-body">
                 <!-- Nombre del proyecto -->
                 <div class="form-group mt-3">
-                    <label for="projectName" class="form-label projectName"></label>
+                    <label for="projectName" class="form-label"><span class="projectName"></span>*</label>
                     <input type="text" class="form-control" id="projectName">
                 </div>
                 <!-- Link del proyecto -->
                 <div class="form-group mt-3">
-                    <label for="projectLink" class="form-label projectLink"></label>
+                    <label for="projectLink" class="form-label"><span class="projectLink"></span>*</label>
                     <input type="text" class="form-control" id="projectLink">
-                </div>
-                <!-- Color del menu superior -->
-                <div class="col-6">
-                    <label for="menuColor" class="form-label projectColor"></label>
-                    <input type="text" class="form-control col-9" id="projectColor" value="#000000"  data-coloris>
                 </div>
                 <!-- Logo del proyecto (Dropzone) -->
                 <div class="form-group mt-3">
-                    <label for="projectLogo" class="form-label projectLogo"></label>
+                    <label for="projectLogo" class="form-label"><span class="projectLogo"></span>*</label>
                     <div id="projectLogoDropzone" class="dropzone"></div>
-                    <input type="hidden" id="projectLogo" name="projectLogo" />
+                    <input type="hidden" id="projectLogo"/>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success accept" id="uploadButton"></button>
+                <button type="button" class="btn btn-success accept" id="sendButton"></button>
             </div>
         </div>
     </div>

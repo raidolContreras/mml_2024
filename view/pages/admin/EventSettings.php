@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table" id="events">
+            <table class="table" id="eventSettings">
                 <thead>
                     <tr>
                         <th class="eventName"></th>
@@ -18,7 +18,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Add users -->
 <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

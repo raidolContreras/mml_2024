@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    var language = document.getElementById('language').value;
 
     $('#users').DataTable({
         // Resto de tus opciones de configuración...
@@ -52,10 +51,6 @@ $(document).ready(function () {
                 }
             }
         ],
-        // Aquí establecemos la configuración de idioma basada en la variable language
-        language: language === 'es' ? {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-        } : {}
     });
 
     var myDropzone = new Dropzone("#addUsersDropzone", {

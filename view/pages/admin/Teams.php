@@ -10,6 +10,7 @@
             <table class="table" id="teams">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th class="teamName"></th>
                         <th class="description"></th>
                         <th class="school"></th>
@@ -28,27 +29,26 @@
                 <h5 class="modal-title addTeam_btn" id="exampleModalLabel"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <form class="modal-body">
                 
                 <div class="form-group mt-3">
-                    <label for="projectName" class="form-label teamName"></label>
-                    <input type="text" class="form-control" id="teamName">
+                    <label for="projectName" class="form-label"><span class="teamName"></span>*</label>
+                    <input type="text" class="form-control" id="teamName" name="teamName" required>
                 </div>
                 <div class="form-group mt-3">
-                    <label for="projectName" class="form-label description"></label>
-                    <input type="text" class="form-control" id="description">
+                    <label for="projectName" class="form-label "><span class="description"></span>*</label>
+                    <input type="text" class="form-control" id="description" name="description" required>
                 </div>
                 <div class="form-group mt-3">
-                    <label for="projectName" class="form-label school"></label>
-                    <input type="text" class="form-control" id="school">
+                    <label for="projectName" class="form-label"><span class="school"></span>*</label>
+                    <input type="text" class="form-control" id="school" name="school" required>
                 </div>
 
-            </div>
+            </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success accept" id="uploadButton"></button>
+                <button type="button" class="btn btn-success accept" id="sendButton"></button>
             </div>
         </div>
     </div>
 </div>
-<input type="hidden" id="language" value="<?php echo $_SESSION['language']; ?>">
