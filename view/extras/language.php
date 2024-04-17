@@ -73,6 +73,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     ?>
     
     $('.current_project').html(translations.current_project);
+    $('.level_user').html(translations.level_user);
     $('.color_settings').html(translations.color_settings);
     $('.problem').html(translations.problem);
     $('.effect').html(translations.effect);

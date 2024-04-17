@@ -94,3 +94,56 @@ if (isset($_POST['eventName'])) {
 	$result = FormsController::ctrAddEvent($_POST['eventName']);
 	echo $result;
 }
+
+if (isset($_POST['projectSelect']) && isset($_POST['level_user']) && isset($_FILES['userList'])) {
+	if (isset($_FILES['userList']) && $_FILES['userList']['error'] === UPLOAD_ERR_OK) {
+		// Ruta donde se almacenará el archivo temporalmente
+		$fileTmpPath = $_FILES['userList']['tmp_name'];
+	
+		// Obtener el contenido del archivo CSV
+		$csvData = file_get_contents($fileTmpPath);
+	
+		// Parsear el contenido del archivo CSV
+		$lines = explode("\n", $csvData);
+		$users = [];
+		$init = false;
+		foreach ($lines as $line) {
+			// Verificar que la línea no esté vacía
+			if (!empty($line)) {
+				if ($init) {
+					$fields = str_getcsv($line);
+					// Verificar que hay al menos 4 campos en la línea
+					if (count($fields) >= 4) {
+		                $cryptPassword = crypt($fields[3], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+						$user = [
+							'firstname' => $fields[0],
+							'lastname' => $fields[1],
+							'email' => $fields[2],
+							'cryptPassword' => $cryptPassword,
+							'password' => $fields[3],
+							'users_idProjects' => $_POST['projectSelect'],
+							'level' => $_POST['level_user']
+						];
+						$users[] = $user;
+					} else {
+						// Manejar la línea con un número insuficiente de campos
+						echo "Error: la línea no tiene suficientes campos.";
+					}
+				} else {
+					$init = true;
+				}
+			}
+		}
+        $status = 'ok';
+		foreach ($users as $user) {
+            if ($status == 'ok') {
+                $status = FormsController::ctrAddUser($user);
+            } else {
+                echo $status;
+            }
+		}
+        echo $status;
+	} else {
+		echo "Error al cargar el archivo CSV.";
+	}
+}

@@ -27,7 +27,11 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function(data) {
-                    return '';
+                    if (data.nameProject != isNaN) {
+                        return data.nameProject;
+                    } else {
+                        return '';
+                    }
                 }
             },
             {
@@ -58,6 +62,7 @@ $(document).ready(function () {
         url: "controller/ajax/ajax.form.php",
         maxFilesize: 10,
         acceptedFiles: "text/csv",
+        paramName: "userList",
         dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos .csv (Tamaño máximo 10 MB)</p>',
         autoProcessQueue: false,
         dictInvalidFileType: "Archivo no permitido. Por favor, sube un archivo en formato CSV.",
@@ -93,6 +98,34 @@ $(document).ready(function () {
                 });
                 file.previewElement.appendChild(removeButton);
             });
+        }
+    });
+    
+    $('#sendButton').on('click', function () {
+        projectSelect = $('#projectSelect').val();
+        level_user = $('#level_user').val();
+        
+        myDropzone.processQueue();
+        $('#usersModal').modal('hide');
+                    
+        setTimeout(() => {
+            // Limpiar el Dropzone
+            myDropzone.removeAllFiles();
+        }, 1000);
+    });
+    
+    // Configuración del evento 'sending' del Dropzone
+	myDropzone.on("sending", function(file, xhr, formData) {
+        formData.append("projectSelect", projectSelect);
+        formData.append("level_user", level_user);
+    });
+
+    myDropzone.on("success", function(file, response) {
+        if (response === 'ok') {
+            $('#users').DataTable().ajax.reload();
+            showAlertBootstrap('¡Éxito!', 'Archivo procesado exitosamente.');
+        } else {
+            showAlertBootstrap1('¡Alerta!', 'Archivo no procesado, intentalo de nuevo.', 'usersModal');
         }
     });
 });

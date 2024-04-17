@@ -65,4 +65,9 @@ class FormsController {
 		$response = FormsModel::mdlAddEvent($eventName);
     	return $response;
 	}
+
+    static public function ctrAddUser($data){
+        $response = FormsModel::mdlAddUser($data);
+        return $response;
+    }
 }
