@@ -55,4 +55,9 @@ class FormsController {
         $response = FormsModel::mdlAddProject($data);
         return $response;
     }
+    
+	static public function ctrAddLogo($data){
+		$addLogo = FormsModel::mdlAddLogo($data);
+    	return $addLogo;
+	}
 }

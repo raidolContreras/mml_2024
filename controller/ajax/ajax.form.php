@@ -54,3 +54,37 @@ if (isset($_POST['projectName']) && isset($_POST['projectLink'])) {
     $result = FormsController::ctrAddProject($data);
     echo $result;
 }
+
+if (isset($_POST['idProject']) && isset($_FILES['logo'])) {
+	$data = array(
+		'idProject' => $_POST['idProject'],
+		'logo' => $_FILES['logo']['name']
+	);
+
+    $addLogo = FormsController::ctrAddLogo($data);
+
+	if ($addLogo == 'ok') {
+		$targetDir = "../../assets/images/projects/" . $_POST['idProject'] . "/"; // Reemplaza con la ruta adecuada
+		$fileName = basename($_FILES["logo"]["name"]);
+		$targetFilePath = $targetDir . $fileName;
+		$fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+		// Verifica si la carpeta existe, si no, la crea
+		if (!file_exists($targetDir)) {
+			mkdir($targetDir, 0777, true);
+		}
+
+		// Verificar si el archivo es una imagen
+		$allowTypes = array('jpg', 'jpeg', 'png');
+		if (in_array($fileType, $allowTypes)) {
+			// Mover el archivo al directorio de destino
+			if (move_uploaded_file($_FILES["logo"]["tmp_name"], $targetFilePath)) {
+				echo json_encode(array('status' => 'success', 'logoUrl' => $targetFilePath));
+			} else {
+				echo json_encode(array('status' => 'error', 'message' => 'Error al cargar el archivo.'));
+			}
+		} else {
+			echo json_encode(array('status' => 'error', 'message' => 'Solo se permiten archivos de imagen (jpg, jpeg, png).'));
+		}
+	}
+}

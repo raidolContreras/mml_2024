@@ -36,6 +36,7 @@ $(document).ready(function () {
         maxFiles: 1,
         url: "controller/ajax/ajax.form.php",
         maxFilesize: 10,
+        paramName: "logo",
         acceptedFiles: "image/jpeg, image/png",
         dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos .PNG, .JPG, .JPEG (Tamaño máximo 10 MB)</p>',
         autoProcessQueue: false,
@@ -109,6 +110,7 @@ $(document).ready(function () {
                     idProject = response;
 
                     myDropzone.processQueue();
+                    $('#projectModal').modal('hide');
                     
                     setTimeout(() => {
                         // Limpiar el Dropzone

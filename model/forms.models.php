@@ -103,5 +103,20 @@ class FormsModel {
         $stmt = null;
         return $result;
     }
+    
+	static public function mdlAddLogo($data){
+		$pdo = Conexion::conectar();
+		$sql = "UPDATE projects SET logoProject = :logo WHERE idProject = :idProject";
+		$stmt = $pdo->prepare($sql);
+		$stmt->bindParam(':logo', $data['logo'], PDO::PARAM_STR);
+		$stmt->bindParam(':idProject', $data['idProject'], PDO::PARAM_INT);
+		if($stmt->execute()){
+			return "ok";
+		} else {
+			print_r($pdo->errorInfo());
+		}
+		$stmt->closeCursor();
+		$stmt = null;
+	}
 
 }
