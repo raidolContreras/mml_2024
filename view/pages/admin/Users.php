@@ -2,7 +2,13 @@
     <div class="card">
         <div class="card-header"><div class="header-title d-flex justify-content-between">
             <h4 class="card-title users_list"></h4>
-            <button class="btn btn-primary addUser_btn" data-bs-toggle="modal" data-bs-target="#usersModal">Agregar Usuario</button>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle massiveActions" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><button class="dropdown-item addUser_btn" data-bs-toggle="modal" data-bs-target="#usersModal">Agregar Usuario</button></li>
+                    <li><a class="dropdown-item deleteUser_btn" data-bs-toggle="modal" data-bs-target="#deleteMassiveModal">Eliminar usuarios</a></li>
+                </ul>
+            </div>
         </div>
 
         </div>

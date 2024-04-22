@@ -85,6 +85,8 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.acceptEdit').html(translations.accept);
     $('.product').html(translations.product);
 
+    $('.massiveActions').html(translations.massiveActions);
+    $('.deleteUser_btn').html(translations.deleteUser_btn);
     $('.addUser_btn').html(translations.addUser_btn);
     $('.editUser_btn').html(translations.editUser_btn);
     $('.users_list').html(translations.users_list);
