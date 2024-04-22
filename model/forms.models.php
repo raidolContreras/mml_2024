@@ -112,7 +112,11 @@ class FormsModel {
         $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
         $stmt->bindParam(':school', $data['school'], PDO::PARAM_STR);
         if ($stmt->execute()) {
-            $result = 'ok';
+            if($data['description'] == '' && $data['school'] == '') {
+                $result = $pdo->lastInsertId();
+            } else {
+                $result = 'ok';
+            }
         } else {
             $result = 'error';
         }
@@ -169,14 +173,36 @@ class FormsModel {
 
     static public function mdlAddUser($data){
         $pdo = Conexion::conectar();
-        $sql = "INSERT INTO users (firstname, lastname, email, password, users_idProjects, level) VALUES (:firstname, :lastname, :email, :password, :users_idProjects, :level)";
+        $sql = "INSERT INTO users (firstname, lastname, email, password, users_idProjects, users_idTeam, level) VALUES (:firstname, :lastname, :email, :password, :users_idProjects, :users_idTeam, :level)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':firstname', $data['firstname'], PDO::PARAM_STR);
         $stmt->bindParam(':lastname', $data['lastname'], PDO::PARAM_STR);
         $stmt->bindParam(':email', $data['email'], PDO::PARAM_STR);
         $stmt->bindParam(':password', $data['cryptPassword'], PDO::PARAM_STR);
         $stmt->bindParam(':users_idProjects', $data['users_idProjects'], PDO::PARAM_INT);
+        $stmt->bindParam(':users_idTeam', $data['users_idTeam'], PDO::PARAM_INT);
         $stmt->bindParam(':level', $data['level'], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlUpdateUser($data, $idUser){
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, users_idProjects = :users_idProjects, users_idTeam = :users_idTeam, level = :level WHERE idUser = :idUser";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':firstname', $data['firstname'], PDO::PARAM_STR);
+        $stmt->bindParam(':lastname', $data['lastname'], PDO::PARAM_STR);
+        $stmt->bindParam(':email', $data['email'], PDO::PARAM_STR);
+        $stmt->bindParam(':users_idProjects', $data['users_idProjects'], PDO::PARAM_INT);
+        $stmt->bindParam(':users_idTeam', $data['users_idTeam'], PDO::PARAM_INT);
+        $stmt->bindParam(':level', $data['level'], PDO::PARAM_INT);
+        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
         if ($stmt->execute()) {
             $result = 'ok';
         } else {

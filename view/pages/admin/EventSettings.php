@@ -10,8 +10,9 @@
             <table class="table" id="eventSettings">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th class="eventName"></th>
-                        <th class="actions"></th>
+                        <th width="10%" class="actions"></th>
                     </tr>
                 </thead>
             </table>

@@ -97,6 +97,8 @@ if (isset($_POST['eventName'])) {
 
 if (isset($_POST['projectSelect']) && isset($_POST['level_user']) && isset($_FILES['userList'])) {
 	if (isset($_FILES['userList']) && $_FILES['userList']['error'] === UPLOAD_ERR_OK) {
+		
+		$emails = array();
 		// Ruta donde se almacenará el archivo temporalmente
 		$fileTmpPath = $_FILES['userList']['tmp_name'];
 	
@@ -115,14 +117,18 @@ if (isset($_POST['projectSelect']) && isset($_POST['level_user']) && isset($_FIL
 					// Verificar que hay al menos 4 campos en la línea
 					if (count($fields) >= 4) {
 		                $cryptPassword = crypt($fields[3], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+						$level = ($fields[4] == 'administrator') ? 0: 1;
+						$project = $fields[5];
+						$team = $fields[6];
 						$user = [
 							'firstname' => $fields[0],
 							'lastname' => $fields[1],
 							'email' => $fields[2],
 							'cryptPassword' => $cryptPassword,
 							'password' => $fields[3],
-							'users_idProjects' => $_POST['projectSelect'],
-							'level' => $_POST['level_user']
+							'users_idProjects' => null,
+							'users_idTeams' => null,
+							'level' => $level
 						];
 						$users[] = $user;
 					} else {
@@ -137,12 +143,47 @@ if (isset($_POST['projectSelect']) && isset($_POST['level_user']) && isset($_FIL
         $status = 'ok';
 		foreach ($users as $user) {
             if ($status == 'ok') {
-                $status = FormsController::ctrAddUser($user);
+
+				if ($project != ''){
+					$projectExist = FormsController::ctrGetProject('nameProject', $project);
+					if (empty($projectExist)) {
+						$data = array(
+							'projectName' => $project,
+							'projectLink' => ''
+						);
+						// El proyecto no existe, por lo que lo agregamos
+						$idProject = FormsController::ctrAddProject($data);
+						$user['users_idProjects'] = $idProject;
+					} else {
+						$user['users_idProjects'] = $projectExist['idProject'];
+					}
+				}
+				if ($team != ''){
+					$teamExist = FormsController::ctrGetTeams('teamName', $team);
+                    if (empty($teamExist)) {
+						$data = array(
+							'teamName' => $team,
+							'description' => '',
+							'school' => ''
+						);
+                        // El equipo no existe, por lo que lo agregamos
+                        $idTeam = FormsController::ctrAddTeam($data);
+                        $user['users_idTeam'] = $idTeam;
+                    } else {
+                        $user['users_idTeam'] = $teamExist['idTeam'];
+                    }
+				}
+				$userCheck = FormsController::ctrGetUsers('email', $user['email']);
+				if (empty($userCheck)) {
+                    $status = FormsController::ctrAddUser($user);
+                } else {
+					$userUpdate = FormsController::ctrUpdateUser($user, $userCheck['idUser']);
+                }
             } else {
-                echo $status;
+                echo $result;
             }
 		}
-        echo $status;
+		echo $status;
 	} else {
 		echo "Error al cargar el archivo CSV.";
 	}

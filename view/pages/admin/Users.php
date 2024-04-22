@@ -10,6 +10,7 @@
             <table class="table" id="users">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th class="name"></th>
                         <th class="email"></th>
                         <th class="project"></th>

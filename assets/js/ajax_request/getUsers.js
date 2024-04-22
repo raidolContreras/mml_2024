@@ -16,6 +16,13 @@ $(document).ready(function () {
         },
         columns: [
             {
+				data: null,
+                render: function (data, type, row, meta) {
+                // Utilizando el contador proporcionado por DataTables
+                return meta.row + 1;
+				}
+            },
+            {
                 data: null,
                 render: function (data, type, row) {
                     return data.firstname + ' ' + data.lastname;
@@ -126,7 +133,8 @@ $(document).ready(function () {
     });
 
     myDropzone.on("success", function(file, response) {
-        if (response === 'ok') {
+        console.log(response);
+        if (response == 'ok') {
             $('#users').DataTable().ajax.reload();
             showAlertBootstrap('¡Éxito!', 'Archivo procesado exitosamente.');
         } else {

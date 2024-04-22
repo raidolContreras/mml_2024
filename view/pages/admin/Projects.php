@@ -10,6 +10,8 @@
             <table class="table" id="projects">
                 <thead>
                     <tr>
+                        <th>#</th>
+                        <th>Logo</th>
                         <th class="projectName"></th>
                         <th class="projectLink"></th>
                         <th class="actions"></th>

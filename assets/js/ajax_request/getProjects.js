@@ -16,6 +16,30 @@ $(document).ready(function () {
         },
         columns: [
             {
+				data: null,
+                render: function (data, type, row, meta) {
+                // Utilizando el contador proporcionado por DataTables
+                return meta.row + 1;
+				}
+            },
+            {
+                data: null,
+                render: function(data) {
+                    if (data.logoProject == "") {
+                        return `
+                        <div class="text-center">
+                            Sin logotipo
+                        </div>
+                        `;
+                    }
+                    return `
+                    <div class="text-center">
+                        <img src="assets/images/projects/${data.idProject}/${data.logoProject}" class="img-fluid" style="max-height: 50px;" alt="Logo del proyecto">
+                    </div>
+                    `;
+                }
+            },
+            {
                 data: 'nameProject'
             },
             {
