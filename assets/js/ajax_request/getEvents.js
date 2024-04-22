@@ -21,7 +21,12 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function(data) {
-                    return '';
+                    return `
+                    <center>
+                        <button class="btn btn-info" onclick="editEvent(${data.idEvent})">${translations.edit}</button>
+                        <button class="btn btn-danger" onclick="deleteEvent(${data.idEvent})">${translations.delete}</button>
+                    </center>
+                    `;
                 }
             }
         ],
@@ -63,3 +68,32 @@ $(document).ready(function () {
         });
     });
 });
+
+function editEvent(event) {
+    // Mostrar el modal
+    $('#eventModalEdit').modal('show');
+    // Limpiar los campos
+    $('#eventName').val('');
+    // Recuperar los datos del evento
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php', 
+        data: {SelectEvent: event},
+        dataType: 'json',
+        success: function (response) {
+            $('#eventNameEdit').val(response.eventName);
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores aquí
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+function deleteEvent(event) {
+    // Mostrar el modal
+    $('#deleteEventModal').modal('show');
+    $('.acceptDelete').html(translations.accept);
+    $('.deleteMessage').html(translations.deleteMessageEvent);
+    $('#deleteEvent').val(event);
+}

@@ -24,7 +24,12 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function(data) {
-                    return '';
+                    return `
+                    <center>
+                        <button class="btn btn-info" onclick="editProject(${data.idProject})">${translations.edit}</button>
+                        <button class="btn btn-danger" onclick="deleteProject(${data.idProject})">${translations.delete}</button>
+                    </center>
+                    `;
                 }
             }
         ],
@@ -134,3 +139,46 @@ $(document).ready(function () {
         formData.append("idProject", idProject);
     });
 });
+
+function editProject(project) {
+    $('#editProject').val(project);
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php', 
+        data: {
+            SelectProject: project
+        },
+        dataType: 'json',
+        success: function (response) {
+            $('#projectNameEdit').val(response.nameProject);
+            $('#projectLinkEdit').val(response.linkProject);
+            $('#logoProject').val(response.logoProject);
+            $('#editProjectsModal').modal('show');
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores aquí
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+function deleteProject(project) {
+    $('#deleteProject').val(project);
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php', 
+        data: {
+            SelectProject: project
+        },
+        dataType: 'json',
+        success: function (response) {
+            $('#deleteProjectsModal').modal('show');
+            $('.acceptDelete').html(translations.accept);
+            $('.deleteMessage').html(translations.deleteMessageProject);
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores aquí
+            console.error(xhr.responseText);
+        }
+    });
+}

@@ -34,7 +34,12 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function(data) {
-                    return '';
+                    return `
+                    <center>
+                        <button class="btn btn-info" onclick="editTeam(${data.idTeam})">${translations.edit}</button>
+                        <button class="btn btn-danger" onclick="deleteTeam(${data.idTeam})">${translations.delete}</button>
+                    </center>
+                    `;
                 }
             }
         ],
@@ -87,3 +92,43 @@ $(document).ready(function () {
     });
 
 });
+
+function editTeam(team) {
+
+    $('#teamModalEdit').modal('show');
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            SearchTeam: team
+        },
+        dataType: 'json',
+        success: function (response) {
+            $('#editTeam').val(team);
+            $('#teamNameEdit').val(response.teamName);
+            $('#descriptionEdit').val(response.teamDescription);
+            $('#schoolEdit').val(response.teamSchool);
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores aquí
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+function deleteTeam(team) {
+    
+    $('#teamModalDelete').modal('show');
+    // Eliminar el equipo mediante AJAX
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            SearchTeam: team
+        },
+        dataType: 'json',
+        success: function (response) {
+            $('.deleteMessage').html(translations.deleteMessageTeam);
+        }
+    });
+}

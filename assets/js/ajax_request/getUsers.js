@@ -53,8 +53,8 @@ $(document).ready(function () {
                 render: function(data) {
                     return `
                     <center>
-                        <button class="btn btn-info" onclick="editUser(${data.idUser})">Editar</button>
-                        <button class="btn btn-danger" onclick="deleteUser(${data.idUser})">Eliminar</button>
+                        <button class="btn btn-info" onclick="editUser(${data.idUser})">${translations.edit}</button>
+                        <button class="btn btn-danger" onclick="deleteUser(${data.idUser})">${translations.delete}</button>
                     </center>
                     `;
                 }
@@ -148,11 +148,13 @@ function editUser(user) {
         dataType: 'json',
         success: function (response) {
             if (response) {
+                $('.acceptEdit').html(translations.accept);
                 $('#firstname').val(response.firstname);
                 $('#lastname').val(response.lastname);
                 $('#email').val(response.email);
-                $('#projectSelect').val(response.nameProject);
-                $('#level').val(response.level);
+                $('#projectSelectEdit').val(response.users_idProjects);
+
+                $('#level_user_edit').val(response.level);
             }
         },
         error: function (xhr, status, error) {
@@ -160,5 +162,27 @@ function editUser(user) {
             console.error(xhr.responseText);
         }
     });
-    
+}
+
+function deleteUser(user) {
+    $('#deleteUser').val(user);
+    $('#deleteUsersModal').modal('show');
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            SearchUser: user
+        },
+        dataType: 'json',
+        success: function (response) {
+            if (response) {
+                $('.deleteMessage').html(translations.deleteMessage);
+                $('.acceptDelete').html(translations.accept);
+            }
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores aquí
+            console.error(xhr.responseText);
+        }
+    });
 }

@@ -151,3 +151,12 @@ if (isset($_POST['projectSelect']) && isset($_POST['level_user']) && isset($_FIL
 if(isset($_POST['SearchUser'])){
 	echo json_encode(FormsController::ctrGetUsers('idUser', $_POST['SearchUser']));
 }
+if(isset($_POST['SelectProject'])){
+	echo json_encode(FormsController::ctrGetProject('idProject', $_POST['SelectProject']));
+}
+if(isset($_POST['SearchTeam'])){
+	echo json_encode(FormsController::ctrGetTeams('idTeam', $_POST['SearchTeam']));
+}
+if(isset($_POST['SelectEvent'])){
+	echo json_encode(FormsController::ctrGetEvents('idEvent', $_POST['SelectEvent']));
+}

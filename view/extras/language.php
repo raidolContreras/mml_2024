@@ -74,6 +74,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     
     $('.current_project').html(translations.current_project);
     $('.level_user').html(translations.level_user);
+    $('.download_template').html(translations.download_template);
     $('.color_settings').html(translations.color_settings);
     $('.problem').html(translations.problem);
     $('.effect').html(translations.effect);
@@ -81,17 +82,23 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.objetive').html(translations.objetive);
     $('.result').html(translations.result);
     $('.action').html(translations.action);
+    $('.acceptEdit').html(translations.accept);
     $('.product').html(translations.product);
 
     $('.addUser_btn').html(translations.addUser_btn);
+    $('.editUser_btn').html(translations.editUser_btn);
     $('.users_list').html(translations.users_list);
     $('.name').html(translations.name);
     $('.email').html(translations.email);
     $('.project').html(translations.project);
     $('.user_type').html(translations.user_type);
     $('.actions').html(translations.actions);
+    $('.firstname').html(translations.firstname);
+    $('.lastname').html(translations.lastname);
     
     $('.addProject_btn').html(translations.addProject_btn);
+    $('.editProject_btn').html(translations.editProject_btn);
+    $('.alert-message').html(translations.alert);
     $('.project_list').html(translations.project_list);
     $('.exampleModalLabel').html(translations.exampleModalLabel);
     $('.projectName').html(translations.projectName);
@@ -103,6 +110,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     
     $('.team_list').html(translations.team_list);
     $('.addTeam_btn').html(translations.addTeam_btn);
+    $('.editTeam_btn').html(translations.editTeam_btn);
     $('.teamName').html(translations.teamName);
     $('.description').html(translations.description);
     $('.school').html(translations.school);
@@ -117,6 +125,15 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.events').html(translations.events);
 
     $('.progress-title').text(translations.progress);
+    
+    var html = `
+        <option value="">${translations.select_one}</option>
+        <option value="0">${translations.admin}</option>
+        <option value="1">${translations.standar}</option>
+    `;
+
+    $('#level_user').html(html);
+    $('#level_user_edit').html(html);
 });
 
 function changeLanguage(language) {

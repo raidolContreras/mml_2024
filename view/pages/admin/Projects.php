@@ -53,3 +53,59 @@
         </div>
     </div>
 </div>
+
+<!-- Edit projects -->
+<div class="modal fade" id="editProjectsModal" tabindex="-1" aria-labelledby="editProjectsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title editProject_btn" id="editProjectsModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+                    <!-- Nombre del proyecto -->
+                    <div class="form-group mt-3">
+                        <label for="projectNameEdit" class="form-label"><span class="projectName"></span>*</label>
+                        <input type="text" class="form-control" id="projectNameEdit">
+                    </div>
+                    <!-- Link del proyecto -->
+                    <div class="form-group mt-3">
+                        <label for="projectLinkEdit" class="form-label"><span class="projectLink"></span>*</label>
+                        <input type="text" class="form-control" id="projectLinkEdit">
+                    </div>
+                </div>
+
+            </div>
+            <input type="hidden" id="editProject">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success acceptEdit" id="sendButton"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete projects -->
+<div class="modal fade" id="deleteProjectsModal" tabindex="-1" aria-labelledby="deleteProjectsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title alert-message" id="deleteProjectsModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="deleteMessage">
+
+                </div>
+            </div>
+            <input type="hidden" id="deleteProject">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success acceptDelete" id="sendButton"></button>
+            </div>
+        </div>
+    </div>
+</div>

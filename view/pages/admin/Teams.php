@@ -52,3 +52,60 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="teamModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title editTeam_btn" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="modal-body">
+                
+                <div class="form-group mt-3">
+                    <label for="teamNameEdit" class="form-label"><span class="teamName"></span>*</label>
+                    <input type="text" class="form-control" id="teamNameEdit" name="teamNameEdit" required>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="descriptionEdit" class="form-label "><span class="description"></span>*</label>
+                    <input type="text" class="form-control" id="descriptionEdit" name="descriptionEdit" required>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="schoolEdit" class="form-label"><span class="school"></span>*</label>
+                    <input type="text" class="form-control" id="schoolEdit" name="schoolEdit" required>
+                </div>
+                
+                <input type="hidden" id="editTeam">
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success accept" id="sendButton"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="teamModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title alert-message" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="modal-body">
+                
+                <div class="deleteMessage">
+
+                </div>
+            </form>
+            <input type="hidden" id="deleteTeam">
+
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success accept" id="sendButton"></button>
+            </div>
+        </div>
+    </div>
+</div>

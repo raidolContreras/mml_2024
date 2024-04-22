@@ -12,8 +12,7 @@ class FormsModel {
             $stmt->execute();
             $result = $stmt->fetch();
         } elseif ($item === 'idUser') {
-            $sql = "SELECT u.firstname, u.lastname, u.email, u.level, p.nameProject, u.idUser FROM users u
-                    LEFT JOIN projects p ON p.idProject = u.users_idProjects
+            $sql = "SELECT u.firstname, u.lastname, u.email, u.level, u.users_idProjects, u.idUser FROM users u
                     where u.status = 1 AND u.idUser = :value;";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':value', $value, PDO::PARAM_STR);
@@ -48,34 +47,58 @@ class FormsModel {
         return $result;
     }
 
-    static public function mdlGetProject(){
+    static public function mdlGetProject($item, $value){
         $pdo = Conexion::conectar();
-        $sql = "SELECT * FROM projects where statusProject = 1";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll();
+        if ($value !== null) {
+            $sql = "SELECT * FROM projects WHERE $item = :value";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':value', $value, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetch();
+        } else {
+            $sql = "SELECT * FROM projects where statusProject = 1";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        }
         $stmt->closeCursor();
         $stmt = null;
         return $result;
     }
 
-    static public function mdlGetTeams(){
+    static public function mdlGetTeams($item, $value){
         $pdo = Conexion::conectar();
-        $sql = "SELECT * FROM teams where status = 1";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll();
+        if ($value !== null) {
+            $sql = "SELECT * FROM teams WHERE $item = :value";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':value', $value, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetch();
+        } else {
+            $sql = "SELECT * FROM teams where status = 1";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        }
         $stmt->closeCursor();
         $stmt = null;
         return $result;
     }
 
-    static public function mdlGetEvents(){
+    static public function mdlGetEvents($item, $value){
         $pdo = Conexion::conectar();
-        $sql = "SELECT * FROM events";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll();
+        if ($value !== null) {
+            $sql = "SELECT * FROM events WHERE $item = :value";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':value', $value, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetch();
+        } else {
+            $sql = "SELECT * FROM events";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        }
         $stmt->closeCursor();
         $stmt = null;
         return $result;

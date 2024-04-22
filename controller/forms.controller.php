@@ -31,18 +31,18 @@ class FormsController {
         return $response;
     }
 
-    static public function ctrGetProject() {
-        $response = FormsModel::mdlGetProject();
+    static public function ctrGetProject($item, $value) {
+        $response = FormsModel::mdlGetProject($item, $value);
         return $response;
     }
 
-    static public function ctrGetTeams() {
-        $response = FormsModel::mdlGetTeams();
+    static public function ctrGetTeams($item, $value) {
+        $response = FormsModel::mdlGetTeams($item, $value);
         return $response;
     }
 
-    static public function ctrGetEvents() {
-        $response = FormsModel::mdlGetEvents();
+    static public function ctrGetEvents($item, $value) {
+        $response = FormsModel::mdlGetEvents($item, $value);
         return $response;
     }
 
