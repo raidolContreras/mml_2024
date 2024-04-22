@@ -51,7 +51,12 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function(data) {
-                    return '';
+                    return `
+                    <center>
+                        <button class="btn btn-info" onclick="editUser(${data.idUser})">Editar</button>
+                        <button class="btn btn-danger" onclick="deleteUser(${data.idUser})">Eliminar</button>
+                    </center>
+                    `;
                 }
             }
         ],
@@ -130,3 +135,30 @@ $(document).ready(function () {
     });
 });
 
+function editUser(user) {
+    $('#editUser').val(user);
+    $('#editUsersModal').modal('show');
+
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            SearchUser: user
+        },
+        dataType: 'json',
+        success: function (response) {
+            if (response) {
+                $('#firstname').val(response.firstname);
+                $('#lastname').val(response.lastname);
+                $('#email').val(response.email);
+                $('#projectSelect').val(response.nameProject);
+                $('#level').val(response.level);
+            }
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores aquí
+            console.error(xhr.responseText);
+        }
+    });
+    
+}

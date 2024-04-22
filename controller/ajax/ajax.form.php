@@ -147,3 +147,7 @@ if (isset($_POST['projectSelect']) && isset($_POST['level_user']) && isset($_FIL
 		echo "Error al cargar el archivo CSV.";
 	}
 }
+
+if(isset($_POST['SearchUser'])){
+	echo json_encode(FormsController::ctrGetUsers('idUser', $_POST['SearchUser']));
+}

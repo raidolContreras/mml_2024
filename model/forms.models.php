@@ -5,14 +5,22 @@ include "conection.php";
 class FormsModel {
     static public function mdlGetUsers($item, $value) {
         $pdo = Conexion::conectar();
-        if ($value !== null) {
+        if ($value !== null && $item !== 'idUser') {
             $sql = "SELECT * FROM users WHERE $item = :value";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':value', $value, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetch();
+        } elseif ($item === 'idUser') {
+            $sql = "SELECT u.firstname, u.lastname, u.email, u.level, p.nameProject, u.idUser FROM users u
+                    LEFT JOIN projects p ON p.idProject = u.users_idProjects
+                    where u.status = 1 AND u.idUser = :value;";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':value', $value, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetch();
         } else {
-            $sql = "SELECT u.firstname, u.lastname, u.email, u.level, p.nameProject FROM users u
+            $sql = "SELECT u.firstname, u.lastname, u.email, u.level, p.nameProject, u.idUser FROM users u
                     LEFT JOIN projects p ON p.idProject = u.users_idProjects
                     where u.status = 1;";
             $stmt = $pdo->prepare($sql);
