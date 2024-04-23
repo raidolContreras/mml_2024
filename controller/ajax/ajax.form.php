@@ -142,46 +142,43 @@ if (isset($_POST['projectSelect']) && isset($_POST['level_user']) && isset($_FIL
 		}
         $status = 'ok';
 		foreach ($users as $user) {
-            if ($status == 'ok') {
 
-				if ($project != ''){
-					$projectExist = FormsController::ctrGetProject('nameProject', $project);
-					if (empty($projectExist)) {
-						$data = array(
-							'projectName' => $project,
-							'projectLink' => ''
-						);
-						// El proyecto no existe, por lo que lo agregamos
-						$idProject = FormsController::ctrAddProject($data);
-						$user['users_idProjects'] = $idProject;
-					} else {
-						$user['users_idProjects'] = $projectExist['idProject'];
-					}
+			if ($project != ''){
+				$projectExist = FormsController::ctrGetProject('nameProject', $project);
+				if (empty($projectExist)) {
+					$data = array(
+						'projectName' => $project,
+						'projectLink' => ''
+					);
+					// El proyecto no existe, por lo que lo agregamos
+					$idProject = FormsController::ctrAddProject($data);
+					$user['users_idProjects'] = $idProject;
+				} else {
+					$user['users_idProjects'] = $projectExist['idProject'];
 				}
-				if ($team != ''){
-					$teamExist = FormsController::ctrGetTeams('teamName', $team);
-                    if (empty($teamExist)) {
-						$data = array(
-							'teamName' => $team,
-							'description' => '',
-							'school' => ''
-						);
-                        // El equipo no existe, por lo que lo agregamos
-                        $idTeam = FormsController::ctrAddTeam($data);
-                        $user['users_idTeam'] = $idTeam;
-                    } else {
-                        $user['users_idTeam'] = $teamExist['idTeam'];
-                    }
+			}
+			if ($team != ''){
+				$teamExist = FormsController::ctrGetTeams('teamName', $team);
+				if (empty($teamExist)) {
+					$data = array(
+						'teamName' => $team,
+						'description' => '',
+						'school' => ''
+					);
+					// El equipo no existe, por lo que lo agregamos
+					$idTeam = FormsController::ctrAddTeam($data);
+					$user['users_idTeam'] = $idTeam;
+				} else {
+					$user['users_idTeam'] = $teamExist['idTeam'];
 				}
-				$userCheck = FormsController::ctrGetUsers('email', $user['email']);
-				if (empty($userCheck)) {
-                    $status = FormsController::ctrAddUser($user);
-                } else {
-					$userUpdate = FormsController::ctrUpdateUser($user, $userCheck['idUser']);
-                }
-            } else {
-                echo $result;
-            }
+			}
+			$userCheck = FormsController::ctrGetUsers('email', $user['email']);
+			if (empty($userCheck)) {
+				$status = FormsController::ctrAddUser($user);
+			} else {
+				echo 'correo duplicado: '.$user['email'];
+				// $userUpdate = FormsController::ctrUpdateUser($user, $userCheck['idUser']);
+			}
 		}
 		echo $status;
 	} else {
