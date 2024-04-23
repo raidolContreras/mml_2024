@@ -194,10 +194,10 @@ $(document).ready(function () {
     });
     
     // Configuración del evento 'sending' del Dropzone
-	myDropzone.on("sending", function(file, xhr, formData) {
-        formData.append("projectSelect", projectSelect);
-        formData.append("level_user", level_user);
-    });
+	// myDropzone.on("sending", function(file, xhr, formData) {
+    //     formData.append("projectSelect", projectSelect);
+    //     formData.append("level_user", level_user);
+    // });
 
     myDropzone.on("success", function(file, response) {
         console.log(response);
@@ -253,7 +253,6 @@ function deleteUser(user) {
         success: function (response) {
             if (response) {
                 $('.deleteMessage').html(translations.deleteMessage);
-                $('.acceptDelete').html(translations.accept);
             }
         },
         error: function (xhr, status, error) {

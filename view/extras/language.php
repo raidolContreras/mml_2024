@@ -126,6 +126,8 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.projects').html(translations.projects);
     $('.teams').html(translations.teams);
     $('.events').html(translations.events);
+    
+    $('.acceptDelete').html(translations.accept);
 
     $('.progress-title').text(translations.progress);
     
