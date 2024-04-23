@@ -49,10 +49,12 @@ $(document).ready(function () {
                 data: null,
                 render: function(data) {
                     return `
-                    <center>
-                        <button class="btn btn-info" onclick="editProject(${data.idProject})">${translations.edit}</button>
-                        <button class="btn btn-danger" onclick="deleteProject(${data.idProject})">${translations.delete}</button>
-                    </center>
+                        <center>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-info" onclick="editProject(${data.idProject})">${translations.edit}</button>
+                                <button class="btn btn-danger" onclick="deleteProject(${data.idProject})">${translations.delete}</button>
+                            </div>
+                        </center>
                     `;
                 }
             }
@@ -87,6 +89,50 @@ $(document).ready(function () {
                 e.preventDefault();
                 e.stopPropagation();
                 myDropzone.removeFile(element);
+            });
+            $element.parent().append(removeButton); // Agregar el botón al contenedor del input
+        },
+        init: function() {
+            this.on("addedfile", function(file) {
+                var removeButton = Dropzone.createElement('<button class="rounded-button">&times;</button>');
+                var _this = this;
+                removeButton.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                
+                    _this.removeFile(file);
+                });
+                file.previewElement.appendChild(removeButton);
+            });
+        }
+    });
+
+    var secondDropzone = new Dropzone("#updateProjectLogoDropzone", {
+        maxFiles: 1,
+        url: "controller/ajax/ajax.form.php",
+        maxFilesize: 10,
+        paramName: "logo",
+        acceptedFiles: "image/jpeg, image/png",
+        dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos .PNG, .JPG, .JPEG (Tamaño máximo 10 MB)</p>',
+        autoProcessQueue: false,
+        dictInvalidFileType: "Archivo no permitido. Por favor, sube un archivo en formato .PNG, .JPG, .JPEG.",
+        dictFileTooBig: "El archivo es demasiado grande ({{filesize}}MB). Tamaño máximo permitido: {{maxFilesize}}MB.",
+        errorPlacement: function(error, element) {
+            var $element = $(element),
+                errContent = $(error).text();
+            $element.attr('data-toggle', 'tooltip');
+            $element.attr('title', errContent);
+            $element.tooltip({
+                placement: 'top'
+            });
+            $element.tooltip('show');
+    
+            // Agregar botón de eliminar archivo
+            var removeButton = Dropzone.createElement('<button class="rounded-button">&times;</button>');
+            removeButton.addEventListener("click", function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                secondDropzone.removeFile(element);
             });
             $element.parent().append(removeButton); // Agregar el botón al contenedor del input
         },
@@ -144,6 +190,7 @@ $(document).ready(function () {
                     setTimeout(() => {
                         // Limpiar el Dropzone
                         myDropzone.removeAllFiles();
+                        $('#projects').DataTable().ajax.reload();
                     }, 1000);
                     
                 } else {
@@ -162,7 +209,72 @@ $(document).ready(function () {
 	myDropzone.on("sending", function(file, xhr, formData) {
         formData.append("idProject", idProject);
     });
+    
+    // Configuración del evento 'sending' del Dropzone
+	secondDropzone.on("sending", function(file, xhr, formData) {
+        formData.append("idProject", idProject);
+    });
+    
+    $('#acceptEdit').on('click', function () {
+        var project = $('#editProject').val();
+        var projectNameEdit = $('#projectNameEdit').val();
+        var projectLinkEdit = $('#projectLinkEdit').val();
+        console.log(projectNameEdit);
+        $.ajax({
+            type: 'POST',
+            url: 'controller/ajax/ajax.form.php', 
+            data: {
+                EditProject: project,
+                projectNameEdit: projectNameEdit,
+                projectLinkEdit: projectLinkEdit
+            },
+            dataSrc: '',
+            success: function (response) {
+                if (response == 'ok') {
+                    
+                    idProject = project;
+                    secondDropzone.processQueue();
+                    $('#editProjectsModal').modal('hide');
+                    setTimeout(function () {
+                        secondDropzone.removeAllFiles();
+                        $('#projects').DataTable().ajax.reload();
+                    } , 1000);
+
+                    showAlertBootstrap(translations.success, 'El proyecto ha sido actualizado exitosamente.');
+                }
+            }
+        });
+    });
+    
 });
+
+
+$('#acceptDelete').on('click', function () {
+    var project = $('#deleteProject').val();
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php', 
+        data: {
+            DeleteProject: project
+        },
+        success: function (response) {
+            if (response == 'ok') {
+                $('#deleteProjectsModal').modal('hide');
+                $('#projects').DataTable().ajax.reload();
+                showAlertBootstrap(translations.success, 'El proyecto ha sido eliminado exitosamente.');
+            }
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores aquí
+            console.error(xhr.responseText);
+        }
+    });
+});
+
+function addLogo(project){
+    $('#updateLogoModal').modal('show');
+    $('#updateProjectLogo').val(project);
+}
 
 function editProject(project) {
     $('#editProject').val(project);

@@ -76,7 +76,9 @@ class FormsModel {
             $stmt->execute();
             $result = $stmt->fetch();
         } else {
-            $sql = "SELECT * FROM teams where status = 1";
+            $sql = "SELECT * FROM teams t
+                    LEFT JOIN projects p ON p.idProject = t.teams_idProject
+                    where t.status = 1";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -214,11 +216,108 @@ class FormsModel {
         return $result;
     }
 
-    static public function mdlDeleteUser($idUser){
+    static public function mdlDeleteUser($item, $value){
         $pdo = Conexion::conectar();
-        $sql = "DELETE FROM users WHERE idUser = :idUser";
+        $sql = "DELETE FROM users WHERE $item = :value";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $stmt->bindParam(':value', $value, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlUpdateProject($data, $project) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE projects SET nameProject = :nameProject, linkProject = :linkProject WHERE idProject = :idProject";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':nameProject', $data['nameProject'], PDO::PARAM_STR);
+        $stmt->bindParam(':linkProject', $data['linkProject'], PDO::PARAM_STR);
+        $stmt->bindParam(':idProject', $project, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlDeleteProject($idProject) {
+        $pdo = Conexion::conectar();
+        $sql = "DELETE FROM projects WHERE idProject = :idProject";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idProject', $idProject, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlUpdateTeam($data, $idTeam) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE teams SET teamName = :teamName, teamDescription = :teamDescription, teamSchool = :teamSchool, teams_idProject = :teams_idProject WHERE idTeam = :idTeam";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':teamName', $data['teamName'], PDO::PARAM_STR);
+        $stmt->bindParam(':teamDescription', $data['teamDescription'], PDO::PARAM_STR);
+        $stmt->bindParam(':teamSchool', $data['teamSchool'], PDO::PARAM_STR);
+        $stmt->bindParam(':teams_idProject', $data['teams_idProject'], PDO::PARAM_INT);
+        $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlDeleteTeam($idTeam) {
+        $pdo = Conexion::conectar();
+        $sql = "DELETE FROM teams WHERE idTeam = :idTeam";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlUpdateEvent($eventName, $idEvent){
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE events SET eventName = :eventName WHERE idEvent = :idEvent";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventName', $eventName, PDO::PARAM_STR);
+        $stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlDeleteEvent($idEvent) {
+        $pdo = Conexion::conectar();
+        $sql = "DELETE FROM events WHERE idEvent = :idEvent";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
         if ($stmt->execute()) {
             $result = 'ok';
         } else {

@@ -51,6 +51,7 @@
     } elseif($pagina == 'Teams') {
         // Importar librerías de Dropzone
         echo '<script src="assets/js/ajax_request/getTeams.js"></script>';
+        echo '<script src="assets/js/ajax_request/getProjectsSelects.js"></script>';
     } elseif($pagina == 'EventSettings') {
         // Importar librerías de Dropzone
         echo '<script src="assets/js/ajax_request/getEvents.js"></script>';

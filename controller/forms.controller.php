@@ -76,8 +76,38 @@ class FormsController {
         return $response;
     }
 
-    static public function ctrDeleteUser($idUser){
-        $response = FormsModel::mdlDeleteUser($idUser);
+    static public function ctrDeleteUser($item, $value){
+        $response = FormsModel::mdlDeleteUser($item, $value);
+        return $response;
+    }
+
+    static public function ctrUpdateProject($data, $idProject) {
+        $response = FormsModel::mdlUpdateProject($data, $idProject);
+        return $response;
+    }
+
+    static public function ctrDeleteProject($idProject) {
+        $response = FormsModel::mdlDeleteProject($idProject);
+        return $response;
+    }
+
+    static public function ctrUpdateTeam($data, $idTeam) {
+        $response = FormsModel::mdlUpdateTeam($data, $idTeam);
+        return $response;
+    }
+
+    static public function ctrDeleteTeam($idTeam) {
+        $response = FormsModel::mdlDeleteTeam($idTeam);
+        return $response;
+    }
+
+    static public function ctrUpdateEvent($eventName, $idEvent) {
+        $response = FormsModel::mdlUpdateEvent($eventName, $idEvent);
+        return $response;
+    }
+
+    static public function ctrDeleteEvent($idEvent) {
+        $response = FormsModel::mdlDeleteEvent($idEvent);
         return $response;
     }
 }

@@ -32,12 +32,17 @@ $(document).ready(function () {
                 data: 'teamSchool'
             },
             {
+                data: 'nameProject'
+            },
+            {
                 data: null,
                 render: function(data) {
                     return `
                     <center>
-                        <button class="btn btn-info" onclick="editTeam(${data.idTeam})">${translations.edit}</button>
-                        <button class="btn btn-danger" onclick="deleteTeam(${data.idTeam})">${translations.delete}</button>
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-info" onclick="editTeam(${data.idTeam})">${translations.edit}</button>
+                            <button class="btn btn-danger" onclick="deleteTeam(${data.idTeam})">${translations.delete}</button>
+                        </div>
                     </center>
                     `;
                 }
@@ -91,6 +96,67 @@ $(document).ready(function () {
         });
     });
 
+    $('#acceptButton').on('click', function () {
+        var teamName = $('#teamNameEdit').val();
+        var description = $('#descriptionEdit').val();
+        var school = $('#schoolEdit').val();
+        var project = $('#projectSelectEdit').val();
+        var team = $('#editTeam').val();
+
+        $.ajax({
+            type: 'POST',
+            url: 'controller/ajax/ajax.form.php',
+            data: {
+                EditTeam: team,
+                teamNameEdit: teamName,
+                descriptionEdit: description,
+                schoolEdit: school,
+                projectEdit: project
+            },
+            success: function (response) {
+                console.log(response);
+                $('#teamModalEdit').modal('hide');
+                if (response === 'ok') {
+                    showAlertBootstrap('¡Éxito!', 'El equipo ha sido editado exitosamente.');
+                    $('#teams').DataTable().ajax.reload();
+                } else {
+                    showAlertBootstrap('¡Alerta!', 'El equipo no se ha editado, intentalo de nuevo.');
+                }
+            },
+            error: function (xhr, status, error) {
+                // Manejar errores aquí
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
+    
+    $('#deleteButton').on('click', function () {
+        var team = $('#deleteTeam').val();
+        $.ajax({
+            type: 'POST',
+            url: 'controller/ajax/ajax.form.php',
+            data: {
+                DeleteTeam: team
+            },
+            success: function (response) {
+                console.log(response);
+                $('#teamModalDelete').modal('hide');
+                if (response === 'ok') {
+                    showAlertBootstrap('¡Éxito!', 'El equipo ha sido eliminado exitosamente.');
+                    $('#teams').DataTable().ajax.reload();
+                } else {
+                    showAlertBootstrap('¡Alerta!', 'El equipo no se ha eliminado, intentalo de nuevo.');
+                }
+            },
+            error: function (xhr, status, error) {
+                // Manejar errores aquí
+                console.error(xhr.responseText);
+            }
+    
+        });
+    });
+
 });
 
 function editTeam(team) {
@@ -108,6 +174,7 @@ function editTeam(team) {
             $('#teamNameEdit').val(response.teamName);
             $('#descriptionEdit').val(response.teamDescription);
             $('#schoolEdit').val(response.teamSchool);
+            $('#projectSelectEdit').val(response.teams_idProject);
         },
         error: function (xhr, status, error) {
             // Manejar errores aquí
@@ -129,6 +196,7 @@ function deleteTeam(team) {
         dataType: 'json',
         success: function (response) {
             $('.deleteMessage').html(translations.deleteMessageTeam);
+            $('#deleteTeam').val(response.idTeam);
         }
     });
 }

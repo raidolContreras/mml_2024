@@ -4,6 +4,8 @@
     "standar": "Estándar",
     "edit": "Editar",
     "alert": "¡Alerta!",
+    "addLogo": "Agregar Logo",
+    "updateLogo": "Actualizar Logo",
     "delete": "Eliminar",
     "deleteMessage": "¿Estás seguro de que quieres eliminar al usuario?",
     "deleteMessageProject": "¿Estás seguro de que quieres eliminar el proyecto?",
@@ -11,6 +13,7 @@
     "deleteMessageEvent": "¿Estás seguro de que quieres eliminar el evento?",
     "select_one": "Selecciona una opción",
     "download_template": "Descargar plantilla",
+    "student": "Estudiante",
     "save": "Actualizar proyecto",
     "team": "Equipo",
     "trees": "Árboles",
@@ -77,5 +80,8 @@
     "updateUser": "Usuario actualizado exitosamente.",
     "errorUpdateUser": "Usuario no actualizado, intentalo de nuevo.",
     "processedFile": "Archivo procesado exitosamente.",
-    "errorProcessedFile": "Archivo no procesado, intentalo de nuevo."
+    "errorProcessedFile": "Archivo no procesado, intentalo de nuevo.",
+    "messageComplete": "Por favor, completa todos los campos.",
+    "eventEditSuccess": "El evento ha sido editado exitosamente.",
+    "eventDeleteSuccess": "El evento ha sido eliminado exitosamente."
 }

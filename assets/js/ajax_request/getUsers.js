@@ -70,8 +70,10 @@ $(document).ready(function () {
                 render: function(data) {
                     return `
                     <center>
-                        <button class="btn btn-info" onclick="editUser(${data.idUser})">${translations.edit}</button>
-                        <button class="btn btn-danger" onclick="deleteUser(${data.idUser})">${translations.delete}</button>
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-info" onclick="editUser(${data.idUser})">${translations.edit}</button>
+                            <button class="btn btn-danger" onclick="deleteUser(${data.idUser})">${translations.delete}</button>
+                        </div>
                     </center>
                     `;
                 }
@@ -123,17 +125,8 @@ $(document).ready(function () {
         }
     });
     
-    $('#sendButton').on('click', function () {
-        projectSelect = $('#projectSelect').val();
-        level_user = $('#level_user').val();
-        
+    $('#sendButton').on('click', function () {        
         myDropzone.processQueue();
-        $('#usersModal').modal('hide');
-                    
-        setTimeout(() => {
-            // Limpiar el Dropzone
-            myDropzone.removeAllFiles();
-        }, 1000);
     });
     
     $('.acceptEdit').on('click', function () {
@@ -200,14 +193,80 @@ $(document).ready(function () {
     // });
 
     myDropzone.on("success", function(file, response) {
-        console.log(response);
+        
+        $('#usersModal').modal('hide');
         if (response == 'ok') {
             $('#users').DataTable().ajax.reload();
+            myDropzone.removeAllFiles();
             showAlertBootstrap(translations.success, translations.processedFile);
         } else {
+            myDropzone.removeAllFiles();
             showAlertBootstrap1(translations.alert, translations.errorProcessedFile, 'usersModal');
         }
     });
+
+    var secondDropzone = new Dropzone("#deleteUsersDropzone", {
+        maxFiles: 1,
+        url: "controller/ajax/ajax.form.php",
+        maxFilesize: 10,
+        acceptedFiles: "text/csv",
+        paramName: "deleteUserList",
+        dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos .csv (Tamaño máximo 10 MB)</p>',
+        autoProcessQueue: false,
+        dictInvalidFileType: "Archivo no permitido. Por favor, sube un archivo en formato CSV.",
+        dictFileTooBig: "El archivo es demasiado grande ({{filesize}}MB). Tamaño máximo permitido: {{maxFilesize}}MB.",
+        errorPlacement: function(error, element) {
+            var $element = $(element),
+                errContent = $(error).text();
+            $element.attr('data-toggle', 'tooltip');
+            $element.attr('title', errContent);
+            $element.tooltip({
+                placement: 'top'
+            });
+            $element.tooltip('show');
+    
+            // Agregar botón de eliminar archivo
+            var removeButton = Dropzone.createElement('<button class="rounded-button">&times;</button>');
+            removeButton.addEventListener("click", function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                secondDropzone.removeFile(element);
+            });
+            $element.parent().append(removeButton); // Agregar el botón al contenedor del input
+        },
+        init: function() {
+            this.on("addedfile", function(file) {
+                var removeButton = Dropzone.createElement('<button class="rounded-button">&times;</button>');
+                var _this = this;
+                removeButton.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                
+                    _this.removeFile(file);
+                });
+                file.previewElement.appendChild(removeButton);
+            });
+        }
+    });
+
+    $('#DeleteMassiveButton').on('click', function () {
+        secondDropzone.processQueue();
+    });
+
+    
+    secondDropzone.on("success", function(file, response) {
+        $('#deleteMassiveModal').modal('hide');
+        if (response == 'ok') {
+            $('#users').DataTable().ajax.reload();
+            secondDropzone.removeAllFiles();
+            showAlertBootstrap(translations.success, translations.processedFile);
+        } else {
+            secondDropzone.removeAllFiles();
+            showAlertBootstrap1(translations.alert, translations.errorProcessedFile, 'usersModal');
+        }
+        
+    });
+    
 });
 
 function editUser(user) {

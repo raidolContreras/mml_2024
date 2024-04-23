@@ -10034,7 +10034,7 @@
 		 * as an optimisation (it takes some time to calculate the widths) if the
 		 * tables widths are passed in using `columns`.
 		 */
-		"bAutoWidth": true,
+		"bAutoWidth": false,
 	
 	
 		/**

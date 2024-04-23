@@ -56,10 +56,11 @@
                     <label for="eventNameEdit" class="form-label eventName"></label>
                     <input type="text" class="form-control" id="eventNameEdit">
                 </div>
+                <input type="hidden" id="eventEdit">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success accept" id="sendButton"></button>
+                <button type="button" class="btn btn-success accept" id="editButton"></button>
             </div>
         </div>
     </div>
@@ -81,7 +82,7 @@
             <input type="hidden" id="deleteEvent">
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success acceptDelete" id="sendButton"></button>
+                <button type="button" class="btn btn-success acceptDelete" id="deleteButton"></button>
             </div>
         </div>
     </div>

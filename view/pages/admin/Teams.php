@@ -14,6 +14,7 @@
                         <th class="teamName"></th>
                         <th class="description"></th>
                         <th class="school"></th>
+                        <th class="projects"></th>
                         <th class="actions"></th>
                     </tr>
                 </thead>
@@ -61,26 +62,32 @@
                 <h5 class="modal-title editTeam_btn" id="exampleModalLabel"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form class="modal-body">
+            <form class="modal-body row">
                 
-                <div class="form-group mt-3">
+                <div class="col-6 form-group mt-3">
                     <label for="teamNameEdit" class="form-label"><span class="teamName"></span>*</label>
                     <input type="text" class="form-control" id="teamNameEdit" name="teamNameEdit" required>
                 </div>
-                <div class="form-group mt-3">
+                <div class="col-6 form-group mt-3">
                     <label for="descriptionEdit" class="form-label "><span class="description"></span>*</label>
                     <input type="text" class="form-control" id="descriptionEdit" name="descriptionEdit" required>
                 </div>
-                <div class="form-group mt-3">
+                <div class="col-6 form-group mt-3">
                     <label for="schoolEdit" class="form-label"><span class="school"></span>*</label>
                     <input type="text" class="form-control" id="schoolEdit" name="schoolEdit" required>
+                </div>
+                
+                <div class="col-6 form-group mt-3">
+                    <label for="projectSelectEdit" class="form-label projects"></label>
+                    <select class="form-select" id="projectSelectEdit">
+                    </select>
                 </div>
                 
                 <input type="hidden" id="editTeam">
             </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success accept" id="sendButton"></button>
+                <button type="button" class="btn btn-success accept" id="acceptButton"></button>
             </div>
         </div>
     </div>
@@ -104,7 +111,7 @@
             </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success accept" id="sendButton"></button>
+                <button type="button" class="btn btn-success accept" id="deleteButton"></button>
             </div>
         </div>
     </div>

@@ -95,7 +95,7 @@ if (isset($_POST['eventName'])) {
 	echo $result;
 }
 
-if (isset($_POST['projectSelect']) && isset($_POST['level_user']) && isset($_FILES['userList'])) {
+if (isset($_FILES['userList'])) {
 	if (isset($_FILES['userList']) && $_FILES['userList']['error'] === UPLOAD_ERR_OK) {
 		
 		$emails = array();
@@ -186,6 +186,39 @@ if (isset($_POST['projectSelect']) && isset($_POST['level_user']) && isset($_FIL
 	}
 }
 
+if (isset($_FILES['deleteUserList'])){
+	$result = '';
+	if (isset($_FILES['deleteUserList']) && $_FILES['deleteUserList']['error'] === UPLOAD_ERR_OK) {
+		// Ruta donde se almacenará el archivo temporalmente
+		$fileTmpPath = $_FILES['deleteUserList']['tmp_name'];
+	
+		// Obtener el contenido del archivo CSV
+		$csvData = file_get_contents($fileTmpPath);
+	
+		// Parsear el contenido del archivo CSV
+		$lines = explode("\n", $csvData);
+		$init = false;
+		foreach ($lines as $line) {
+			// Verificar que la línea no esté vacía
+			if (!empty($line)) {
+				if ($init) {
+					$fields = str_getcsv($line);
+					
+					$userCheck = FormsController::ctrGetUsers('email', $fields[0]);
+					if (!empty($userCheck)) {
+						$result = FormsController::ctrDeleteUser('email',$fields[0]);
+					}
+
+				} else {
+					$init = true;
+				}
+				
+			}
+		}
+	}
+	echo $result;
+}
+
 if(isset($_POST['SearchUser'])){
 	echo json_encode(FormsController::ctrGetUsers('idUser', $_POST['SearchUser']));
 }
@@ -220,6 +253,54 @@ if(isset($_POST['EditUser']) &&
 }
 
 if(isset($_POST['DeleteUser'])){
-    $result = FormsController::ctrDeleteUser($_POST['DeleteUser']);
+    $result = FormsController::ctrDeleteUser('idUser',$_POST['DeleteUser']);
+    echo $result;
+}
+
+if(isset($_POST['EditProject']) &&
+	isset($_POST['projectNameEdit']) &&
+	isset($_POST['projectLinkEdit'])
+	){
+		$data = array(
+            'nameProject' => $_POST['projectNameEdit'],
+            'linkProject' => $_POST['projectLinkEdit']
+        );
+        $result = FormsController::ctrUpdateProject($data, $_POST['EditProject']);
+        echo $result;
+}
+
+if(isset($_POST['DeleteProject'])){
+    $result = FormsController::ctrDeleteProject($_POST['DeleteProject']);
+    echo $result;
+}
+
+if(isset($_POST['EditTeam']) &&
+	isset($_POST['teamNameEdit']) &&
+	isset($_POST['descriptionEdit']) &&
+	isset($_POST['schoolEdit']) &&
+	isset($_POST['projectEdit'])
+	){
+		$data = array(
+            'teamName' => $_POST['teamNameEdit'],
+            'teamDescription' => $_POST['descriptionEdit'],
+           'teamSchool' => $_POST['schoolEdit'],
+            'teams_idProject' => $_POST['projectEdit']
+        );
+        $result = FormsController::ctrUpdateTeam($data, $_POST['EditTeam']);
+        echo $result;
+}
+
+if(isset($_POST['DeleteTeam'])){
+    $result = FormsController::ctrDeleteTeam($_POST['DeleteTeam']);
+    echo $result;
+}
+
+if(isset($_POST['eventNameEdit']) && isset($_POST['idEventEdit'])){
+	$result = FormsController::ctrUpdateEvent($_POST['eventNameEdit'], $_POST['idEventEdit']);
+    echo $result;
+}
+
+if(isset($_POST['DeleteEvent'])){
+    $result = FormsController::ctrDeleteEvent($_POST['DeleteEvent']);
     echo $result;
 }

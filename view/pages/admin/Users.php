@@ -57,6 +57,33 @@
     </div>
 </div>
 
+<!-- Delete users -->
+<div class="modal fade" id="deleteMassiveModal" tabindex="-1" aria-labelledby="deleteMassiveLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title addUser_btn" id="deleteMassiveLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- Botón para descargar plantilla de ejemplo -->
+                <div class="form-group mt-3">
+                    <a type="button" class="btn btn-primary download_template" download="" href="assets/documents/delete_users_template.csv"></a>
+                </div>
+                <!-- Dropzone para cargar archivos -->
+                <div class="col-md-12">
+                    <div id="deleteUsersDropzone" class="dropzone"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success accept" id="DeleteMassiveButton"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Edit users -->
 <div class="modal fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -14,7 +14,7 @@
                         <th>Logo</th>
                         <th class="projectName"></th>
                         <th class="projectLink"></th>
-                        <th class="actions"></th>
+                        <th width="10%" class="actions"></th>
                     </tr>
                 </thead>
             </table>
@@ -77,13 +77,18 @@
                         <label for="projectLinkEdit" class="form-label"><span class="projectLink"></span>*</label>
                         <input type="text" class="form-control" id="projectLinkEdit">
                     </div>
+                    
+                    <div class="form-group mt-3">
+                        <div id="updateProjectLogoDropzone" class="dropzone"></div>
+                        <input type="hidden" id="updateProjectLogo"/>
+                    </div>
                 </div>
 
             </div>
             <input type="hidden" id="editProject">
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success acceptEdit" id="sendButton"></button>
+                <button type="button" class="btn btn-success acceptEdit" id="acceptEdit"></button>
             </div>
         </div>
     </div>
@@ -106,7 +111,30 @@
             <input type="hidden" id="deleteProject">
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success acceptDelete" id="sendButton"></button>
+                <button type="button" class="btn btn-success acceptDelete" id="acceptDelete"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add logo -->
+<div class="modal fade" id="updateLogoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title updateProjectLogo" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Logo del proyecto (Dropzone) -->
+                <div class="form-group mt-3">
+                    <div id="updateProjectLogoDropzone" class="dropzone"></div>
+                    <input type="hidden" id="updateProjectLogo"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success acceptLogo"></button>
             </div>
         </div>
     </div>

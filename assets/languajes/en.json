@@ -4,6 +4,8 @@
     "standar": "Standard",
     "edit": "Edit",
     "alert": "Alert!",
+    "addLogo": "Add Logo",
+    "updateLogo": "Update Logo",
     "delete": "Delete",
     "deleteMessage": "Are you sure you want to delete the user?",
     "deleteMessageProject": "Are you sure you want to delete the project?",
@@ -78,5 +80,8 @@
     "updateUser": "User successfully updated",
     "errorUpdateUser": "User not updated, please try again.",
     "processedFile": "File processed successfully.",
-    "errorProcessedFile": "File not processed, try again."
+    "errorProcessedFile": "File not processed, try again.",
+    "messageComplete": "Please complete all fields.",
+    "eventEditSuccess": "The event has been successfully edited.",
+    "eventDeleteSuccess": "The event has been successfully deleted."
 }

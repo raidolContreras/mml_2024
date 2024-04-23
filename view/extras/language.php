@@ -128,6 +128,8 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.events').html(translations.events);
     
     $('.acceptDelete').html(translations.accept);
+    $('.acceptLogo').html(translations.accept);
+    $('.updateProjectLogo').html(translations.updateLogo);
 
     $('.progress-title').text(translations.progress);
     
