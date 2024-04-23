@@ -35,7 +35,6 @@
 <?php
     if($pagina == 'Admin'){
         echo '<script src="assets/js/ajax_request/adminSettings.js"></script>';
-        echo '<script src="assets/js/ajax_request/getProjectsSelects.js"></script>';
     } elseif($pagina == 'Users') {
         // Importar librerías de Dropzone
         echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';

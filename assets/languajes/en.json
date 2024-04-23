@@ -79,9 +79,13 @@
     "errorDeleteUser": "User not deleted, try again.",
     "updateUser": "User successfully updated",
     "errorUpdateUser": "User not updated, please try again.",
+    "updateProject": "Project successfully updated.",
+    "errorUpdateProject": "Project not updated, please try again.",
     "processedFile": "File processed successfully.",
     "errorProcessedFile": "File not processed, try again.",
     "messageComplete": "Please complete all fields.",
     "eventEditSuccess": "The event has been successfully edited.",
-    "eventDeleteSuccess": "The event has been successfully deleted."
+    "eventDeleteSuccess": "The event has been successfully deleted.",
+    "projectActive": "The project has been successfully activated.",
+    "projectActiveError": "An error occurred while activating the project."
 }

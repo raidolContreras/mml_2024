@@ -304,3 +304,31 @@ if(isset($_POST['DeleteEvent'])){
     $result = FormsController::ctrDeleteEvent($_POST['DeleteEvent']);
     echo $result;
 }
+
+if (isset($_POST['changeActive'])) {
+	$result = FormsController::ctrChangeProjectActive($_POST['changeActive']);
+    echo $result;
+}
+
+if(isset($_POST['problem']) &&
+	isset($_POST['effect']) &&
+	isset($_POST['cause']) &&
+	isset($_POST['objetive']) &&
+	isset($_POST['result']) &&
+	isset($_POST['action']) &&
+	isset($_POST['product']) &&
+	isset($_POST['project'])
+	){
+		$data = array(
+            'problem' => $_POST['problem'],
+            'effect' => $_POST['effect'],
+            'cause' => $_POST['cause'],
+            'objetive' => $_POST['objetive'],
+           'result' => $_POST['result'],
+            'action' => $_POST['action'],
+            'product' => $_POST['product'],
+            'project_idProject' => $_POST['project']
+        );
+        $result = FormsController::ctrUpdateColors($data);
+        echo $result;
+}

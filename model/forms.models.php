@@ -51,13 +51,15 @@ class FormsModel {
     static public function mdlGetProject($item, $value){
         $pdo = Conexion::conectar();
         if ($value !== null) {
-            $sql = "SELECT * FROM projects WHERE $item = :value";
+            $sql = "SELECT * FROM projects LEFT JOIN colorsProject c ON c.project_idProject = p.idProject WHERE $item = :value";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':value', $value, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetch();
         } else {
-            $sql = "SELECT * FROM projects where statusProject = 1";
+            $sql = "SELECT * FROM projects p
+                    LEFT JOIN colorsProject c ON c.project_idProject = p.idProject
+                    where p.statusProject = 1";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -134,6 +136,22 @@ class FormsModel {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':nameProject', $data['projectName'], PDO::PARAM_STR);
         $stmt->bindParam(':linkProject', $data['projectLink'], PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            $result = $pdo->lastInsertId();
+            FormsModel::mdlAddColorsProject($result);
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlAddColorsProject($idProject){
+        $pdo = Conexion::conectar();
+        $sql = "INSERT INTO colorsProject (project_idProject) VALUES (:project_idProject)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':project_idProject', $idProject, PDO::PARAM_INT);
         if ($stmt->execute()) {
             $result = $pdo->lastInsertId();
         } else {
@@ -318,6 +336,52 @@ class FormsModel {
         $sql = "DELETE FROM events WHERE idEvent = :idEvent";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlChangeProjectActive($idProject){
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE projects SET active = 0 WHERE active = 1;";
+        $sql .= "UPDATE projects SET active = 1 WHERE idProject = :idProject;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idProject', $idProject, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlUpdateColors($data){
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE colorsProject SET 
+                    problem = :problem,
+                    effect = :effect,
+                    cause = :cause,
+                    objetive = :objetive,
+                    result = :result,
+                    action = :action,
+                    product = :product
+                WHERE project_idProject = :project_idProject";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':problem', $data['problem'], PDO::PARAM_STR);
+        $stmt->bindParam(':effect', $data['effect'], PDO::PARAM_STR);
+        $stmt->bindParam(':cause', $data['cause'], PDO::PARAM_STR);
+        $stmt->bindParam(':objetive', $data['objetive'], PDO::PARAM_STR);
+        $stmt->bindParam(':result', $data['result'], PDO::PARAM_STR);
+        $stmt->bindParam(':action', $data['action'], PDO::PARAM_STR);
+        $stmt->bindParam(':product', $data['product'], PDO::PARAM_STR);
+        $stmt->bindParam(':project_idProject', $data['project_idProject'], PDO::PARAM_INT);
         if ($stmt->execute()) {
             $result = 'ok';
         } else {

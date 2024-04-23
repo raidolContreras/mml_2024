@@ -110,4 +110,14 @@ class FormsController {
         $response = FormsModel::mdlDeleteEvent($idEvent);
         return $response;
     }
+
+    static public function ctrChangeProjectActive($idProject) {
+        $response = FormsModel::mdlChangeProjectActive($idProject);
+        return $response;
+    }
+
+    static public function ctrUpdateColors($data) {
+        $response = FormsModel::mdlUpdateColors($data);
+        return $response;
+    }
 }
