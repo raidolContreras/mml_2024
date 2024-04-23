@@ -109,6 +109,7 @@ if (isset($_FILES['userList'])) {
 		$lines = explode("\n", $csvData);
 		$users = [];
 		$init = false;
+		$send = true;
 		foreach ($lines as $line) {
 			// Verificar que la línea no esté vacía
 			if (!empty($line)) {
@@ -176,11 +177,14 @@ if (isset($_FILES['userList'])) {
 			if (empty($userCheck)) {
 				$status = FormsController::ctrAddUser($user);
 			} else {
-				echo 'correo duplicado: '.$user['email'];
+				$send = false;
+				echo 'Correo duplicado: '.$user['email'].'<br>';
 				// $userUpdate = FormsController::ctrUpdateUser($user, $userCheck['idUser']);
 			}
 		}
-		echo $status;
+		if ($send) {
+            echo 'ok';
+        }
 	} else {
 		echo "Error al cargar el archivo CSV.";
 	}

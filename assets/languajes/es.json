@@ -83,6 +83,7 @@
     "errorUpdateProject": "Proyecto no actualizado, intentalo de nuevo.",
     "processedFile": "Archivo procesado exitosamente.",
     "errorProcessedFile": "Archivo no procesado, intentalo de nuevo.",
+    "errorProcessedFileUpload": "Archivo procesado con errores: ",
     "messageComplete": "Por favor, completa todos los campos.",
     "eventEditSuccess": "El evento ha sido editado exitosamente.",
     "eventDeleteSuccess": "El evento ha sido eliminado exitosamente.",

@@ -201,7 +201,7 @@ $(document).ready(function () {
             showAlertBootstrap(translations.success, translations.processedFile);
         } else {
             myDropzone.removeAllFiles();
-            showAlertBootstrap1(translations.alert, translations.errorProcessedFile, 'usersModal');
+            showAlertBootstrap1(translations.alert, translations.errorProcessedFileUpload + '<br>' + response, 'usersModal');
         }
     });
 

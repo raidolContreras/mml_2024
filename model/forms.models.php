@@ -51,7 +51,7 @@ class FormsModel {
     static public function mdlGetProject($item, $value){
         $pdo = Conexion::conectar();
         if ($value !== null) {
-            $sql = "SELECT * FROM projects LEFT JOIN colorsProject c ON c.project_idProject = p.idProject WHERE $item = :value";
+            $sql = "SELECT * FROM projects p LEFT JOIN colorsProject c ON c.project_idProject = p.idProject WHERE $item = :value";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':value', $value, PDO::PARAM_STR);
             $stmt->execute();
