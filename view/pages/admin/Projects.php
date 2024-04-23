@@ -11,7 +11,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Logo</th>
+                        <th width="10%">Logo</th>
                         <th class="projectName"></th>
                         <th class="projectLink"></th>
                         <th width="10%" class="actions"></th>
