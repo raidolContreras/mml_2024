@@ -282,13 +282,14 @@ class FormsModel {
     }
 
     static public function mdlUpdateTeam($data, $idTeam) {
+        $teams_idProject = ($data['teams_idProject'] != '') ? $data['teams_idProject'] : NULL;
         $pdo = Conexion::conectar();
         $sql = "UPDATE teams SET teamName = :teamName, teamDescription = :teamDescription, teamSchool = :teamSchool, teams_idProject = :teams_idProject WHERE idTeam = :idTeam";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':teamName', $data['teamName'], PDO::PARAM_STR);
         $stmt->bindParam(':teamDescription', $data['teamDescription'], PDO::PARAM_STR);
         $stmt->bindParam(':teamSchool', $data['teamSchool'], PDO::PARAM_STR);
-        $stmt->bindParam(':teams_idProject', $data['teams_idProject'], PDO::PARAM_INT);
+        $stmt->bindParam(':teams_idProject', $teams_idProject);
         $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
         if ($stmt->execute()) {
             $result = 'ok';
