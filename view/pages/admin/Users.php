@@ -69,7 +69,7 @@
                 
                 <!-- Botón para descargar plantilla de ejemplo -->
                 <div class="form-group mt-3">
-                    <a type="button" class="btn btn-primary download_template" download="" href="assets/documents/delete_users_template.csv"></a>
+                    <a type="button" class="btn btn-primary download_template" download="delete_users_template.csv" href="assets/documents/delete_users_template.csv"></a>
                 </div>
                 <!-- Dropzone para cargar archivos -->
                 <div class="col-md-12">
