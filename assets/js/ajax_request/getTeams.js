@@ -55,6 +55,7 @@ $(document).ready(function () {
         var teamName = $('#teamName').val();
         var description = $('#description').val();
         var school = $('#school').val();
+        var project = $('#projectSelectEdit').val();
 
         // Validar si los campos están vacíos
         if (teamName === '' || description === '' || school === '') {
@@ -68,7 +69,8 @@ $(document).ready(function () {
         var formData = {
             teamName: teamName,
             description: description,
-            school: school
+            school: school,
+            project: project
         };
 
         // Enviar los datos mediante AJAX
@@ -84,6 +86,7 @@ $(document).ready(function () {
                     $('#teamName').val('');
                     $('#description').val('');
                     $('#school').val('');
+                    $('#project').val('');
                     $('#teams').DataTable().ajax.reload();
                 } else {
                     showAlertBootstrap('¡Alerta!', 'El equipo no se ha creado, intentalo de nuevo.');

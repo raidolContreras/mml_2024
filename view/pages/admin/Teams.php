@@ -30,19 +30,25 @@
                 <h5 class="modal-title addTeam_btn" id="exampleModalLabel"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form class="modal-body">
+            <form class="modal-body row">
                 
-                <div class="form-group mt-3">
+                <div class="col-6 form-group mt-3">
                     <label for="projectName" class="form-label"><span class="teamName"></span>*</label>
                     <input type="text" class="form-control" id="teamName" name="teamName" required>
                 </div>
-                <div class="form-group mt-3">
+                <div class="col-6 form-group mt-3">
                     <label for="projectName" class="form-label "><span class="description"></span>*</label>
                     <input type="text" class="form-control" id="description" name="description" required>
                 </div>
-                <div class="form-group mt-3">
+                <div class="col-6 form-group mt-3">
                     <label for="projectName" class="form-label"><span class="school"></span>*</label>
                     <input type="text" class="form-control" id="school" name="school" required>
+                </div>
+
+                <div class="col-6 form-group mt-3">
+                    <label for="projectSelectEdit" class="form-label projects"></label>
+                    <select class="form-select" id="projectSelectEdit">
+                    </select>
                 </div>
 
             </form>

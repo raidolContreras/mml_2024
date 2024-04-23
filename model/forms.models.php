@@ -110,12 +110,14 @@ class FormsModel {
     }
 
     static public function mdlAddTeam($data){
+        $teams_idProject = ($data['teams_idProject'] != '') ? $data['teams_idProject'] : NULL;
         $pdo = Conexion::conectar();
-        $sql = "INSERT INTO teams (teamName, teamDescription, teamSchool) VALUES (:teamName, :description, :school)";
+        $sql = "INSERT INTO teams (teamName, teamDescription, teamSchool, teams_idProject) VALUES (:teamName, :description, :school, :teams_idProject)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':teamName', $data['teamName'], PDO::PARAM_STR);
         $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
         $stmt->bindParam(':school', $data['school'], PDO::PARAM_STR);
+        $stmt->bindParam(':teams_idProject', $teams_idProject);
         if ($stmt->execute()) {
             if($data['description'] == '' && $data['school'] == '') {
                 $result = $pdo->lastInsertId();

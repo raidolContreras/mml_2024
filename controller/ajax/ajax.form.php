@@ -36,11 +36,12 @@ if (isset($_POST['language']) && isset($_POST['user'])) {
     echo $result;
 }
 
-if (isset($_POST['teamName']) && isset($_POST['description']) && isset($_POST['school'])) {
+if (isset($_POST['teamName']) && isset($_POST['description']) && isset($_POST['school']) && isset($_POST['project'])) {
     $data = array(
         'teamName' => $_POST['teamName'],
         'description' => $_POST['description'],
-        'school' => $_POST['school']
+        'school' => $_POST['school'],
+        'teams_idProject' => $_POST['project'],
     );
     $result = FormsController::ctrAddTeam($data);
     echo $result;
