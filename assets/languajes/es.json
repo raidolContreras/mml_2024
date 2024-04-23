@@ -70,5 +70,12 @@
     "eventName": "Nombre del evento",
     "event_list": "Lista de eventos",
     "firstname": "Nombre(s)",
-    "lastname": "Apellidos"
+    "lastname": "Apellidos",
+    "success": "¡Éxito!",
+    "deleteUser": "Usuario eliminado exitosamente.",
+    "errorDeleteUser": "Usuario no eliminado, intentalo de nuevo.",
+    "updateUser": "Usuario actualizado exitosamente.",
+    "errorUpdateUser": "Usuario no actualizado, intentalo de nuevo.",
+    "processedFile": "Archivo procesado exitosamente.",
+    "errorProcessedFile": "Archivo no procesado, intentalo de nuevo."
 }

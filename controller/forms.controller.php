@@ -75,4 +75,9 @@ class FormsController {
         $response = FormsModel::mdlUpdateUser($data, $idUser);
         return $response;
     }
+
+    static public function ctrDeleteUser($idUser){
+        $response = FormsModel::mdlDeleteUser($idUser);
+        return $response;
+    }
 }

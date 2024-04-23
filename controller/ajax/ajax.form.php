@@ -198,3 +198,28 @@ if(isset($_POST['SearchTeam'])){
 if(isset($_POST['SelectEvent'])){
 	echo json_encode(FormsController::ctrGetEvents('idEvent', $_POST['SelectEvent']));
 }
+
+if(isset($_POST['EditUser']) &&
+	isset($_POST['firstname']) &&
+	isset($_POST['lastname']) &&
+	isset($_POST['email']) &&
+	isset($_POST['projectSelectEdit']) &&
+	isset($_POST['teamSelectEdit']) &&
+	isset($_POST['level']) 
+	){
+		$data = array(
+            'firstname' => $_POST['firstname'],
+            'lastname' => $_POST['lastname'],
+            'email' => $_POST['email'],
+            'users_idProjects' => $_POST['projectSelectEdit'],
+            'users_idTeam' => $_POST['teamSelectEdit'],
+            'level' => $_POST['level']
+        );
+        $result = FormsController::ctrUpdateUser($data, $_POST['EditUser']);
+        echo $result;
+}
+
+if(isset($_POST['DeleteUser'])){
+    $result = FormsController::ctrDeleteUser($_POST['DeleteUser']);
+    echo $result;
+}

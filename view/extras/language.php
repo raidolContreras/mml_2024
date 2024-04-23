@@ -26,6 +26,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     // Ahora puedes usar las traducciones en cualquier lugar de tu código
     $('#dashboard').html(translations.dashboard);
     $('#team').html(translations.team);
+    $('.team').html(translations.team);
     $('#trees').html(translations.trees);
     $('#structure').html(translations.structure);
     $('#matriz').html(translations.matriz);

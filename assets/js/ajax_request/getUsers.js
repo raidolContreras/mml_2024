@@ -43,6 +43,16 @@ $(document).ready(function () {
             },
             {
                 data: null,
+                render: function(data) {
+                    if (data.teamName != isNaN) {
+                        return data.teamName;
+                    } else {
+                        return '';
+                    }
+                }
+            },
+            {
+                data: null,
                 render: function(data, type) {
                     var level = "";
                     if (data.level == 0) {
@@ -90,7 +100,7 @@ $(document).ready(function () {
             $element.tooltip('show');
     
             // Agregar botón de eliminar archivo
-            var removeButton = Dropzone.createElement('<button style="margin-top: 5px; cursor: pointer;">Eliminar archivo</button>');
+            var removeButton = Dropzone.createElement('<button class="rounded-button">&times;</button>');
             removeButton.addEventListener("click", function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -126,6 +136,63 @@ $(document).ready(function () {
         }, 1000);
     });
     
+    $('.acceptEdit').on('click', function () {
+        var user = $('#editUser').val();
+        var firstname = $('#firstname').val();
+        var lastname = $('#lastname').val();
+        var email = $('#email').val();
+        var projectSelectEdit = $('#projectSelectEdit').val();
+        var teamSelectEdit = $('#teamSelectEdit').val();
+        var level = $('#level_user_edit').val();
+        $.ajax({
+            type: 'POST',
+            url: 'controller/ajax/ajax.form.php',
+            data: {
+                EditUser: user,
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                projectSelectEdit: projectSelectEdit,
+                teamSelectEdit: teamSelectEdit,
+                level: level
+            },
+            dataSrc: '',
+            success: function (response) {
+                if (response == 'ok') {
+                    $('#editUsersModal').modal('hide');
+                    $('#users').DataTable().ajax.reload();
+                    showAlertBootstrap(translations.success, translations.updateUser);
+                } else {
+                    $('#editUsersModal').modal('hide');
+                    showAlertBootstrap1(translations.alert, translations.errorUpdateUser, 'editUsersModal');
+                }
+            }
+        });
+    });
+
+    
+    $('.acceptDelete').on('click', function () {
+        $deleteUser = $('#deleteUser').val();
+        $.ajax({
+            type: 'POST',
+            url: 'controller/ajax/ajax.form.php',
+            data: {
+                DeleteUser: $deleteUser
+            },
+            dataSrc: '',
+            success: function (response) {
+                if (response == 'ok') {
+                    $('#deleteUsersModal').modal('hide');
+                    $('#users').DataTable().ajax.reload();
+                    showAlertBootstrap(translations.success, translations.deleteUser);
+                } else {
+                    $('#deleteUsersModal').modal('hide');
+                    showAlertBootstrap1(translations.alert, translations.errorDeleteUser, 'deleteUsersModal');
+                }
+            }
+        });
+    });
+    
     // Configuración del evento 'sending' del Dropzone
 	myDropzone.on("sending", function(file, xhr, formData) {
         formData.append("projectSelect", projectSelect);
@@ -136,9 +203,9 @@ $(document).ready(function () {
         console.log(response);
         if (response == 'ok') {
             $('#users').DataTable().ajax.reload();
-            showAlertBootstrap('¡Éxito!', 'Archivo procesado exitosamente.');
+            showAlertBootstrap(translations.success, translations.processedFile);
         } else {
-            showAlertBootstrap1('¡Alerta!', 'Archivo no procesado, intentalo de nuevo.', 'usersModal');
+            showAlertBootstrap1(translations.alert, translations.errorProcessedFile, 'usersModal');
         }
     });
 });
@@ -161,6 +228,7 @@ function editUser(user) {
                 $('#lastname').val(response.lastname);
                 $('#email').val(response.email);
                 $('#projectSelectEdit').val(response.users_idProjects);
+                $('#teamSelectEdit').val(response.users_idTeam);
 
                 $('#level_user_edit').val(response.level);
             }

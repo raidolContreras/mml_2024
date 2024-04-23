@@ -71,5 +71,12 @@
     "eventName": "Event name",
     "event_list": "Event list",
     "firstname": "Firstname",
-    "lastname": "Lastname"
+    "lastname": "Lastname",
+    "success": "Success!",
+    "deleteUser": "User successfully deleted.",
+    "errorDeleteUser": "User not deleted, try again.",
+    "updateUser": "User successfully updated",
+    "errorUpdateUser": "User not updated, please try again.",
+    "processedFile": "File processed successfully.",
+    "errorProcessedFile": "File not processed, try again."
 }

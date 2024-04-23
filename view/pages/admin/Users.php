@@ -20,6 +20,7 @@
                         <th class="name"></th>
                         <th class="email"></th>
                         <th class="project"></th>
+                        <th class="team"></th>
                         <th class="user_type"></th>
                         <th class="actions"></th>
                     </tr>
@@ -46,19 +47,6 @@
                 <!-- Dropzone para cargar archivos -->
                 <div class="col-md-12">
                     <div id="addUsersDropzone" class="dropzone"></div>
-                </div>
-                <!-- Lista desplegable de proyectos -->
-                <div class="row">
-                    <div class="col-6 form-group mt-3">
-                        <label for="projectSelect" class="form-label current_project"></label>
-                        <select class="form-select" id="projectSelect">
-                        </select>
-                    </div>
-                    <div class="col-6 form-group mt-3">
-                        <label for="projectLevel" class="form-label level_user"></label>
-                        <select class="form-select" id="level_user">
-                        </select>
-                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -104,6 +92,11 @@
                         </select>
                     </div>
                     <div class="col-6 form-group mt-3">
+                        <label for="teamSelectEdit" class="form-label teams"></label>
+                        <select class="form-select" id="teamSelectEdit">
+                        </select>
+                    </div>
+                    <div class="col-6 form-group mt-3">
                         <label for="projectLevel" class="form-label level_user"></label>
                         <select class="form-select" id="level_user_edit">
                         </select>
@@ -113,7 +106,7 @@
             <input type="hidden" id="editUser">
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
-                <button type="button" class="btn btn-success acceptEdit" id="sendButton"></button>
+                <button type="button" class="btn btn-success acceptEdit"></button>
             </div>
         </div>
     </div>

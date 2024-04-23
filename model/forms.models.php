@@ -12,15 +12,16 @@ class FormsModel {
             $stmt->execute();
             $result = $stmt->fetch();
         } elseif ($item === 'idUser') {
-            $sql = "SELECT u.firstname, u.lastname, u.email, u.level, u.users_idProjects, u.idUser FROM users u
+            $sql = "SELECT u.firstname, u.lastname, u.email, u.level, u.users_idProjects, u.idUser, u.users_idTeam FROM users u
                     where u.status = 1 AND u.idUser = :value;";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':value', $value, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetch();
         } else {
-            $sql = "SELECT u.firstname, u.lastname, u.email, u.level, p.nameProject, u.idUser FROM users u
+            $sql = "SELECT u.firstname, u.lastname, u.email, u.level, p.nameProject, u.idUser, t.teamName FROM users u
                     LEFT JOIN projects p ON p.idProject = u.users_idProjects
+                    LEFT JOIN teams t ON t.idTeam = u.users_idTeam
                     where u.status = 1;";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
@@ -202,6 +203,21 @@ class FormsModel {
         $stmt->bindParam(':users_idProjects', $data['users_idProjects'], PDO::PARAM_INT);
         $stmt->bindParam(':users_idTeam', $data['users_idTeam'], PDO::PARAM_INT);
         $stmt->bindParam(':level', $data['level'], PDO::PARAM_INT);
+        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlDeleteUser($idUser){
+        $pdo = Conexion::conectar();
+        $sql = "DELETE FROM users WHERE idUser = :idUser";
+        $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
         if ($stmt->execute()) {
             $result = 'ok';
