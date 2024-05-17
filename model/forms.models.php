@@ -206,6 +206,21 @@ class FormsModel {
         $stmt->bindParam(':users_idTeam', $data['users_idTeam'], PDO::PARAM_INT);
         $stmt->bindParam(':level', $data['level'], PDO::PARAM_INT);
         if ($stmt->execute()) {
+            $result = $pdo->lastInsertId();
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlAddUserToProject($idUser){
+        $pdo = Conexion::conectar();
+        $sql = "INSERT INTO users_active_projects (idUser) VALUES (:idUser)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        if ($stmt->execute()) {
             $result = 'ok';
         } else {
             $result = 'error';

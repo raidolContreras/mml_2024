@@ -68,7 +68,8 @@ class FormsController {
 
     static public function ctrAddUser($data){
         $response = FormsModel::mdlAddUser($data);
-        return $response;
+        $response2 = FormsModel::mdlAddUserToProject($response);
+        return $response2;
     }
 
     static public function ctrUpdateUser($data, $idUser){
