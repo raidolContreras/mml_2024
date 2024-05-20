@@ -53,12 +53,16 @@ class FormsModel {
     static public function mdlGetProject($item, $value){
         $pdo = Conexion::conectar();
         if ($value !== null) {
-            $sql = "SELECT * FROM users_active_projects up
-                        LEFT JOIN projects p ON p.idProject = up.idProject
-                        LEFT JOIN colorsProject c ON c.project_idProject = p.idProject
-                    where up.$item = :value AND p.statusProject = 1;";
+            if($item != 'idProject') {
+                $sql = "SELECT * FROM projects p LEFT JOIN colorsProject c ON c.project_idProject = p.idProject WHERE $item = :value";
+            } else {
+                $sql = "SELECT * FROM users_active_projects up
+                            LEFT JOIN projects p ON p.idProject = up.idProject
+                            LEFT JOIN colorsProject c ON c.project_idProject = p.idProject
+                        where up.$item = :value AND p.statusProject = 1;";
+            }
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':value', $value, PDO::PARAM_INT);
+            $stmt->bindParam(':value', $value, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetch();
         } else {
@@ -428,6 +432,18 @@ class FormsModel {
         } else {
             $result = 'error';
         }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlGetParticipant($item, $value) {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT * FROM participants WHERE $item = :value";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':value', $value, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
         $stmt->closeCursor();
         $stmt = null;
         return $result;

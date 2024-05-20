@@ -126,4 +126,9 @@ class FormsController {
         $response = FormsModel::mdlAddParticipants($data, $idTeam);
         return $response;
     }
+
+    static public function ctrGetParticipant($item, $value) {
+        $response = FormsModel::mdlGetParticipant($item, $value);
+        return $response;
+    }
 }

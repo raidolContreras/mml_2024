@@ -47,7 +47,9 @@
 					</div>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="./" id="dashboard"> </a></li>
-						<li class="nav-item"><a class="nav-link" href="Admin" id="admin"> </a></li>
+						<?php if ($_SESSION['level'] == 0):?>
+							<li class="nav-item"><a class="nav-link" href="Admin" id="admin"> </a></li>
+						<?php endif ?>
 						<li class="nav-item"><a class="nav-link" href="Team" id="team"> </a></li>
 						<li class="nav-item"><a class="nav-link" href="Trees" id="trees"> </a></li>
 						<li class="nav-item"><a class="nav-link" href="Structure" id="structure"> </a></li>
@@ -56,7 +58,7 @@
 						<li class="nav-item"><a class="nav-link" href="Events" id="events"> </a></li>
 						<li class="nav-item"><a class="nav-link" href="Summary" id="summary"> </a></li>
 					</ul>
-				</div> <!-- container-fluid.// -->
+				</div>
 			</nav>
 			<!-- Sidebar Menu End -->
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,8 +117,12 @@
 							</li>
 							<li onclick="logout()"><a class="dropdown-item">Cerrar sesión</a></li>
 						</ul>
+						<input type="hidden" id="name" value="<?php echo $_SESSION['firstname'].' '.$_SESSION['lastname']; ?>">
+						<input type="hidden" id="email" value="<?php echo $_SESSION['email'] ?>">
+						<input type="hidden" id="idTeam" value="<?php echo $_SESSION['idTeam'] ?>">
 						<input type="hidden" id="user" value="<?php echo $_SESSION['idUser'] ?>">
 						<input type="hidden" id="project" value="<?php echo $_SESSION['idProject'] ?>">
+						<input type="hidden" id="level" value="<?php echo $_SESSION['level'] ?>">
 					</li>
 				</ul>
 			</div>

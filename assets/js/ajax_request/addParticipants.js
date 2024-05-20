@@ -15,9 +15,9 @@ var myDropzone = new Dropzone("#addParticipantsDropzone", {
     errorPlacement: function(error, element) {
         var $element = $(element),
             errContent = $(error).text();
-        $element.attr('data-toggle', 'tooltip');
-        $element.attr('title', errContent);
-        $element.tooltip({
+            $element.attr('data-toggle', 'tooltip');
+            $element.attr('title', errContent);
+            $element.tooltip({
             placement: 'top'
         });
         $element.tooltip('show');
@@ -59,17 +59,50 @@ $('#teamSelectEdit').on('change', function() {
     var team = $('#teamSelectEdit').val();
     if (team >= 1) {
         $('.details-teams').css('display', 'flex');
-        $.ajax({
-            type: 'POST',
-            url: 'controller/ajax/ajax.form.php',
-            data: {
-                searchTeamParticipants: team
-            },
-            success: function (response) {
-                
-            }
-        });
+        participants(team);
     } else {
         $('.details-teams').css('display', 'none');
     }
 });
+
+function participants(idTeam) {
+    $.ajax({
+        type: "POST",
+        url: "controller/ajax/getParticipants.php",
+        data: {
+            idTeam: idTeam
+        },
+        dataType: "json",
+        success: function (participants) {
+            try {
+                var html = "";
+                if (participants.length === 0) {
+                    html = '<p>No hay estudiantes en el equipo.</p>';
+                } else {
+                    participants.forEach(function(participant) {
+                        html +=`<div class="participant mb-2">
+                                    <div class="row">
+                                        <div class="col-4 font-weight-bold">${participant.firstnameParticipant} ${participant.lastnameParticipant}:</div>
+                                        <div class="col-6">${participant.emailParticipant}</div>
+                                        <div class="col-2 btn-group" role="group">
+                                            <button type="button" class="btn btn-primary btn-sm" onClick='editParticipant(${participant.idparticipant})'>
+                                                <i class="fa-solid fa-user-pen"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm" onClick='deleteParticipant(${participant.idparticipant})'>
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>`;
+                    });
+                }
+                $("#participantsList").html(html);
+            } catch (error) {
+                console.error("Error al parsear la respuesta del servidor:", error);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error en la solicitud AJAX:", error);
+        }
+    });
+}

@@ -12,7 +12,8 @@ if(isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
     if($result != 'Error: Password incorrect' && $result != 'Error: Email does not contain'){
         if ($result['sesion'] == 'ok') {
 			$_SESSION['sesion'] = $result['sesion'];
-			$_SESSION['idProject'] = $result['idProject'];
+			$_SESSION['idProject'] = ($result['idProject'] != '') ? $result['idProject'] :$result['users_idProjects'];
+			$_SESSION['idTeam'] = $result['users_idTeam'];
 			$_SESSION['idUser'] = $result['idUser'];
 			$_SESSION['firstname'] = $result['firstname'];
 			$_SESSION['lastname'] = $result['lastname'];
@@ -120,7 +121,15 @@ if (isset($_FILES['userList'])) {
 					// Verificar que hay al menos 4 campos en la línea
 					if (count($fields) >= 4) {
 		                $cryptPassword = crypt($fields[3], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-						$level = ($fields[4] == 'administrator') ? 0: 1;
+						
+						$level = 2; // Valor predeterminado
+
+						if ($fields[4] == 'administrator') {
+							$level = 0;
+						} elseif ($fields[4] == 'standar' || $fields[4] == 'teacher') {
+							$level = 1;
+						}
+						
 						$project = $fields[5];
 						$team = $fields[6];
 						$user = [
@@ -247,7 +256,9 @@ if (isset($_FILES['pacientList'])){
                         'lastname' => $fields[1],
                         'email' => $fields[2]
 					);
-					$result = FormsController::ctrAddParticipants($data, $_POST['team']);
+					if (isset($_POST['team'])) {
+						$result = FormsController::ctrAddParticipants($data, $_POST['team']);
+					} else $result = 'Sin equipo';
 				} else {
 					$init = true;
 				}

@@ -6,6 +6,8 @@
 <html dir="ltr">
     
 <title>Radix | MML <?php echo $_GET['pagina'] ?? 'Dashboard'; ?></title>
+
+<script src="https://kit.fontawesome.com/f4781c35cc.js" crossorigin="anonymous"></script>
     
     <?php
         include 'extras/css.php';

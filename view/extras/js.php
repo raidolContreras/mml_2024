@@ -36,29 +36,28 @@
     if($pagina == 'Admin'){
         echo '<script src="assets/js/ajax_request/adminSettings.js"></script>';
     } elseif($pagina == 'Users') {
-        // Importar librerías de Dropzone
         echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
         echo '<script src="assets/js/ajax_request/getUsers.js"></script>';
         echo '<script src="assets/js/ajax_request/getProjectsSelects.js"></script>';
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
     } elseif($pagina == 'Projects') {
-        // Importar librerías de Dropzone
         echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
         echo '<script src="assets/js/ajax_request/getProjects.js"></script>';
         echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>';
         echo '<script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>';
     } elseif($pagina == 'Teams') {
-        // Importar librerías de Dropzone
         echo '<script src="assets/js/ajax_request/getTeams.js"></script>';
         echo '<script src="assets/js/ajax_request/getProjectsSelects.js"></script>';
     } elseif($pagina == 'EventSettings') {
-        // Importar librerías de Dropzone
         echo '<script src="assets/js/ajax_request/getEvents.js"></script>';
     } elseif($pagina == 'Team') {
-        // Importar librerías de Dropzone
         echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
-        echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
-        echo '<script src="assets/js/ajax_request/addParticipants.js"></script>';
+        if ($_SESSION['level'] == 1) {
+            echo '<script src="assets/js/ajax_request/getTeamTeacher.js"></script>';
+        } else {
+            echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
+            echo '<script src="assets/js/ajax_request/addParticipants.js"></script>';
+        }
     }
     include 'view/extras/language.php';
 ?>
