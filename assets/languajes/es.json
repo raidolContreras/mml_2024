@@ -88,5 +88,8 @@
     "eventEditSuccess": "El evento ha sido editado exitosamente.",
     "eventDeleteSuccess": "El evento ha sido eliminado exitosamente.",
     "projectActive": "El proyecto ha sido activado exitosamente.",
-    "projectActiveError": "Ha ocurrido un error al activar el proyecto."
+    "projectActiveError": "Ha ocurrido un error al activar el proyecto.",
+    "participants": "Participantes",
+    "participantsModalLabel": "Añadir participantes",
+    "editParticipantsModalLabel": "Editar participantes"
 }

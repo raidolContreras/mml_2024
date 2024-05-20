@@ -392,3 +392,7 @@ if(isset($_POST['problem']) &&
         $result = FormsController::ctrUpdateColors($data);
         echo $result;
 }
+
+if(isset($_POST['searchParticipant'])){
+	echo json_encode(FormsController::ctrGetParticipant('idparticipant', $_POST['searchParticipant']));
+}

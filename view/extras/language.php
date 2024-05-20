@@ -133,6 +133,10 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
 
     $('.progress-title').text(translations.progress);
     
+    $('.participants').text(translations.participants);
+    $('#participantsModalLabel').text(translations.participantsModalLabel);
+    $('#editParticipantsModalLabel').text(translations.editParticipantsModalLabel);
+
     var html = `
         <option value="">${translations.select_one}</option>
         <option value="0">${translations.admin}</option>

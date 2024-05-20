@@ -152,3 +152,22 @@ $('#teamSelectEdit').on('change', function() {
         $('.details-teams').css('display', 'none');
     }
 });
+
+function editParticipant(idparticipant) {
+    $('#editParticipantsModal').modal('show');
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            searchParticipant: idparticipant
+        },
+        dataType: 'json',
+        success: function (response) {
+            console.log(response);
+            $('#editParticipant').val(idparticipant);
+            $('#firstnameParticipant').val(response.firstnameParticipant);
+            $('#lastnameParticipant').val(response.lastnameParticipant);
+            $('#emailParticipant').val(response.emailParticipant);
+        }
+    });
+}

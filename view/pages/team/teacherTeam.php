@@ -4,7 +4,13 @@
             <div class="card">
                 <div class="card-header pb-3">
                     <h5 class="card-title">Team Information</h5>
-                    <p class="card-text">Details about the selected team.</p>
+                    <div class="row d-flex align-items-center">
+                        <p class="card-text col-11 mb-0">Details about the selected team.</p>
+                        <button class="col-1 btn btn-primary btn-sm edit-button">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+
                 </div>
                 <div class="card-body">
                     <div class="row mb-2">
@@ -41,7 +47,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center pb-3">
-                    <h5 class="card-title mb-0">Participants</h5>
+                    <h5 class="card-title mb-0 participants"></h5>
                     <button class="btn btn-primary" id="addParticipantBtn"><i class="fas fa-plus"></i> Add Participant</button>
                 </div>
                 <div class="card-body" id="participantsList">
@@ -60,7 +66,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                
                 <!-- Botón para descargar plantilla de ejemplo -->
                 <div class="form-group mt-3">
                     <a type="button" class="btn btn-primary download_template" download="pacients_template.csv" href="assets/documents/pacients_template.csv"></a>
@@ -73,6 +78,35 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
                 <button type="button" class="btn btn-success accept" id="sendButton"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editParticipantsModal" tabindex="-1" aria-labelledby="editParticipantsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title editParticipant_btn" id="editParticipantsModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label" for="firstnameParticipant">FirstName</label>
+                    <input type="text" class="form-control" id="firstnameParticipant">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="lastnameParticipant">LastName</label>
+                    <input type="text" class="form-control" id="lastnameParticipant">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="emailParticipant">Email</label>
+                    <input type="email" class="form-control" id="emailParticipant">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success accept" id="updateParticipant"></button>
             </div>
         </div>
     </div>
@@ -108,5 +142,10 @@
     }
     .participant:last-child {
         border-bottom: none;
+    }
+    
+    .align-center {
+        display: flex;
+        align-items: center;
     }
 </style>

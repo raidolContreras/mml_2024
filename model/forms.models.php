@@ -443,7 +443,11 @@ class FormsModel {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':value', $value, PDO::PARAM_STR);
         $stmt->execute();
-        $result = $stmt->fetchAll();
+        if ($item == 'idparticipant') {
+            $result = $stmt->fetch();
+        } else {
+            $result = $stmt->fetchAll();
+        }
         $stmt->closeCursor();
         $stmt = null;
         return $result;
