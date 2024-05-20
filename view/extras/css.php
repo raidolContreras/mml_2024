@@ -29,13 +29,10 @@
       <?php 
 	    $pagina = $_GET['pagina'] ?? 'Dashboard';
       if($pagina == 'Admin'){
-      } elseif($pagina == 'Users') {
+      } elseif($pagina == 'Users' || $pagina == 'Projects' || $pagina == 'Team') {
         // Importar librerías de Dropzone
         echo '<link href="assets/vendor/dropzone/dropzone.css" rel="stylesheet">';
-    }elseif($pagina == 'Projects') {
-        // Importar librerías de Dropzone
-        echo '<link href="assets/vendor/dropzone/dropzone.css" rel="stylesheet">';
-    }
+      }
       
 
    ?>

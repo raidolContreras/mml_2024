@@ -225,15 +225,55 @@ if (isset($_FILES['deleteUserList'])){
 	echo $result;
 }
 
+if (isset($_FILES['pacientList'])){
+	$result = '';
+	if (isset($_FILES['pacientList']) && $_FILES['pacientList']['error'] === UPLOAD_ERR_OK) {
+		// Ruta donde se almacenará el archivo temporalmente
+		$fileTmpPath = $_FILES['pacientList']['tmp_name'];
+	
+		// Obtener el contenido del archivo CSV
+		$csvData = file_get_contents($fileTmpPath);
+	
+		// Parsear el contenido del archivo CSV
+		$lines = explode("\n", $csvData);
+		$init = false;
+		foreach ($lines as $line) {
+			// Verificar que la línea no esté vacía
+			if (!empty($line)) {
+				if ($init) {
+					$fields = str_getcsv($line);
+					$data = array(
+						'firstname' => $fields[0],
+                        'lastname' => $fields[1],
+                        'email' => $fields[2]
+					);
+					$result = FormsController::ctrAddParticipants($data, $_POST['team']);
+				} else {
+					$init = true;
+				}
+				
+			}
+		}
+	}
+	echo $result;
+}
+
 if(isset($_POST['SearchUser'])){
 	echo json_encode(FormsController::ctrGetUsers('idUser', $_POST['SearchUser']));
 }
+
 if(isset($_POST['SelectProject'])){
 	echo json_encode(FormsController::ctrGetProject('idProject', $_POST['SelectProject']));
 }
+
 if(isset($_POST['SearchTeam'])){
 	echo json_encode(FormsController::ctrGetTeams('idTeam', $_POST['SearchTeam']));
 }
+
+if(isset($_POST['searchTeamParticipants'])){
+	echo json_encode(FormsController::ctrGetTeams('idTeam', $_POST['searchTeamParticipants']));
+}
+
 if(isset($_POST['SelectEvent'])){
 	echo json_encode(FormsController::ctrGetEvents('idEvent', $_POST['SelectEvent']));
 }

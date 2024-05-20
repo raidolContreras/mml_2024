@@ -121,4 +121,9 @@ class FormsController {
         $response = FormsModel::mdlUpdateColors($data);
         return $response;
     }
+
+    static public function ctrAddParticipants($data, $idTeam) {
+        $response = FormsModel::mdlAddParticipants($data, $idTeam);
+        return $response;
+    }
 }

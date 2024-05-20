@@ -27,7 +27,14 @@ border-style: dashed !important;
   z-index: 1000;
 }
 
-
 .subtitulo-sup {
   font-size: 10px;
+}
+
+.float-end {
+  text-align: right !important;
+}
+
+.details-teams {
+  display: none;
 }

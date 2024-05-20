@@ -415,4 +415,22 @@ class FormsModel {
         return $result;
     }
 
+    static public function mdlAddParticipants($data, $idTeam){
+        $pdo = Conexion::conectar();
+        $sql = "INSERT INTO participants(firstnameParticipant, lastnameParticipant, emailParticipant, idTeam) VALUES (:firstnameParticipant, :lastnameParticipant, :emailParticipant, :idTeam)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':firstnameParticipant', $data['firstname'], PDO::PARAM_STR);
+        $stmt->bindParam(':lastnameParticipant', $data['lastname'], PDO::PARAM_STR);
+        $stmt->bindParam(':emailParticipant', $data['email'], PDO::PARAM_STR);
+        $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
 }
