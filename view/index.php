@@ -5,7 +5,7 @@
 <!doctype html>
 <html dir="ltr">
     
-<title>Edradix | MML <?php echo $_GET['pagina'] ?? 'Dashboard'; ?></title>
+<title>Radix | MML <?php echo $_GET['pagina'] ?? 'Dashboard'; ?></title>
     
     <?php
         include 'extras/css.php';

@@ -20,7 +20,7 @@
 					<!--Logo start-->
 					<img style="width: 2rem; height:auto" src="assets/images/logo.png" alt="logo Edradix">
 					<!--logo End-->
-					<h4 class="logo-title">Edradix</h4>
+					<h4 class="logo-title">Radix</h4>
 				</a>
 			</div>
 			<!-- Horizontal Menu Start -->
@@ -41,7 +41,7 @@
 								</div>
 							</div>
 							<!--logo End-->
-							<h4 class="logo-title">Edradix</h4>
+							<h4 class="logo-title">Radix</h4>
 						</div>
 						<button class="btn-close float-end"></button>
 					</div>

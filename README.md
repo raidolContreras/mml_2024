@@ -1,6 +1,6 @@
 
 # MML
 
-Aplication to Edradix MML
+Aplication to Radix MML
 
 ****
