@@ -120,6 +120,7 @@
     .card-header {
         background-color: #f8f9fa;
         border-bottom: 1px solid #dee2e6;
+        min-height: 20%;
     }
     .card-title {
         margin-bottom: 0;
