@@ -112,8 +112,8 @@ class FormsController {
         return $response;
     }
 
-    static public function ctrChangeProjectActive($idProject) {
-        $response = FormsModel::mdlChangeProjectActive($idProject);
+    static public function ctrChangeProjectActive($idProject, $idUser) {
+        $response = FormsModel::mdlChangeProjectActive($idProject, $idUser);
         return $response;
     }
 

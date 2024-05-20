@@ -1,6 +1,7 @@
 $(document).ready(function () {
   // Obtener los proyectos y cargar las opciones en el select
   showColorsProject();
+  selectProject($("#project").val());
 
   $("#projectActive").on("change", function () {
     var selectedValue = $(this).val();
@@ -14,6 +15,8 @@ $(document).ready(function () {
         success: function (response) {
           if (response === "ok") {
             showColorsProject();
+            $("#project").val(selectedValue);
+            selectProject($("#project").val());
             showAlertBootstrap(translations.success, translations.projectActive);
           } else {
             showAlertBootstrap(translations.alert, translations.projectActiveError);
@@ -65,36 +68,18 @@ function showColorsProject() {
   $.ajax({
     type: "POST",
     url: "controller/ajax/getProjects.php",
+    dataType: "json",
     success: function (response) {
-      var projects = JSON.parse(response);
       var html = `<option>${translations.select_one}</option>`;
       
-      projects.forEach(function (project) {
-        var selected = (project.active === 1) ? "selected" : '';
-        html += '<option value="' + project.idProject + '" ' + selected + '>' + project.nameProject + '</option>';
-        if (project.active === 1) {
-          
-          $("#problemColor").val(project.problem);
-          $(".problemDiv .clr-field").attr("style", `color: ${project.problem}`);
+      response.forEach(function (project) {
 
-          $("#effectColor").val(project.effect);
-          $(".effectDiv .clr-field").attr("style", `color: ${project.effect}`);
+        var idProject = $("#project").val();
 
-          $("#causeColor").val(project.cause);
-          $(".causeDiv .clr-field").attr("style", `color: ${project.cause}`);
+        var selected = (project.idProject == idProject )? "selected" : '';
 
-          $("#objectiveColor").val(project.objetive);
-          $(".objetiveDiv .clr-field").attr("style", `color: ${project.objetive}`);
+        html += '<option value="' + project.idProject + '" '+ selected +' >' + project.nameProject + '</option>';
 
-          $("#resultColor").val(project.result);
-          $(".resutDiv .clr-field").attr("style", `color: ${project.result}`);
-
-          $("#actionColor").val(project.action);
-          $(".actionDiv .clr-field").attr("style", `color: ${project.action}`);
-
-          $("#productColor").val(project.product);
-          $(".productDiv .clr-field").attr("style", `color: ${project.product}`);
-        }
       });
 
       $("#projectActive").html(html);
@@ -106,6 +91,41 @@ function showColorsProject() {
     error: function (xhr, status, error) {
       console.error("Error en la solicitud AJAX:", error);
     }
+  });
+}
+
+function selectProject(project) {
+  $.ajax({
+    type: "POST",
+    url: "controller/ajax/getProjectsAdmin.php",
+    data: {
+      project: project
+    },
+    dataType: 'json',
+    success: function (response) {
+        
+        $("#problemColor").val(response.problem);
+        $(".problemDiv .clr-field").attr("style", `color: ${response.problem}`);
+
+        $("#effectColor").val(response.effect);
+        $(".effectDiv .clr-field").attr("style", `color: ${response.effect}`);
+
+        $("#causeColor").val(response.cause);
+        $(".causeDiv .clr-field").attr("style", `color: ${response.cause}`);
+
+        $("#objectiveColor").val(response.objetive);
+        $(".objetiveDiv .clr-field").attr("style", `color: ${response.objetive}`);
+
+        $("#resultColor").val(response.result);
+        $(".resutDiv .clr-field").attr("style", `color: ${response.result}`);
+
+        $("#actionColor").val(response.action);
+        $(".actionDiv .clr-field").attr("style", `color: ${response.action}`);
+
+        $("#productColor").val(response.product);
+        $(".productDiv .clr-field").attr("style", `color: ${response.product}`);
+    }
+
   });
 }
 

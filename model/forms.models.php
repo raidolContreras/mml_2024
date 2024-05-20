@@ -6,7 +6,9 @@ class FormsModel {
     static public function mdlGetUsers($item, $value) {
         $pdo = Conexion::conectar();
         if ($value !== null && $item !== 'idUser') {
-            $sql = "SELECT * FROM users WHERE $item = :value";
+            $sql = "SELECT * FROM users u
+                        LEFT JOIN users_active_projects up ON up.idUser = u.idUser
+                    WHERE $item = :value";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':value', $value, PDO::PARAM_STR);
             $stmt->execute();
@@ -51,9 +53,12 @@ class FormsModel {
     static public function mdlGetProject($item, $value){
         $pdo = Conexion::conectar();
         if ($value !== null) {
-            $sql = "SELECT * FROM projects p LEFT JOIN colorsProject c ON c.project_idProject = p.idProject WHERE $item = :value";
+            $sql = "SELECT * FROM users_active_projects up
+                        LEFT JOIN projects p ON p.idProject = up.idProject
+                        LEFT JOIN colorsProject c ON c.project_idProject = p.idProject
+                    where up.$item = :value AND p.statusProject = 1;";
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':value', $value, PDO::PARAM_STR);
+            $stmt->bindParam(':value', $value, PDO::PARAM_INT);
             $stmt->execute();
             $result = $stmt->fetch();
         } else {
@@ -364,12 +369,12 @@ class FormsModel {
         return $result;
     }
 
-    static public function mdlChangeProjectActive($idProject){
+    static public function mdlChangeProjectActive($idProject, $idUser){
         $pdo = Conexion::conectar();
-        $sql = "UPDATE projects SET active = 0 WHERE active = 1;";
-        $sql .= "UPDATE projects SET active = 1 WHERE idProject = :idProject;";
+        $sql = "UPDATE users_active_projects SET idProject = :idProject WHERE idUser = :idUser;";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idProject', $idProject, PDO::PARAM_INT);
+        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
         if ($stmt->execute()) {
             $result = 'ok';
         } else {

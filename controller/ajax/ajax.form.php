@@ -12,6 +12,7 @@ if(isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
     if($result != 'Error: Password incorrect' && $result != 'Error: Email does not contain'){
         if ($result['sesion'] == 'ok') {
 			$_SESSION['sesion'] = $result['sesion'];
+			$_SESSION['idProject'] = $result['idProject'];
 			$_SESSION['idUser'] = $result['idUser'];
 			$_SESSION['firstname'] = $result['firstname'];
 			$_SESSION['lastname'] = $result['lastname'];
@@ -311,7 +312,10 @@ if(isset($_POST['DeleteEvent'])){
 }
 
 if (isset($_POST['changeActive'])) {
-	$result = FormsController::ctrChangeProjectActive($_POST['changeActive']);
+	$result = FormsController::ctrChangeProjectActive($_POST['changeActive'], $_SESSION['idUser']);
+	if ($result == 'ok') {
+		$_SESSION['idProject'] = $_POST['changeActive'];
+	}
     echo $result;
 }
 

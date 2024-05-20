@@ -115,6 +115,8 @@
 							</li>
 							<li onclick="logout()"><a class="dropdown-item">Cerrar sesión</a></li>
 						</ul>
+						<input type="hidden" id="user" value="<?php echo $_SESSION['idUser'] ?>">
+						<input type="hidden" id="project" value="<?php echo $_SESSION['idProject'] ?>">
 					</li>
 				</ul>
 			</div>
