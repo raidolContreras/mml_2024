@@ -10,7 +10,6 @@
                             <i class="fas fa-edit"></i>
                         </button>
                     </div>
-
                 </div>
                 <div class="card-body">
                     <div class="row mb-2">
@@ -83,6 +82,35 @@
     </div>
 </div>
 
+<div class="modal fade" id="editTeamModal" tabindex="-1" aria-labelledby="editTeamModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title editParticipant_btn" id="editTeamModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label" for="state">State</label>
+                    <input type="text" class="form-control" id="state">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="identifiedProbleminput">Identified Problem</label>
+                    <input type="text" class="form-control" id="identifiedProbleminput">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="mainObjective">Main Objective</label>
+                    <input type="text" class="form-control" id="mainObjectiveinput">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success accept" id="updateTeam"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="editParticipantsModal" tabindex="-1" aria-labelledby="editParticipantsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -111,6 +139,8 @@
         </div>
     </div>
 </div>
+
+
 
 <style>
     .card {

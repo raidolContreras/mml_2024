@@ -81,12 +81,12 @@
 									<ul class="list-group list-group-flush">
 										<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguage(1)">
 											<a class="p-0" href="#">
-												<img src="assets/images/Flag/flag-03.png" alt="img-flag" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;" />Español
+												<img src="assets/images/Flag/flag-03.png" alt="img-flag" class="img-fluid m-2" style="width: 15px;height: 15px;min-width: 15px;" />Español
 											</a>
 										</li>
 										<li class="iq-sub-card list-group-item" id="english" onclick="changeLanguage(2)">
 											<a class="p-0" href="#">
-												<img src="assets/images/Flag/flag001.png" alt="img-flag" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;" />English
+												<img src="assets/images/Flag/flag001.png" alt="img-flag" class="img-fluid m-2" style="width: 15px;height: 15px;min-width: 15px;" />English
 											</a>
 										</li>
 									</ul>

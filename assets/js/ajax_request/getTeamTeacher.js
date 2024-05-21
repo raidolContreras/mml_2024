@@ -1,38 +1,6 @@
 var idteam = $('#idTeam').val();
 $(document).ready(function () {
-    $.ajax({
-        type: "POST",
-        url: "controller/ajax/getTeams.php",
-        dataType: "json",
-        success: function (teams) {
-            var mentorName = $('#name').val();
-            var mentorEmail = $('#email').val();
-            try {
-                teams.forEach(function(team) {
-                    if (team.idTeam == idteam) {
-                        teamName = team.teamName;
-                        teamSchool = team.teamSchool;
-                        teamState = team.teamState;
-                        identifiedProblem = team.identifiedProblem;
-                        mainObjective = team.mainObjective;
-                    }
-                });
-                $("#mentorName").html(mentorName);
-                $("#mentorEmail").html(mentorEmail);
-                $("#teamName").html(teamName);
-                $("#teamSchool").html(teamSchool);
-                $("#teamState").html(teamState);
-                $("#identifiedProblem").html(identifiedProblem);
-                $("#mainObjective").html(mainObjective);
-                participants(idteam);
-            } catch (error) {
-                console.error("Error al parsear la respuesta del servidor:", error);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error("Error en la solicitud AJAX:", error);
-        }
-    });
+    loadTeamsData(idteam);
 });
 
 function participants(idTeam) {
@@ -168,6 +136,81 @@ function editParticipant(idparticipant) {
             $('#firstnameParticipant').val(response.firstnameParticipant);
             $('#lastnameParticipant').val(response.lastnameParticipant);
             $('#emailParticipant').val(response.emailParticipant);
+        }
+    });
+}
+
+function editTeam(team) {
+    $('#editTeamModal').modal('show');
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            searchTeam: team
+        },
+        dataType: 'json',
+        success: function (response) {
+            $('#state').val(response.teamState);
+            $('#identifiedProbleminput').val(response.identifiedProblem);
+            $('#mainObjectiveinput').val(response.mainObjective);
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores aquí
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+$('#updateTeam').on('click', function() {
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            updateTeam: idteam,
+            state: $('#state').val(),
+            identifiedProblem: $('#identifiedProbleminput').val(),
+            mainObjective: $('#mainObjectiveinput').val()
+        },
+        success: function (response) {
+            $('#editTeamModal').modal('hide');
+            loadTeamsData(idteam);
+        }
+    });
+});
+
+function loadTeamsData(idteam) {
+    $.ajax({
+        type: "POST",
+        url: "controller/ajax/getTeams.php",
+        dataType: "json",
+        success: function (teams) {
+            var mentorName = $('#name').val();
+            var mentorEmail = $('#email').val();
+            try {
+                teams.forEach(function(team) {
+                    if (team.idTeam == idteam) {
+                        teamName = team.teamName;
+                        teamSchool = team.teamSchool;
+                        teamState = team.teamState;
+                        identifiedProblem = team.identifiedProblem;
+                        mainObjective = team.mainObjective;
+                    }
+                });
+                $("#mentorName").html(mentorName);
+                $("#mentorEmail").html(mentorEmail);
+                $("#teamName").html(teamName);
+                $("#teamSchool").html(teamSchool);
+                $("#teamState").html(teamState);
+                $("#identifiedProblem").html(identifiedProblem);
+                $("#mainObjective").html(mainObjective);
+                participants(idteam);
+                $('.edit-button').attr('onclick', 'editTeam(' + idteam + ')');
+            } catch (error) {
+                console.error("Error al parsear la respuesta del servidor:", error);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error en la solicitud AJAX:", error);
         }
     });
 }

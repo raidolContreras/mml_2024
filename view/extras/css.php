@@ -29,7 +29,7 @@
       <?php 
 	    $pagina = $_GET['pagina'] ?? 'Dashboard';
       if($pagina == 'Admin'){
-      } elseif($pagina == 'Users' || $pagina == 'Projects' || $pagina == 'Team') {
+      } elseif($pagina == 'Users' || $pagina == 'Projects' || $pagina == 'Team' || $pagina == 'Trees') {
         // Importar librerías de Dropzone
         echo '<link href="assets/vendor/dropzone/dropzone.css" rel="stylesheet">';
       }

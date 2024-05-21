@@ -58,7 +58,10 @@
             echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
             echo '<script src="assets/js/ajax_request/addParticipants.js"></script>';
         }
-    }
+    } elseif($pagina == 'Trees') {
+        echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
+        echo '<script src="assets/js/ajax_request/trees.js"></script>';
+    } 
     include 'view/extras/language.php';
 ?>
 

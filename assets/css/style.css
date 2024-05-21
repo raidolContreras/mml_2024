@@ -38,3 +38,7 @@ border-style: dashed !important;
 .details-teams {
   display: none;
 }
+
+.iq-navbar .dropdown .dropdown-menu.sub-drop .list-group-item.active a {
+  color: #fff;
+}

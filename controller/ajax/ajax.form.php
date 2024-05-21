@@ -396,3 +396,18 @@ if(isset($_POST['problem']) &&
 if(isset($_POST['searchParticipant'])){
 	echo json_encode(FormsController::ctrGetParticipant('idparticipant', $_POST['searchParticipant']));
 }
+
+if(isset($_POST['searchTeam'])){
+	echo json_encode(FormsController::ctrGetTeams('idTeam', $_POST['searchTeam']));
+}
+
+if (isset($_POST['updateTeam'])){
+	$data = array(
+		'idTeam' => $_POST['updateTeam'],
+        'teamState' => $_POST['state'],
+        'identifiedProblem' => $_POST['identifiedProblem'],
+        'mainObjective' => $_POST['mainObjective']
+	);
+	$result = FormsController::ctrUpdateTeamExtras($data);
+	echo $result;
+}

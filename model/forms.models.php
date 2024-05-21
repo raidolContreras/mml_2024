@@ -453,4 +453,22 @@ class FormsModel {
         return $result;
     }
 
+    static public function mdlUpdateTeamExtras($data) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE teams SET teamState = :teamState, identifiedProblem = :identifiedProblem, mainObjective = :mainObjective WHERE idTeam = :idTeam";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':teamState', $data['teamState'], PDO::PARAM_STR);
+        $stmt->bindParam(':identifiedProblem', $data['identifiedProblem'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainObjective', $data['mainObjective'], PDO::PARAM_STR);
+        $stmt->bindParam(':idTeam', $data['idTeam'], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
 }

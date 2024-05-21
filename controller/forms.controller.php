@@ -131,4 +131,9 @@ class FormsController {
         $response = FormsModel::mdlGetParticipant($item, $value);
         return $response;
     }
+
+    static public function ctrUpdateTeamExtras($data) {
+        $response = FormsModel::mdlUpdateTeamExtras($data);
+        return $response;
+    }
 }
