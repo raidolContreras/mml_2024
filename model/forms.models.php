@@ -453,6 +453,24 @@ class FormsModel {
         return $result;
     }
 
+    static public function mdlUpdateParticipant($data) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE participants SET firstnameParticipant = :firstnameParticipant, lastnameParticipant = :lastnameParticipant, emailParticipant = :emailParticipant WHERE idparticipant = :idparticipant";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':firstnameParticipant', $data['firstname'], PDO::PARAM_STR);
+        $stmt->bindParam(':lastnameParticipant', $data['lastname'], PDO::PARAM_STR);
+        $stmt->bindParam(':emailParticipant', $data['email'], PDO::PARAM_STR);
+        $stmt->bindParam(':idparticipant', $data['idparticipant'], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
     static public function mdlUpdateTeamExtras($data) {
         $pdo = Conexion::conectar();
         $sql = "UPDATE teams SET teamState = :teamState, identifiedProblem = :identifiedProblem, mainObjective = :mainObjective WHERE idTeam = :idTeam";
@@ -461,6 +479,21 @@ class FormsModel {
         $stmt->bindParam(':identifiedProblem', $data['identifiedProblem'], PDO::PARAM_STR);
         $stmt->bindParam(':mainObjective', $data['mainObjective'], PDO::PARAM_STR);
         $stmt->bindParam(':idTeam', $data['idTeam'], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlDeleteParticipant($idParticipant) {
+        $pdo = Conexion::conectar();
+        $sql = "DELETE FROM participants WHERE idparticipant = :idparticipant";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idparticipant', $idParticipant, PDO::PARAM_INT);
         if ($stmt->execute()) {
             $result = 'ok';
         } else {

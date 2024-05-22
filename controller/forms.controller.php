@@ -136,4 +136,14 @@ class FormsController {
         $response = FormsModel::mdlUpdateTeamExtras($data);
         return $response;
     }
+
+    static public function ctrUpdateParticipant($data) {
+        $response = FormsModel::mdlUpdateParticipant($data);
+        return $response;
+    }
+
+    static public function ctrDeleteParticipant($idParticipant) {
+        $response = FormsModel::mdlDeleteParticipant($idParticipant);
+        return $response;
+    }
 }

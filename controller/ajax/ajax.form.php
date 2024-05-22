@@ -411,3 +411,19 @@ if (isset($_POST['updateTeam'])){
 	$result = FormsController::ctrUpdateTeamExtras($data);
 	echo $result;
 }
+
+if (isset($_POST['updateParticipant'])){
+	$data = array(
+        'idparticipant' => $_POST['updateParticipant'],
+        'firstname' => $_POST['firstnameParticipant'],
+        'lastname' => $_POST['lastnameParticipant'],
+       	'email' => $_POST['emailParticipant']
+    );
+    $result = FormsController::ctrUpdateParticipant($data);
+    echo $result;
+}
+
+if (isset($_POST['deleteParticipant'])){
+    $result = FormsController::ctrDeleteParticipant($_POST['deleteParticipant']);
+    echo $result;
+}

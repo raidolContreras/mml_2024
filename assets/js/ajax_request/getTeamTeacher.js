@@ -140,6 +140,43 @@ function editParticipant(idparticipant) {
     });
 }
 
+function deleteParticipant(idparticipant) {
+    $('#deleteParticipantsModal').modal('show');
+    $('#editParticipant').val(idparticipant);
+}
+
+$('#deleteParticipant').on('click', function() {
+    var idparticipant = $('#editParticipant').val();
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            deleteParticipant: idparticipant
+        },
+        success: function (response) {
+            $('#deleteParticipantsModal').modal('hide');
+            participants(idteam);
+        }
+    });
+});
+
+$('#updateParticipant').on('click', function() {
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            updateParticipant: $('#editParticipant').val(),
+            firstnameParticipant: $('#firstnameParticipant').val(),
+            lastnameParticipant: $('#lastnameParticipant').val(),
+            emailParticipant: $('#emailParticipant').val()
+        },
+        success: function (response) {
+            $('#editParticipantsModal').modal('hide');
+            participants(idteam);
+        }
+    });
+});
+
 function editTeam(team) {
     $('#editTeamModal').modal('show');
     $.ajax({
