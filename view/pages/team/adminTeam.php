@@ -11,7 +11,12 @@
             <div class="card">
                 <div class="card-header pb-3">
                     <h5 class="card-title">Team Information</h5>
-                    <p class="card-text">Details about the selected team.</p>
+                    <div class="row d-flex align-items-center">
+                        <p class="card-text col-11 mb-0">Details about the selected team.</p>
+                        <button class="col-1 btn btn-primary btn-sm edit-button">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row mb-2">

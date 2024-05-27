@@ -58,6 +58,9 @@ $('#sendButton').on('click', function () {
 $('#teamSelectEdit').on('change', function() {
     var team = $('#teamSelectEdit').val();
     $('#idTeamSelect').val(team);
+    
+    $('.edit-button').attr('onclick', 'editTeam(' + team + ')');
+    
     if (team >= 1) {
         $('.details-teams').css('display', 'flex');
         participants(team);
@@ -163,7 +166,7 @@ $('#updateParticipant').on('click', function() {
         },
         success: function (response) {
             $('#editParticipantsModal').modal('hide');
-            
+
             var idteam = $('#idTeamSelect').val();
             
             participants(idteam);
