@@ -45,6 +45,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="idTeamSelect">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center pb-3">

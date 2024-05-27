@@ -57,6 +57,7 @@ $('#sendButton').on('click', function () {
 
 $('#teamSelectEdit').on('change', function() {
     var team = $('#teamSelectEdit').val();
+    $('#idTeamSelect').val(team);
     if (team >= 1) {
         $('.details-teams').css('display', 'flex');
         participants(team);
@@ -106,3 +107,66 @@ function participants(idTeam) {
         }
     });
 }
+
+
+function editParticipant(idparticipant) {
+    $('#editParticipantsModal').modal('show');
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            searchParticipant: idparticipant
+        },
+        dataType: 'json',
+        success: function (response) {
+            console.log(response);
+            $('#editParticipant').val(idparticipant);
+            $('#firstnameParticipant').val(response.firstnameParticipant);
+            $('#lastnameParticipant').val(response.lastnameParticipant);
+            $('#emailParticipant').val(response.emailParticipant);
+        }
+    });
+}
+
+function deleteParticipant(idparticipant) {
+    $('#deleteParticipantsModal').modal('show');
+    $('#editParticipant').val(idparticipant);
+}
+
+$('#deleteParticipant').on('click', function() {
+    var idparticipant = $('#editParticipant').val();
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            deleteParticipant: idparticipant
+        },
+        success: function (response) {
+            $('#deleteParticipantsModal').modal('hide');
+            
+            var idteam = $('#idTeamSelect').val();
+
+            participants(idteam);
+        }
+    });
+});
+
+$('#updateParticipant').on('click', function() {
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            updateParticipant: $('#editParticipant').val(),
+            firstnameParticipant: $('#firstnameParticipant').val(),
+            lastnameParticipant: $('#lastnameParticipant').val(),
+            emailParticipant: $('#emailParticipant').val()
+        },
+        success: function (response) {
+            $('#editParticipantsModal').modal('hide');
+            
+            var idteam = $('#idTeamSelect').val();
+            
+            participants(idteam);
+        }
+    });
+});
