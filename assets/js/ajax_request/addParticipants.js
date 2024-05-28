@@ -48,6 +48,12 @@ var myDropzone = new Dropzone("#addParticipantsDropzone", {
             var team = $('#teamSelectEdit').val();
             formData.append("team", team); // Add team parameter to formData
         });
+
+        this.on("success", function( file, xhr, formData) {
+            $('#participantsModal').modal('hide');
+            var team = $('#teamSelectEdit').val();
+            participants(team);
+        });
     }
 });
 
@@ -64,6 +70,7 @@ $('#teamSelectEdit').on('change', function() {
     if (team >= 1) {
         $('.details-teams').css('display', 'flex');
         participants(team);
+        loadTeamsData(team);
     } else {
         $('.details-teams').css('display', 'none');
     }
@@ -173,3 +180,88 @@ $('#updateParticipant').on('click', function() {
         }
     });
 });
+
+function editTeam(team) {
+    $('#editTeamModal').modal('show');
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            searchTeam: team
+        },
+        dataType: 'json',
+        success: function (response) {
+            $('#state').val(response.teamState);
+            $('#identifiedProbleminput').val(response.identifiedProblem);
+            $('#mainObjectiveinput').val(response.mainObjective);
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores aquí
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+$('#updateTeam').on('click', function() {
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            updateTeam: idteam,
+            state: $('#state').val(),
+            identifiedProblem: $('#identifiedProbleminput').val(),
+            mainObjective: $('#mainObjectiveinput').val()
+        },
+        success: function (response) {
+            $('#editTeamModal').modal('hide');
+            loadTeamsData(idteam);
+        }
+    });
+});
+
+function loadTeamsData(idteam) {
+    $.ajax({
+        type: "POST",
+        url: "controller/ajax/getTeams.php",
+        data: {
+            team: idteam
+        },
+        dataType: "json",
+        success: function (team) {
+            var firstname = team.firstname || '';
+            var lastname = team.lastname || '';
+            var mentorName = `${firstname} ${lastname}`;
+            var mentorEmail = team.email || '';
+            var teamName = team.teamName || '';
+            var teamSchool = team.teamSchool || '';
+            var teamState = team.teamState || '';
+            var identifiedProblem = team.identifiedProblem || '';
+            var mainObjective = team.mainObjective || '';
+
+            updateDOM({
+                mentorName,
+                mentorEmail,
+                teamName,
+                teamSchool,
+                teamState,
+                identifiedProblem,
+                mainObjective
+            });
+
+            $('.edit-button').attr('onclick', 'editTeam(' + idteam + ')');
+        },
+        error: function(xhr, status, error) {
+            console.error("Error en la solicitud AJAX:", error);
+        }
+    });
+}
+
+function updateDOM(data) {
+    $("#mentorName").html(data.mentorName);
+    $("#mentorEmail").html(data.mentorEmail);
+    $("#teamName").html(data.teamName);
+    $("#schoolName").html(data.teamSchool);
+    $("#teamState").html(data.teamState);
+    $("#identifiedProblem").html(data.identifiedProblem);
+    $("#mainObjective").html(data.mainObjective);
+}

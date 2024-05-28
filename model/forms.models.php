@@ -81,7 +81,10 @@ class FormsModel {
     static public function mdlGetTeams($item, $value){
         $pdo = Conexion::conectar();
         if ($value !== null) {
-            $sql = "SELECT * FROM teams WHERE $item = :value";
+            $sql = "SELECT * FROM teams t
+                        LEFT JOIN projects p ON p.idProject = t.teams_idProject
+                        LEFT JOIN users u ON u.users_idTeam = t.idTeam
+                    WHERE t.$item = :value";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':value', $value, PDO::PARAM_STR);
             $stmt->execute();
@@ -418,24 +421,38 @@ class FormsModel {
         $stmt = null;
         return $result;
     }
-
+    
     static public function mdlAddParticipants($data, $idTeam){
         $pdo = Conexion::conectar();
-        $sql = "INSERT INTO participants(firstnameParticipant, lastnameParticipant, emailParticipant, idTeam) VALUES (:firstnameParticipant, :lastnameParticipant, :emailParticipant, :idTeam)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':firstnameParticipant', $data['firstname'], PDO::PARAM_STR);
-        $stmt->bindParam(':lastnameParticipant', $data['lastname'], PDO::PARAM_STR);
-        $stmt->bindParam(':emailParticipant', $data['email'], PDO::PARAM_STR);
-        $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
-        if ($stmt->execute()) {
-            $result = 'ok';
-        } else {
-            $result = 'error';
+        try {
+            $sql = "INSERT INTO participants(firstnameParticipant, lastnameParticipant, emailParticipant, idTeam) VALUES (:firstnameParticipant, :lastnameParticipant, :emailParticipant, :idTeam)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':firstnameParticipant', $data['firstname'], PDO::PARAM_STR);
+            $stmt->bindParam(':lastnameParticipant', $data['lastname'], PDO::PARAM_STR);
+            $stmt->bindParam(':emailParticipant', $data['email'], PDO::PARAM_STR);
+            $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+            
+            if ($stmt->execute()) {
+                $result = 'ok';
+            } else {
+                $result = 'error';
+            }
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) { // Código de error para violación de unicidad
+                $result = 'duplicate';
+            } else {
+                $result = 'error';
+            }
         }
-        $stmt->closeCursor();
-        $stmt = null;
+    
+        if (isset($stmt)) {
+            $stmt->closeCursor();
+            $stmt = null;
+        }
+    
         return $result;
     }
+    
 
     static public function mdlGetParticipant($item, $value) {
         $pdo = Conexion::conectar();

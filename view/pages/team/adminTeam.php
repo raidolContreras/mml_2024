@@ -21,31 +21,31 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">Mentor:</div>
-                        <div class="col-6" id="mentorName">John Doe</div>
+                        <div class="col-6" id="mentorName"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">Mentor Email:</div>
-                        <div class="col-6" id="mentorEmail">john.doe@example.com</div>
+                        <div class="col-6" id="mentorEmail"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">Team:</div>
-                        <div class="col-6" id="teamName">Team Alpha</div>
+                        <div class="col-6" id="teamName"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">School:</div>
-                        <div class="col-6" id="schoolName">Example School</div>
+                        <div class="col-6" id="schoolName"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">State:</div>
-                        <div class="col-6" id="teamState">California</div>
+                        <div class="col-6" id="teamState"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">Identified Problem:</div>
-                        <div class="col-6" id="identifiedProblem">Lack of resources</div>
+                        <div class="col-6" id="identifiedProblem"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">Main Objective:</div>
-                        <div class="col-6" id="mainObjective">Improve resource availability</div>
+                        <div class="col-6" id="mainObjective"></div>
                     </div>
                 </div>
             </div>
