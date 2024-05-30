@@ -13,6 +13,7 @@
             color: #004d4d;
         }
         .target-card {
+            cursor: pointer !important;
             margin: 10px;
             border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -75,6 +76,14 @@
 </head>
 <body>
     <div class="container">
+        
+        <div class="row mb-4">
+            <div class="col-md-6 offset-md-3">
+                <label for="teamSelectEdit" class="form-label teams">Select Team</label>
+                <select class="form-select" id="teamSelectEdit">
+                </select>
+            </div>
+        </div>
         <div class="row">
             <div class="float-end mb-3">
                 <button class="btn btn-primary" onclick="chargerTree()">Cargar arból</button>
