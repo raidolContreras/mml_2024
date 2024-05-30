@@ -11,40 +11,46 @@
             <div class="card">
                 <div class="card-header pb-3">
                     <h5 class="card-title">Team Information</h5>
-                    <p class="card-text">Details about the selected team.</p>
+                    <div class="row d-flex align-items-center">
+                        <p class="card-text col-11 mb-0">Details about the selected team.</p>
+                        <button class="col-1 btn btn-primary btn-sm edit-button">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">Mentor:</div>
-                        <div class="col-6" id="mentorName">John Doe</div>
+                        <div class="col-6" id="mentorName"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">Mentor Email:</div>
-                        <div class="col-6" id="mentorEmail">john.doe@example.com</div>
+                        <div class="col-6" id="mentorEmail"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">Team:</div>
-                        <div class="col-6" id="teamName">Team Alpha</div>
+                        <div class="col-6" id="teamName"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">School:</div>
-                        <div class="col-6" id="schoolName">Example School</div>
+                        <div class="col-6" id="schoolName"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">State:</div>
-                        <div class="col-6" id="teamState">California</div>
+                        <div class="col-6" id="teamState"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">Identified Problem:</div>
-                        <div class="col-6" id="identifiedProblem">Lack of resources</div>
+                        <div class="col-6" id="identifiedProblem"></div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-6 text-right font-weight-bold">Main Objective:</div>
-                        <div class="col-6" id="mainObjective">Improve resource availability</div>
+                        <div class="col-6" id="mainObjective"></div>
                     </div>
                 </div>
             </div>
         </div>
+        <input type="hidden" id="idTeamSelect">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center pb-3">

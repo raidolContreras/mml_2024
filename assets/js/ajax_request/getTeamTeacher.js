@@ -103,6 +103,8 @@ $('#sendButton').on('click', function () {
 });
 
 $('#teamSelectEdit').on('change', function() {
+                
+    
     var team = $('#teamSelectEdit').val();
     if (team >= 1) {
         $('.details-teams').css('display', 'flex');
@@ -113,7 +115,6 @@ $('#teamSelectEdit').on('change', function() {
                 searchTeamParticipants: team
             },
             success: function (response) {
-                
             }
         });
     } else {
