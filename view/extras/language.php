@@ -161,6 +161,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.main_results').text(translations.main_results);
     $('.results').text(translations.results);
     $('.main_actions').text(translations.main_actions);
+    $('.activity').text(translations.activity);
 
     var html = `
         <option value="">${translations.select_one}</option>
