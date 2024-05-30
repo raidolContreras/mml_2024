@@ -1,6 +1,5 @@
 <?php 
 	$project = FormsController::ctrGetProject('p.idProject', $_SESSION['idProject']); 
-	// print_r($project);
 ?>
 <span class="screen-darken"></span>
 <!-- loader Start -->

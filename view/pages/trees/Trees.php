@@ -32,33 +32,38 @@
             font-size: 0.9rem;
             color: #fff;
         }
+        
         .central {
-            background-color: #004d4d;
-            color: white;
-        }
-        .main-effect {
-            background-color: #ff4d4d;
+            background-color:  <?php echo $project['problem'] ?> !important;
             color: white;
         }
         .effect-target-card {
-            background-color: #ff6666;
-            color: white;
-        }
-        .cause-target-card, .main-cause {
-            background-color: #ff9999;
-            color: white;
-        }
-        .main-result, .main-objective {
-            background-color: #006666;
-            color: white;
-        }
-        .result-target-card {
-            background-color: #008080;
+            background-color:  <?php echo $project['effect'] ?> !important;
             color: white;
         }
         .action-target-card, .main-action {
-            background-color: #ffa500;
+            background-color:  <?php echo $project['action'] ?> !important;
             color: white;
+        }
+        .main-objective {
+            background-color:  <?php echo $project['objetive'] ?> !important;
+            color: white;
+        }
+        .main-result, .result-target-card {
+            background-color:  <?php echo $project['result'] ?> !important;
+            color: white;
+        }
+        .bg-product {
+            background-color:  <?php echo $project['product'] ?> !important;
+            color: white;
+        }
+        .cause-target-card, .main-cause {
+            background-color:  <?php echo $project['cause'] ?> !important;
+            color: white;
+        }
+        .main-effect {
+            background-color:  <?php echo $project['effect'] ?> !important;
+            color: #f3f3f3;
         }
         .tree-container {
             display: flex;
