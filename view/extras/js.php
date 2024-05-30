@@ -61,6 +61,7 @@
     } elseif($pagina == 'Trees') {
         echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
         echo '<script src="assets/js/ajax_request/trees.js"></script>';
+        echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
     } elseif($pagina == 'Matriz') {
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
     } 

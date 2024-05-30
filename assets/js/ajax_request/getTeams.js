@@ -103,7 +103,7 @@ $(document).ready(function () {
         var teamName = $('#teamNameEdit').val();
         var description = $('#descriptionEdit').val();
         var school = $('#schoolEdit').val();
-        var project = $('#projectSelectEdit').val();
+        var project = $('.projectSelectEdit').val();
         var team = $('#editTeam').val();
 
         $.ajax({
@@ -177,7 +177,7 @@ function editTeam(team) {
             $('#teamNameEdit').val(response.teamName);
             $('#descriptionEdit').val(response.teamDescription);
             $('#schoolEdit').val(response.teamSchool);
-            $('#projectSelectEdit').val(response.teams_idProject);
+            $('.projectSelectEdit').val(response.teams_idProject);
         },
         error: function (xhr, status, error) {
             // Manejar errores aquí

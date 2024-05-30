@@ -1,3 +1,7 @@
+<?php 
+	$project = FormsController::ctrGetProject('p.idProject', $_SESSION['idProject']); 
+	// print_r($project);
+?>
 <span class="screen-darken"></span>
 <!-- loader Start -->
 <div id="loading">
@@ -18,9 +22,11 @@
 			<div class="col-lg-2 col-lg-3 navbar-brand">
 				<a href="./" class="navbar-brand">
 					<!--Logo start-->
-					<img style="width: 2rem; height:auto" src="assets/images/logo.png" alt="logo Edradix">
+					<img src="assets/images/projects/<?php echo $project['idProject']. '/' .$project['logoProject'] ?>" class="img-fluid" style="max-height: 50px;" alt="Logo del proyecto">
+                    
+					<!-- <img style="width: 2rem; height:auto" src="assets/images/logo.png" alt="logo Edradix"> -->
 					<!--logo End-->
-					<h4 class="logo-title">Radix</h4>
+					<h4 class="logo-title"><?php echo $project['nameProject'] ?></h4>
 				</a>
 			</div>
 			<!-- Horizontal Menu Start -->

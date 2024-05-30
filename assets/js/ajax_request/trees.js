@@ -46,7 +46,134 @@ var myDropzone = new Dropzone("#addTreeDropzone", {
         
         this.on("sending", function(file, xhr, formData) {
             var team = $('#idTeam').val();
+            var project = $('#project').val();
             formData.append("team", team); // Add team parameter to formData
+            formData.append("project", project); // Add team parameter to formData
+        });
+
+        this.on("success", function( file, xhr, formData) {
+            $('#treeModal').modal('hide');
+            var team = $('#idTeam').val();
+            var project = $('#project').val();
+            loadProblemTreeData(team, project);
         });
     }
+});
+
+$('#sendButton').on('click', function () {        
+    myDropzone.processQueue();
+});
+
+$('#teamSelectEdit').on('change', function() {
+    var team = $('#teamSelectEdit').val();
+    $('#idTeamSelect').val(team);
+    
+    // $('.edit-button').attr('onclick', 'editTeam(' + team + ')');
+    
+    if (team >= 1) {
+        var project = $('#project').val();
+        loadProblemTreeData(team, project);
+    } else {
+        $('.chargerTree_btn').css('display', 'none');
+        $('.chargerTree').css('display', 'none');
+    }
+});
+
+function loadProblemTreeData(idTeam, project) {
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            loadProblemTreeData: idTeam,
+            projectId: project
+        },
+        dataType: 'json',
+        success: function (response) {
+            if (response === false) {
+                $('.chargerTree_btn').css('display', 'flex');
+                $('.chargerTree').css('display', 'none');
+            } else {
+                $('.chargerTree_btn').css('display', 'none');
+
+                $('#idMainProblems').val(response.idMainProblems);
+                $('#idMainGoals').val(response.idMainGoals);
+
+                $('.nameMain01').html(response.nameMain01);
+                $('.nameMain02').html(response.nameMain02);
+                $('.nameMain03').html(response.nameMain03);
+                $('.nameMain04').html(response.nameMain04);
+                $('.nameEffect01').html(response.nameEffect01);
+                $('.nameEffect02').html(response.nameEffect02);
+                $('.nameEffect03').html(response.nameEffect03);
+                $('.nameEffect04').html(response.nameEffect04);
+                $('.centralProblem').html(response.centralProblem);
+                $('.causes01').html(response.causes01);
+                $('.causes02').html(response.causes02);
+                $('.causes03').html(response.causes03);
+                $('.causes04').html(response.causes04);
+                $('.mainCauses01').html(response.mainCauses01);
+                $('.mainCauses02').html(response.mainCauses02);
+                $('.mainCauses03').html(response.mainCauses03);
+                $('.mainCauses04').html(response.mainCauses04);
+
+                $('.mainResult01').html(response.mainResult01);
+                $('.mainResult02').html(response.mainResult02);
+                $('.mainResult03').html(response.mainResult03);
+                $('.mainResult04').html(response.mainResult04);
+                $('.result01').html(response.result01);
+                $('.result02').html(response.result02);
+                $('.result03').html(response.result03);
+                $('.result04').html(response.result04);
+                $('.mainObjetive').html(response.mainObjetive);
+                $('.action01').html(response.action01);
+                $('.action02').html(response.action02);
+                $('.action03').html(response.action03);
+                $('.action04').html(response.action04);
+                $('.mainAction01').html(response.mainAction01);
+                $('.mainAction02').html(response.mainAction02);
+                $('.mainAction03').html(response.mainAction03);
+                $('.mainAction04').html(response.mainAction04);
+
+                $('.chargerTree').css('display', 'flex');
+            }
+        }
+    });
+}
+
+$('.target-card').on('click', function() {
+    $('#editTreeModal').modal('show');
+    $('.editTrees_btn').html($(this).data('name'));
+    var inputEdit = $(this).data('text');
+
+    $('#tree').val($(this).data('tree'));
+    $('#column').val(inputEdit);
+    $('#edit').val($('.'+inputEdit).html());
+    
+});
+
+$('#editButton').on('click', function() {
+    var edit = $('#edit').val();
+    var column = $('#column').val();
+    var tree = $('#tree').val();
+    var idMainProblems = $('#idMainProblems').val();
+    var idMainGoals = $('#idMainGoals').val();
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            edit: edit,
+            column: column,
+            tree: tree,
+            idMainProblems: idMainProblems,
+            idMainGoals: idMainGoals,
+        },
+        success: function (response) {
+            if (response == 'ok') {
+                var idTeam = $('#teamSelectEdit').val();
+                var project = $('#project').val();
+                $('#editTreeModal').modal('hide');
+                loadProblemTreeData(idTeam, project);
+            }
+        }
+    });
 });

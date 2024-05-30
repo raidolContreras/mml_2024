@@ -85,7 +85,7 @@
                 
                 <div class="col-6 form-group mt-3">
                     <label for="projectSelectEdit" class="form-label projects"></label>
-                    <select class="form-select" id="projectSelectEdit">
+                    <select class="form-select projectSelectEdit" id="projectSelectEdit">
                     </select>
                 </div>
                 

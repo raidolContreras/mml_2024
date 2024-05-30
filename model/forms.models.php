@@ -521,4 +521,118 @@ class FormsModel {
         return $result;
     }
 
+    static public function mdlGetProblemTree($idTeam, $idProject) {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT * FROM main_problems p
+                    JOIN main_goals o ON o.idTeam = p.idTeam
+                WHERE p.idTeam = :idTeam AND p.idProject = :idProject";
+        $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+            $stmt->bindParam(':idProject', $idProject, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch();
+
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlAddMainProblem($data, $idTeam, $idProject) {
+        $pdo = Conexion::conectar();
+        $sql = "INSERT INTO main_problems(nameMain01, nameMain02, nameMain03, nameMain04, nameEffect01, nameEffect02, nameEffect03, nameEffect04, centralProblem, causes01, causes02, causes03, causes04, mainCauses01, mainCauses02, mainCauses03, mainCauses04, idTeam, idProject) VALUES (:nameMain01, :nameMain02, :nameMain03, :nameMain04, :nameEffect01, :nameEffect02, :nameEffect03, :nameEffect04, :centralProblem, :causes01, :causes02, :causes03, :causes04, :mainCauses01, :mainCauses02, :mainCauses03, :mainCauses04, :idTeam, :idProject)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':nameMain01', $data['nameMain01'], PDO::PARAM_STR);
+        $stmt->bindParam(':nameMain02', $data['nameMain02'], PDO::PARAM_STR);
+        $stmt->bindParam(':nameMain03', $data['nameMain03'], PDO::PARAM_STR);
+        $stmt->bindParam(':nameMain04', $data['nameMain04'], PDO::PARAM_STR);
+        $stmt->bindParam(':nameEffect01', $data['nameEffect01'], PDO::PARAM_STR);
+        $stmt->bindParam(':nameEffect02', $data['nameEffect02'], PDO::PARAM_STR);
+        $stmt->bindParam(':nameEffect03', $data['nameEffect03'], PDO::PARAM_STR);
+        $stmt->bindParam(':nameEffect04', $data['nameEffect04'], PDO::PARAM_STR);
+        $stmt->bindParam(':centralProblem', $data['centralProblem'], PDO::PARAM_STR);
+        $stmt->bindParam(':causes01', $data['causes01'], PDO::PARAM_STR);
+        $stmt->bindParam(':causes02', $data['causes02'], PDO::PARAM_STR);
+        $stmt->bindParam(':causes03', $data['causes03'], PDO::PARAM_STR);
+        $stmt->bindParam(':causes04', $data['causes04'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainCauses01', $data['mainCauses01'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainCauses02', $data['mainCauses02'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainCauses03', $data['mainCauses03'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainCauses04', $data['mainCauses04'], PDO::PARAM_STR);
+        $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+        $stmt->bindParam(':idProject', $idProject, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlAddMainObjetive($data, $idTeam, $idProject) {
+        $pdo = Conexion::conectar();
+        $sql = "INSERT INTO main_goals(mainResult01, mainResult02, mainResult03, mainResult04, result01, result02, result03, result04, mainObjetive, action01, action02, action03, action04, mainAction01, mainAction02, mainAction03, mainAction04, idTeam, idProject) VALUES (:mainResult01, :mainResult02, :mainResult03, :mainResult04, :result01, :result02, :result03, :result04, :mainObjetive, :action01, :action02, :action03, :action04, :mainAction01, :mainAction02, :mainAction03, :mainAction04, :idTeam, :idProject)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':mainResult01', $data['mainResult01'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainResult02', $data['mainResult02'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainResult03', $data['mainResult03'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainResult04', $data['mainResult04'], PDO::PARAM_STR);
+        $stmt->bindParam(':result01', $data['result01'], PDO::PARAM_STR);
+        $stmt->bindParam(':result02', $data['result02'], PDO::PARAM_STR);
+        $stmt->bindParam(':result03', $data['result03'], PDO::PARAM_STR);
+        $stmt->bindParam(':result04', $data['result04'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainObjetive', $data['mainObjetive'], PDO::PARAM_STR);
+        $stmt->bindParam(':action01', $data['action01'], PDO::PARAM_STR);
+        $stmt->bindParam(':action02', $data['action02'], PDO::PARAM_STR);
+        $stmt->bindParam(':action03', $data['action03'], PDO::PARAM_STR);
+        $stmt->bindParam(':action04', $data['action04'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainAction01', $data['mainAction01'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainAction02', $data['mainAction02'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainAction03', $data['mainAction03'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainAction04', $data['mainAction04'], PDO::PARAM_STR);
+        $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+        $stmt->bindParam(':idProject', $idProject, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlUpdateMainProblems($data) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE main_problems SET ". $data['column'] ." = :column WHERE idMainProblems = :idMainProblems";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':column', $data['edit'], PDO::PARAM_STR);
+        $stmt->bindParam(':idMainProblems', $data['idMainProblems'], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlUpdateMainGoals($data) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE main_goals SET ". $data['column'] ." = :column WHERE idMainGoals = :idMainGoals";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':column', $data['edit'], PDO::PARAM_STR);
+        $stmt->bindParam(':idMainGoals', $data['idMainGoals'], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
 }

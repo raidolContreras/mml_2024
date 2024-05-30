@@ -146,4 +146,31 @@ class FormsController {
         $response = FormsModel::mdlDeleteParticipant($idParticipant);
         return $response;
     }
+
+    static public function ctrGetProblemTree($idTeam, $idProject) {
+        $response = FormsModel::mdlGetProblemTree($idTeam, $idProject);
+        return $response;
+    }
+
+    static public function ctrAddMainProblem($data, $idTeam, $idProject) {
+        $response = FormsModel::mdlAddMainProblem($data, $idTeam, $idProject);
+        return $response;
+    }
+
+    static public function ctrAddMainObjetive($data, $idTeam, $idProject) {
+        $response = FormsModel::mdlAddMainObjetive($data, $idTeam, $idProject);
+        return $response;
+    }
+
+    static public function ctrUpdateMainProblems($data) {
+        $response = FormsModel::mdlUpdateMainProblems($data);
+        return $response;
+    }
+
+    static public function ctrUpdateMainGoals($data) {
+        $response = FormsModel::mdlUpdateMainGoals($data);
+        return $response;
+    }
+
+
 }

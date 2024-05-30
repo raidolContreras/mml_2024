@@ -458,3 +458,119 @@ if (isset($_POST['deleteParticipant'])){
     $result = FormsController::ctrDeleteParticipant($_POST['deleteParticipant']);
     echo $result;
 }
+
+if (isset($_POST['loadProblemTreeData'])){
+    $result = FormsController::ctrGetProblemTree($_POST['loadProblemTreeData'], $_POST['projectId']);
+    echo json_encode($result);
+}
+
+if (isset($_FILES['treeList'])) {
+	if (isset($_FILES['treeList']) && $_FILES['treeList']['error'] === UPLOAD_ERR_OK) {
+
+		$idTeam = $_POST['team'];
+		$idProject = $_POST['project'];
+		
+		// Ruta donde se almacenará el archivo temporalmente
+		$fileTmpPath = $_FILES['treeList']['tmp_name'];
+	
+		// Obtener el contenido del archivo CSV
+		$csvData = file_get_contents($fileTmpPath);
+	
+		// Parsear el contenido del archivo CSV
+		$lines = explode("\n", $csvData);
+		$users = [];
+		$i = 0;
+		$a = 0;
+		foreach ($lines as $line) {
+			// Verificar que la línea no esté vacía
+			if (!empty($line)) {
+				if ($i == 2) {
+					$fields = str_getcsv($line);
+					// Verificar que hay al menos 4 campos en la línea
+					if (count($fields) == 17) {
+						if ($a == 0) {
+							$data = array(
+								"nameMain01" => $fields[0],
+								"nameMain02" => $fields[1],
+								"nameMain03" => $fields[2],
+								"nameMain04" => $fields[3],
+								"nameEffect01" => $fields[4],
+								"nameEffect02" => $fields[5],
+								"nameEffect03" => $fields[6],
+								"nameEffect04" => $fields[7],
+								"centralProblem" => $fields[8],
+								"causes01" => $fields[9],
+								"causes02" => $fields[10],
+								"causes03" => $fields[11],
+								"causes04" => $fields[12],
+								"mainCauses01" => $fields[13],
+								"mainCauses02" => $fields[14],
+								"mainCauses03" => $fields[15],
+								"mainCauses04" => $fields[16]
+							);
+							$result = FormsController::ctrAddMainProblem($data, $idTeam, $idProject);
+						} elseif ($a == 1) {
+							if ($result == 'ok') {
+								$data = array(
+									"mainResult01" => $fields[0],
+									"mainResult02" => $fields[1],
+									"mainResult03" => $fields[2],
+									"mainResult04" => $fields[3],
+									"result01" => $fields[4],
+									"result02" => $fields[5],
+									"result03" => $fields[6],
+									"result04" => $fields[7],
+									"mainObjetive" => $fields[8],
+									"action01" => $fields[9],
+									"action02" => $fields[10],
+									"action03" => $fields[11],
+									"action04" => $fields[12],
+									"mainAction01" => $fields[13],
+									"mainAction02" => $fields[14],
+									"mainAction03" => $fields[15],
+									"mainAction04" => $fields[16]
+								);
+								$result = FormsController::ctrAddMainObjetive($data, $idTeam, $idProject);
+							}
+						}
+					} else {
+						// Manejar la línea con un número insuficiente de campos
+						echo "Error: la línea no tiene suficientes campos. ". count($fields);
+					}
+					$a++;
+					$i = 0;
+				} else {
+					$i++;
+				}
+			}
+		}
+		echo $result;
+	} else {
+		echo "Error al cargar el archivo CSV.";
+	}
+}
+
+if (
+	isset($_POST['edit']) &&
+	isset($_POST['column']) &&
+	isset($_POST['tree']) &&
+	isset($_POST['idMainProblems']) &&
+	isset($_POST['idMainGoals'])
+	) {
+		if ($_POST['tree'] == 'main_problems') {
+			$data = array(
+				'edit' => $_POST['edit'],
+				'column' => $_POST['column'],
+				'idMainProblems' => $_POST['idMainProblems']
+			);
+			$result = FormsController::ctrUpdateMainProblems($data);
+		} else {
+			$data = array(
+                'edit' => $_POST['edit'],
+                'column' => $_POST['column'],
+                'idMainGoals' => $_POST['idMainGoals']
+            );
+            $result = FormsController::ctrUpdateMainGoals($data);
+		}
+        echo $result;
+}
