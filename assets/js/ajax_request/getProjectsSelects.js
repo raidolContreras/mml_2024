@@ -11,6 +11,7 @@ $(document).ready(function () {
                 });
                 $("#projectSelect").html(html);
                 $("#projectSelectEdit").html(html);
+                $(".projectSelectEdit").html(html);
             } catch (error) {
                 console.error("Error al parsear la respuesta del servidor:", error);
             }

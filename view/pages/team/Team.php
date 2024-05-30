@@ -15,15 +15,15 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label class="form-label" for="firstnameParticipant">FirstName</label>
+                    <label class="form-label firstname" for="firstnameParticipant"></label>
                     <input type="text" class="form-control" id="firstnameParticipant">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="lastnameParticipant">LastName</label>
+                    <label class="form-label lastname" for="lastnameParticipant"></label>
                     <input type="text" class="form-control" id="lastnameParticipant">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="emailParticipant">Email</label>
+                    <label class="form-label email" for="emailParticipant"></label>
                     <input type="email" class="form-control" id="emailParticipant">
                     <input type="hidden" class="form-control" id="editParticipant">
                 </div>
@@ -44,7 +44,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete this participant?</p>
+                <p class="message_delete_participants"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>

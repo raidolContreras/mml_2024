@@ -10,6 +10,7 @@ $(document).ready(function () {
                     html += '<option value="' + team.idTeam + '">' + team.teamName + '</option>';
                 });
                 $("#teamSelectEdit").html(html);
+                $(".teamSelectEdit").html(html);
             } catch (error) {
                 console.error("Error al parsear la respuesta del servidor:", error);
             }

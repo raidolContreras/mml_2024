@@ -3,6 +3,7 @@
         <div class="card-header"><div class="header-title d-flex justify-content-between">
             <h4 class="card-title users_list"></h4>
             <div class="dropdown">
+                <button class="btn btn-primary addUsersModal" data-bs-toggle="modal" data-bs-target="#addUsersModal"></button>
                 <button class="btn btn-secondary dropdown-toggle massiveActions" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><button class="dropdown-item addUser_btn" data-bs-toggle="modal" data-bs-target="#usersModal">Agregar Usuario</button></li>
@@ -84,6 +85,66 @@
     </div>
 </div>
 
+<!-- Add users -->
+<div class="modal fade" id="addUsersModal" tabindex="-1" aria-labelledby="addUsersModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title User_btn" id="addUsersModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group mt-3">
+                            <label for="firstname" class="form-label firstname"></label>
+                            <input class="form-control" type="text" id="firstnameAdd">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group mt-3">
+                            <label for="lastname" class="form-label lastname"></label>
+                            <input class="form-control" type="text" id="lastnameAdd">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group mt-3">
+                            <label for="email" class="form-label email"></label>
+                            <input class="form-control" type="text" id="emailAdd">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group mt-3">
+                            <label for="password" class="form-label password"></label>
+                            <input class="form-control" type="password" id="password">
+                        </div>
+                    </div>
+                    <div class="col-6 form-group mt-3">
+                        <label for="projectSelect" class="form-label projects"></label>
+                        <select class="form-select" id="projectSelectEdit">
+                        </select>
+                    </div>
+                    <div class="col-6 form-group mt-3">
+                        <label for="teamSelect" class="form-label teams"></label>
+                        <select class="form-select" id="teamSelectEdit">
+                        </select>
+                    </div>
+                    <div class="col-6 form-group mt-3">
+                        <label for="projectLevel" class="form-label level_user"></label>
+                        <select class="form-select" id="level_user_edit">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success accept"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Edit users -->
 <div class="modal fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -98,34 +159,34 @@
                     <div class="col-6">
                         <div class="form-group mt-3">
                             <label for="firstname" class="form-label firstname"></label>
-                            <input class="form-control" type="text" id="firstname">
+                            <input class="form-control firstnameEdit" type="text" id="firstname">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group mt-3">
                             <label for="lastname" class="form-label lastname"></label>
-                            <input class="form-control" type="text" id="lastname">
+                            <input class="form-control lastnameEdit" type="text" id="lastname">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group mt-3">
                             <label for="email" class="form-label email"></label>
-                            <input class="form-control" type="text" id="email">
+                            <input class="form-control emailEdit" type="text" id="email">
                         </div>
                     </div>
                     <div class="col-6 form-group mt-3">
                         <label for="projectSelectEdit" class="form-label projects"></label>
-                        <select class="form-select" id="projectSelectEdit">
+                        <select class="form-select projectSelectEdit" id="projectSelectEdit">
                         </select>
                     </div>
                     <div class="col-6 form-group mt-3">
                         <label for="teamSelectEdit" class="form-label teams"></label>
-                        <select class="form-select" id="teamSelectEdit">
+                        <select class="form-select teamSelectEdit" id="teamSelectEdit">
                         </select>
                     </div>
                     <div class="col-6 form-group mt-3">
                         <label for="projectLevel" class="form-label level_user"></label>
-                        <select class="form-select" id="level_user_edit">
+                        <select class="form-select level_user_edit" id="level_user_edit">
                         </select>
                     </div>
                 </div>

@@ -93,6 +93,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.users_list').html(translations.users_list);
     $('.name').html(translations.name);
     $('.email').html(translations.email);
+    $('.password').html(translations.password);
     $('.project').html(translations.project);
     $('.user_type').html(translations.user_type);
     $('.actions').html(translations.actions);
@@ -137,6 +138,16 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('#participantsModalLabel').text(translations.participantsModalLabel);
     $('#editParticipantsModalLabel').text(translations.editParticipantsModalLabel);
 
+    $('#addParticipantBtn').html(translations.addParticipantBtn);
+    $('.details_team_text').text(translations.details_team_text);
+    $('.mentor').text(translations.mentor);
+    $('.state').text(translations.state);
+    $('.identifed_problem').text(translations.identifed_problem);
+    $('.main_objetive').text(translations.main_objetive);
+    $('.addUsersModal').text(translations.addUsersModal);
+    $('.message_delete_participants').text(translations.message_delete_participants);
+    $('#deleteParticipantsModalLabel').text(translations.deleteParticipantsModalLabel);
+
     var html = `
         <option value="">${translations.select_one}</option>
         <option value="0">${translations.admin}</option>
@@ -145,6 +156,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
 
     $('#level_user').html(html);
     $('#level_user_edit').html(html);
+    $('.level_user_edit').html(html);
 });
 
 function changeLanguage(language) {

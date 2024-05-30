@@ -309,6 +309,37 @@ if(isset($_POST['EditUser']) &&
         echo $result;
 }
 
+if(isset($_POST['createUser']) &&
+	isset($_POST['firstname']) &&
+	isset($_POST['lastname']) &&
+	isset($_POST['email']) &&
+	isset($_POST['project']) &&
+	isset($_POST['team']) &&
+	isset($_POST['level']) 
+	){
+		
+		$cryptPassword = crypt($_POST['password'], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+		$user = array(
+            'firstname' => $_POST['firstname'],
+            'lastname' => $_POST['lastname'],
+            'email' => $_POST['email'],
+            'cryptPassword' => $cryptPassword,
+            'users_idProjects' => $_POST['project'],
+            'users_idTeam' => $_POST['team'],
+            'level' => $_POST['level']
+        );
+
+		$userCheck = FormsController::ctrGetUsers('email', $user['email']);
+		if (empty($userCheck)) {
+			$result = FormsController::ctrAddUser($user);
+		} else {
+			$result = false;
+			echo 'Correo duplicado: '.$user['email'].'<br>';
+		}
+        echo $result;
+}
+
 if(isset($_POST['DeleteUser'])){
     $result = FormsController::ctrDeleteUser('idUser',$_POST['DeleteUser']);
     echo $result;

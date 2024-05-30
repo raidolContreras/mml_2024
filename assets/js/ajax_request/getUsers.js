@@ -131,12 +131,12 @@ $(document).ready(function () {
     
     $('.acceptEdit').on('click', function () {
         var user = $('#editUser').val();
-        var firstname = $('#firstname').val();
-        var lastname = $('#lastname').val();
-        var email = $('#email').val();
-        var projectSelectEdit = $('#projectSelectEdit').val();
-        var teamSelectEdit = $('#teamSelectEdit').val();
-        var level = $('#level_user_edit').val();
+        var firstname = $('.firstnameEdit').val();
+        var lastname = $('.lastnameEdit').val();
+        var email = $('.emailEdit').val();
+        var projectSelectEdit = $('.projectSelectEdit').val();
+        var teamSelectEdit = $('.teamSelectEdit').val();
+        var level = $('.level_user_edit').val();
         $.ajax({
             type: 'POST',
             url: 'controller/ajax/ajax.form.php',
@@ -158,6 +158,41 @@ $(document).ready(function () {
                 } else {
                     $('#editUsersModal').modal('hide');
                     showAlertBootstrap1(translations.alert, translations.errorUpdateUser, 'editUsersModal');
+                }
+            }
+        });
+    });
+    
+    $('.accept').on('click', function () {
+        var firstname = $('#firstnameAdd').val();
+        var lastname = $('#lastnameAdd').val();
+        var email = $('#emailAdd').val();
+        var password = $('#password').val();
+        var projectSelectEdit = $('#projectSelectEdit').val();
+        var teamSelectEdit = $('#teamSelectEdit').val();
+        var level = $('#level_user_edit').val();
+        $.ajax({
+            type: 'POST',
+            url: 'controller/ajax/ajax.form.php',
+            data: {
+                createUser: 'ok',
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: password,
+                project: projectSelectEdit,
+                team: teamSelectEdit,
+                level: level
+            },
+            dataSrc: '',
+            success: function (response) {
+                if (response == 'ok') {
+                    $('#addUsersModal').modal('hide');
+                    $('#users').DataTable().ajax.reload();
+                    showAlertBootstrap(translations.success, translations.updateUser);
+                } else {
+                    $('#addUsersModal').modal('hide');
+                    showAlertBootstrap1(translations.alert, translations.errorUpdateUser, 'addUsersModal');
                 }
             }
         });
@@ -283,13 +318,12 @@ function editUser(user) {
         success: function (response) {
             if (response) {
                 $('.acceptEdit').html(translations.accept);
-                $('#firstname').val(response.firstname);
-                $('#lastname').val(response.lastname);
-                $('#email').val(response.email);
-                $('#projectSelectEdit').val(response.users_idProjects);
-                $('#teamSelectEdit').val(response.users_idTeam);
-
-                $('#level_user_edit').val(response.level);
+                $('.firstnameEdit').val(response.firstname);
+                $('.lastnameEdit').val(response.lastname);
+                $('.emailEdit').val(response.email);
+                $('.projectSelectEdit').val(response.users_idProjects);
+                $('.teamSelectEdit').val(response.users_idTeam);
+                $('.level_user_edit').val(response.level);
             }
         },
         error: function (xhr, status, error) {
