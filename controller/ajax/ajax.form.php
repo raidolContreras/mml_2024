@@ -274,7 +274,7 @@ if(isset($_POST['SearchUser'])){
 }
 
 if(isset($_POST['SelectProject'])){
-	echo json_encode(FormsController::ctrGetProject('idProject', $_POST['SelectProject']));
+	echo json_encode(FormsController::ctrGetProject('p.idProject', $_POST['SelectProject']));
 }
 
 if(isset($_POST['SearchTeam'])){
