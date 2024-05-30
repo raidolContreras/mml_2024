@@ -87,20 +87,20 @@
         
         <div class="row mb-4">
             <div class="col-md-6 offset-md-3">
-                <label for="teamSelectEdit" class="form-label teams">Select Team</label>
+                <label for="teamSelectEdit" class="form-label teams"></label>
                 <select class="form-select" id="teamSelectEdit">
                 </select>
             </div>
         </div>
         <div class="row chargerTree_btn">
             <div class="float-end mb-3">
-                <button class="btn btn-primary" onclick="chargerTree()">Cargar arból</button>
+                <button class="btn btn-primary addTrees_btn" onclick="chargerTree()"></button>
             </div>
         </div>
         <div class="row chargerTree">
             <div class="col-12 col-md-6">
-                <h2>Árbol de Problemas</h2>
-                <div class="segment-title">Main Effects</div>
+                <h2 class="problem_tree"></h2>
+                <div class="segment-title main_effects"></div>
                 <div class="tree-container">
                     <div class="target-card main-effect" data-text="nameMain01" data-tree="main_problems" data-name="Main Effects">
                         <div class="target-card-body">
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="segment-title">Effects</div>
+                <div class="segment-title effects">Effects</div>
                 <div class="tree-container">
                     <div class="target-card effect-target-card" data-text="nameEffect01" data-tree="main_problems" data-name="Effects">
                         <div class="target-card-body">
@@ -146,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="segment-title">Central Problem</div>
+                <div class="segment-title central_problem"></div>
                 <div class="tree-container">
                     <div class="target-card central" style="width: calc(100% - 20px);" data-text="centralProblem" data-tree="main_problems" data-name="Central Problem">
                         <div class="target-card-body">
@@ -154,7 +154,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="segment-title">Causes</div>
+                <div class="segment-title causes"></div>
                 <div class="tree-container">
                     <div class="target-card cause-target-card" data-text="causes01" data-tree="main_problems" data-name="Causes">
                         <div class="target-card-body">
@@ -177,7 +177,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="segment-title">Main Causes</div>
+                <div class="segment-title main_causes"></div>
                 <div class="tree-container">
                     <div class="target-card main-cause" data-text="mainCauses01" data-tree="main_problems" data-name="Main Causes">
                         <div class="target-card-body">
@@ -203,8 +203,8 @@
             </div>
 
             <div class="col-12 col-md-6">
-                <h2>Árbol de Objetivos</h2>
-                <div class="segment-title">Main Results</div>
+                <h2 class="goal_tree"></h2>
+                <div class="segment-title main_results"></div>
                 <div class="tree-container">
                     <div class="target-card main-result" data-text="mainResult01" data-tree="main_goals" data-name="Main Results">
                         <div class="target-card-body">
@@ -227,7 +227,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="segment-title">Results</div>
+                <div class="segment-title results"></div>
                 <div class="tree-container">
                     <div class="target-card result-target-card" data-text="result01" data-tree="main_goals" data-name="Results">
                         <div class="target-card-body">
@@ -250,7 +250,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="segment-title">Main Objective</div>
+                <div class="segment-title main_objetive"></div>
                 <div class="tree-container">
                     <div class="target-card main-objective" style="width: calc(100% - 20px);" data-text="mainObjetive" data-tree="main_goals" data-name="Main Objective">
                         <div class="target-card-body">
@@ -258,7 +258,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="segment-title">Actions</div>
+                <div class="segment-title actions"></div>
                 <div class="tree-container">
                     <div class="target-card action-target-card" data-text="action01" data-tree="main_goals" data-name="Actions">
                         <div class="target-card-body">
@@ -281,7 +281,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="segment-title">Main Actions</div>
+                <div class="segment-title main_actions"></div>
                 <div class="tree-container">
                     <div class="target-card main-action" data-text="mainAction01" data-tree="main_goals" data-name="Main Actions">
                         <div class="target-card-body">
@@ -313,7 +313,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title addTrees_btn" id="treeModalLabel"></h5>
+                <h5 class="modal-title addTrees" id="treeModalLabel"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

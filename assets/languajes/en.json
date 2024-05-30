@@ -100,5 +100,18 @@
     "details_team_text": "Details about the selected team.",
     "deleteParticipantsModalLabel": "Delete participant",
     "message_delete_participants": "Are you sure you want to delete this participant?",
-    "editParticipantsModalLabel": "Edit participants"
+    "editParticipantsModalLabel": "Edit participants",
+    
+    "addTrees_btn": "Add tree: problems and objectives",
+    "addTrees": "Add tree: problems and objectives",
+    "problem_tree": "Problem tree",
+    "goal_tree": "Goal tree",
+    "main_effects": "Main effects",
+    "effects": "Effects",
+    "central_problem": "Central problem",
+    "causes": "Causes",
+    "main_causes": "Main causes",
+    "main_results": "Main results",
+    "results": "Results",
+    "main_actions": "Main actions"
 }

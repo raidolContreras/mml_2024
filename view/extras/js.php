@@ -65,6 +65,7 @@
     } elseif($pagina == 'Matriz') {
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
     } elseif($pagina == 'Structure') {
+        echo '<script src="assets/js/ajax_request/structure.js"></script>';
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
     } 
     include 'view/extras/language.php';

@@ -64,28 +64,31 @@
         flex-direction: column;
         align-items: center;
     }
+    .Structure {
+        display: none;
+    }
 </style>
 
-<div class="container">
-    <div class="row mb-4">
-        <div class="col-md-6 offset-md-3">
-            <label for="teamSelectEdit" class="form-label teams">Select Team</label>
-            <select class="form-select" id="teamSelectEdit">
-            </select>
-        </div>
+<div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+        <label for="teamSelectEdit" class="form-label teams"></label>
+        <select class="form-select" id="teamSelectEdit">
+        </select>
     </div>
+</div>
+<div class="container Structure">
     <!-- Main Results -->
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card border-result">
                 <div class="card-header bg-result text-white">Main Result</div>
-                <div class="card-body bg-light-green">This balances water access everywhere in our municipality</div>
+                <div class="card-body bg-light-green"></div>
             </div>
         </div>
         <div class="col-md-5">
             <div class="card border-result">
                 <div class="card-header bg-result text-white">Main Result</div>
-                <div class="card-body bg-light-green">The culture of water care will endure for the future generations</div>
+                <div class="card-body bg-light-green"></div>
             </div>
         </div>
     </div>
@@ -102,13 +105,13 @@
         <div class="col-md-5">
             <div class="card border-objetive">
                 <div class="card-header bg-objetive text-white">Main Objective</div>
-                <div class="card-body bg-light-blue">Great water supply in the Municipality Tapalpa, Jal</div>
+                <div class="card-body bg-light-blue"></div>
             </div>
         </div>
         <div class="col-md-5">
             <div class="card border-objetive">
                 <div class="card-header bg-objetive text-white">Main Objective</div>
-                <div class="card-body bg-light-blue">Great water supply in the Municipality Tapalpa, Jal</div>
+                <div class="card-body bg-light-blue"></div>
             </div>
         </div>
     </div>
@@ -125,13 +128,13 @@
         <div class="col-md-5">
             <div class="card border-action">
                 <div class="card-header bg-action text-white">Action</div>
-                <div class="card-body bg-light-red">Moderate use of water in agricultural companies inside our municipality</div>
+                <div class="card-body bg-light-red"></div>
             </div>
         </div>
         <div class="col-md-5">
             <div class="card border-action">
                 <div class="card-header bg-action text-white">Action</div>
-                <div class="card-body bg-light-red">Great usage of water in the houses of the habitants in our municipality</div>
+                <div class="card-body bg-light-red"></div>
             </div>
         </div>
     </div>
@@ -148,13 +151,13 @@
         <div class="col-md-5">
             <div class="card border-danger">
                 <div class="card-header bg-danger text-white">Main Action</div>
-                <div class="card-body bg-light-red">Regulated production of berries crops in agricultural companies of our region</div>
+                <div class="card-body bg-light-red"></div>
             </div>
         </div>
         <div class="col-md-5">
             <div class="card border-danger">
                 <div class="card-header bg-danger text-white">Main Action</div>
-                <div class="card-body bg-light-red">The people understand the importance of care of water use</div>
+                <div class="card-body bg-light-red"></div>
             </div>
         </div>
     </div>
@@ -171,13 +174,13 @@
         <div class="col-md-5">
             <div class="card border-product">
                 <div class="card-header bg-product text-white">Product</div>
-                <div class="card-body bg-light-yellow">Implement rainwater collection systems in our community</div>
+                <div class="card-body bg-light-yellow"></div>
             </div>
         </div>
         <div class="col-md-5">
             <div class="card border-product">
                 <div class="card-header bg-product text-white">Product</div>
-                <div class="card-body bg-light-yellow">Awareness campaign</div>
+                <div class="card-body bg-light-yellow"></div>
             </div>
         </div>
     </div>
@@ -194,25 +197,25 @@
         <div class="col-md-3">
             <div class="card activity-btn">
                 <div class="card-header bg-cause">Activity</div>
-                <div class="card-body">Build healthy gardens with the help of our schools’ students.</div>
+                <div class="card-body"></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card activity-btn">
                 <div class="card-header bg-cause">Activity</div>
-                <div class="card-body">Place rainwater collection in our schools’</div>
+                <div class="card-body"></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card activity-btn">
                 <div class="card-header bg-cause">Activity</div>
-                <div class="card-body">Tutorial of how to do our rainwater collection</div>
+                <div class="card-body"></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card activity-btn">
                 <div class="card-header bg-cause">Activity</div>
-                <div class="card-body">Promote the water collection with the help of our town hall.</div>
+                <div class="card-body"></div>
             </div>
         </div>
     </div>
@@ -220,25 +223,25 @@
         <div class="col-md-3">
             <div class="card activity-btn">
                 <div class="card-header bg-cause">Activity</div>
-                <div class="card-body">Conferences about the good care of the water.</div>
+                <div class="card-body"></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card activity-btn">
                 <div class="card-header bg-cause">Activity</div>
-                <div class="card-body">Teach students about sustainability with a workshop in their schools</div>
+                <div class="card-body"></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card activity-btn">
                 <div class="card-header bg-cause">Activity</div>
-                <div class="card-body">Social media post with responsible tips of how to give a different usage of water.</div>
+                <div class="card-body"></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card activity-btn">
                 <div class="card-header bg-cause">Activity</div>
-                <div class="card-body">Teach students how do they can contribute to our municipality with small actions with some recreational activities.</div>
+                <div class="card-body"></div>
             </div>
         </div>
     </div>
