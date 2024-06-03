@@ -88,11 +88,15 @@ $('.send_Selections_btn').on('click', function() {
         selectedOptions.push($(this).attr('id'));
     });
 
+    
+    var team = $('#teamSelectEdit').val();
+
     $.ajax({
         type: 'POST',
         url: 'controller/ajax/ajax.form.php',
         data: {
-            selectedOptions: selectedOptions
+            selectedOptions: selectedOptions,
+            team: team
         },
         dataType: 'json',
         success: function (data) {
