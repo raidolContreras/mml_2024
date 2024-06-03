@@ -26,6 +26,8 @@
       <link rel="stylesheet" href="assets/css/rtl.min.css"/>
       
       <link rel="stylesheet" href="assets/css/style.css"/>
+      
+      <link href="https://contreras-flota.click/fontawesome/css/all.min.css" rel="stylesheet">
       <?php 
 	    $pagina = $_GET['pagina'] ?? 'Dashboard';
       if($pagina == 'Admin'){

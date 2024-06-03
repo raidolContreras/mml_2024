@@ -32,6 +32,8 @@
 <!-- App Script -->
 <script src="assets/js/hope-ui.js" defer></script>
 
+<script src="https://kit.fontawesome.com/f4781c35cc.js" crossorigin="anonymous"></script>
+
 <?php
     if($pagina == 'Admin'){
         echo '<script src="assets/js/ajax_request/adminSettings.js"></script>';

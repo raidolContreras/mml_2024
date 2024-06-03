@@ -172,5 +172,9 @@ class FormsController {
         return $response;
     }
 
+    static public function ctrGetStructure($idStructure) {
+        $response = FormsModel::mdlGetStructure($idStructure);
+        return $response;
+    }
 
 }

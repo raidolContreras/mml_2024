@@ -574,3 +574,7 @@ if (
 		}
         echo $result;
 }
+
+if (isset($_POST['structureSelect'])) {
+	echo json_encode(FormsController::ctrGetStructure($_POST['structureSelect']));
+}

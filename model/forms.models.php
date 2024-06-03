@@ -635,4 +635,15 @@ class FormsModel {
         return $result;
     }
 
+    static public function mdlGetStructure($idTeam) {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT * FROM structures WHERE $idTeam = :idTeam";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
 }
