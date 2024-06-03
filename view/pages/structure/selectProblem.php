@@ -49,8 +49,8 @@
                 <div class="card border-result">
                     <form>
                         <p class="font-weight-bold">Selecciona 2 problemas a resolver:</p>
-                        <div class="form-check-inline">
-                            <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 form-check-inline">
                                 <div class="form-check">
                                     <input type="checkbox" id="nameMain01" class="form-check-input" onclick="limitCheckboxes()">
                                     <label for="nameMain01" class="form-check-label nameMain01">Option 1</label>
@@ -60,7 +60,7 @@
                                     <label for="nameMain02" class="form-check-label nameMain02">Option 2</label>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 form-check-inline">
                                 <div class="form-check">
                                     <input type="checkbox" id="nameMain03" class="form-check-input" onclick="limitCheckboxes()">
                                     <label for="nameMain03" class="form-check-label nameMain03">Option 3</label>
