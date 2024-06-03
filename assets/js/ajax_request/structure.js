@@ -54,6 +54,7 @@ function LoadTreeData(idTeam, idProject) {
                 $('.nameMain02').html(data.nameMain02);
                 $('.nameMain03').html(data.nameMain03);
                 $('.nameMain04').html(data.nameMain04);
+                $('#projectProblems').val(data.idProject);
             }
         }
     });
@@ -89,13 +90,15 @@ $('.send_Selections_btn').on('click', function() {
     });
 
     var team = $('#teamSelectEdit').val();
+    var project = $('#projectProblems').val();
 
     $.ajax({
         type: 'POST',
         url: 'controller/ajax/ajax.form.php',
         data: {
             selectedOptions: selectedOptions,
-            team: team
+            team: team,
+            project: project
         },
         dataType: 'json',
         success: function (data) {

@@ -580,19 +580,13 @@ if (isset($_POST['structureSelect'])) {
 }
 
 if (isset($_POST['selectedOptions'])) {
-    // Recupera los datos enviados por AJAX
-    $selectedOptions = $_POST['selectedOptions'];
-
-    // Aquí puedes procesar las opciones seleccionadas como necesites
-    // Por ejemplo, podrías guardarlas en una base de datos o realizar alguna lógica adicional
-
-    // Respuesta de ejemplo
-    $response = [
-        'status' => 'success',
-        'message' => 'Las opciones seleccionadas han sido recibidas correctamente.',
-        'data' => $selectedOptions
-    ];
-
-    // Envía la respuesta en formato JSON
-    echo json_encode($response);
+	$problem01 = $_POST['selectedOptions'][0];
+	$problem02 = $_POST['selectedOptions'][1];
+	
+	$data = array(
+        'problem01' => $problem01,
+        'problem02' => $problem02,
+		'idTeam' => $_POST['team'],
+		'idProject' => $_POST['project'],
+    );
 }
