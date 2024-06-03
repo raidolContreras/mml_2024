@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkbox Limit</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         .border-result {
             border: 1px solid #ccc;
             padding: 20px;
             margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .form-check-inline {
             display: flex;
             align-items: center;
-            margin-right: 20px;
         }
         .form-check-label {
             margin-left: 5px;
+            margin-right: 20px;
         }
     </style>
 </head>
@@ -48,10 +52,8 @@
                             </div>
                         </div>
                     </form>
+                    <button class="btn btn-primary"><i class="fa-light fa-paper-plane-top"></i></button>
                 </div>
-            </div>
-            <div class="col-md-1">
-                <button class="btn btn-primary"><i class="fa-light fa-paper-plane-top"></i></button>
             </div>
         </div>
     </div>
