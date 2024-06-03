@@ -7,80 +7,69 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
         .border-result {
             border: 1px solid #ccc;
             padding: 20px;
             margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         .form-check-inline {
             display: flex;
             flex-wrap: wrap;
+            gap: 15px;
         }
         .form-check {
-            margin-right: 15px;
+            margin: 10px 0;
         }
         .form-check-label {
             margin-left: 5px;
         }
-        .button-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        }
-        .btn-custom {
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 0;
+        .btn-primary {
+            margin-top: 20px;
             background-color: #007bff;
-            color: #fff;
-            border: none;
+            border-color: #007bff;
             transition: background-color 0.3s ease;
         }
-        .btn-custom:hover {
+        .btn-primary:hover {
             background-color: #0056b3;
-        }
-        .btn-custom i {
-            font-size: 24px;
+            border-color: #004085;
         }
     </style>
 </head>
 <body>
     <div class="container selectStructure">
         <!-- Main Results -->
-        <div class="row justify-content-center align-items-stretch">
-            <div class="col-md-11">
-                <div class="card border-result h-100">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card border-result">
                     <form>
-                        <p>Selecciona 2 problemas a resolver:</p>
+                        <p class="font-weight-bold">Selecciona 2 problemas a resolver:</p>
                         <div class="form-check-inline">
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain01" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain01" class="form-check-label">Primer efecto del problema</label>
+                                <label for="nameMain01" class="form-check-label nameMain01">Option 1</label>
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain02" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain02" class="form-check-label">Segundo efecto</label>
+                                <label for="nameMain02" class="form-check-label nameMain02">Option 2</label>
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain03" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain03" class="form-check-label">Efecto Principal 3</label>
+                                <label for="nameMain03" class="form-check-label nameMain03">Option 3</label>
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain04" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain04" class="form-check-label">Efecto Principal 4</label>
+                                <label for="nameMain04" class="form-check-label nameMain04">Option 4</label>
                             </div>
                         </div>
                     </form>
+                    <button class="btn btn-primary"><i class="fas fa-paper-plane"></i> Enviar</button>
                 </div>
-            </div>
-            <div class="col-md-1 button-container">
-                <button class="btn btn-primary btn-custom"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
