@@ -580,12 +580,12 @@ if (isset($_POST['structureSelect'])) {
 }
 
 if (isset($_POST['selectedOptions'])) {
-	$problem01 = $_POST['selectedOptions'][0];
-	$problem02 = $_POST['selectedOptions'][1];
+	$problem1 = $_POST['selectedOptions'][0];
+	$problem1 = $_POST['selectedOptions'][1];
 	
 	$data = array(
-        'problem01' => $problem01,
-        'problem02' => $problem02,
+        'problem1' => $problem1,
+        'problem2' => $problem2,
 		'idTeam' => $_POST['team'],
 		'idMainProblems' => $_POST['idMainProblems'],
     );
