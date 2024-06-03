@@ -116,5 +116,6 @@
     "main_actions": "Main actions",
     "activity": "Activity",
 
-    "message_Select_Problems": "Select 2 problems to solve:"
+    "message_Select_Problems": "Select 2 problems to solve:",
+    "send_Selections": "Send selection"
 }

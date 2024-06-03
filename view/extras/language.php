@@ -174,6 +174,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.level_user_edit').html(html);
 
     $('.message_Select_Problems').text(translations.message_Select_Problems);
+    $('.send_Selections').text(translations.send_Selections);
 });
 
 function changeLanguage(language) {

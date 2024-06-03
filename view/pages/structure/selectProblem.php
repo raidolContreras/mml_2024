@@ -48,7 +48,7 @@
             <div class="col-md-8">
                 <div class="card border-result">
                     <form>
-                        <p class="font-weight-bold message_Select_Problems">Selecciona 2 problemas a resolver:</p>
+                        <p class="font-weight-bold message_Select_Problems"></p>
                         <div class="row">
                             <div class="col-12 form-check-inline">
                                 <div class="form-check">
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </form>
-                    <button class="btn btn-primary"><i class="fa-light fa-paper-plane-top"></i> Enviar selección</button>
+                    <button class="btn btn-primary"><i class="fa-light fa-paper-plane-top"></i> <span class="send_Selections"></span></button>
                 </div>
             </div>
         </div>
