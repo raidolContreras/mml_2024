@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </form>
-                    <button class="btn btn-primary"><i class="fas fa-paper-plane"></i> Enviar</button>
+                    <button class="btn btn-primary"><i class="fa-light fa-paper-plane-top"></i> Enviar</button>
                 </div>
             </div>
         </div>
