@@ -114,5 +114,7 @@
     "main_results": "Main results",
     "results": "Results",
     "main_actions": "Main actions",
-    "activity": "Activity"
+    "activity": "Activity",
+
+    "messageSelectProblems": "Select 2 problems to solve:"
 }
