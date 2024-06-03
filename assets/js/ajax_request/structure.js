@@ -104,9 +104,11 @@ $('.send_Selections_btn').on('click', function() {
             team: team,
             idMainProblems: idMainProblems
         },
-        dataType: 'json',
         success: function (data) {
-            structureSelect(team);
+            if (data === 'ok') {
+                showAlertBootstrap(translations.success, translations.select_Problems_Alert);
+                structureSelect(team);
+            }
         }
     });
 });
