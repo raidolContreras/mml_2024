@@ -11,9 +11,6 @@
             border: 1px solid #ccc;
             padding: 20px;
             margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
         .form-check-inline {
             display: flex;
@@ -22,6 +19,18 @@
         .form-check-label {
             margin-left: 5px;
             margin-right: 20px;
+        }
+        .button-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .btn-custom {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -52,8 +61,10 @@
                             </div>
                         </div>
                     </form>
-                    <button class="btn btn-primary"><i class="fa-light fa-paper-plane-top"></i></button>
                 </div>
+            </div>
+            <div class="col-md-1 button-container">
+                <button class="btn btn-primary btn-custom"><i class="fa-light fa-paper-plane-top"></i></button>
             </div>
         </div>
     </div>
