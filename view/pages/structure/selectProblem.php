@@ -56,7 +56,7 @@
                                     <label for="nameMain04" class="form-check-label nameMain04"></label>
                                 </div>
                             </div>
-                            <input type="hidden" id="projectProblems">
+                            <input type="hidden" id="mainProblems">
                         </div>
                     </form>
                     <button class="btn btn-primary send_Selections_btn" disabled><i class="fa-light fa-paper-plane-top"></i> <span class="send_Selections"></span></button>

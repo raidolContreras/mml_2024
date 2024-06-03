@@ -177,4 +177,9 @@ class FormsController {
         return $response;
     }
 
+    static public function ctrSelectProblems($data) {
+        $response = FormsModel::mdlSelectProblems($data);
+        return $response;
+    }
+
 }

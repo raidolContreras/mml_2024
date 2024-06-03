@@ -646,4 +646,22 @@ class FormsModel {
         $stmt = null;
         return $result;
     }
+
+    static public function mdlSelectProblems($data) {
+        $pdo = Conexion::conectar();
+        $sql = "INSERT INTO structures(problem1, problem2, idMainProblems, idTeam) VALUES (:problem1, :problem2, :idMainProblems, :idTeam)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':problem1', $data['problem1'], PDO::PARAM_STR);
+        $stmt->bindParam(':problem2', $data['problem2'], PDO::PARAM_STR);
+        $stmt->bindParam(':idMainProblems', $data['idMainProblems'], PDO::PARAM_INT);
+        $stmt->bindParam(':idTeam', $data['idTeam'], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
 }

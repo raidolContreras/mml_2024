@@ -54,7 +54,7 @@ function LoadTreeData(idTeam, idProject) {
                 $('.nameMain02').html(data.nameMain02);
                 $('.nameMain03').html(data.nameMain03);
                 $('.nameMain04').html(data.nameMain04);
-                $('#projectProblems').val(data.idProject);
+                $('#mainProblems').val(data.idMainProblems);
             }
         }
     });
@@ -94,7 +94,7 @@ $('.send_Selections_btn').on('click', function() {
     });
 
     var team = $('#teamSelectEdit').val();
-    var project = $('#projectProblems').val();
+    var idMainProblems = $('#mainProblems').val();
 
     $.ajax({
         type: 'POST',
@@ -102,12 +102,13 @@ $('.send_Selections_btn').on('click', function() {
         data: {
             selectedOptions: selectedOptions,
             team: team,
-            project: project
+            idMainProblems: idMainProblems
         },
         dataType: 'json',
         success: function (data) {
-            if (data && Object.keys(data).length !== 0) {
-                alert(data.message);
+            if (data == 'ok') {
+                showAlertBootstrap(translations.success, translations.select_Problems_Alert);
+                structureSelect(team);
             }
         }
     });

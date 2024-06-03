@@ -587,6 +587,8 @@ if (isset($_POST['selectedOptions'])) {
         'problem01' => $problem01,
         'problem02' => $problem02,
 		'idTeam' => $_POST['team'],
-		'idProject' => $_POST['project'],
+		'idMainProblems' => $_POST['idMainProblems'],
     );
+
+	echo FormsController::ctrSelectProblems($data);
 }

@@ -84,6 +84,7 @@
     "deleteUser": "Usuario eliminado exitosamente.",
     "errorDeleteUser": "Usuario no eliminado, intentalo de nuevo.",
     "updateUser": "Usuario actualizado exitosamente.",
+    "select_Problems_Alert": "Problemas seleccionados exitosamente.",
     "errorUpdateUser": "Usuario no actualizado, intentalo de nuevo.",
     "updateProject": "Proyecto actualizado exitosamente.",
     "errorUpdateProject": "Proyecto no actualizado, intentalo de nuevo.",
