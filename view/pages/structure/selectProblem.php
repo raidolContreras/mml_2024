@@ -48,7 +48,7 @@
             <div class="col-md-8">
                 <div class="card border-result">
                     <form>
-                        <p class="font-weight-bold messageSelectProblems">Selecciona 2 problemas a resolver:</p>
+                        <p class="font-weight-bold message_Select_Problems">Selecciona 2 problemas a resolver:</p>
                         <div class="row">
                             <div class="col-12 form-check-inline">
                                 <div class="form-check">
