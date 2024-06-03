@@ -50,21 +50,25 @@
                     <form>
                         <p class="font-weight-bold">Selecciona 2 problemas a resolver:</p>
                         <div class="form-check-inline">
-                            <div class="form-check">
-                                <input type="checkbox" id="nameMain01" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain01" class="form-check-label nameMain01">Option 1</label>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input type="checkbox" id="nameMain01" class="form-check-input" onclick="limitCheckboxes()">
+                                    <label for="nameMain01" class="form-check-label nameMain01">Option 1</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="nameMain02" class="form-check-input" onclick="limitCheckboxes()">
+                                    <label for="nameMain02" class="form-check-label nameMain02">Option 2</label>
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input type="checkbox" id="nameMain02" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain02" class="form-check-label nameMain02">Option 2</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" id="nameMain03" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain03" class="form-check-label nameMain03">Option 3</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" id="nameMain04" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain04" class="form-check-label nameMain04">Option 4</label>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input type="checkbox" id="nameMain03" class="form-check-input" onclick="limitCheckboxes()">
+                                    <label for="nameMain03" class="form-check-label nameMain03">Option 3</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="nameMain04" class="form-check-input" onclick="limitCheckboxes()">
+                                    <label for="nameMain04" class="form-check-label nameMain04">Option 4</label>
+                                </div>
                             </div>
                         </div>
                     </form>
