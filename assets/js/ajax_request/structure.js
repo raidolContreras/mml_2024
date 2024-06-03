@@ -35,7 +35,8 @@ function structureSelect(idTeam) {
                     if (structure.idProject == project) {
                         problem1 = structure.problem1.substr(-2);
                         problem2 = structure.problem2.substr(-2);
-                        
+
+                        $('#idStructure').val(structure.idStructure);
                         $('.main_results01').html(structure['mainResult'+problem1]);
                         $('.main_results02').html(structure['mainResult'+problem2]);
                         $('.main_objetive01').html(structure.mainObjetive);
@@ -44,23 +45,23 @@ function structureSelect(idTeam) {
                         $('.action02').html(structure['action'+problem2]);
                         $('.main_actions01').html(structure['mainAction'+problem1]);
                         $('.main_actions02').html(structure['mainAction'+problem2]);
-                        // Verifica si structure.product1 y structure.product2 son números válidos
-                        var product1 = (typeof structure.product1 === 'number' && !isNaN(structure.product1)) ? structure.product1 : translations.generate_product_message;
-                        var product2 = (typeof structure.product2 === 'number' && !isNaN(structure.product2)) ? structure.product2 : translations.generate_product_message;
+                        // Verifica si los campos de structure son nulos o indefinidos y asigna mensajes predeterminados si es necesario
+                        var product1 = (structure.product1 != null) ? structure.product1 : translations.generate_product_message;
+                        var product2 = (structure.product2 != null) ? structure.product2 : translations.generate_product_message;
                         
-                        var activity1 = (typeof structure.activity01 === 'number' && !isNaN(structure.activity01)) ? structure.activity01 : translations.generate_activity_message;
-                        var activity2 = (typeof structure.activity02 === 'number' && !isNaN(structure.activity02)) ? structure.activity02 : translations.generate_activity_message;
-                        var activity3 = (typeof structure.activity03 === 'number' && !isNaN(structure.activity03)) ? structure.activity03 : translations.generate_activity_message;
-                        var activity4 = (typeof structure.activity04 === 'number' && !isNaN(structure.activity04)) ? structure.activity04 : translations.generate_activity_message;
-                        var activity5 = (typeof structure.activity05 === 'number' && !isNaN(structure.activity05)) ? structure.activity05 : translations.generate_activity_message;
-                        var activity6 = (typeof structure.activity06 === 'number' && !isNaN(structure.activity06)) ? structure.activity06 : translations.generate_activity_message;
-                        var activity7 = (typeof structure.activity07 === 'number' && !isNaN(structure.activity07)) ? structure.activity07 : translations.generate_activity_message;
-                        var activity8 = (typeof structure.activity09 === 'number' && !isNaN(structure.activity09)) ? structure.activity09 : translations.generate_activity_message;
-
+                        var activity1 = (structure.activity1 != null) ? structure.activity1 : translations.generate_activity_message;
+                        var activity2 = (structure.activity2 != null) ? structure.activity2 : translations.generate_activity_message;
+                        var activity3 = (structure.activity3 != null) ? structure.activity3 : translations.generate_activity_message;
+                        var activity4 = (structure.activity4 != null) ? structure.activity4 : translations.generate_activity_message;
+                        var activity5 = (structure.activity5 != null) ? structure.activity5 : translations.generate_activity_message;
+                        var activity6 = (structure.activity6 != null) ? structure.activity6 : translations.generate_activity_message;
+                        var activity7 = (structure.activity7 != null) ? structure.activity7 : translations.generate_activity_message;
+                        var activity8 = (structure.activity8 != null) ? structure.activity8 : translations.generate_activity_message;
+                        
                         // Asigna los valores a los elementos HTML correspondientes
                         $('.product01').html(product1);
                         $('.product02').html(product2);
-
+                        
                         $('.activity01').html(activity1);
                         $('.activity02').html(activity2);
                         $('.activity03').html(activity3);
@@ -69,6 +70,7 @@ function structureSelect(idTeam) {
                         $('.activity06').html(activity6);
                         $('.activity07').html(activity7);
                         $('.activity08').html(activity8);
+                        
                     }
                 });
             }
@@ -152,4 +154,49 @@ $('.send_Selections_btn').on('click', function() {
             }
         }
     });
+});
+
+function updateData(columName) {
+    
+    var idStructure = $('#idStructure').val();
+    $('#editModal').modal('show');
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            searchStructure: idStructure,
+        },
+        dataType: 'json',
+        success: function (data) {
+            $('#value').val(data[columName]);
+            $('#columnName').val(columName);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Error en la solicitud AJAX:", textStatus, errorThrown);
+        }
+    });
+}
+
+$('#editButton').on('click', function() {
+    
+    var idStructure = $('#idStructure').val();
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            updateStructure: idStructure,
+            columName: $('#columnName').val(),
+            value: $('#value').val()
+        },
+        success: function (data) {
+            if (data === 'ok') {
+                $('#editModal').modal('hide');
+                $('#value').val('');
+                showAlertBootstrap(translations.success, translations.update_Structure_Alert);
+                var idTeam = $('#teamSelectEdit').val();
+                structureSelect(idTeam)
+            }
+        }
+    });
+
 });

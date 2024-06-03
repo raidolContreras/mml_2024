@@ -182,4 +182,14 @@ class FormsController {
         return $response;
     }
 
+    static public function ctrGetOnlyStructure($idStructure) {
+        $response = FormsModel::mdlGetOnlyStructure($idStructure);
+        return $response;
+    }
+
+    static public function ctrUpdateStructure($data) {
+        $response = FormsModel::mdlUpdateStructure($data);
+        return $response;
+    }
+
 }

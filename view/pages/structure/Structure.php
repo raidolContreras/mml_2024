@@ -82,3 +82,24 @@
     include 'structureTable.php';
     include 'selectProblem.php';
 ?>
+
+<div class="modal fade modal2" id="editModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabelEdit"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal-body-edit">
+                <label for="columnName">Edita el campo</label>
+                <input type="text" class="form-control" id="value">
+                <input type="hidden" id="columnName">
+                <input type="hidden" id="idStructure">
+            </div>
+            <div class="modal-footer modal-footer-edit">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success accept" id="editButton"></button>
+            </div>
+        </div>
+    </div>
+</div>

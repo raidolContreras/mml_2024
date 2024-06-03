@@ -656,6 +656,18 @@ class FormsModel {
         return $result;
     }
 
+    static public function mdlGetOnlyStructure($idStructure) {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT * FROM structures WHERE idStructure = :idStructure";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idStructure', $idStructure, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
     static public function mdlSelectProblems($data) {
         $pdo = Conexion::conectar();
         $sql = "INSERT INTO structures(problem1, problem2, idMainProblems, idTeam) VALUES (:problem1, :problem2, :idMainProblems, :idTeam)";
@@ -664,6 +676,22 @@ class FormsModel {
         $stmt->bindParam(':problem2', $data['problem2'], PDO::PARAM_STR);
         $stmt->bindParam(':idMainProblems', $data['idMainProblems'], PDO::PARAM_INT);
         $stmt->bindParam(':idTeam', $data['idTeam'], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlUpdateStructure($data) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE structures SET ". $data['column'] ." = :column WHERE idStructure = :idStructure";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':column', $data['value'], PDO::PARAM_STR);
+        $stmt->bindParam(':idStructure', $data['idStructure'], PDO::PARAM_INT);
         if ($stmt->execute()) {
             $result = 'ok';
         } else {

@@ -122,5 +122,6 @@
     "send_Selections": "Enviar selección",
 
     "generate_product_message": "Da click para generar un producto",
-    "generate_activity_message": "Da click para generar una actividad"
+    "generate_activity_message": "Da click para generar una actividad",
+    "update_Structure_Alert": "Estructura actualizada"
 }

@@ -597,3 +597,17 @@ if (isset($_POST['selectedOptions'])) {
 		echo FormsController::ctrSelectProblems($data);
     }
 }
+
+if (isset($_POST['searchStructure'])) {
+	echo json_encode(FormsController::ctrGetOnlyStructure($_POST['searchStructure']));
+}
+
+if (isset($_POST['updateStructure'])) {
+	$data = array(
+        'idStructure' => $_POST['updateStructure'],
+        'column' => $_POST['columName'],
+		'value' => $_POST['value']
+    );
+    $result = FormsController::ctrUpdateStructure($data);
+    echo $result;
+}
