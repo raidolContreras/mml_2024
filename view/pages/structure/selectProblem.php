@@ -59,7 +59,7 @@
                             <input type="hidden" id="projectProblems">
                         </div>
                     </form>
-                    <button class="btn btn-primary send_Selections_btn"><i class="fa-light fa-paper-plane-top"></i> <span class="send_Selections"></span></button>
+                    <button class="btn btn-primary send_Selections_btn" disabled><i class="fa-light fa-paper-plane-top"></i> <span class="send_Selections"></span></button>
                 </div>
             </div>
         </div>
