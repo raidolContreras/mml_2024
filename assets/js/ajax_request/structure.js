@@ -106,10 +106,8 @@ $('.send_Selections_btn').on('click', function() {
         },
         dataType: 'json',
         success: function (data) {
-            if (data === 'ok') {
-                showAlertBootstrap(translations.success, translations.select_Problems_Alert);
-                structureSelect(team);
-            }
+            showAlertBootstrap(translations.success, translations.select_Problems_Alert);
+            structureSelect(team);
         }
     });
 });
