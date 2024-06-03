@@ -45,8 +45,6 @@
                                     <input type="checkbox" id="nameMain02" class="form-check-input" onclick="limitCheckboxes()">
                                     <label for="nameMain02" class="form-check-label nameMain02"></label>
                                 </div>
-                            </div>
-                            <div class="col-12 form-check-inline">
                                 <div class="form-check">
                                     <input type="checkbox" id="nameMain03" class="form-check-input" onclick="limitCheckboxes()">
                                     <label for="nameMain03" class="form-check-label nameMain03"></label>

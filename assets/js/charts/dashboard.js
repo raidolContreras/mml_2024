@@ -1,3 +1,4 @@
+
 (function (jQuery) {
     "use strict";
     if (document.querySelectorAll('#d-activity').length) {
