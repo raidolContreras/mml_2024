@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="col-md-1">
-                <button class="btn btn-primary"><i class="fa-duotone fa-paper-plane-top"></i></button>
+                <button class="btn btn-primary"><i class="fa-regular fa-paper-plane-top"></i></button>
             </div>
         </div>
     </div>
