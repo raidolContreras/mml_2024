@@ -118,5 +118,8 @@
     "activity": "Activity",
 
     "message_Select_Problems": "Select 2 problems to solve:",
-    "send_Selections": "Send selection"
+    "send_Selections": "Send selection",
+
+    "generate_product_message": "Click to generate a product",
+    "generate_activity_message": "Click to generate an activity"
 }

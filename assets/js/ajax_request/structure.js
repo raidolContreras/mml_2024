@@ -45,17 +45,17 @@ function structureSelect(idTeam) {
                         $('.main_actions01').html(structure['mainAction'+problem1]);
                         $('.main_actions02').html(structure['mainAction'+problem2]);
                         // Verifica si structure.product1 y structure.product2 son números válidos
-                        var product1 = (typeof structure.product1 === 'number' && !isNaN(structure.product1)) ? structure.product1 : 'Da click para generar un producto';
-                        var product2 = (typeof structure.product2 === 'number' && !isNaN(structure.product2)) ? structure.product2 : 'Da click para generar un producto';
+                        var product1 = (typeof structure.product1 === 'number' && !isNaN(structure.product1)) ? structure.product1 : translations.generate_product_message;
+                        var product2 = (typeof structure.product2 === 'number' && !isNaN(structure.product2)) ? structure.product2 : translations.generate_product_message;
                         
-                        var activity1 = (typeof structure.activity01 === 'number' && !isNaN(structure.activity01)) ? structure.activity01 : 'Da click para generara actividad';
-                        var activity2 = (typeof structure.activity02 === 'number' && !isNaN(structure.activity02)) ? structure.activity02 : 'Da click para generara actividad';
-                        var activity3 = (typeof structure.activity03 === 'number' && !isNaN(structure.activity03)) ? structure.activity03 : 'Da click para generara actividad';
-                        var activity4 = (typeof structure.activity04 === 'number' && !isNaN(structure.activity04)) ? structure.activity04 : 'Da click para generara actividad';
-                        var activity5 = (typeof structure.activity05 === 'number' && !isNaN(structure.activity05)) ? structure.activity05 : 'Da click para generara actividad';
-                        var activity6 = (typeof structure.activity06 === 'number' && !isNaN(structure.activity06)) ? structure.activity06 : 'Da click para generara actividad';
-                        var activity7 = (typeof structure.activity07 === 'number' && !isNaN(structure.activity07)) ? structure.activity07 : 'Da click para generara actividad';
-                        var activity8 = (typeof structure.activity09 === 'number' && !isNaN(structure.activity09)) ? structure.activity09 : 'Da click para generara actividad';
+                        var activity1 = (typeof structure.activity01 === 'number' && !isNaN(structure.activity01)) ? structure.activity01 : translations.generate_activity_message;
+                        var activity2 = (typeof structure.activity02 === 'number' && !isNaN(structure.activity02)) ? structure.activity02 : translations.generate_activity_message;
+                        var activity3 = (typeof structure.activity03 === 'number' && !isNaN(structure.activity03)) ? structure.activity03 : translations.generate_activity_message;
+                        var activity4 = (typeof structure.activity04 === 'number' && !isNaN(structure.activity04)) ? structure.activity04 : translations.generate_activity_message;
+                        var activity5 = (typeof structure.activity05 === 'number' && !isNaN(structure.activity05)) ? structure.activity05 : translations.generate_activity_message;
+                        var activity6 = (typeof structure.activity06 === 'number' && !isNaN(structure.activity06)) ? structure.activity06 : translations.generate_activity_message;
+                        var activity7 = (typeof structure.activity07 === 'number' && !isNaN(structure.activity07)) ? structure.activity07 : translations.generate_activity_message;
+                        var activity8 = (typeof structure.activity09 === 'number' && !isNaN(structure.activity09)) ? structure.activity09 : translations.generate_activity_message;
 
                         // Asigna los valores a los elementos HTML correspondientes
                         $('.product01').html(product1);

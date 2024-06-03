@@ -1,6 +1,7 @@
 <style>
     .card.border-warning,
-    .activity-btn {
+    .activity-btn,
+    .product_btn {
         cursor: pointer;
     }
 

@@ -94,13 +94,13 @@
     <!-- Products -->
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <div class="card border-product">
+            <div class="card border-product product_btn">
                 <div class="card-header bg-product text-white product"></div>
                 <div class="card-body bg-light-yellow product01"></div>
             </div>
         </div>
         <div class="col-md-5">
-            <div class="card border-product">
+            <div class="card border-product product_btn">
                 <div class="card-header bg-product text-white product"></div>
                 <div class="card-body bg-light-yellow product02"></div>
             </div>
