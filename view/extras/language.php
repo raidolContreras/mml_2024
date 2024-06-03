@@ -173,7 +173,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('#level_user_edit').html(html);
     $('.level_user_edit').html(html);
 
-    $('.message_Select_Problems').html(html);
+    $('.message_Select_Problems').text(translations.message_Select_Problems);
 });
 
 function changeLanguage(language) {
