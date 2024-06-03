@@ -11,14 +11,18 @@
             border: 1px solid #ccc;
             padding: 20px;
             margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .form-check-inline {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+        }
+        .form-check {
+            margin-right: 15px;
         }
         .form-check-label {
             margin-left: 5px;
-            margin-right: 20px;
         }
         .button-container {
             display: flex;
@@ -33,6 +37,16 @@
             justify-content: center;
             align-items: center;
             border-radius: 0;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .btn-custom i {
+            font-size: 24px;
         }
     </style>
 </head>
@@ -47,26 +61,26 @@
                         <div class="form-check-inline">
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain01" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain01" class="form-check-label nameMain01">Primer efecto del problema</label>
+                                <label for="nameMain01" class="form-check-label">Primer efecto del problema</label>
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain02" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain02" class="form-check-label nameMain02">Segundo efecto</label>
+                                <label for="nameMain02" class="form-check-label">Segundo efecto</label>
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain03" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain03" class="form-check-label nameMain03">Efecto Principal 3</label>
+                                <label for="nameMain03" class="form-check-label">Efecto Principal 3</label>
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain04" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain04" class="form-check-label nameMain04">Efecto Principal 4</label>
+                                <label for="nameMain04" class="form-check-label">Efecto Principal 4</label>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-md-1 button-container">
-                <button class="btn btn-primary btn-custom"><i class="fa-light fa-paper-plane-top"></i></button>
+                <button class="btn btn-primary btn-custom"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
