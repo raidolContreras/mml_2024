@@ -88,7 +88,6 @@ $('.send_Selections_btn').on('click', function() {
         selectedOptions.push($(this).attr('id'));
     });
 
-    
     var team = $('#teamSelectEdit').val();
 
     $.ajax({
