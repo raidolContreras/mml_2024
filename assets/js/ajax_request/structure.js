@@ -74,13 +74,13 @@ function limitCheckboxes() {
         checkboxes.forEach(checkbox => {
             if (!checkbox.checked) {
                 checkbox.disabled = true;
-                $('.send_Selections_btn').disabled = false;
+                $('.send_Selections_btn').disabled = true;
             }
         });
     } else {
         checkboxes.forEach(checkbox => {
             checkbox.disabled = false;
-            $('.send_Selections_btn').disabled = true;
+            $('.send_Selections_btn').disabled = false;
         });
     }
 }
