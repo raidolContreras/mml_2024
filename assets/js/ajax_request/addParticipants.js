@@ -203,6 +203,9 @@ function editTeam(team) {
 }
 
 $('#updateTeam').on('click', function() {
+    
+    var idteam = $('#teamSelectEdit').val();
+    
     $.ajax({
         type: 'POST',
         url: 'controller/ajax/ajax.form.php',

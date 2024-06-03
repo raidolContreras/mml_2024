@@ -637,7 +637,16 @@ class FormsModel {
 
     static public function mdlGetStructure($idTeam) {
         $pdo = Conexion::conectar();
-        $sql = "SELECT * FROM structures WHERE $idTeam = :idTeam";
+        $sql = "SELECT s.*, 
+                mp.nameMain01, mp.nameMain02, mp.nameMain03, mp.nameMain04,
+                mg.mainResult01, mg.mainResult02, mg.mainResult03, mg.mainResult04,
+                mg.mainObjetive,
+                mg.action01, mg.action02, mg.action03, mg.action04,
+                mg.mainAction01, mg.mainAction02, mg.mainAction03, mg.mainAction04, mg.idProject
+                FROM structures s
+                    LEFT JOIN main_problems mp ON mp.idMainProblems = s.idMainProblems
+                    LEFT JOIN main_goals mg ON mg.idTeam = mp.idTeam AND mg.idProject = mp.idProject
+                WHERE s.idTeam = :idTeam";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
         $stmt->execute();
