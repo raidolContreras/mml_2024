@@ -58,3 +58,47 @@ function LoadTreeData(idTeam, idProject) {
         }
     });
 }
+
+function limitCheckboxes() {
+    const checkboxes = document.querySelectorAll('.form-check-input');
+    let checkedCount = 0;
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            checkedCount++;
+        }
+    });
+
+    if (checkedCount >= 2) {
+        checkboxes.forEach(checkbox => {
+            if (!checkbox.checked) {
+                checkbox.disabled = true;
+            }
+        });
+    } else {
+        checkboxes.forEach(checkbox => {
+            checkbox.disabled = false;
+        });
+    }
+}
+
+$('.send_Selections_btn').on('click', function() {
+    const selectedOptions = [];
+    $('.form-check-input:checked').each(function() {
+        selectedOptions.push($(this).attr('id'));
+    });
+
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            selectedOptions: selectedOptions
+        },
+        dataType: 'json',
+        success: function (data) {
+            if (data && Object.keys(data).length !== 0) {
+                alert(data.message);
+            }
+        }
+    });
+});

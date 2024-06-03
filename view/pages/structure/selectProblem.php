@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkbox Limit</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Arial', sans-serif;
-        }
         .border-result {
             border: 1px solid #ccc;
             padding: 20px;
@@ -40,8 +28,6 @@
             border-color: #004085;
         }
     </style>
-</head>
-<body>
     <div class="container selectStructure">
         <!-- Main Results -->
         <div class="row justify-content-center">
@@ -72,35 +58,8 @@
                             </div>
                         </div>
                     </form>
-                    <button class="btn btn-primary"><i class="fa-light fa-paper-plane-top"></i> <span class="send_Selections"></span></button>
+                    <button class="btn btn-primary send_Selections_btn"><i class="fa-light fa-paper-plane-top"></i> <span class="send_Selections"></span></button>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        function limitCheckboxes() {
-            const checkboxes = document.querySelectorAll('.form-check-input');
-            let checkedCount = 0;
-
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    checkedCount++;
-                }
-            });
-
-            if (checkedCount >= 2) {
-                checkboxes.forEach(checkbox => {
-                    if (!checkbox.checked) {
-                        checkbox.disabled = true;
-                    }
-                });
-            } else {
-                checkboxes.forEach(checkbox => {
-                    checkbox.disabled = false;
-                });
-            }
-        }
-    </script>
-</body>
-</html>
