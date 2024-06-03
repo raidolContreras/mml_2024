@@ -23,7 +23,8 @@
         .button-container {
             display: flex;
             align-items: center;
-            margin-top: 20px;
+            justify-content: center;
+            padding: 0;
         }
         .btn-custom {
             height: 100%;
@@ -31,33 +32,34 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            border-radius: 0;
         }
     </style>
 </head>
 <body>
     <div class="container selectStructure">
         <!-- Main Results -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center align-items-stretch">
             <div class="col-md-11">
-                <div class="card border-result">
+                <div class="card border-result h-100">
                     <form>
                         <p>Selecciona 2 problemas a resolver:</p>
                         <div class="form-check-inline">
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain01" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain01" class="form-check-label nameMain01">Option 1</label>
+                                <label for="nameMain01" class="form-check-label nameMain01">Primer efecto del problema</label>
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain02" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain02" class="form-check-label nameMain02">Option 2</label>
+                                <label for="nameMain02" class="form-check-label nameMain02">Segundo efecto</label>
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain03" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain03" class="form-check-label nameMain03">Option 3</label>
+                                <label for="nameMain03" class="form-check-label nameMain03">Efecto Principal 3</label>
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" id="nameMain04" class="form-check-input" onclick="limitCheckboxes()">
-                                <label for="nameMain04" class="form-check-label nameMain04">Option 4</label>
+                                <label for="nameMain04" class="form-check-label nameMain04">Efecto Principal 4</label>
                             </div>
                         </div>
                     </form>
