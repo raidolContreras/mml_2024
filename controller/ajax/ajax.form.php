@@ -580,15 +580,20 @@ if (isset($_POST['structureSelect'])) {
 }
 
 if (isset($_POST['selectedOptions'])) {
-	$problem1 = $_POST['selectedOptions'][0];
-	$problem1 = $_POST['selectedOptions'][1];
-	
-	$data = array(
-        'problem1' => $problem1,
-        'problem2' => $problem2,
-		'idTeam' => $_POST['team'],
-		'idMainProblems' => $_POST['idMainProblems'],
-    );
+	$selectedOptions = $_POST['selectedOptions'];
 
-	echo FormsController::ctrSelectProblems($data);
+    // Asegúrate de que hay al menos dos opciones seleccionadas
+    if (count($selectedOptions) >= 2) {
+        $problem1 = $selectedOptions[0];
+        $problem2 = $selectedOptions[1];
+
+        $data = array(
+            'problem1' => $problem1,
+            'problem2' => $problem2,
+			'idTeam' => $_POST['team'],
+			'idMainProblems' => $_POST['idMainProblems'],
+        );
+
+		echo FormsController::ctrSelectProblems($data);
+    }
 }
