@@ -70,18 +70,20 @@ function limitCheckboxes() {
         }
     });
 
+    const sendButton = document.querySelector('.send_Selections_btn');
+
     if (checkedCount >= 2) {
         checkboxes.forEach(checkbox => {
             if (!checkbox.checked) {
                 checkbox.disabled = true;
-                $('.send_Selections_btn').disabled = true;
             }
         });
+        sendButton.disabled = false;
     } else {
         checkboxes.forEach(checkbox => {
             checkbox.disabled = false;
-            $('.send_Selections_btn').disabled = false;
         });
+        sendButton.disabled = true;
     }
 }
 
