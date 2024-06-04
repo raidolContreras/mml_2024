@@ -22,17 +22,15 @@ function structureSelect(idTeam) {
         success: function (data) {
             if (data && Object.keys(data).length === 0) {
                 var project = $('#project').val();
+                LoadTreeData(idTeam, project);
                 $('.Structure').css('display', 'none');
                 $('.selectStructure').css('display', 'block');
-                LoadTreeData(idTeam, project);
             } else {
                 var project = $('#project').val();
-
-                $('.Structure').css('display', 'block');
-                $('.selectStructure').css('display', 'none');
-
+                var structure = true;
                 data.forEach(structure => {
                     if (structure.idProject == project) {
+                        structure = false;
                         problem1 = structure.problem1.substr(-2);
                         problem2 = structure.problem2.substr(-2);
 
@@ -71,8 +69,15 @@ function structureSelect(idTeam) {
                         $('.activity07').html(activity7);
                         $('.activity08').html(activity8);
                         
+                        $('.Structure').css('display', 'block');
+                        $('.selectStructure').css('display', 'none');
                     }
                 });
+                if (structure) {
+                    LoadTreeData(idTeam, project);
+                    $('.Structure').css('display', 'none');
+                    $('.selectStructure').css('display', 'block');
+                }
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {

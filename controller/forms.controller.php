@@ -36,8 +36,8 @@ class FormsController {
         return $response;
     }
 
-    static public function ctrGetTeams($item, $value) {
-        $response = FormsModel::mdlGetTeams($item, $value);
+    static public function ctrGetTeams($item, $value, $idProject) {
+        $response = FormsModel::mdlGetTeams($item, $value, $idProject);
         return $response;
     }
 

@@ -78,9 +78,9 @@ class FormsModel {
         return $result;
     }
 
-    static public function mdlGetTeams($item, $value){
+    static public function mdlGetTeams($item, $value, $idProject){
         $pdo = Conexion::conectar();
-        if ($value !== null) {
+        if ($value !== null && $idProject == null) {
             $sql = "SELECT * FROM teams t
                         LEFT JOIN projects p ON p.idProject = t.teams_idProject
                         LEFT JOIN users u ON u.users_idTeam = t.idTeam
@@ -89,6 +89,14 @@ class FormsModel {
             $stmt->bindParam(':value', $value, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetch();
+        } elseif($idProject !== null) {
+            $sql = "SELECT * FROM teams t
+                    LEFT JOIN projects p ON p.idProject = t.teams_idProject
+                    where t.status = 1 AND t.teams_idProject = :idProject";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':idProject', $idProject, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
         } else {
             $sql = "SELECT * FROM teams t
                     LEFT JOIN projects p ON p.idProject = t.teams_idProject

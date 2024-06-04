@@ -170,7 +170,7 @@ if (isset($_FILES['userList'])) {
 				}
 			}
 			if ($team != ''){
-				$teamExist = FormsController::ctrGetTeams('teamName', $team);
+				$teamExist = FormsController::ctrGetTeams('teamName', $team, null);
 				if (empty($teamExist)) {
 					$data = array(
 						'teamName' => $team,
@@ -278,11 +278,11 @@ if(isset($_POST['SelectProject'])){
 }
 
 if(isset($_POST['SearchTeam'])){
-	echo json_encode(FormsController::ctrGetTeams('idTeam', $_POST['SearchTeam']));
+	echo json_encode(FormsController::ctrGetTeams('idTeam', $_POST['SearchTeam'], null));
 }
 
 if(isset($_POST['searchTeamParticipants'])){
-	echo json_encode(FormsController::ctrGetTeams('idTeam', $_POST['searchTeamParticipants']));
+	echo json_encode(FormsController::ctrGetTeams('idTeam', $_POST['searchTeamParticipants'], null));
 }
 
 if(isset($_POST['SelectEvent'])){
@@ -429,7 +429,7 @@ if(isset($_POST['searchParticipant'])){
 }
 
 if(isset($_POST['searchTeam'])){
-	echo json_encode(FormsController::ctrGetTeams('idTeam', $_POST['searchTeam']));
+	echo json_encode(FormsController::ctrGetTeams('idTeam', $_POST['searchTeam'], null));
 }
 
 if (isset($_POST['updateTeam'])){
