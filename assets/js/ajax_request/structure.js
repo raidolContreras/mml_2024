@@ -27,10 +27,10 @@ function structureSelect(idTeam) {
                 $('.selectStructure').css('display', 'block');
             } else {
                 var project = $('#project').val();
-                var structure = true;
+                var structureSelect = true;
                 data.forEach(structure => {
                     if (structure.idProject == project) {
-                        structure = false;
+                        structureSelect = false;
                         problem1 = structure.problem1.substr(-2);
                         problem2 = structure.problem2.substr(-2);
 
@@ -73,7 +73,7 @@ function structureSelect(idTeam) {
                         $('.selectStructure').css('display', 'none');
                     }
                 });
-                if (structure) {
+                if (structureSelect) {
                     LoadTreeData(idTeam, project);
                     $('.Structure').css('display', 'none');
                     $('.selectStructure').css('display', 'block');

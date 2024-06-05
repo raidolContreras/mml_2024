@@ -123,5 +123,13 @@
 
     "generate_product_message": "Da click para generar un producto",
     "generate_activity_message": "Da click para generar una actividad",
-    "update_Structure_Alert": "Estructura actualizada"
+    "update_Structure_Alert": "Estructura actualizada",
+
+    "narrative_summary": "Resumen narrativo",
+    "indicator": "Indicador",
+    "goal": "Meta",
+    "verification_sources": "Fuentes de verificación",
+    "risks": "Riesgos",
+    "start_date": "Fecha de inicio",
+    "term_date": "Fecha de término"
 }

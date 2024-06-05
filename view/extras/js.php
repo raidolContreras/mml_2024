@@ -66,6 +66,7 @@
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
     } elseif($pagina == 'Matriz') {
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
+        echo '<script src="assets/js/ajax_request/matrix.js"></script>';
     } elseif($pagina == 'Structure') {
         echo '<script src="assets/js/ajax_request/structure.js"></script>';
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';

@@ -175,6 +175,14 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
 
     $('.message_Select_Problems').text(translations.message_Select_Problems);
     $('.send_Selections').text(translations.send_Selections);
+
+    $('.narrative_summary').text(translations.narrative_summary);
+    $('.indicator').text(translations.indicator);
+    $('.goal').text(translations.goal);
+    $('.verification_sources').text(translations.verification_sources);
+    $('.risks').text(translations.risks);
+    $('.start_date').text(translations.start_date);
+    $('.term_date').text(translations.term_date);
 });
 
 function changeLanguage(language) {

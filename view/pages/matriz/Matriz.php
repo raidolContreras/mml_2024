@@ -1,200 +1,164 @@
+<style>
+    .row {
+        margin-bottom: 7px;
+        margin-top: 7px;
+        display: flex;
+        align-items: center;
+    }
+    .col {
+        padding: 15px;
+        text-align: center;
+    }
+    .col-body {
+        background: #fff;
+        font-size: 14px;
+        border-radius: 8px;
+        margin: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    .col-body:hover {
+        background-color: #e2e6ea;
+        color: #007bff;
+        cursor: pointer;
+    }
+    .head {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .row-body {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    select.form-select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ced4da;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .matrix {
+        display: none;
+    }
+</style>
+<div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+        <label for="teamSelectEdit" class="form-label">Select Team</label>
+        <select class="form-select" id="teamSelectEdit"></select>
+    </div>
+</div>
 
-    <style>
-        .container {
-            width: 100%;
-            overflow-x: auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2, p {
-            text-align: center;
-            margin-top: 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-            font-size: 12px;
-            overflow: visible;
-            white-space: pre-line;
-        }
-        th {
-            background-color: #007BFF;
-            color: white;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        th.producto, td.producto {
-            width: 10%;
-        }
-        th.actividad, td.actividad {
-            width: 20%;
-        }
-        th.resumen, td.resumen {
-            width: 20%;
-        }
-        th.indicador, td.indicador {
-            width: 20%;
-        }
-        th.meta, td.meta {
-            width: 5%;
-        }
-        th.fuentes, td.fuentes {
-            width: 10%;
-        }
-        th.riesgos, td.riesgos {
-            width: 10%;
-        }
-        th.fecha-inicio, td.fecha-inicio,
-        th.fecha-termino, td.fecha-termino {
-            width: 5%;
-        }
-        @media (max-width: 600px) {
-            table, th, td {
-                display: block;
-                width: 100%;
-            }
-            th, td {
-                box-sizing: border-box;
-            }
-            tr {
-                margin-bottom: 1rem;
-                display: block;
-                border-bottom: 2px solid #000;
-            }
-            th {
-                background-color: #007BFF;
-                color: white;
-                display: block;
-                text-align: right;
-                padding-right: 10px;
-            }
-            td {
-                display: block;
-                text-align: right;
-                padding-left: 50%;
-                position: relative;
-            }
-        }
-        
-    </style>
-    
-    <div class="row mb-4">
-        <div class="col-md-6 offset-md-3">
-            <label for="teamSelectEdit" class="form-label teams">Select Team</label>
-            <select class="form-select" id="teamSelectEdit">
-            </select>
+<div class="container matrix">
+    <div class="row head">
+        <div class="col-2 product"></div>
+        <div class="col-10">
+            <div class="row">
+                <div class="col activity"></div>
+                <div class="col narrative_summary"></div>
+                <div class="col indicator"></div>
+                <div class="col goal"></div>
+                <div class="col verification_sources"></div>
+                <div class="col risks"></div>
+                <div class="col start_date"></div>
+                <div class="col term_date"></div>
+            </div>
         </div>
     </div>
-
-    <div class="container">
-        <table>
-            <thead>
-                <tr>
-                    <th class="producto">Producto</th>
-                    <th class="actividad">Actividad</th>
-                    <th class="resumen">Resumen narrativo</th>
-                    <th class="indicador">Indicador</th>
-                    <th class="meta">Meta</th>
-                    <th class="fuentes">Fuentes de verificación</th>
-                    <th class="riesgos">Riesgos</th>
-                    <th class="fecha-inicio">Fecha de inicio</th>
-                    <th class="fecha-termino">Fecha de término</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="a">
-                    <td rowspan="4" class="producto product-a" data-label="Producto">Implement rainwater collection systems in our community.</td>
-                    <td class="actividad" data-label="Actividad">Build healthy gardens with the help of our schools’ students.</td>
-                    <td class="resumen" data-label="Resumen narrativo">We will build a garden structure in where we are going to cultivate our vegetables with the help of Conalep students</td>
-                    <td class="indicador" data-label="Indicador">Número de students que will participate in the building of the garden</td>
-                    <td class="meta" data-label="Meta">25</td>
-                    <td class="fuentes" data-label="Fuentes de verificación">Fotos, Videos</td>
-                    <td class="riesgos" data-label="Riesgos">It is a hard work for the students, so they will be annoyed sometimes</td>
-                    <td class="fecha-inicio" data-label="Fecha de inicio">2023-12-04</td>
-                    <td class="fecha-termino" data-label="Fecha de término">2024-01-20</td>
-                </tr>
-                <tr class="a">
-                    <td class="actividad" data-label="Actividad">Place rainwater collection in our schools’</td>
-                    <td class="resumen" data-label="Resumen narrativo">We will build a small collect system of rain water in 3 schools of our municipality</td>
-                    <td class="indicador" data-label="Indicador">Número de students que will participate in the building of the garden</td>
-                    <td class="meta" data-label="Meta">25</td>
-                    <td class="fuentes" data-label="Fuentes de verificación">Fotos, Videos</td>
-                    <td class="riesgos" data-label="Riesgos">There is a hard work for the students during vacations, so they might be exhausted</td>
-                    <td class="fecha-inicio" data-label="Fecha de inicio">2023-12-04</td>
-                    <td class="fecha-termino" data-label="Fecha de término">2024-01-20</td>
-                </tr>
-                <tr class="a">
-                    <td class="actividad" data-label="Actividad">Tutorial of how to do our rainwater collection systems.</td>
-                    <td class="resumen" data-label="Resumen narrativo">We will record a video explaining how to do a collect of rain water system, and upload to our social media</td>
-                    <td class="indicador" data-label="Indicador">Número de views que we will have in our social media</td>
-                    <td class="meta" data-label="Meta">100</td>
-                    <td class="fuentes" data-label="Fuentes de verificación">Videos</td>
-                    <td class="riesgos" data-label="Riesgos">That the video won’t have a lot of views</td>
-                    <td class="fecha-inicio" data-label="Fecha de inicio">2024-01-21</td>
-                    <td class="fecha-termino" data-label="Fecha de término">2024-01-25</td>
-                </tr>
-                <tr class="a">
-                    <td class="actividad" data-label="Actividad">Promote the water collection with the help of our town hall.</td>
-                    <td class="resumen" data-label="Resumen narrativo">We will have a talk with the authorities of Tapalpa in where we will think about some strategies to implement Filtrando Vidas in more places</td>
-                    <td class="indicador" data-label="Indicador">Número de meetings que we will have with the authorities</td>
-                    <td class="meta" data-label="Meta">3</td>
-                    <td class="fuentes" data-label="Fuentes de verificación">Reportes</td>
-                    <td class="riesgos" data-label="Riesgos">That for being young people the authorities won’t take us seriously</td>
-                    <td class="fecha-inicio" data-label="Fecha de inicio">2024-02-12</td>
-                    <td class="fecha-termino" data-label="Fecha de término">2024-02-22</td>
-                </tr>
-                <tr class="b">
-                    <td rowspan="4" class="producto product-b" data-label="Producto">Awareness campaign</td>
-                    <td class="actividad" data-label="Actividad">Conferences about the good care of the water.</td>
-                    <td class="resumen" data-label="Resumen narrativo">We are going to have conferences with young students to invite them to take care about the water, this with recreative activities</td>
-                    <td class="indicador" data-label="Indicador">Número de students que attend the meetings</td>
-                    <td class="meta" data-label="Meta">125</td>
-                    <td class="fuentes" data-label="Fuentes de verificación">Fotos, Listas de asistencia</td>
-                    <td class="riesgos" data-label="Riesgos">That we won’t complete the students attendance list</td>
-                    <td class="fecha-inicio" data-label="Fecha de inicio">2024-02-15</td>
-                    <td class="fecha-termino" data-label="Fecha de término">2024-02-29</td>
-                </tr>
-                <tr class="b">
-                    <td class="actividad" data-label="Actividad">Teach students about sustainability with some workshop in their schools</td>
-                    <td class="resumen" data-label="Resumen narrativo">We will expose a presentation about sustainability in the 3 schools</td>
-                    <td class="indicador" data-label="Indicador">Número de students que attend the presentation</td>
-                    <td class="meta" data-label="Meta">125</td>
-                    <td class="fuentes" data-label="Fuentes de verificación">Fotos, Listas de asistencia</td>
-                    <td class="riesgos" data-label="Riesgos">That the students won’t pay attention to our presentation</td>
-                    <td class="fecha-inicio" data-label="Fecha de inicio">2024-01-15</td>
-                    <td class="fecha-termino" data-label="Fecha de término">2024-01-29</td>
-                </tr>
-                <tr class="b">
-                    <td class="actividad" data-label="Actividad">Social media post with responsible tips of how to give a different usage of water.</td>
-                    <td class="resumen" data-label="Resumen narrativo">We will post some stories, fun fact post, pictures, and tutorials with some tips about the water care</td>
-                    <td class="indicador" data-label="Indicador">Número de followers que we will have on our social media</td>
-                    <td class="meta" data-label="Meta">300</td>
-                    <td class="fuentes" data-label="Fuentes de verificación">Fotos</td>
-                    <td class="riesgos" data-label="Riesgos">That we won’t have followers</td>
-                    <td class="fecha-inicio" data-label="Fecha de inicio">2023-12-26</td>
-                    <td class="fecha-termino" data-label="Fecha de término">2024-03-26</td>
-                </tr>
-                <tr class="b">
-                    <td class="actividad" data-label="Actividad">Teach students how do they can contribute to our municipality with small actions with some recreational activities.</td>
-                    <td class="resumen" data-label="Resumen narrativo">We will have monthly conferences with students, in where we will do a review of the main objective of our project with recreative activities</td>
-                    <td class="indicador" data-label="Indicador">Número de students que attend the meetings</td>
-                    <td class="meta" data-label="Meta">125</td>
-                    <td class="fuentes" data-label="Fuentes de verificación">Fotos, Listas de asistencia</td>
-                    <td class="riesgos" data-label="Riesgos">That the students might not attend the meeting</td>
-                    <td class="fecha-inicio" data-label="Fecha de inicio">2024-02-20</td>
-                    <td class="fecha-termino" data-label="Fecha de término">2024-04-20</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row row-body">
+        <div class="col-2 p-3">Producto-a</div>
+        <div class="col-10">
+            <div class="row" onclick="editMatriz()">
+                <div class="col" id="activity_a01">Actividad-1</div>
+                <div class="col col-body" id="">Resumen narrativo-1</div>
+                <div class="col col-body" id="">Indicador-1</div>
+                <div class="col col-body" id="">Meta-1</div>
+                <div class="col col-body" id="">Fuentes de verificación-1</div>
+                <div class="col col-body" id="">Riesgos-1</div>
+                <div class="col col-body" id="">Fecha de inicio-1</div>
+                <div class="col col-body" id="">Fecha de término-1</div>
+            </div>
+            <div class="row" onclick="editMatriz()">
+                <div class="col" id="activity_a02">Actividad-2</div>
+                <div class="col col-body" id="">Resumen narrativo-2</div>
+                <div class="col col-body" id="">Indicador-2</div>
+                <div class="col col-body" id="">Meta-2</div>
+                <div class="col col-body" id="">Fuentes de verificación-2</div>
+                <div class="col col-body" id="">Riesgos-2</div>
+                <div class="col col-body" id="">Fecha de inicio-2</div>
+                <div class="col col-body" id="">Fecha de término-2</div>
+            </div>
+            <div class="row" onclick="editMatriz()">
+                <div class="col" id="activity_a03">Actividad-3</div>
+                <div class="col col-body" id="">Resumen narrativo-3</div>
+                <div class="col col-body" id="">Indicador-3</div>
+                <div class="col col-body" id="">Meta-3</div>
+                <div class="col col-body" id="">Fuentes de verificación-3</div>
+                <div class="col col-body" id="">Riesgos-3</div>
+                <div class="col col-body" id="">Fecha de inicio-3</div>
+                <div class="col col-body" id="">Fecha de término-3</div>
+            </div>
+            <div class="row" onclick="editMatriz()">
+                <div class="col" id="activity_a04">Actividad-4</div>
+                <div class="col col-body" id="">Resumen narrativo-4</div>
+                <div class="col col-body" id="">Indicador-4</div>
+                <div class="col col-body" id="">Meta-4</div>
+                <div class="col col-body" id="">Fuentes de verificación-4</div>
+                <div class="col col-body" id="">Riesgos-4</div>
+                <div class="col col-body" id="">Fecha de inicio-4</div>
+                <div class="col col-body" id="">Fecha de término-4</div>
+            </div>
+        </div>
     </div>
+    <div class="row row-body">
+        <div class="col-2 p-3">Producto-b</div>
+        <div class="col-10">
+            <div class="row" onclick="editMatriz()">
+                <div class="col" id="activity_b01">Actividad-1</div>
+                <div class="col col-body" id="">Resumen narrativo-1</div>
+                <div class="col col-body" id="">Indicador-1</div>
+                <div class="col col-body" id="">Meta-1</div>
+                <div class="col col-body" id="">Fuentes de verificación-1</div>
+                <div class="col col-body" id="">Riesgos-1</div>
+                <div class="col col-body" id="">Fecha de inicio-1</div>
+                <div class="col col-body" id="">Fecha de término-1</div>
+            </div>
+            <div class="row" onclick="editMatriz()">
+                <div class="col" id="activity_b02">Actividad-2</div>
+                <div class="col col-body" id="">Resumen narrativo-2</div>
+                <div class="col col-body" id="">Indicador-2</div>
+                <div class="col col-body" id="">Meta-2</div>
+                <div class="col col-body" id="">Fuentes de verificación-2</div>
+                <div class="col col-body" id="">Riesgos-2</div>
+                <div class="col col-body" id="">Fecha de inicio-2</div>
+                <div class="col col-body" id="">Fecha de término-2</div>
+            </div>
+            <div class="row" onclick="editMatriz()">
+                <div class="col" id="activity_b03">Actividad-3</div>
+                <div class="col col-body" id="">Resumen narrativo-3</div>
+                <div class="col col-body" id="">Indicador-3</div>
+                <div class="col col-body" id="">Meta-3</div>
+                <div class="col col-body" id="">Fuentes de verificación-3</div>
+                <div class="col col-body" id="">Riesgos-3</div>
+                <div class="col col-body" id="">Fecha de inicio-3</div>
+                <div class="col col-body" id="">Fecha de término-3</div>
+            </div>
+            <div class="row" onclick="editMatriz()">
+                <div class="col" id="activity_b04">Actividad-4</div>
+                <div class="col col-body" id="">Resumen narrativo-4</div>
+                <div class="col col-body" id="">Indicador-4</div>
+                <div class="col col-body" id="">Meta-4</div>
+                <div class="col col-body" id="">Fuentes de verificación-4</div>
+                <div class="col col-body" id="">Riesgos-4</div>
+                <div class="col col-body" id="">Fecha de inicio-4</div>
+                <div class="col col-body" id="">Fecha de término-4</div>
+            </div>
+        </div>
+    </div>
+</div>

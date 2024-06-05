@@ -106,7 +106,7 @@
     "addTrees_btn": "Add tree: problems and objectives",
     "addTrees": "Add tree: problems and objectives",
     "problem_tree": "Problem tree",
-    "goal_tree": "Goal tree",
+    "goal_tree": "Objetive tree",
     "main_effects": "Main effects",
     "effects": "Effects",
     "central_problem": "Central problem",
@@ -122,5 +122,13 @@
 
     "generate_product_message": "Click to generate a product",
     "generate_activity_message": "Click to generate an activity",
-    "update_Structure_Alert": "Updated structure"
+    "update_Structure_Alert": "Updated structure",
+
+    "narrative_summary": "Narrative summary",
+    "indicator": "Indicator",
+    "goal": "Goal",
+    "verification_sources": "Verification sources",
+    "risks": "Risks",
+    "start_date": "Start date",
+    "term_date": "Term date"
 }
