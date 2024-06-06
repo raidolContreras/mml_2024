@@ -148,7 +148,6 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.message_delete_participants').text(translations.message_delete_participants);
     $('#deleteParticipantsModalLabel').text(translations.deleteParticipantsModalLabel);
 
-
     $('.addTrees_btn').text(translations.addTrees_btn);
     $('.addTrees').text(translations.addTrees);
     $('.problem_tree').text(translations.problem_tree);

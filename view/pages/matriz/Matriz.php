@@ -72,10 +72,10 @@
         </div>
     </div>
     <div class="row row-body">
-        <div class="col-2 p-3">Producto-a</div>
+        <div class="col-2 p-3 product01">Producto-a</div>
         <div class="col-10">
             <div class="row" onclick="editMatriz()">
-                <div class="col" id="activity_a01">Actividad-1</div>
+                <div class="col activity01"></div>
                 <div class="col col-body" id="">Resumen narrativo-1</div>
                 <div class="col col-body" id="">Indicador-1</div>
                 <div class="col col-body" id="">Meta-1</div>
@@ -85,7 +85,7 @@
                 <div class="col col-body" id="">Fecha de término-1</div>
             </div>
             <div class="row" onclick="editMatriz()">
-                <div class="col" id="activity_a02">Actividad-2</div>
+                <div class="col activity02"></div>
                 <div class="col col-body" id="">Resumen narrativo-2</div>
                 <div class="col col-body" id="">Indicador-2</div>
                 <div class="col col-body" id="">Meta-2</div>
@@ -95,7 +95,7 @@
                 <div class="col col-body" id="">Fecha de término-2</div>
             </div>
             <div class="row" onclick="editMatriz()">
-                <div class="col" id="activity_a03">Actividad-3</div>
+                <div class="col activity03"></div>
                 <div class="col col-body" id="">Resumen narrativo-3</div>
                 <div class="col col-body" id="">Indicador-3</div>
                 <div class="col col-body" id="">Meta-3</div>
@@ -105,7 +105,7 @@
                 <div class="col col-body" id="">Fecha de término-3</div>
             </div>
             <div class="row" onclick="editMatriz()">
-                <div class="col" id="activity_a04">Actividad-4</div>
+                <div class="col activity04"></div>
                 <div class="col col-body" id="">Resumen narrativo-4</div>
                 <div class="col col-body" id="">Indicador-4</div>
                 <div class="col col-body" id="">Meta-4</div>
@@ -117,10 +117,10 @@
         </div>
     </div>
     <div class="row row-body">
-        <div class="col-2 p-3">Producto-b</div>
+        <div class="col-2 p-3 product02">Producto-b</div>
         <div class="col-10">
             <div class="row" onclick="editMatriz()">
-                <div class="col" id="activity_b01">Actividad-1</div>
+                <div class="col activity01"></div>
                 <div class="col col-body" id="">Resumen narrativo-1</div>
                 <div class="col col-body" id="">Indicador-1</div>
                 <div class="col col-body" id="">Meta-1</div>
@@ -130,7 +130,7 @@
                 <div class="col col-body" id="">Fecha de término-1</div>
             </div>
             <div class="row" onclick="editMatriz()">
-                <div class="col" id="activity_b02">Actividad-2</div>
+                <div class="col activity02"></div>
                 <div class="col col-body" id="">Resumen narrativo-2</div>
                 <div class="col col-body" id="">Indicador-2</div>
                 <div class="col col-body" id="">Meta-2</div>
@@ -140,7 +140,7 @@
                 <div class="col col-body" id="">Fecha de término-2</div>
             </div>
             <div class="row" onclick="editMatriz()">
-                <div class="col" id="activity_b03">Actividad-3</div>
+                <div class="col activity03"></div>
                 <div class="col col-body" id="">Resumen narrativo-3</div>
                 <div class="col col-body" id="">Indicador-3</div>
                 <div class="col col-body" id="">Meta-3</div>
@@ -150,7 +150,7 @@
                 <div class="col col-body" id="">Fecha de término-3</div>
             </div>
             <div class="row" onclick="editMatriz()">
-                <div class="col" id="activity_b04">Actividad-4</div>
+                <div class="col activity04"></div>
                 <div class="col col-body" id="">Resumen narrativo-4</div>
                 <div class="col col-body" id="">Indicador-4</div>
                 <div class="col col-body" id="">Meta-4</div>
