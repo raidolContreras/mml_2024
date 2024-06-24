@@ -9,12 +9,15 @@
         margin-right: 0px !important;
 	}
     
-	.col-1, .col-9 {
+	.col-1, .col-8 {
 		padding: 15px;
 	}
     
-    .line-row  {
+    .col-12  {
         border-bottom: 1px solid #000;
+        font-size: 20px;
+        padding: 10px 15px;
+        text-align: center;
     }
 </style>
 
@@ -29,60 +32,56 @@
 <div class="container">
     
     <div class="row head">
-        <div class="col-9 activity"></div>
-        <div class="col-1 goal"></div>
-        <div class="col-1 progress_activity"></div>
-        <div class="col-1 add"></div>
+        <div class="col-8 activity"></div>
+        <div class="col-2 goal"></div>
+        <div class="col-2 progress_activity"></div>
     </div>
     
 	<div class="row row-body">
+        <div class="col-12">Product</div>
         <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-9">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
+            <div class="col-8">Example</div>
+            <div class="col-2">Example</div>
+            <div class="col-2">Example</div>
         </div>
         <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-9">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
+            <div class="col-8">Example</div>
+            <div class="col-2">Example</div>
+            <div class="col-2">Example</div>
         </div>
         <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-9">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
-        </div>
-        <div class="row activitySelect line-row" onclick="editMatriz(1)">
-            <div class="col-9">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
+            <div class="col-8">Example</div>
+            <div class="col-2">Example</div>
+            <div class="col-2">Example</div>
         </div>
         <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-9">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
+            <div class="col-8">Example</div>
+            <div class="col-2">Example</div>
+            <div class="col-2">Example</div>
+        </div>
+    </div>
+    
+	<div class="row row-body">
+    <div class="col-12">Product</div>
+        <div class="row activitySelect" onclick="editMatriz(1)">
+            <div class="col-8">Example</div>
+            <div class="col-2">Example</div>
+            <div class="col-2">Example</div>
         </div>
         <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-9">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
+            <div class="col-8">Example</div>
+            <div class="col-2">Example</div>
+            <div class="col-2">Example</div>
         </div>
         <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-9">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
+            <div class="col-8">Example</div>
+            <div class="col-2">Example</div>
+            <div class="col-2">Example</div>
         </div>
         <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-9">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
-            <div class="col-1">Example</div>
+            <div class="col-8">Example</div>
+            <div class="col-2">Example</div>
+            <div class="col-2">Example</div>
         </div>
     </div>
 </div>
