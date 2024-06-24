@@ -203,6 +203,7 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
 
     $('.progress_activity').html(translations.progress_activity);
     $('.add').html(translations.add);
+    $('.evidences').html(translations.evidences);
 
     var html2 = `
         <option value="0">${translations.select_one}</option>

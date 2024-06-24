@@ -9,7 +9,7 @@
         margin-right: 0px !important;
 	}
     
-	.col-1, .col-8 {
+	.col-2, .col-8, .col-3 {
 		padding: 15px;
 	}
     
@@ -18,6 +18,12 @@
         font-size: 20px;
         padding: 10px 15px;
         text-align: center;
+    }
+    .ml-1 {
+        margin-left: .25rem !important;
+    }
+    .mr-1 {
+        margin-right: .25rem !important;
     }
 </style>
 
@@ -30,58 +36,73 @@
 </div>
     
 <div class="container">
-    
-    <div class="row head">
-        <div class="col-8 activity"></div>
-        <div class="col-2 goal"></div>
-        <div class="col-2 progress_activity"></div>
-    </div>
-    
-	<div class="row row-body">
-        <div class="col-12">Product</div>
-        <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-8">Example</div>
-            <div class="col-2">Example</div>
-            <div class="col-2">Example</div>
+    <div class="row">
+        <div class="col-6">
+            <div class="row head mr-1">
+                <div class="col-8 activity"></div>
+                <div class="col-2 goal"></div>
+                <div class="col-2 progress_activity"></div>
+            </div>
+            
+            <div class="row row-body mr-1">
+                <div class="col-12">Product</div>
+                <div class="row activitySelect" onclick="editMatriz(1)">
+                    <div class="col-8">Example</div>
+                    <div class="col-2">Example</div>
+                    <div class="col-2">Example</div>
+                </div>
+                <div class="row activitySelect" onclick="editMatriz(1)">
+                    <div class="col-8">Example</div>
+                    <div class="col-2">Example</div>
+                    <div class="col-2">Example</div>
+                </div>
+                <div class="row activitySelect" onclick="editMatriz(1)">
+                    <div class="col-8">Example</div>
+                    <div class="col-2">Example</div>
+                    <div class="col-2">Example</div>
+                </div>
+                <div class="row activitySelect" onclick="editMatriz(1)">
+                    <div class="col-8">Example</div>
+                    <div class="col-2">Example</div>
+                    <div class="col-2">Example</div>
+                </div>
+            </div>
+            
+            <div class="row row-body mr-1">
+            <div class="col-12">Product</div>
+                <div class="row activitySelect" onclick="editMatriz(1)">
+                    <div class="col-8">Example</div>
+                    <div class="col-2">Example</div>
+                    <div class="col-2">Example</div>
+                </div>
+                <div class="row activitySelect" onclick="editMatriz(1)">
+                    <div class="col-8">Example</div>
+                    <div class="col-2">Example</div>
+                    <div class="col-2">Example</div>
+                </div>
+                <div class="row activitySelect" onclick="editMatriz(1)">
+                    <div class="col-8">Example</div>
+                    <div class="col-2">Example</div>
+                    <div class="col-2">Example</div>
+                </div>
+                <div class="row activitySelect" onclick="editMatriz(1)">
+                    <div class="col-8">Example</div>
+                    <div class="col-2">Example</div>
+                    <div class="col-2">Example</div>
+                </div>
+            </div>
         </div>
-        <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-8">Example</div>
-            <div class="col-2">Example</div>
-            <div class="col-2">Example</div>
-        </div>
-        <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-8">Example</div>
-            <div class="col-2">Example</div>
-            <div class="col-2">Example</div>
-        </div>
-        <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-8">Example</div>
-            <div class="col-2">Example</div>
-            <div class="col-2">Example</div>
-        </div>
-    </div>
-    
-	<div class="row row-body">
-    <div class="col-12">Product</div>
-        <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-8">Example</div>
-            <div class="col-2">Example</div>
-            <div class="col-2">Example</div>
-        </div>
-        <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-8">Example</div>
-            <div class="col-2">Example</div>
-            <div class="col-2">Example</div>
-        </div>
-        <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-8">Example</div>
-            <div class="col-2">Example</div>
-            <div class="col-2">Example</div>
-        </div>
-        <div class="row activitySelect" onclick="editMatriz(1)">
-            <div class="col-8">Example</div>
-            <div class="col-2">Example</div>
-            <div class="col-2">Example</div>
+        <div class="col-6">
+            <div class="row head ml-1">
+                <div class="col-3 description"></div>
+                <div class="col-3 progress_activity"></div>
+                <div class="col-3 evidences"></div>
+                <div class="col-3 actions"></div>
+            </div>
+            
+            <div class="row row-body ml-1">
+
+            </div>
         </div>
     </div>
 </div>
