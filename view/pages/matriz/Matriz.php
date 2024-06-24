@@ -12,22 +12,7 @@
 
 	.col-body {
 		font-size: 14px;
-    padding: 20px 10px;
-	}
-
-	.head {
-		background-color: #007bff;
-		color: white;
-		font-weight: bold;
-		border-radius: 8px;
-		text-align: center;
-	}
-
-	.row-body {
-		background-color: #fff;
-		border-radius: 10px;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		margin-bottom: 10px;
+    	padding: 20px 10px;
 	}
 
 	select.form-select {
@@ -41,9 +26,10 @@
 	.matrix {
 		display: none;
 	}
+
 	.col-xs {
 		-webkit-box-flex: 0.2;
-    flex: 0.2 0 0%;
+    	flex: 0.2 0 0%;
 	}
 </style>
 <div class="row mb-4">
@@ -70,7 +56,7 @@
 		</div>
 	</div>
 	<div class="row row-body">
-		<div class="col-2 p-3 product01">Producto-a</div>
+		<div class="col-2 p-3 product01"></div>
 		<div class="col-10">
 			<div class="row activitySelect" onclick="editMatriz(1)">
 				<div class="col-2 activity01"></div>
@@ -115,7 +101,7 @@
 		</div>
 	</div>
 	<div class="row row-body">
-		<div class="col-2 p-3 product02">Producto-b</div>
+		<div class="col-2 p-3 product02"></div>
 		<div class="col-10">
 			<div class="row activitySelect" onclick="editMatriz(5)">
 				<div class="col-2 activity05"></div>

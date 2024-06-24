@@ -152,5 +152,8 @@
     "Monthly": "Mensual",
     "Bimonthly": "Bimestral",
     "Biannual": "Semestral",
-    "Other": "Otro"
+    "Other": "Otro",
+
+    "progress_activity": "Progreso",
+    "add": "Agregar"
 }

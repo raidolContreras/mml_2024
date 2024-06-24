@@ -201,6 +201,9 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('#Others').html(translations.Others);
     $('#risk_activity').html(translations.risk_activity);
 
+    $('.progress_activity').html(translations.progress_activity);
+    $('.add').html(translations.add);
+
     var html2 = `
         <option value="0">${translations.select_one}</option>
         <option value="1">${translations.Monthly}</option>

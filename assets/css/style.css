@@ -51,3 +51,18 @@ border-style: dashed !important;
   background-color: rgba(86, 148, 172, 0.408);
   color: #fff;
 }
+
+.head {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.row-body {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
