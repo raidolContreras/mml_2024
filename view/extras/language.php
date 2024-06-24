@@ -167,14 +167,14 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
         <option value="0">${translations.admin}</option>
         <option value="1">${translations.standar}</option>
     `;
-
+    
     $('#level_user').html(html);
     $('#level_user_edit').html(html);
     $('.level_user_edit').html(html);
-
+    
     $('.message_Select_Problems').text(translations.message_Select_Problems);
     $('.send_Selections').text(translations.send_Selections);
-
+    
     $('.narrative_summary').text(translations.narrative_summary);
     $('.indicator').text(translations.indicator);
     $('.goal').text(translations.goal);
@@ -182,6 +182,33 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.risks').text(translations.risks);
     $('.start_date').text(translations.start_date);
     $('.term_date').text(translations.term_date);
+    
+    
+    $('#description_activity').html(translations.description_activity);
+    $('#start_date_activity').html(translations.start_date_activity);
+    $('#end_date_activity').html(translations.end_date_activity);
+    $('#frequency_activity').html(translations.frequency_activity);
+    $('#indicator_activity').html(translations.indicator_activity);
+    $('#evidenceTypeLabel').html(translations.evidenceTypeLabel);
+    $('#Number_of').html(translations.Number_of);
+    $('#that').html(translations.that);
+    $('#What_goal').html(translations.What_goal);
+    $('#Photos').html(translations.Photos);
+    $('#Videos').html(translations.Videos);
+    $('#Reports_input').html(translations.Reports_input);
+    $('#Attendance_lists').html(translations.Attendance_lists);
+    $('#Agreements').html(translations.Agreements);
+    $('#Others').html(translations.Others);
+    $('#risk_activity').html(translations.risk_activity);
+
+    var html2 = `
+        <option value="0">${translations.select_one}</option>
+        <option value="1">${translations.Monthly}</option>
+        <option value="2">${translations.Bimonthly}</option>
+        <option value="3">${translations.Biannual}</option>
+        <option value="4">${translations.Other}</option>
+    `;
+    $('#frequency').html(html2);
 });
 
 function changeLanguage(language) {
@@ -202,3 +229,5 @@ function changeLanguage(language) {
     });
 }
 </script>
+
+<input type="hidden" id="language" value="<?php echo $_SESSION['language']; ?>">

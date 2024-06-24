@@ -709,4 +709,107 @@ class FormsModel {
         $stmt = null;
         return $result;
     }
+
+    static public function mdlSelectMatrix($idMatrix) {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT * FROM matrix WHERE idMatrix = :idMatrix";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idMatrix', $idMatrix, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlAddMatrix($data) {
+        
+        $photos = ($data['evidenceTypes']['photos'] == 'true') ? 1 : 0;
+        $videos = ($data['evidenceTypes']['videos'] == 'true') ? 1 : 0;
+        $reports = ($data['evidenceTypes']['reports'] == 'true') ? 1 : 0;
+        $attendance = ($data['evidenceTypes']['attendance'] == 'true') ? 1 : 0;
+        $agreements = ($data['evidenceTypes']['agreements'] == 'true') ? 1 : 0;
+        $others = ($data['evidenceTypes']['others'] == 'true') ? 1 : 0;
+
+        $pdo = Conexion::conectar();
+        $sql = "INSERT INTO matrix(idStructure, activity, description, start_date, end_date, frequency, indicator_activity, how, goal, risks, photos, videos, reports, attendance, agreements, others) VALUES (:idStructure, :activity, :description, :start_date, :end_date, :frequency, :indicator_activity, :how, :goal, :risks, :photos, :videos, :reports, :attendance, :agreements, :others)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idStructure', $data['idStructure'], PDO::PARAM_INT);
+        $stmt->bindParam(':activity', $data['activity'], PDO::PARAM_INT);
+        $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
+        $stmt->bindParam(':start_date', $data['startDate'], PDO::PARAM_STR);
+        $stmt->bindParam(':end_date', $data['endDate'], PDO::PARAM_STR);
+        $stmt->bindParam(':frequency', $data['frequency'], PDO::PARAM_STR);
+        $stmt->bindParam(':indicator_activity', $data['indicatorActivity'], PDO::PARAM_STR);
+        $stmt->bindParam(':how', $data['how'], PDO::PARAM_STR);
+        $stmt->bindParam(':goal', $data['goal'], PDO::PARAM_INT);
+        $stmt->bindParam(':risks', $data['risks'], PDO::PARAM_STR);
+        $stmt->bindParam(':photos', $photos, PDO::PARAM_INT);
+        $stmt->bindParam(':videos', $videos, PDO::PARAM_INT);
+        $stmt->bindParam(':reports', $reports, PDO::PARAM_INT);
+        $stmt->bindParam(':attendance', $attendance, PDO::PARAM_INT);
+        $stmt->bindParam(':agreements', $agreements, PDO::PARAM_INT);
+        $stmt->bindParam(':others', $others, PDO::PARAM_INT);
+        
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlUpdateMatrix($data) {
+        
+        $photos = ($data['evidenceTypes']['photos'] == 'true') ? 1 : 0;
+        $videos = ($data['evidenceTypes']['videos'] == 'true') ? 1 : 0;
+        $reports = ($data['evidenceTypes']['reports'] == 'true') ? 1 : 0;
+        $attendance = ($data['evidenceTypes']['attendance'] == 'true') ? 1 : 0;
+        $agreements = ($data['evidenceTypes']['agreements'] == 'true') ? 1 : 0;
+        $others = ($data['evidenceTypes']['others'] == 'true') ? 1 : 0;
+
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE matrix SET idStructure = :idStructure,activity = :activity,description = :description,start_date = :start_date,end_date = :end_date,frequency = :frequency,indicator_activity = :indicator_activity,how = :how,goal = :goal,risks = :risks,photos = :photos,videos = :videos,reports = :reports,attendance = :attendance,agreements = :agreements,others = :others WHERE idMatrix = :idMatrix";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idStructure', $data['idStructure'], PDO::PARAM_INT);
+        $stmt->bindParam(':activity', $data['activity'], PDO::PARAM_INT);
+        $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
+        $stmt->bindParam(':start_date', $data['startDate'], PDO::PARAM_STR);
+        $stmt->bindParam(':end_date', $data['endDate'], PDO::PARAM_STR);
+        $stmt->bindParam(':frequency', $data['frequency'], PDO::PARAM_STR);
+        $stmt->bindParam(':indicator_activity', $data['indicatorActivity'], PDO::PARAM_STR);
+        $stmt->bindParam(':how', $data['how'], PDO::PARAM_STR);
+        $stmt->bindParam(':goal', $data['goal'], PDO::PARAM_INT);
+        $stmt->bindParam(':risks', $data['risks'], PDO::PARAM_STR);
+        $stmt->bindParam(':photos', $photos, PDO::PARAM_INT);
+        $stmt->bindParam(':videos', $videos, PDO::PARAM_INT);
+        $stmt->bindParam(':reports', $reports, PDO::PARAM_INT);
+        $stmt->bindParam(':attendance', $attendance, PDO::PARAM_INT);
+        $stmt->bindParam(':agreements', $agreements, PDO::PARAM_INT);
+        $stmt->bindParam(':others', $others, PDO::PARAM_INT);
+        $stmt->bindParam(':idMatrix', $data['idMatrix'], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'update';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlSearchStructureMatrix($idStructure, $activity) {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT * FROM matrix WHERE idStructure = :idStructure AND activity = :activity";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idStructure', $idStructure, PDO::PARAM_INT);
+        $stmt->bindParam(':activity', $activity, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
 }

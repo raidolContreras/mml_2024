@@ -192,4 +192,21 @@ class FormsController {
         return $response;
     }
 
+    static public function ctrAddMatrix($data) {
+        $matrix = FormsModel::mdlSelectMatrix($data['idMatrix']);
+
+        if (empty($matrix)) {
+            $response = FormsModel::mdlAddMatrix($data);
+        } else {
+            $response = FormsModel::mdlUpdateMatrix($data);
+        }
+
+        return $response;
+    }
+
+    static public function ctrSearchStructureMatrix($idStructure, $activity) {
+        $response = FormsModel::mdlSearchStructureMatrix($idStructure, $activity);
+        return $response;
+    }
+
 }

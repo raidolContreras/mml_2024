@@ -611,3 +611,27 @@ if (isset($_POST['updateStructure'])) {
     $result = FormsController::ctrUpdateStructure($data);
     echo $result;
 }
+
+if (isset($_POST['idMatrix'])) {
+	$data = array(
+		'description' => $_POST['description'],
+		'startDate' => $_POST['startDate'],
+		'endDate' => $_POST['endDate'],
+		'frequency' => $_POST['frequency'],
+		'indicatorActivity' => $_POST['indicatorActivity'],
+		'how' => $_POST['how'],
+		'goal' => $_POST['goal'],
+		'risks' => $_POST['risks'],
+		'evidenceTypes' => $_POST['evidenceTypes'],
+		'idMatrix' => $_POST['idMatrix'],
+		'idStructure' => $_POST['idStructure'],
+		'activity' => $_POST['activity']
+	);
+	$result = FormsController::ctrAddMatrix($data);
+	echo $result;
+}
+
+if (isset($_POST['searchStructureMatrix'])) {
+	$result = FormsController::ctrSearchStructureMatrix($_POST['searchStructureMatrix'], $_POST['activity']);
+	echo json_encode($result);
+}

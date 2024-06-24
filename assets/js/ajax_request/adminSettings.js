@@ -64,34 +64,35 @@ $(document).ready(function () {
   });
 });
 
-function showColorsProject() {
-  $.ajax({
-    type: "POST",
-    url: "controller/ajax/getProjects.php",
-    dataType: "json",
-    success: function (response) {
-      var html = `<option>${translations.select_one}</option>`;
-      
-      response.forEach(function (project) {
-
-        var idProject = $("#project").val();
-
-        var selected = (project.idProject == idProject )? "selected" : '';
-
-        html += '<option value="' + project.idProject + '" '+ selected +' >' + project.nameProject + '</option>';
-
-      });
-
-      $("#projectActive").html(html);
-      Coloris({
-        themeMode: 'dark',
-        alpha: false
-      });
-    },
-    error: function (xhr, status, error) {
-      console.error("Error en la solicitud AJAX:", error);
-    }
-  });
+async function showColorsProject() {
+  try {
+    let response = await $.ajax({
+      type: "POST",
+      url: "controller/ajax/getProjects.php",
+      dataType: "json"
+    });
+    
+    var html = ``;
+    language = $('#language').val();
+    await cargarTraducciones(language);
+    
+    html += `<option value="">${translations.select_one}</option>`;
+    
+    response.forEach(function (project) {
+      var idProject = $("#project").val();
+      var selected = (project.idProject == idProject) ? "selected" : '';
+      html += '<option value="' + project.idProject + '" '+ selected +' >' + project.nameProject + '</option>';
+    });
+    
+    $("#projectActive").html(html);
+    
+    Coloris({
+      themeMode: 'dark',
+      alpha: false
+    });
+  } catch (error) {
+    console.error("Error en la solicitud AJAX:", error);
+  }
 }
 
 function selectProject(project) {

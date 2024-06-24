@@ -131,5 +131,26 @@
     "verification_sources": "Fuentes de verificación",
     "risks": "Riesgos",
     "start_date": "Fecha de inicio",
-    "term_date": "Fecha de término"
+    "term_date": "Fecha de término",
+
+    "description_activity": "Descripción de tu actividad",
+    "start_date_activity": "Fecha de inicio",
+    "end_date_activity": "Fecha de término",
+    "frequency_activity": "¿Qué tan seguido realizarán esta actividad?",
+    "indicator_activity": "Indicadores, ¿qué resultados obtendrán?",
+    "evidenceTypeLabel": "¿Qué tipo de evidencias mostrarán el progreso de esta actividad?",
+    "Number_of": "Numero de",
+    "that": "que",
+    "What_goal": "What is the goal?",
+    "Photos": "Fotos",
+    "Videos": "Videos",
+    "Reports_input": "Reportes",
+    "Attendance_lists": "Listas de asistencia",
+    "Agreements": "Convenios",
+    "Others": "Otros",
+    "risk_activity": "¿Qué tipo de riesgos podría tener esta actividad?",
+    "Monthly": "Mensual",
+    "Bimonthly": "Bimestral",
+    "Biannual": "Semestral",
+    "Other": "Otro"
 }

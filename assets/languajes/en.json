@@ -130,5 +130,26 @@
     "verification_sources": "Verification sources",
     "risks": "Risks",
     "start_date": "Start date",
-    "term_date": "Term date"
+    "term_date": "Term date",
+
+    "description_activity": "Description of your activity",
+    "start_date_activity": "Start date",
+    "end_date_activity": "End date",
+    "frequency_activity": "How often will you do this activity?",
+    "indicator_activity": "Indicators, what results will they obtain?",
+    "evidenceTypeLabel": "What type of evidence will show the progress of this activity?",
+    "Number_of": "Number of",
+    "that": "that",
+    "What_goal": "¿Cuál es la meta?",
+    "Photos": "Photos",
+    "Videos": "Videos",
+    "Reports_input": "Reports",
+    "Attendance_lists": "Attendance lists",
+    "Agreements": "Agreements",
+    "Others": "Others",
+    "risk_activity": "What kind of risks could this activity have?",
+    "Monthly": "Monthly",
+    "Bimonthly": "Bimonthly",
+    "Biannual": "Biannual",
+    "Other": "Other"
 }

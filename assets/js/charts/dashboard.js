@@ -94,8 +94,6 @@
             success: function (response) {
                 // Procesar los datos para obtener las categorías y valores
                 const categories = response.map(item => item.teamName);
-                const values = response.map(item => item.status); // Ajusta esto si necesitas otro valor
-                console.log(values);
                 const data = {
                     categories: categories,
                     values: [0]

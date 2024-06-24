@@ -42,3 +42,12 @@ border-style: dashed !important;
 .iq-navbar .dropdown .dropdown-menu.sub-drop .list-group-item.active a {
   color: #fff;
 }
+
+.activitySelect {
+  cursor: pointer;
+}
+
+.activitySelect:hover {
+  background-color: rgba(86, 148, 172, 0.408);
+  color: #fff;
+}
