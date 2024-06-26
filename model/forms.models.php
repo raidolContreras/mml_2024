@@ -813,4 +813,16 @@ class FormsModel {
         $stmt = null;
         return $result;
     }
+
+    static public function mdlSearchReportsToMatrix($idMatrix) {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT * FROM reports WHERE idMatrix = :idMatrix";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idMatrix', $idMatrix, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
 }

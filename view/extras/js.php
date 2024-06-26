@@ -71,6 +71,7 @@
         echo '<script src="assets/js/ajax_request/structure.js"></script>';
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
     } elseif($pagina == 'Reports') {
+        echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
         echo '<script src="assets/js/ajax_request/reports.js"></script>';
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
     } elseif($pagina == 'Events') {

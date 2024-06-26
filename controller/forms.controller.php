@@ -209,4 +209,9 @@ class FormsController {
         return $response;
     }
 
+    static public function ctrSearchReportsToMatrix($idMatrix) {
+        $response = FormsModel::mdlSearchReportsToMatrix($idMatrix);
+        return $response;
+    }
+
 }

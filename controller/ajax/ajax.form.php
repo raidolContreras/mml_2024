@@ -635,3 +635,8 @@ if (isset($_POST['searchStructureMatrix'])) {
 	$result = FormsController::ctrSearchStructureMatrix($_POST['searchStructureMatrix'], $_POST['activity']);
 	echo json_encode($result);
 }
+
+if (isset($_POST['searchReportsToMatrix'])) {
+	$result = FormsController::ctrSearchReportsToMatrix($_POST['searchReportsToMatrix']);
+    echo json_encode($result);
+}

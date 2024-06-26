@@ -5,7 +5,7 @@
         margin-right: 0px !important; */
 	}
     
-	.col-2, .col-8, .col-3 {
+	.col-2, .col-8, .col-4 {
 		padding: 15px;
         border-right: 2px solid #f5f6fa;
 	}
@@ -31,7 +31,7 @@
         border-bottom: none;
     }
 
-    .reports {
+    .totalReports {
         display: none;
     }
 
@@ -45,7 +45,7 @@
     </div>
 </div>
     
-<div class="container reports">
+<div class="container totalReports">
     <div class="row">
         <div class="col-12">
             <div class="row head mb-2">
@@ -112,36 +112,49 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="seeReportsLabel"></h5>
-                <button class="btn btn-primary" onclick="chargeEvidences(1)">Agregar Evidencia</button>
+                <button class="btn btn-primary addEvidence">Agregar Evidencia</button>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
-                <div class="row head mb-2">
-                    <div class="col-3 description"></div>
-                    <div class="col-3 progress_activity"></div>
-                    <div class="col-3 evidences"></div>
-                    <div class="col-3 actions"></div>
-                </div>
-                
-                <div class="row row-body ml-1">
-                    <div class="col-3 ">Example</div>
-                    <div class="col-3">Example</div>
-                    <div class="col-3" onclick="evidences(1)">Example</div>
-                    <div class="col-3"></div>
-                </div>
-                <div class="row row-body ml-1">
-                    <div class="col-3">Example</div>
-                    <div class="col-3">Example</div>
-                    <div class="col-3">Example</div>
-                    <div class="col-3"></div>
-                </div>
+			<div class="modal-body evidenceReports">
 			</div>
 		</div>
 	</div>
-    <div class="card fade" style="width: 1140px; margin-right: auto; margin-left: auto;">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="card" id="chargeEvidence" style="width: 1140px; margin-right: auto; margin-left: auto; display: none;">
+        <div class="card-body row">
+            <h5 class="card-title col-12">Adjuntar evidencia</h5>
+            <div class="form-group col-12 mt-3">
+                <label for="description">Descripción</label>
+                <input type="text" class="form-control" id="description" placeholder="Ingrese una descripción">
+            </div>
+            <div class="form-group col-6 mt-3 photos">
+                <label for="photos">Fotos</label>
+                <div id="AddPhotosDropzone" class="dropzone"></div>
+            </div>
+            <div class="form-group col-6 mt-3 videos">
+                <label for="video">URL del Video</label>
+                <input type="url" class="form-control" id="video" placeholder="Ingrese la URL del video">
+            </div>
+            <div class="form-group col-6 mt-3 reports">
+                <label for="reports">Reportes</label>
+                <div id="AddReportsDropzone" class="dropzone"></div>
+            </div>
+            <div class="form-group col-6 mt-3 attendance">
+                <label for="attendance">Lista de Asistencia</label>
+                <div id="AddAttendanceDropzone" class="dropzone"></div>
+            </div>
+            <div class="form-group col-6 mt-3 agreements">
+                <label for="agreements">Acuerdos</label>
+                <div id="AddAgreementsDropzone" class="dropzone"></div>
+            </div>
+            <div class="form-group col-6 mt-3 others">
+                <label for="others">Otros</label>
+                <div id="AddOthersDropzone" class="dropzone"></div>
+            </div>
+            <div class="form-group col-6 mt-3">
+                <label for="progress_activity">Progreso de la Actividad</label>
+                <input min="0" type="number" class="form-control" id="progress_activity" placeholder="Ingrese el progreso">
+            </div>
+            <button class="btn btn-success mt-3" onclick="saveEvidence()">Guardar Evidencia</button>
         </div>
     </div>
 </div>
