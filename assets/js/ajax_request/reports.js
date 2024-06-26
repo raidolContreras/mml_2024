@@ -1,35 +1,63 @@
-function seeReports(element, matrix) {
-    const dataAttributes = ['photos', 'videos', 'reports', 'attendance', 'agreements', 'others'];
 
+var progress = 0;
+var maxProgress = 0;
+var seeReport;
+
+function seeReports(element, matrix) {
+
+    progress = 0;
+    maxProgress = 0;
+
+    const dataAttributes = ['photos', 'videos', 'reports', 'attendance', 'agreements', 'others'];
     // Mostrar u ocultar secciones según los atributos data
     dataAttributes.forEach(attr => {
         const value = $(element).data(attr);
         $(`.${attr}`).css('display', value ? 'block' : 'none');
     });
 
-    $.ajax({
+    maxProgress = $(element).data('goal');
+    
+    seeReport = $.ajax({
         type: 'POST',
         url: 'controller/ajax/ajax.form.php',
         data: { searchReportsToMatrix: matrix },
         dataType: 'json',
         success: function(data) {
+            
+            clearForm();
             let html = `
                 <div class="row head mb-2">
                     <div class="col-4 description">${translations.description}</div>
                     <div class="col-4 progress_activity">${translations.progress_activity}</div>
                     <div class="col-4 evidences">${translations.evidences}</div>
                 </div>`;
+
             let i = 0;
+            let j = false;
+
             data.forEach(reports => {
+
+                progress += reports.progress;
+                maxProgress -= reports.progress;
+
+                console.log(progress, maxProgress);
+
+                if ($(element).data('goal') > progress) {
+                    j = true;
+                } else {
+                    j = false;
+                }
+
                 html += `
                     <div class="row row-body ml-1">
-                        <div class="col-4">Example</div>
-                        <div class="col-4">Example</div>
-                        <div class="col-4">Example</div>
+                        <div class="col-4">${reports.description}</div>
+                        <div class="col-4">${reports.progress}</div>
+                        <div class="col-4 evidencesLinks"></div>
                     </div>
                 `;
                 i++;
             });
+
             if (i === 0) {
                 html += `
                     <div class="row row-body ml-1">
@@ -37,7 +65,18 @@ function seeReports(element, matrix) {
                     </div>
                 `;
             }
-            $('.addEvidence').attr('onclick', `chargeEvidences(${matrix})`);
+
+            if (j || progress == 0) { 
+                $('.addEvidence').attr('onclick', `chargeEvidences(${matrix})`);
+                
+                maxProgress = $(element).data('goal') - progress;
+                $('#progress_activity'). attr('max', maxProgress);
+                $('.addEvidence').css('display', 'block');
+
+            } else {
+                $('.addEvidence').css('display', 'none');
+            }
+
             $('.evidenceReports').html(html);
             
             $('#chargeEvidence').css('display', 'none');
@@ -49,10 +88,6 @@ function seeReports(element, matrix) {
 function evidences(idEvidences) {
     $('#evidencesModal').modal('show');
     $('#seeReports').modal('hide');
-}
-
-function chargeEvidences(matrix) {
-    $('#chargeEvidence').css('display', 'block');
 }
 
 $('#teamSelectEdit').on('change', function() {
@@ -175,7 +210,8 @@ function getStructureMatrix(activity, structure) {
                         'data-reports': data.reports == 1,
                         'data-attendance': data.attendance == 1,
                         'data-agreements': data.agreements == 1,
-                        'data-others': data.others == 1
+                        'data-others': data.others == 1,
+                        'data-goal': data.goal
                     };
 
                     for (let key in attributes) {
@@ -200,9 +236,9 @@ function getStructureMatrix(activity, structure) {
 
 Dropzone.autoDiscover = false;
 
-const initDropzone = (selector, url, acceptedFiles) => {
+const initDropzone = (selector, acceptedFiles) => {
     return new Dropzone(selector, {
-        url: url,
+        url: 'controller/ajax/upload_evidence.php', // URL predeterminada para la carga
         maxFiles: 5,
         maxFilesize: 1, // MB
         acceptedFiles: acceptedFiles, // Tipos de archivos permitidos
@@ -236,21 +272,25 @@ const initDropzone = (selector, url, acceptedFiles) => {
 };
 
 // Inicializar Dropzones con tipos de archivos específicos
-const photoDropzone = initDropzone("#AddPhotosDropzone", "/path/to/upload/photos", "image/jpeg,image/png,image/jpg");
-const reportsDropzone = initDropzone("#AddReportsDropzone", "/path/to/upload/reports", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-const attendanceDropzone = initDropzone("#AddAttendanceDropzone", "/path/to/upload/attendance", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-const agreementsDropzone = initDropzone("#AddAgreementsDropzone", "/path/to/upload/agreements", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-const othersDropzone = initDropzone("#AddOthersDropzone", "/path/to/upload/others", "image/jpeg,image/png,image/jpg,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+const photoDropzone = initDropzone("#AddPhotosDropzone", "image/jpeg,image/png,image/jpg");
+const reportsDropzone = initDropzone("#AddReportsDropzone", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+const attendanceDropzone = initDropzone("#AddAttendanceDropzone", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+const agreementsDropzone = initDropzone("#AddAgreementsDropzone", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+const othersDropzone = initDropzone("#AddOthersDropzone", "image/jpeg,image/png,image/jpg,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+
+var idMatrix = 0;
 
 function saveEvidence() {
     const videoUrl = $('#video').val();
     const progress = $('#progress_activity').val();
     const description = $('#description').val();
+    const Matrix = idMatrix;
 
     const formData = new FormData();
     formData.append('video', videoUrl);
     formData.append('progress', progress);
     formData.append('description', description);
+    formData.append('matrix', Matrix);
 
     // Agregar archivos de Dropzone a formData
     photoDropzone.files.forEach(file => {
@@ -269,19 +309,59 @@ function saveEvidence() {
         formData.append('others[]', file);
     });
 
-    $.ajax({
-        type: 'POST',
-        url: 'controller/ajax/upload_evidence.php', // Cambia esta URL a tu ruta de carga
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(response) {
-            console.log('Evidencia guardada con éxito:', response);
-            // Ocultar el formulario de carga después de guardar
-            $('#chargeEvidence').css('display', 'none');
-        },
-        error: function(error) {
-            console.error('Error al guardar la evidencia:', error);
-        }
+    if (progress != '' || description != '') {
+        $.ajax({
+            type: 'POST',
+            url: 'controller/ajax/upload_evidence.php', // Cambia esta URL a tu ruta de carga
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                console.log('Evidencia guardada con éxito:', response);
+                // Ocultar el formulario de carga después de guardar
+                $('#chargeEvidence').css('display', 'none');
+                showAlert(translations.success, translations.uploadEvidenceSuccess);
+                // Limpiar campos de Dropzones y inputs
+                seeReport.ajax.reload();
+
+                clearForm();
+            },
+            error: function(error) {
+                console.error('Error al guardar la evidencia:', error);
+            }
+        });
+    } else {
+        showAlert(translations.alert, translations.uploadEvidenceError);
+    }
+}
+
+// Función para limpiar los campos de Dropzones y inputs
+function clearForm() {
+    $('#video').val('');
+    $('#progress_activity').val('');
+    $('#description').val('');
+    photoDropzone.removeAllFiles(true);
+    reportsDropzone.removeAllFiles(true);
+    attendanceDropzone.removeAllFiles(true);
+    agreementsDropzone.removeAllFiles(true);
+    othersDropzone.removeAllFiles(true);
+}
+
+function chargeEvidences(matrix) {
+    idMatrix = matrix;
+    $('#chargeEvidence').css('display', 'block');
+}
+
+function showAlert(title, message) {
+    var accept = translations.accept; // Usar las traducciones cargadas
+    $('#modalLabel').text(title);
+    $('.modal-body-extra').html(message);
+    $('.modal-footer-extra').html('<button type="button" class="btn btn-success acceptError" data-bs-dismiss="modal">'+accept+'</button>');
+    $('#alertModal').modal('show');
+    $('#seeReports').modal('hide');
+
+    $('.acceptError').on('click', function() {
+        $('#seeReports').modal('show');
     });
+
 }

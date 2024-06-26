@@ -122,17 +122,17 @@
     <div class="card" id="chargeEvidence" style="width: 1140px; margin-right: auto; margin-left: auto; display: none;">
         <div class="card-body row">
             <h5 class="card-title col-12">Adjuntar evidencia</h5>
-            <div class="form-group col-12 mt-3">
-                <label for="description">Descripción</label>
+            <div class="form-group col-6 mt-3">
+                <label for="description"><span class="description"></span> *</label>
                 <input type="text" class="form-control" id="description" placeholder="Ingrese una descripción">
+            </div>
+            <div class="form-group col-6 mt-3">
+                <label for="progress_activity"><span class="progress_activity"></span> *</label>
+                <input min="1" type="number" class="form-control" id="progress_activity" placeholder="Ingrese el progreso">
             </div>
             <div class="form-group col-6 mt-3 photos">
                 <label for="photos">Fotos</label>
                 <div id="AddPhotosDropzone" class="dropzone"></div>
-            </div>
-            <div class="form-group col-6 mt-3 videos">
-                <label for="video">URL del Video</label>
-                <input type="url" class="form-control" id="video" placeholder="Ingrese la URL del video">
             </div>
             <div class="form-group col-6 mt-3 reports">
                 <label for="reports">Reportes</label>
@@ -150,9 +150,9 @@
                 <label for="others">Otros</label>
                 <div id="AddOthersDropzone" class="dropzone"></div>
             </div>
-            <div class="form-group col-6 mt-3">
-                <label for="progress_activity">Progreso de la Actividad</label>
-                <input min="0" type="number" class="form-control" id="progress_activity" placeholder="Ingrese el progreso">
+            <div class="form-group col-12 mt-3 videos">
+                <label for="video">URL del Video</label>
+                <input type="url" class="form-control" id="video" placeholder="Ingrese la URL del video">
             </div>
             <button class="btn btn-success mt-3" onclick="saveEvidence()">Guardar Evidencia</button>
         </div>

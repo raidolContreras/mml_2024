@@ -214,4 +214,9 @@ class FormsController {
         return $response;
     }
 
+    static public function ctrAddEvidence($idMatrix, $description, $progress) {
+        $response = FormsModel::mdlAddEvidence($idMatrix, $description, $progress);
+        return $response;
+    }
+
 }

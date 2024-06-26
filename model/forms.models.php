@@ -825,4 +825,21 @@ class FormsModel {
         $stmt = null;
         return $result;
     }
+
+    static public function mdlAddEvidence($idMatrix, $description, $progress) {
+        $pdo = Conexion::conectar();
+        $sql = "INSERT INTO reports(idMatrix, description, progress) VALUES (:idMatrix, :description, :progress)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idMatrix', $idMatrix, PDO::PARAM_INT);
+        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':progress', $progress, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
 }

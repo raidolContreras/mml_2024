@@ -156,5 +156,8 @@
 
     "progress_activity": "Progreso",
     "add": "Agregar",
-    "evidences": "Evidencias"
+    "evidences": "Evidencias",
+
+    "uploadEvidenceError": "¡Debe llenar todos los campos obligatorios! (*)",
+    "uploadEvidenceSuccess": "Evidencia cargada correctamente"
 }
