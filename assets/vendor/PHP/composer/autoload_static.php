@@ -44,6 +44,11 @@ class ComposerStaticInit62e10e6c8df9afc192311b196c75bb33
         array (
             'Matrix\\' => 7,
         ),
+        'I' => 
+        array (
+            'Intervention\\Image\\' => 19,
+            'Intervention\\Gif\\' => 17,
+        ),
         'C' => 
         array (
             'Complex\\' => 8,
@@ -90,8 +95,8 @@ class ComposerStaticInit62e10e6c8df9afc192311b196c75bb33
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -104,6 +109,14 @@ class ComposerStaticInit62e10e6c8df9afc192311b196c75bb33
         'Matrix\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
+        ),
+        'Intervention\\Image\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/intervention/image/src',
+        ),
+        'Intervention\\Gif\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/intervention/gif/src',
         ),
         'Complex\\' => 
         array (
