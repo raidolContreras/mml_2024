@@ -802,7 +802,8 @@ class FormsModel {
 
     static public function mdlSearchStructureMatrix($idStructure, $activity) {
         $pdo = Conexion::conectar();
-        $sql = "SELECT * FROM matrix WHERE idStructure = :idStructure AND activity = :activity";
+        $sql = "SELECT m.*, r.progress, r.idReport FROM matrix m 
+                LEFT JOIN reports r ON r.idMatrix = m.idMatrix WHERE idStructure = :idStructure AND activity = :activity";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idStructure', $idStructure, PDO::PARAM_INT);
         $stmt->bindParam(':activity', $activity, PDO::PARAM_INT);

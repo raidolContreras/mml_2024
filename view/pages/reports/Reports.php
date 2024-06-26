@@ -31,6 +31,10 @@
         border-bottom: none;
     }
 
+    .reports {
+        display: none;
+    }
+
 </style>
 
 <div class="row mb-2">
@@ -41,10 +45,10 @@
     </div>
 </div>
     
-<div class="container">
+<div class="container reports">
     <div class="row">
         <div class="col-12">
-            <div class="row head mr-1 mb-2">
+            <div class="row head mb-2">
                 <div class="activityHead">
                     <div class="col-8 activity"></div>
                     <div class="col-2 goal"></div>
@@ -52,51 +56,51 @@
                 </div>
             </div>
             
-            <div class="row row-body mr-1">
-                <div class="col-12">Product</div>
-                <div class="activitySelect" onclick="seeReports(1)">
-                    <div class="col-8">Example</div>
-                    <div class="col-2">Example</div>
-                    <div class="col-2">Example</div>
+            <div class="row row-body">
+                <div class="col-12 product01"></div>
+                <div class="activitySelect">
+                    <div class="col-8 activity01"></div>
+                    <div class="col-2 totalGoal01"></div>
+                    <div class="col-2 totalProgress01"></div>
                 </div>
-                <div class="activitySelect" onclick="seeReports(1)">
-                    <div class="col-8">Example</div>
-                    <div class="col-2">Example</div>
-                    <div class="col-2">Example</div>
+                <div class="activitySelect">
+                    <div class="col-8 activity02"></div>
+                    <div class="col-2 totalGoal02"></div>
+                    <div class="col-2 totalProgress02"></div>
                 </div>
-                <div class="activitySelect" onclick="seeReports(1)">
-                    <div class="col-8">Example</div>
-                    <div class="col-2">Example</div>
-                    <div class="col-2">Example</div>
+                <div class="activitySelect">
+                    <div class="col-8 activity03"></div>
+                    <div class="col-2 totalGoal03"></div>
+                    <div class="col-2 totalProgress03"></div>
                 </div>
-                <div class="activitySelect" onclick="seeReports(1)">
-                    <div class="col-8">Example</div>
-                    <div class="col-2">Example</div>
-                    <div class="col-2">Example</div>
+                <div class="activitySelect">
+                    <div class="col-8 activity04"></div>
+                    <div class="col-2 totalGoal04"></div>
+                    <div class="col-2 totalProgress04"></div>
                 </div>
             </div>
             
-            <div class="row row-body mr-1">
-                <div class="col-12">Product</div>
-                <div class="activitySelect" onclick="seeReports(1)">
-                    <div class="col-8">Example</div>
-                    <div class="col-2">Example</div>
-                    <div class="col-2">Example</div>
+            <div class="row row-body">
+                <div class="col-12 product02"></div>
+                <div class="activitySelect">
+                    <div class="col-8 activity05"></div>
+                    <div class="col-2 totalGoal05"></div>
+                    <div class="col-2 totalProgress05"></div>
                 </div>
-                <div class="activitySelect" onclick="seeReports(1)">
-                    <div class="col-8">Example</div>
-                    <div class="col-2">Example</div>
-                    <div class="col-2">Example</div>
+                <div class="activitySelect">
+                    <div class="col-8 activity06"></div>
+                    <div class="col-2 totalGoal06"></div>
+                    <div class="col-2 totalProgress06"></div>
                 </div>
-                <div class="activitySelect" onclick="seeReports(1)">
-                    <div class="col-8">Example</div>
-                    <div class="col-2">Example</div>
-                    <div class="col-2">Example</div>
+                <div class="activitySelect">
+                    <div class="col-8 activity07"></div>
+                    <div class="col-2 totalGoal07"></div>
+                    <div class="col-2 totalProgress07"></div>
                 </div>
-                <div class="activitySelect" onclick="seeReports(1)">
-                    <div class="col-8">Example</div>
-                    <div class="col-2">Example</div>
-                    <div class="col-2">Example</div>
+                <div class="activitySelect">
+                    <div class="col-8 activity08"></div>
+                    <div class="col-2 totalGoal08"></div>
+                    <div class="col-2 totalProgress08"></div>
                 </div>
             </div>
         </div>
@@ -120,7 +124,7 @@
                 </div>
                 
                 <div class="row row-body ml-1">
-                    <div class="col-3">Example</div>
+                    <div class="col-3 ">Example</div>
                     <div class="col-3">Example</div>
                     <div class="col-3" onclick="evidences(1)">Example</div>
                     <div class="col-3"></div>
@@ -129,9 +133,7 @@
                     <div class="col-3">Example</div>
                     <div class="col-3">Example</div>
                     <div class="col-3">Example</div>
-                    <div class="col-3">
-                        <button class="btn btn-primary">Agregar Evidencia</button>
-                    </div>
+                    <div class="col-3"></div>
                 </div>
 			</div>
 		</div>
@@ -155,7 +157,7 @@
                 <p>This is the evidence modal content.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="seeReports(1)">Regresar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
             </div>
         </div>
     </div>
