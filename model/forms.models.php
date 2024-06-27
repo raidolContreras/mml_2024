@@ -826,13 +826,14 @@ class FormsModel {
         return $result;
     }
 
-    static public function mdlAddEvidence($idMatrix, $description, $progress) {
+    static public function mdlAddEvidence($idMatrix, $description, $progress, $videos) {
         $pdo = Conexion::conectar();
-        $sql = "INSERT INTO reports(idMatrix, description, progress) VALUES (:idMatrix, :description, :progress)";
+        $sql = "INSERT INTO reports(idMatrix, description, progress, videos) VALUES (:idMatrix, :description, :progress, :videos)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idMatrix', $idMatrix, PDO::PARAM_INT);
         $stmt->bindParam(':description', $description, PDO::PARAM_STR);
         $stmt->bindParam(':progress', $progress, PDO::PARAM_STR);
+        $stmt->bindParam(':videos', $videos, PDO::PARAM_STR);
         if ($stmt->execute()) {
             $result = $pdo->lastInsertId();
         } else {
@@ -893,7 +894,7 @@ class FormsModel {
         }
         return false;
     }
-    
+
     public static function mdlGetReportDetails($idReport) {
         $pdo = Conexion::conectar();
         $sql = "SELECT * FROM reports WHERE idReport = :idReport";
@@ -912,5 +913,21 @@ class FormsModel {
         $stmt->bindParam(':idReport', $idReport, PDO::PARAM_INT);
         return $stmt->execute();
     }
-        
+
+    public static function mdlDeleteReport($idReport) {
+        $pdo = Conexion::conectar();
+        $sql = "DELETE FROM reports WHERE idReport = :idReport";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idReport', $idReport, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    
+    static public function mdlGetPromedios(){
+        $pdo = Conexion::conectar();
+        $sql = "SELECT AVG(progress) as promedio FROM reports";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC)['promedio'];
+    }
+
 }

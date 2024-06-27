@@ -5,7 +5,7 @@
         margin-right: 0px !important; */
 	}
     
-	.col-2, .col-8, .col-3, .col-4, .col-2{
+	.col-2, .col-8, .col-3, .col-4, .col-2, .col-1{
 		padding: 15px;
         border-right: 2px solid #f5f6fa;
 	}
@@ -160,7 +160,7 @@
             </div>
             <div class="form-group col-12 mt-3 videos">
                 <label for="video">URL del Video</label>
-                <input type="url" class="form-control" id="video" placeholder="Ingrese la URL del video">
+                <input type="url" class="form-control" id="video" placeholder="Ingrese la URL del video de youtube">
             </div>
             <button class="btn btn-success mt-3" onclick="saveEvidence()">Guardar Evidencia</button>
         </div>

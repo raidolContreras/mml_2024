@@ -214,8 +214,8 @@ class FormsController {
         return $response;
     }
 
-    static public function ctrAddEvidence($idMatrix, $description, $progress) {
-        $response = FormsModel::mdlAddEvidence($idMatrix, $description, $progress);
+    static public function ctrAddEvidence($idMatrix, $description, $progress, $videos) {
+        $response = FormsModel::mdlAddEvidence($idMatrix, $description, $progress, $videos);
         return $response;
     }
 
@@ -235,6 +235,14 @@ class FormsController {
     
     public static function ctrUpdateReport($idReport, $description, $progress) {
         return FormsModel::mdlUpdateReport($idReport, $description, $progress);
-    }    
+    }
+    
+    public static function ctrDeleteReport($idReport) {
+        return FormsModel::mdlDeleteReport($idReport);
+    }
+    
+    public static function ctrGetPromedios() {
+        return FormsModel::mdlGetPromedios();
+    }
 
 }

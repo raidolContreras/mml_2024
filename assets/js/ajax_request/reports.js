@@ -30,9 +30,9 @@ function seeReports(element, matrix) {
             let html = `
                 <div class="row head mb-2">
                     <div class="col-3 description">${translations.description}</div>
-                    <div class="col-3 progress_activity">${translations.progress_activity}</div>
+                    <div class="col-1 progress_activity">${translations.progress_activity}</div>
                     <div class="col-4 evidences">${translations.evidences}</div>
-                    <div class="col-2 actions">${translations.actions}</div>
+                    <div class="col-4 actions">${translations.actions}</div>
                 </div>`;
 
             let i = 0;
@@ -57,7 +57,7 @@ function seeReports(element, matrix) {
                             html += `
                                 <div class="row row-body ml-1">
                                     <div class="col-3">${reports.description}</div>
-                                    <div class="col-3">${reports.progress}</div>
+                                    <div class="col-1">${reports.progress}</div>
                                     <div class="col-4">
                             `;
                             html += `<div class="">`;
@@ -70,7 +70,7 @@ function seeReports(element, matrix) {
 
                                 html += `
                                     <div class="file-item btn-group row" style="align-items: center;">
-                                        <img src="${fileIcon}" class="img-fluid mr-3 mt-2 col-3 alt="${file.name}">
+                                        <img src="${fileIcon}" class="img-fluid mr-3 mt-2 col-3" alt="${file.name}">
                                         <div class="col">`;
 
                                 switch (extension) {
@@ -85,7 +85,7 @@ function seeReports(element, matrix) {
                                         html += `<a href="${file.path}" target="_blank" class="btn btn-primary mt-2">${translations.download}</a>`;
                                         break;
                                     default:
-                                        html += `<button onclick="evidences('${file.path}')" target="_blank" class="btn btn-primary mt-2">${translations.view}</button>`;
+                                        html += `<button onclick="evidences('${file.path}', false)" target="_blank" class="btn btn-primary mt-2">${translations.view}</button>`;
                                         break;
                                 }
 
@@ -94,12 +94,24 @@ function seeReports(element, matrix) {
                                         </div>
                                     </div>`;
                             });
-                            
+
+                            console.log(reports);
+                            if (reports.videos && reports.videos.trim() !== '') {
+                                html += `
+                                    <div class="file-item btn-group row" style="align-items: center;">
+                                        <img src="assets/images/video-icon.png" class="img-fluid mr-3 mt-2 col-3" alt="${reports.description}">
+                                        <div class="col">
+                                            <button onclick="evidences('${reports.videos}', true)" target="_blank" class="btn btn-primary mt-2">${translations.view}</button>
+                                        </div>
+                                    </div>`;
+                            }
+
                             html += `
                                             </div>
                                         </div>
-                                    <div class="col-2">
-                                        <button onclick="editEvidence(${reports.idReport})" class="btn btn-info mt-2">${translations.edit} </button>
+                                    <div class="col-4 btn-group" style="flex-wrap: nowrap; align-items: center;">
+                                        <button onclick="editEvidence(${reports.idReport})" class="btn btn-info col">${translations.edit} </button>
+                                        <button onclick="deleteEvidence(${reports.idReport})" class="btn btn-danger col">${translations.delete} </button>
                                     </div>
                                 </div>`;
 
@@ -107,10 +119,11 @@ function seeReports(element, matrix) {
                             html += `
                                 <div class="row row-body ml-1">
                                     <div class="col-3">${reports.description}</div>
-                                    <div class="col-3">${reports.progress}</div>
+                                    <div class="col-1">${reports.progress}</div>
                                     <div class="col-4 evidencesLinks"></div>
-                                    <div class="col-2">
-                                        <button onclick="editEvidence(${reports.idReport})" class="btn btn-info mt-2">${translations.edit} </button>
+                                    <div class="col-4 btn-group" style="flex-wrap: nowrap; align-items: center;">
+                                        <button onclick="editEvidence(${reports.idReport})" class="btn btn-info col">${translations.edit} </button>
+                                        <button onclick="deleteEvidence(${reports.idReport})" class="btn btn-danger col">${translations.delete} </button>
                                     </div>
                                 </div>
                             `;
@@ -122,10 +135,11 @@ function seeReports(element, matrix) {
                     html += `
                         <div class="row row-body ml-1">
                             <div class="col-3">${reports.description}</div>
-                            <div class="col-3">${reports.progress}</div>
+                            <div class="col-1">${reports.progress}</div>
                             <div class="col-4 evidencesLinks"></div>
-                            <div class="col-2">
-                                <button onclick="editEvidence(${reports.idReport})" class="btn btn-info mt-2">${translations.edit} </button>
+                            <div class="col-4 btn-group" style="flex-wrap: nowrap; align-items: center;">
+                                <button onclick="editEvidence(${reports.idReport})" class="btn btn-info col">${translations.edit} </button>
+                                        <button onclick="deleteEvidence(${reports.idReport})" class="btn btn-danger col">${translations.delete} </button>
                             </div>
                         </div>
                     `;
@@ -157,6 +171,38 @@ function seeReports(element, matrix) {
         }
     });
 }
+
+// Helper function to extract YouTube video ID from URL
+function getYouTubeVideoId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length == 11) ? match[2] : null;
+}
+
+// Function to view evidence
+function evidences(path, video = false) {
+    $('#evidencesModal').modal('show');
+    let html;
+
+    if (video) {
+        const videoId = getYouTubeVideoId(path);
+        html = `
+            <div class="d-flex justify-content-center">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>`;
+    } else {
+        html = `<img src="${path}" class="img-fluid">`;
+    }
+
+    $('.evidenceShow').html(html);
+    $('#seeReports').modal('hide');
+
+    $('.return').on('click', function(){
+        $('#evidencesModal').modal('hide');
+        $('#seeReports').modal('show');
+    });
+}
+
 
 function deleteFile(filePath, matrix, idReport) {
     $.ajax({
@@ -199,20 +245,6 @@ function getFileIcon(fileName, idMatrix) {
         default:
             return `assets/uploads/${idMatrix}/${fileName}`;
     }
-}
-
-function evidences(path) {
-    $('#evidencesModal').modal('show');
-
-    let html = `<img src="${path}" class="img-fluid">`;
-    $('.evidenceShow').html(html);
-
-    $('#seeReports').modal('hide');
-
-    $('.return').on('click', function(){
-        $('#evidencesModal').modal('hide');
-        $('#seeReports').modal('show');
-    });
 }
 
 $('#teamSelectEdit').on('change', function() {
@@ -517,7 +549,6 @@ function updateEvidence(uploadId, files) {
     });
 }
 
-
 // Función para limpiar los campos de Dropzones y inputs
 function clearForm() {
     $('#video').val('');
@@ -548,11 +579,34 @@ function showAlert(title, message) {
     });
 
 }
+
 function showAlert2(title, message) {
+    
+    let team = $('#teamSelectEdit').val();
+    console.log(team);
+    getMatrix(team);
+
     var accept = translations.accept; // Usar las traducciones cargadas
     $('#modalLabel').text(title);
     $('.modal-body-extra').html(message);
-    $('.modal-footer-extra').html('<button type="button" class="btn btn-success acceptError" data-bs-dismiss="modal">'+accept+'</button>');
+    $('.modal-footer-extra').html('<button type="button" class="btn btn-success" data-bs-dismiss="modal">'+accept+'</button>');
+    $('#alertModal').modal('show');
+    $('#seeReports').modal('hide');
+
+}
+
+function showAlert3(title, message) {
+    
+    let team = $('#teamSelectEdit').val();
+    console.log(team);
+    getMatrix(team);
+
+    var accept = translations.accept; // Usar las traducciones cargadas
+    var cancel = translations.cancel; // Usar las traducciones cargadas
+    $('#modalLabel').text(title);
+    $('.modal-body-extra').html(message);
+    $('.modal-footer-extra').html(`<button type="button" class="btn btn-success accept">${accept}</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">${cancel}</button>`);
     $('#alertModal').modal('show');
     $('#seeReports').modal('hide');
 
@@ -570,10 +624,8 @@ function editEvidence(idReport) {
                 const report = response.data;
                 $('#editDescription').val(report.description);
                 $('#editProgress').val(report.progress);
-
                 // Guardar el ID del reporte en el formulario para usarlo en la actualización
                 $('#editEvidenceForm').data('reportId', idReport);
-
                 // Mostrar el modal de edición
                 $('#editEvidenceModal').modal('show');
             } else {
@@ -606,10 +658,9 @@ $('#editEvidenceForm').on('submit', function(event) {
         dataType: 'json',
         success: function(response) {
             if (response.status === 'success') {
-                showAlert(translations.success, 'Reporte actualizado con éxito');
+                showAlert2(translations.success, 'Reporte actualizado con éxito');
                 // Actualizar la vista de reportes
                 $('#editEvidenceModal').modal('hide');
-                seeReports($(`[data-matrix="${idReport}"]`)[0], idReport);
             } else {
                 showAlert(translations.alert, 'Error al actualizar el reporte');
             }
@@ -620,3 +671,35 @@ $('#editEvidenceForm').on('submit', function(event) {
         }
     });
 });
+
+function deleteEvidence(idReport) {
+    // Mostrar el modal de confirmación
+    showAlert3(translations.confirm_delete, translations.confirm_delete_message);
+
+    // Configurar el botón de aceptar para realizar la eliminación
+    $('.modal-footer-extra .accept').off('click').on('click', function() {
+        // Realizar la solicitud AJAX para eliminar la evidencia
+        $.ajax({
+            type: 'POST',
+            url: 'controller/ajax/delete_evidence.php',
+            data: { idReport: idReport },
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+
+                    let team = $('#teamSelectEdit').val();
+                    getMatrix(team);
+
+                    showAlert(translations.success, translations.success_report_delete);
+                    $('#alertModal').modal('hide');
+                    $('#seeReports').modal('hide');
+                } else {
+                    showAlert(translations.alert, translations.error_report_delete);
+                }
+            },
+            error: function(error) {
+                showAlert(transeltions.alert, translations.error_report_delete);
+            }
+        });
+    });
+}

@@ -19,8 +19,10 @@ $response = [
     'uploadId' => null
 ];
 
+$videos = (isset($_POST['video']))? $_POST['video']: '';
+
 $progress = ($_POST['progress'] <= $_POST['maxProgress']) ? $_POST['progress'] : $_POST['maxProgress'];
-$upload = FormsController::ctrAddEvidence($_POST['matrix'], $_POST['description'], $progress);
+$upload = FormsController::ctrAddEvidence($_POST['matrix'], $_POST['description'], $progress, $videos);
 if ($upload) {
     $response['uploadId'] = $upload; // Asignar el lastId de la evidencia recién agregada
     try {

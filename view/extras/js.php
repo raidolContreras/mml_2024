@@ -75,7 +75,7 @@
         echo '<script src="assets/js/ajax_request/reports.js"></script>';
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
     } elseif($pagina == 'Events') {
-        echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
+        echo '<script src="assets/js/ajax_request/getEventsSelects.js"></script>';
     } 
     include 'view/extras/language.php';
 ?>

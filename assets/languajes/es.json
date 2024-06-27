@@ -164,8 +164,12 @@
     "download": "Descargar",
     "view": "Ver",
     "no_reports": "No hay reportes",
-    "add_evidence": "Agregar Evidencia",
+    "add_evidence": "Agregar evidencia",
     "attach_evidence": "Adjuntar evidencia",
     "save_changes": "Guardar cambios",
-    "edit_evidence": "Editar evidencia"
+    "edit_evidence": "Editar evidencia",
+    "confirm_delete": "Confirmar eliminación",
+    "confirm_delete_message": "¿Está seguro que desea eliminar el reporte?",
+    "success_report_delete": "Reporte eliminado con éxito",
+    "error_report_delete": "Error al eliminar el reporte"
 }

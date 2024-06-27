@@ -1,15 +1,22 @@
+if ($('#level').val() != 0 ) {
+    $('.teamSelect').css('display', 'none');
+    var idTeam = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
+    structureSelect(idTeam);
+} else {
 
-$('#teamSelectEdit').on('change', function() {
-    var team = $('#teamSelectEdit').val();
-    $('#idTeamSelect').val(team);
+    $('#teamSelectEdit').on('change', function() {
+        var team = $('#teamSelectEdit').val();
+        $('#idTeamSelect').val(team);
+        
+        if (team >= 1) {
+            structureSelect(team)
+        } else {
+            $('.Structure').css('display', 'none');
+            $('.selectStructure').css('display', 'none');
+        }
+    });
     
-    if (team >= 1) {
-        structureSelect(team)
-    } else {
-        $('.Structure').css('display', 'none');
-        $('.selectStructure').css('display', 'none');
-    }
-});
+}
 
 function structureSelect(idTeam) {
     $.ajax({
@@ -23,8 +30,6 @@ function structureSelect(idTeam) {
             if (data && Object.keys(data).length === 0) {
                 var project = $('#project').val();
                 LoadTreeData(idTeam, project);
-                $('.Structure').css('display', 'none');
-                $('.selectStructure').css('display', 'block');
             } else {
                 var project = $('#project').val();
                 var structureSelect = true;
@@ -75,8 +80,6 @@ function structureSelect(idTeam) {
                 });
                 if (structureSelect) {
                     LoadTreeData(idTeam, project);
-                    $('.Structure').css('display', 'none');
-                    $('.selectStructure').css('display', 'block');
                 }
             }
         },
@@ -98,12 +101,43 @@ function LoadTreeData(idTeam, idProject) {
         dataType: 'json',
         success: function (data) {
             if (data && Object.keys(data).length !== 0) {
+                
                 $('.nameMain01').html(data.nameMain01);
                 $('.nameMain02').html(data.nameMain02);
                 $('.nameMain03').html(data.nameMain03);
                 $('.nameMain04').html(data.nameMain04);
                 $('#mainProblems').val(data.idMainProblems);
+                // Verificar si algún campo está vacío
+                const fields = [
+                    data.nameMain01, data.nameMain02, data.nameMain03, data.nameMain04,
+                    data.nameEffect01, data.nameEffect02, data.nameEffect03, data.nameEffect04,
+                    data.centralProblem,
+                    data.causes01, data.causes02, data.causes03, data.causes04,
+                    data.mainCauses01, data.mainCauses02, data.mainCauses03, data.mainCauses04,
+                    data.mainResult01, data.mainResult02, data.mainResult03, data.mainResult04,
+                    data.result01, data.result02, data.result03, data.result04,
+                    data.mainObjetive,
+                    data.action01, data.action02, data.action03, data.action04,
+                    data.mainAction01, data.mainAction02, data.mainAction03, data.mainAction04
+                ];
+
+                const isComplete = fields.every(field => field && field.trim() !== '');
+
+                if (!isComplete) {
+                    $('.selectStructure').hide();
+                    $('.completeTree').show();
+                } else {
+                    $('.completeTree').hide();
+                    $('.selectStructure').show();
+                }
+            } else {
+                $('.selectStructure').hide();
+                $('.completeTree').show();
             }
+        },
+        error: function (error) {
+            $('.selectStructure').hide();
+            $('.completeTree').show();
         }
     });
 }

@@ -62,3 +62,28 @@
             </div>
         </div>
     </div>
+
+    <div class="container completeTree">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card border-result shadow-sm mt-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-danger text-center mt-3">
+                                Completa el árbol de problemas y objetivos antes de continuar
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mb-3">
+                        <div class="col-8 text-center">
+                            <a class="btn btn-primary send_selections_btn" href="Trees">
+                                <i class="fa-light fa-paper-plane-top"></i> <span class="go_trees">Ir al árbol de objetivos</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

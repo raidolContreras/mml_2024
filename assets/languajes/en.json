@@ -166,5 +166,9 @@
     "add_evidence": "Add evidence",
     "attach_evidence": "Attach evidence",
     "save_changes": "Save changes",
-    "edit_evidence": "Edit evidence"
+    "edit_evidence": "Edit evidence",
+    "confirm_delete": "Confirm delete",
+    "confirm_delete_message": "Are you sure you want to delete the report?",
+    "success_report_delete": "Report deleted successfully",
+    "error_report_delete": "Error deleting report"
 }

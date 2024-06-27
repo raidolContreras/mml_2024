@@ -5,7 +5,7 @@
         function initializeChart(data) {
             const options = {
                 series: [{
-                    name: '',
+                    name: 'Teams',
                     data: data.values
                 }],
                 chart: {
@@ -94,11 +94,20 @@
             success: function (response) {
                 // Procesar los datos para obtener las categorías y valores
                 const categories = response.map(item => item.teamName);
+                const values = response.map(item => item.active); // Suponiendo que 'active' contiene el valor que quieres graficar
+                
                 const data = {
                     categories: categories,
-                    values: [0]
+                    values: values
                 };
                 initializeChart(data);
+
+                $.ajax({
+                    url: 'controller/ajax/getPromedios.php',
+                    dataType: 'json',
+                    success: function (response) {
+                    }
+                });
             },
             error: function (error) {
                 console.error('Error al obtener los datos:', error);

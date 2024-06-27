@@ -551,29 +551,97 @@ if (isset($_FILES['treeList'])) {
 }
 
 if (
-	isset($_POST['edit']) &&
-	isset($_POST['column']) &&
-	isset($_POST['tree']) &&
-	isset($_POST['idMainProblems']) &&
-	isset($_POST['idMainGoals'])
-	) {
-		if ($_POST['tree'] == 'main_problems') {
-			$data = array(
-				'edit' => $_POST['edit'],
-				'column' => $_POST['column'],
-				'idMainProblems' => $_POST['idMainProblems']
-			);
-			$result = FormsController::ctrUpdateMainProblems($data);
-		} else {
-			$data = array(
-                'edit' => $_POST['edit'],
-                'column' => $_POST['column'],
-                'idMainGoals' => $_POST['idMainGoals']
-            );
-            $result = FormsController::ctrUpdateMainGoals($data);
-		}
-        echo $result;
+    isset($_POST['edit']) &&
+    isset($_POST['column']) &&
+    isset($_POST['tree']) &&
+    isset($_POST['idMainProblems']) &&
+    isset($_POST['idMainGoals']) &&
+    isset($_POST['idTeam']) &&
+    isset($_POST['idProject'])
+) {
+    // Si idMainProblems está vacío, crear una nueva entrada para los problemas principales
+    if (empty($_POST['idMainProblems'])) {
+        $data = array(
+            "nameMain01" => ($_POST['column'] == 'nameMain01') ? $_POST['edit'] : '',
+            "nameMain02" => ($_POST['column'] == 'nameMain02') ? $_POST['edit'] : '',
+            "nameMain03" => ($_POST['column'] == 'nameMain03') ? $_POST['edit'] : '',
+            "nameMain04" => ($_POST['column'] == 'nameMain04') ? $_POST['edit'] : '',
+            "nameEffect01" => ($_POST['column'] == 'nameEffect01') ? $_POST['edit'] : '',
+            "nameEffect02" => ($_POST['column'] == 'nameEffect02') ? $_POST['edit'] : '',
+            "nameEffect03" => ($_POST['column'] == 'nameEffect03') ? $_POST['edit'] : '',
+            "nameEffect04" => ($_POST['column'] == 'nameEffect04') ? $_POST['edit'] : '',
+            "centralProblem" => ($_POST['column'] == 'centralProblem') ? $_POST['edit'] : '',
+            "causes01" => ($_POST['column'] == 'causes01') ? $_POST['edit'] : '',
+            "causes02" => ($_POST['column'] == 'causes02') ? $_POST['edit'] : '',
+            "causes03" => ($_POST['column'] == 'causes03') ? $_POST['edit'] : '',
+            "causes04" => ($_POST['column'] == 'causes04') ? $_POST['edit'] : '',
+            "mainCauses01" => ($_POST['column'] == 'mainCauses01') ? $_POST['edit'] : '',
+            "mainCauses02" => ($_POST['column'] == 'mainCauses02') ? $_POST['edit'] : '',
+            "mainCauses03" => ($_POST['column'] == 'mainCauses03') ? $_POST['edit'] : '',
+            "mainCauses04" => ($_POST['column'] == 'mainCauses04') ? $_POST['edit'] : ''
+        );
+        $result = FormsController::ctrAddMainProblem($data, $_POST['idTeam'], $_POST['idProject']);
+        
+        // Obtener el ID recién creado
+        if ($result) {
+            $_POST['idMainProblems'] = $result; // Asigna el nuevo ID a idMainProblems
+        } else {
+            echo 'error';
+            exit;
+        }
+    }
+
+    // Si idMainGoals está vacío, crear una nueva entrada para los objetivos principales
+    if (empty($_POST['idMainGoals'])) {
+        $data = array(
+            "mainResult01" => ($_POST['column'] == 'mainResult01') ? $_POST['edit'] : '',
+            "mainResult02" => ($_POST['column'] == 'mainResult02') ? $_POST['edit'] : '',
+            "mainResult03" => ($_POST['column'] == 'mainResult03') ? $_POST['edit'] : '',
+            "mainResult04" => ($_POST['column'] == 'mainResult04') ? $_POST['edit'] : '',
+            "result01" => ($_POST['column'] == 'result01') ? $_POST['edit'] : '',
+            "result02" => ($_POST['column'] == 'result02') ? $_POST['edit'] : '',
+            "result03" => ($_POST['column'] == 'result03') ? $_POST['edit'] : '',
+            "result04" => ($_POST['column'] == 'result04') ? $_POST['edit'] : '',
+            "mainObjetive" => ($_POST['column'] == 'mainObjetive') ? $_POST['edit'] : '',
+            "action01" => ($_POST['column'] == 'action01') ? $_POST['edit'] : '',
+            "action02" => ($_POST['column'] == 'action02') ? $_POST['edit'] : '',
+            "action03" => ($_POST['column'] == 'action03') ? $_POST['edit'] : '',
+            "action04" => ($_POST['column'] == 'action04') ? $_POST['edit'] : '',
+            "mainAction01" => ($_POST['column'] == 'mainAction01') ? $_POST['edit'] : '',
+            "mainAction02" => ($_POST['column'] == 'mainAction02') ? $_POST['edit'] : '',
+            "mainAction03" => ($_POST['column'] == 'mainAction03') ? $_POST['edit'] : '',
+            "mainAction04" => ($_POST['column'] == 'mainAction04') ? $_POST['edit'] : ''
+        );
+        $result = FormsController::ctrAddMainObjetive($data, $_POST['idTeam'], $_POST['idProject']);
+        
+        // Obtener el ID recién creado
+        if ($result) {
+            $_POST['idMainGoals'] = $result; // Asigna el nuevo ID a idMainGoals
+        } else {
+            echo 'error';
+            exit;
+        }
+    }
+
+    // Actualizar datos existentes
+    if ($_POST['tree'] == 'main_problems') {
+        $data = array(
+            'edit' => $_POST['edit'],
+            'column' => $_POST['column'],
+            'idMainProblems' => $_POST['idMainProblems']
+        );
+        $result = FormsController::ctrUpdateMainProblems($data);
+    } else {
+        $data = array(
+            'edit' => $_POST['edit'],
+            'column' => $_POST['column'],
+            'idMainGoals' => $_POST['idMainGoals']
+        );
+        $result = FormsController::ctrUpdateMainGoals($data);
+    }
+    echo $result;
 }
+
 
 if (isset($_POST['structureSelect'])) {
 	echo json_encode(FormsController::ctrGetStructure($_POST['structureSelect']));
