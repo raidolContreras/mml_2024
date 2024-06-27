@@ -321,8 +321,25 @@ function saveEvidence() {
                 progress = parseFloat(progress);
                 maxProgress = parseFloat(maxProgress);
                 
-                var progressLess = ((maxProgress - progress) <= 0) ? goal : progress + maxProgress;
-                $('.totalProgress0'+activitySelected).html(progressLess);
+                totalProgress = $('.totalProgress0'+activitySelected).html()
+                totalProgress = parseFloat(totalProgress) + progress;
+                if (totalProgress > parseFloat(goal)) {
+                    console.log($('.totalProgress0'+activitySelected).html(), parseFloat(goal));
+                    progress = parseFloat(goal) - parseFloat($('.totalProgress0'+activitySelected).html());
+                    $('.totalProgress0'+activitySelected).html(goal);
+                } else {
+                    $('.totalProgress0'+activitySelected).html(totalProgress);
+                }
+
+                html = `
+                    <div class="row row-body ml-1">
+                        <div class="col-4">${description}</div>
+                        <div class="col-4">${progress}</div>
+                        <div class="col-4 evidencesLinks"></div>
+                    </div>
+                `;
+
+                $('.evidenceReports').append(html);
 
                 // Ocultar el formulario de carga después de guardar
                 $('#chargeEvidence').css('display', 'none');
