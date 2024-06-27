@@ -1,10 +1,10 @@
-
 var progress = 0;
 var maxProgress = 0;
 var seeReport;
+var activitySelected;
+var goal;
 
 function seeReports(element, matrix) {
-
     progress = 0;
     maxProgress = 0;
 
@@ -15,7 +15,10 @@ function seeReports(element, matrix) {
         $(`.${attr}`).css('display', value ? 'block' : 'none');
     });
 
+    activitySelected = $(element).data('activity');
+
     maxProgress = $(element).data('goal');
+    goal = $(element).data('goal');
     
     seeReport = $.ajax({
         type: 'POST',
@@ -36,11 +39,8 @@ function seeReports(element, matrix) {
             let j = false;
 
             data.forEach(reports => {
-
                 progress += reports.progress;
                 maxProgress -= reports.progress;
-
-                console.log(progress, maxProgress);
 
                 if ($(element).data('goal') > progress) {
                     j = true;
@@ -70,9 +70,8 @@ function seeReports(element, matrix) {
                 $('.addEvidence').attr('onclick', `chargeEvidences(${matrix})`);
                 
                 maxProgress = $(element).data('goal') - progress;
-                $('#progress_activity'). attr('max', maxProgress);
+                $('#progress_activity').attr('max', maxProgress);
                 $('.addEvidence').css('display', 'block');
-
             } else {
                 $('.addEvidence').css('display', 'none');
             }
@@ -211,7 +210,8 @@ function getStructureMatrix(activity, structure) {
                         'data-attendance': data.attendance == 1,
                         'data-agreements': data.agreements == 1,
                         'data-others': data.others == 1,
-                        'data-goal': data.goal
+                        'data-goal': data.goal,
+                        'data-activity': activity
                     };
 
                     for (let key in attributes) {
@@ -282,13 +282,14 @@ var idMatrix = 0;
 
 function saveEvidence() {
     const videoUrl = $('#video').val();
-    const progress = $('#progress_activity').val();
+    let progress = $('#progress_activity').val();
     const description = $('#description').val();
     const Matrix = idMatrix;
 
     const formData = new FormData();
     formData.append('video', videoUrl);
     formData.append('progress', progress);
+    formData.append('maxProgress', maxProgress);
     formData.append('description', description);
     formData.append('matrix', Matrix);
 
@@ -317,14 +318,18 @@ function saveEvidence() {
             contentType: false,
             processData: false,
             success: function(response) {
-                console.log('Evidencia guardada con éxito:', response);
+                progress = parseFloat(progress);
+                maxProgress = parseFloat(maxProgress);
+                
+                var progressLess = ((maxProgress - progress) <= 0) ? goal : progress + maxProgress;
+                $('.totalProgress0'+activitySelected).html(progressLess);
+
                 // Ocultar el formulario de carga después de guardar
                 $('#chargeEvidence').css('display', 'none');
                 showAlert(translations.success, translations.uploadEvidenceSuccess);
-                // Limpiar campos de Dropzones y inputs
-                seeReport.ajax.reload();
 
                 clearForm();
+                // window.location.reload();
             },
             error: function(error) {
                 console.error('Error al guardar la evidencia:', error);
