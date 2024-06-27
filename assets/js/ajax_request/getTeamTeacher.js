@@ -1,3 +1,8 @@
+$(document).ready(async function () {
+    var language = $('#language').val();
+    await cargarTraducciones(language);
+});
+
 var idteam = $('#idTeam').val();
 $(document).ready(function () {
     loadTeamsData(idteam);

@@ -204,6 +204,10 @@ cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
     $('.progress_activity').html(translations.progress_activity);
     $('.add').html(translations.add);
     $('.evidences').html(translations.evidences);
+    $('.add_evidence').html(translations.add_evidence);
+    $('.attach_evidence').html(translations.attach_evidence);
+    $('.save_changes').html(translations.save_changes);
+    $('.edit_evidence').html(translations.edit_evidence);
 
     var html2 = `
         <option value="0">${translations.select_one}</option>

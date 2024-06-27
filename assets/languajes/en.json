@@ -158,5 +158,13 @@
     "evidences": "Evidences",
 
     "uploadEvidenceError": "You must fill out all required fields! (*)",
-    "uploadEvidenceSuccess": "Evidence uploaded successfully"
+    "uploadEvidenceSuccess": "Evidence uploaded successfully",
+
+    "download": "Download",
+    "view": "View",
+    "no_reports": "There are no reports",
+    "add_evidence": "Add evidence",
+    "attach_evidence": "Attach evidence",
+    "save_changes": "Save changes",
+    "edit_evidence": "Edit evidence"
 }

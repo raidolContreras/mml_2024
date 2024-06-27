@@ -834,7 +834,7 @@ class FormsModel {
         $stmt->bindParam(':description', $description, PDO::PARAM_STR);
         $stmt->bindParam(':progress', $progress, PDO::PARAM_STR);
         if ($stmt->execute()) {
-            $result = 'ok';
+            $result = $pdo->lastInsertId();
         } else {
             $result = 'error';
         }
@@ -842,4 +842,75 @@ class FormsModel {
         $stmt = null;
         return $result;
     }
+
+    static public function mdlAddFilesEvidence($uploadId, $files){
+        $pdo = Conexion::conectar();
+        $filesJson = json_encode($files); // Convertir array a JSON
+    
+        $sql = "UPDATE reports SET files = :files WHERE idReport = :idReport";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':files', $filesJson, PDO::PARAM_STR);
+        $stmt->bindParam(':idReport', $uploadId, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'update';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    public static function mdlRemoveFileFromEvidence($idReport, $filePath) {
+        $pdo = Conexion::conectar();
+        // Obtener los archivos actuales
+        $sql = "SELECT files FROM reports WHERE idReport = :idReport";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idReport', $idReport, PDO::PARAM_INT);
+        $stmt->execute();
+        $currentFiles = $stmt->fetch(PDO::FETCH_ASSOC)['files'];
+        
+        if ($currentFiles) {
+            $filesArray = json_decode($currentFiles, true);
+    
+            // Filtrar el archivo que se va a eliminar
+            $filteredFiles = array_filter($filesArray, function($file) use ($filePath) {
+                return $file['path'] !== $filePath;
+            });
+    
+            // Convertir de nuevo a JSON
+            $updatedFilesJson = json_encode(array_values($filteredFiles));
+    
+            // Actualizar la base de datos con los archivos restantes
+            $sql = "UPDATE reports SET files = :files WHERE idReport = :idReport";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':files', $updatedFilesJson, PDO::PARAM_STR);
+            $stmt->bindParam(':idReport', $idReport, PDO::PARAM_INT);
+    
+            if ($stmt->execute()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static function mdlGetReportDetails($idReport) {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT * FROM reports WHERE idReport = :idReport";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idReport', $idReport, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public static function mdlUpdateReport($idReport, $description, $progress) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE reports SET description = :description, progress = :progress WHERE idReport = :idReport";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':progress', $progress, PDO::PARAM_INT);
+        $stmt->bindParam(':idReport', $idReport, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+        
 }

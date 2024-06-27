@@ -14,12 +14,15 @@ if (!is_dir($uploadDirectory)) {
 // Inicializar la respuesta por defecto
 $response = [
     'status' => 'error',
-    'message' => 'No files uploaded'
+    'message' => 'No files uploaded',
+    'files' => [],
+    'uploadId' => null
 ];
 
 $progress = ($_POST['progress'] <= $_POST['maxProgress']) ? $_POST['progress'] : $_POST['maxProgress'];
-
-if (FormsController::ctrAddEvidence($_POST['matrix'], $_POST['description'], $progress)) {
+$upload = FormsController::ctrAddEvidence($_POST['matrix'], $_POST['description'], $progress);
+if ($upload) {
+    $response['uploadId'] = $upload; // Asignar el lastId de la evidencia recién agregada
     try {
         if (!empty($_FILES)) {
             foreach ($_FILES as $key => $fileArray) {
@@ -33,6 +36,11 @@ if (FormsController::ctrAddEvidence($_POST['matrix'], $_POST['description'], $pr
                             } else {
                                 error_log("File uploaded but optimization failed: " . $filePath); // Registrar en el log
                             }
+                            // Añadir el archivo al array de respuesta
+                            $response['files'][] = [
+                                'name' => basename($fileArray['name'][$i]),
+                                'path' => $filePath
+                            ];
                         } else {
                             error_log("Failed to upload: " . $fileArray['name'][$i]); // Registrar error en el log
                         }
@@ -46,6 +54,11 @@ if (FormsController::ctrAddEvidence($_POST['matrix'], $_POST['description'], $pr
                         } else {
                             error_log("File uploaded but optimization failed: " . $filePath); // Registrar en el log
                         }
+                        // Añadir el archivo al array de respuesta
+                        $response['files'][] = [
+                            'name' => basename($fileArray['name']),
+                            'path' => $filePath
+                        ];
                     } else {
                         error_log("Failed to upload: " . $fileArray['name']); // Registrar error en el log
                     }
@@ -80,7 +93,7 @@ function reduceImageSize($filePath)
                 error_log("Failed to create image from JPEG: " . $filePath);
                 return false;
             }
-            $result = imagejpeg($image, $filePath, 75); // 75 es el nivel de compresión
+            $result = imagejpeg($image, $filePath, 45);
             break;
 
         case 'image/png':
@@ -89,7 +102,7 @@ function reduceImageSize($filePath)
                 error_log("Failed to create image from PNG: " . $filePath);
                 return false;
             }
-            $result = imagepng($image, $filePath, 8); // 0 (sin compresión) a 9
+            $result = imagepng($image, $filePath, 9); // 0 (sin compresión) a 9
             break;
 
         case 'image/gif':
@@ -109,5 +122,3 @@ function reduceImageSize($filePath)
     imagedestroy($image);
     return $result;
 }
-
-?>

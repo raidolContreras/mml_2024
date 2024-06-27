@@ -159,5 +159,13 @@
     "evidences": "Evidencias",
 
     "uploadEvidenceError": "¡Debe llenar todos los campos obligatorios! (*)",
-    "uploadEvidenceSuccess": "Evidencia cargada correctamente"
+    "uploadEvidenceSuccess": "Evidencia cargada correctamente",
+
+    "download": "Descargar",
+    "view": "Ver",
+    "no_reports": "No hay reportes",
+    "add_evidence": "Agregar Evidencia",
+    "attach_evidence": "Adjuntar evidencia",
+    "save_changes": "Guardar cambios",
+    "edit_evidence": "Editar evidencia"
 }

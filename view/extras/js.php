@@ -117,5 +117,4 @@ function showModal(id) {
     $('#' + id).modal('show');
 }
 
-
 </script>

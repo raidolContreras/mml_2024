@@ -219,4 +219,22 @@ class FormsController {
         return $response;
     }
 
+    static public function ctrAddFilesEvidence($uploadId, $files) {
+        $response = FormsModel::mdlAddFilesEvidence($uploadId, $files);
+        return $response;
+    }
+
+    static public function ctrRemoveFileFromEvidence($uploadId, $files) {
+        $response = FormsModel::mdlRemoveFileFromEvidence($uploadId, $files);
+        return $response;
+    }
+
+    public static function ctrGetReportDetails($idReport) {
+        return FormsModel::mdlGetReportDetails($idReport);
+    }
+    
+    public static function ctrUpdateReport($idReport, $description, $progress) {
+        return FormsModel::mdlUpdateReport($idReport, $description, $progress);
+    }    
+
 }

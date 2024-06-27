@@ -5,7 +5,7 @@
         margin-right: 0px !important; */
 	}
     
-	.col-2, .col-8, .col-4 {
+	.col-2, .col-8, .col-3, .col-4, .col-2{
 		padding: 15px;
         border-right: 2px solid #f5f6fa;
 	}
@@ -33,6 +33,14 @@
 
     .totalReports {
         display: none;
+    }
+
+    .mr-3 {
+        margin-right: .6rem !important;
+    }
+
+    .img-fluid {
+        border-radius: 10px !important;
     }
 
 </style>
@@ -112,7 +120,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="seeReportsLabel"></h5>
-                <button class="btn btn-primary addEvidence">Agregar Evidencia</button>
+                <button class="btn btn-primary add_evidence"></button>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body evidenceReports">
@@ -121,7 +129,7 @@
 	</div>
     <div class="card" id="chargeEvidence" style="width: 1140px; margin-right: auto; margin-left: auto; display: none;">
         <div class="card-body row">
-            <h5 class="card-title col-12">Adjuntar evidencia</h5>
+            <h5 class="card-title col-12 attach_evidence"></h5>
             <div class="form-group col-6 mt-3">
                 <label for="description"><span class="description"></span> *</label>
                 <input type="text" class="form-control" id="description" placeholder="Ingrese una descripción">
@@ -164,13 +172,37 @@
     <div class="modal-dialog modal-xl custom-modal-right">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="evidencesModalLabel">Evidence Modal</h5>
+                <h5 class="modal-title" id="evidencesModalLabel">Evidence</h5>
             </div>
-            <div class="modal-body">
-                <p>This is the evidence modal content.</p>
+            <div class="modal-body evidenceShow">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+                <button type="button" class="btn btn-secondary return" data-bs-dismiss="modal">Regresar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para editar evidencia -->
+<div class="modal fade" id="editEvidenceModal" tabindex="-1" aria-labelledby="editEvidenceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title edit_evidence" id="editEvidenceModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editEvidenceForm">
+                    <div class="mb-3">
+                        <label for="editDescription" class="form-label description"></label>
+                        <input type="text" class="form-control" id="editDescription" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProgress" class="form-label progress_activity"></label>
+                        <input type="number" class="form-control" id="editProgress" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary save_changes"></button>
+                </form>
             </div>
         </div>
     </div>

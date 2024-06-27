@@ -26,13 +26,13 @@ function seeReports(element, matrix) {
         data: { searchReportsToMatrix: matrix },
         dataType: 'json',
         success: function(data) {
-            
             clearForm();
             let html = `
                 <div class="row head mb-2">
-                    <div class="col-4 description">${translations.description}</div>
-                    <div class="col-4 progress_activity">${translations.progress_activity}</div>
+                    <div class="col-3 description">${translations.description}</div>
+                    <div class="col-3 progress_activity">${translations.progress_activity}</div>
                     <div class="col-4 evidences">${translations.evidences}</div>
+                    <div class="col-2 actions">${translations.actions}</div>
                 </div>`;
 
             let i = 0;
@@ -48,45 +48,171 @@ function seeReports(element, matrix) {
                     j = false;
                 }
 
-                html += `
-                    <div class="row row-body ml-1">
-                        <div class="col-4">${reports.description}</div>
-                        <div class="col-4">${reports.progress}</div>
-                        <div class="col-4 evidencesLinks"></div>
-                    </div>
-                `;
                 i++;
+
+                if (reports.files && reports.files.trim() !== "") {
+                    try {
+                        const files = JSON.parse(reports.files);
+                        if (Array.isArray(files) && files.length > 0) {
+                            html += `
+                                <div class="row row-body ml-1">
+                                    <div class="col-3">${reports.description}</div>
+                                    <div class="col-3">${reports.progress}</div>
+                                    <div class="col-4">
+                            `;
+                            html += `<div class="">`;
+                
+                            files.forEach(file => {
+                                file.path = file.path.replace(/^(\.\.\/){2}/, ''); // Eliminar ../../ del inicio del path
+                                const fileIcon = getFileIcon(file.name, reports.idMatrix);
+                                const fileName = file.name;
+                                const extension = fileName.split('.').pop().toLowerCase();
+
+                                html += `
+                                    <div class="file-item btn-group row" style="align-items: center;">
+                                        <img src="${fileIcon}" class="img-fluid mr-3 mt-2 col-3 alt="${file.name}">
+                                        <div class="col">`;
+
+                                switch (extension) {
+                                    case 'pdf':
+                                    case 'doc':
+                                    case 'docx':
+                                    case 'ppt':
+                                    case 'pptx':
+                                    case 'xls':
+                                    case 'xlsx':
+                                    case 'txt':
+                                        html += `<a href="${file.path}" target="_blank" class="btn btn-primary mt-2">${translations.download}</a>`;
+                                        break;
+                                    default:
+                                        html += `<button onclick="evidences('${file.path}')" target="_blank" class="btn btn-primary mt-2">${translations.view}</button>`;
+                                        break;
+                                }
+
+                                html += `
+                                            <button onclick="deleteFile('${file.path}', ${matrix}, ${reports.idReport})" class="btn btn-danger mt-2">${translations.delete}</button>
+                                        </div>
+                                    </div>`;
+                            });
+                            
+                            html += `
+                                            </div>
+                                        </div>
+                                    <div class="col-2">
+                                        <button onclick="editEvidence(${reports.idReport})" class="btn btn-info mt-2">${translations.edit} </button>
+                                    </div>
+                                </div>`;
+
+                        } else {
+                            html += `
+                                <div class="row row-body ml-1">
+                                    <div class="col-3">${reports.description}</div>
+                                    <div class="col-3">${reports.progress}</div>
+                                    <div class="col-4 evidencesLinks"></div>
+                                    <div class="col-2">
+                                        <button onclick="editEvidence(${reports.idReport})" class="btn btn-info mt-2">${translations.edit} </button>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    } catch (error) {
+                        console.error('Error parsing files JSON:', error);
+                    }
+                } else {
+                    html += `
+                        <div class="row row-body ml-1">
+                            <div class="col-3">${reports.description}</div>
+                            <div class="col-3">${reports.progress}</div>
+                            <div class="col-4 evidencesLinks"></div>
+                            <div class="col-2">
+                                <button onclick="editEvidence(${reports.idReport})" class="btn btn-info mt-2">${translations.edit} </button>
+                            </div>
+                        </div>
+                    `;
+                }
             });
 
             if (i === 0) {
                 html += `
                     <div class="row row-body ml-1">
-                        <div class="col-12">No hay reportes</div>
+                        <div class="col-12">${translations.no_reports}</div>
                     </div>
                 `;
             }
 
             if (j || progress == 0) { 
-                $('.addEvidence').attr('onclick', `chargeEvidences(${matrix})`);
+                $('.add_evidence').attr('onclick', `chargeEvidences(${matrix})`);
                 
                 maxProgress = $(element).data('goal') - progress;
                 $('#progress_activity').attr('max', maxProgress);
-                $('.addEvidence').css('display', 'block');
+                $('.add_evidence').css('display', 'block');
             } else {
-                $('.addEvidence').css('display', 'none');
+                $('.add_evidence').css('display', 'none');
             }
-
-            $('.evidenceReports').html(html);
             
+            $('.evidenceReports').html(html);
+
             $('#chargeEvidence').css('display', 'none');
             $('#seeReports').modal('show');
         }
     });
 }
 
-function evidences(idEvidences) {
+function deleteFile(filePath, matrix, idReport) {
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/delete_file.php',
+        data: { filePath: filePath, idReport: idReport },
+        dataType: 'json',
+        success: function(response) {
+            if (response.status === 'success') {
+                showAlert(translations.success, 'Archivo eliminado con éxito');
+                // Reload or refresh the report
+                seeReports($(`[data-matrix="${matrix}"]`)[0], matrix);
+            } else {
+                showAlert(translations.alert, 'Error al eliminar el archivo');
+            }
+        },
+        error: function(error) {
+            console.error('Error al eliminar el archivo:', error);
+            showAlert(translations.alert, 'Error al eliminar el archivo');
+        }
+    });
+}
+           
+function getFileIcon(fileName, idMatrix) {
+    const extension = fileName.split('.').pop().toLowerCase();
+    switch (extension) {
+        case 'pdf':
+            return 'assets/images/pdf-icon.png';
+        case 'doc':
+        case 'docx':
+            return 'assets/images/word-icon.png';
+        case 'ppt':
+        case 'pptx':
+            return 'assets/images/powerpoint-icon.png';
+        case 'xls':
+        case 'xlsx':
+            return 'assets/images/excel-icon.png';
+        case 'txt':
+            return 'assets/images/text-icon.png';
+        default:
+            return `assets/uploads/${idMatrix}/${fileName}`;
+    }
+}
+
+function evidences(path) {
     $('#evidencesModal').modal('show');
+
+    let html = `<img src="${path}" class="img-fluid">`;
+    $('.evidenceShow').html(html);
+
     $('#seeReports').modal('hide');
+
+    $('.return').on('click', function(){
+        $('#evidencesModal').modal('hide');
+        $('#seeReports').modal('show');
+    });
 }
 
 $('#teamSelectEdit').on('change', function() {
@@ -310,7 +436,7 @@ function saveEvidence() {
         formData.append('others[]', file);
     });
 
-    if (progress != '' || description != '') {
+    if (progress !== '' || description !== '') {
         $.ajax({
             type: 'POST',
             url: 'controller/ajax/upload_evidence.php', // Cambia esta URL a tu ruta de carga
@@ -318,44 +444,79 @@ function saveEvidence() {
             contentType: false,
             processData: false,
             success: function(response) {
-                progress = parseFloat(progress);
-                maxProgress = parseFloat(maxProgress);
-                
-                totalProgress = $('.totalProgress0'+activitySelected).html()
-                totalProgress = parseFloat(totalProgress) + progress;
-                if (totalProgress > parseFloat(goal)) {
-                    console.log($('.totalProgress0'+activitySelected).html(), parseFloat(goal));
-                    progress = parseFloat(goal) - parseFloat($('.totalProgress0'+activitySelected).html());
-                    $('.totalProgress0'+activitySelected).html(goal);
+                if (response.status === 'success') {
+                    progress = parseFloat(progress);
+                    maxProgress = parseFloat(maxProgress);
+                    
+                    let totalProgress = $('.totalProgress0' + activitySelected).html();
+                    totalProgress = parseFloat(totalProgress) + progress;
+                    if (totalProgress > parseFloat(goal)) {
+                        progress = parseFloat(goal) - parseFloat($('.totalProgress0' + activitySelected).html());
+                        $('.totalProgress0' + activitySelected).html(goal);
+                    } else {
+                        $('.totalProgress0' + activitySelected).html(totalProgress);
+                    }
+
+                    let html = `
+                        <div class="row row-body ml-1">
+                            <div class="col-4">${description}</div>
+                            <div class="col-4">${progress}</div>
+                            <div class="col-4 evidencesLinks"></div>
+                        </div>
+                    `;
+
+                    $('.evidenceReports').append(html);
+
+                    // Llama a la función updateEvidence
+                    updateEvidence(response.uploadId, response.files);
+
+                    // Ocultar el formulario de carga después de guardar
+                    $('#chargeEvidence').css('display', 'none');
+
+                    clearForm();
+                    // window.location.reload();
                 } else {
-                    $('.totalProgress0'+activitySelected).html(totalProgress);
+                    console.error('Error al guardar la evidencia:', response.message);
+                    showAlert(translations.alert, translations.uploadEvidenceError);
                 }
-
-                html = `
-                    <div class="row row-body ml-1">
-                        <div class="col-4">${description}</div>
-                        <div class="col-4">${progress}</div>
-                        <div class="col-4 evidencesLinks"></div>
-                    </div>
-                `;
-
-                $('.evidenceReports').append(html);
-
-                // Ocultar el formulario de carga después de guardar
-                $('#chargeEvidence').css('display', 'none');
-                showAlert(translations.success, translations.uploadEvidenceSuccess);
-
-                clearForm();
-                // window.location.reload();
             },
             error: function(error) {
                 console.error('Error al guardar la evidencia:', error);
+                showAlert(translations.alert, translations.uploadEvidenceError);
             }
         });
     } else {
         showAlert(translations.alert, translations.uploadEvidenceError);
     }
 }
+
+function updateEvidence(uploadId, files) {
+    
+    console.log('Actualizar evidencia con ID:', uploadId, 'y archivos:', files);
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/update_evidence.php',
+        data: {
+            uploadId: uploadId,
+            files: JSON.stringify(files)
+        },
+        dataType: 'json',
+        success: function(response) {
+            if (response.status === 'success') {
+                console.log('Evidence updated successfully:', response.message);
+                showAlert2(translations.success, translations.uploadEvidenceSuccess);
+            } else {
+                console.error('Error updating evidence:', response.message);
+                showAlert(translations.alert, translations.updateEvidenceError);
+            }
+        },
+        error: function(error) {
+            console.error('Error updating evidence:', error);
+            showAlert(translations.alert, translations.updateEvidenceError);
+        }
+    });
+}
+
 
 // Función para limpiar los campos de Dropzones y inputs
 function clearForm() {
@@ -387,3 +548,75 @@ function showAlert(title, message) {
     });
 
 }
+function showAlert2(title, message) {
+    var accept = translations.accept; // Usar las traducciones cargadas
+    $('#modalLabel').text(title);
+    $('.modal-body-extra').html(message);
+    $('.modal-footer-extra').html('<button type="button" class="btn btn-success acceptError" data-bs-dismiss="modal">'+accept+'</button>');
+    $('#alertModal').modal('show');
+    $('#seeReports').modal('hide');
+
+}
+
+function editEvidence(idReport) {
+    // Realizar una solicitud AJAX para obtener los detalles del reporte
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: { getReportDetails: idReport },
+        dataType: 'json',
+        success: function(response) {
+            if (response.status === 'success') {
+                const report = response.data;
+                $('#editDescription').val(report.description);
+                $('#editProgress').val(report.progress);
+
+                // Guardar el ID del reporte en el formulario para usarlo en la actualización
+                $('#editEvidenceForm').data('reportId', idReport);
+
+                // Mostrar el modal de edición
+                $('#editEvidenceModal').modal('show');
+            } else {
+                showAlert(translations.alert, 'Error al obtener los detalles del reporte');
+            }
+        },
+        error: function(error) {
+            console.error('Error al obtener los detalles del reporte:', error);
+            showAlert(translations.alert, 'Error al obtener los detalles del reporte');
+        }
+    });
+}
+
+// Manejar la actualización del reporte cuando se envía el formulario de edición
+$('#editEvidenceForm').on('submit', function(event) {
+    event.preventDefault();
+
+    const idReport = $(this).data('reportId');
+    const description = $('#editDescription').val();
+    const progress = $('#editProgress').val();
+
+    $.ajax({
+        type: 'POST',
+        url: 'controller/ajax/ajax.form.php',
+        data: {
+            updateReport: idReport,
+            description: description,
+            progress: progress
+        },
+        dataType: 'json',
+        success: function(response) {
+            if (response.status === 'success') {
+                showAlert(translations.success, 'Reporte actualizado con éxito');
+                // Actualizar la vista de reportes
+                $('#editEvidenceModal').modal('hide');
+                seeReports($(`[data-matrix="${idReport}"]`)[0], idReport);
+            } else {
+                showAlert(translations.alert, 'Error al actualizar el reporte');
+            }
+        },
+        error: function(error) {
+            console.error('Error al actualizar el reporte:', error);
+            showAlert(translations.alert, 'Error al actualizar el reporte');
+        }
+    });
+});

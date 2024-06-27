@@ -1,3 +1,8 @@
+$(document).ready(async function () {
+    var language = $('#language').val();
+    await cargarTraducciones(language);
+});
+
 $(document).ready(function() {
     $('#teamSelectEdit').on('change', function() {
         var team = $(this).val();

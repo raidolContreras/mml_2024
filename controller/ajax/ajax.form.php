@@ -640,3 +640,29 @@ if (isset($_POST['searchReportsToMatrix'])) {
 	$result = FormsController::ctrSearchReportsToMatrix($_POST['searchReportsToMatrix']);
     echo json_encode($result);
 }
+
+if (isset($_POST['getReportDetails'])) {
+    $idReport = $_POST['getReportDetails'];
+    $report = FormsController::ctrGetReportDetails($idReport);
+
+    if ($report) {
+        echo json_encode(['status' => 'success', 'data' => $report]);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Failed to get report details']);
+    }
+    exit;
+}
+
+if (isset($_POST['updateReport'])) {
+    $idReport = $_POST['updateReport'];
+    $description = $_POST['description'];
+    $progress = $_POST['progress'];
+    $result = FormsController::ctrUpdateReport($idReport, $description, $progress);
+
+    if ($result) {
+        echo json_encode(['status' => 'success']);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Failed to update report']);
+    }
+    exit;
+}

@@ -1,3 +1,8 @@
+$(document).ready(async function () {
+    var language = $('#language').val();
+    await cargarTraducciones(language);
+});
+
 $('#addParticipantBtn').on('click', function () {
     $('#participantsModal').modal('show');
 });
