@@ -174,5 +174,7 @@
     "error_report_delete": "Error al eliminar el reporte",
 
     "structure_no_activities": "Completa la estructura del equipo para continuar con la matriz.",
-    "message_complete_tree": "Completa el árbol de problemas y objetivos antes de continuar"
+    "message_complete_tree": "Completa el árbol de problemas y objetivos antes de continuar",
+
+    "message_empty_matrix": "Completa la matriz para continuar"
 }

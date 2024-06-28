@@ -98,9 +98,37 @@ class FormsModel {
             $stmt->execute();
             $result = $stmt->fetchAll();
         } else {
-            $sql = "SELECT * FROM teams t
-                    LEFT JOIN projects p ON p.idProject = t.teams_idProject
-                    where t.status = 1";
+            $sql = "SELECT 
+                        teamName, 
+                        GREATEST(0, LEAST(100, (IFNULL(total_progress, 0) * 100.0 / IFNULL(total_goal, 1)))) AS progress_percentage,
+                        IFNULL(total_progress, 0) AS total_progress,
+                        IFNULL(total_goal, 0) AS total_goal
+                    FROM 
+                        (SELECT 
+                            t.teamName, 
+                            COALESCE(SUM(r.progress), 0) AS total_progress,
+                            COALESCE(m.total_goal, 0) AS total_goal
+                        FROM 
+                            teams t
+                        LEFT JOIN 
+                            (SELECT 
+                                s.idTeam, 
+                                SUM(m.goal) AS total_goal
+                            FROM 
+                                structures s
+                            LEFT JOIN 
+                                matrix m ON m.idStructure = s.idStructure
+                            GROUP BY 
+                                s.idTeam) m ON m.idTeam = t.idTeam
+                        LEFT JOIN 
+                            structures s2 ON s2.idTeam = t.idTeam
+                        LEFT JOIN 
+                            matrix m2 ON m2.idStructure = s2.idStructure
+                        LEFT JOIN 
+                            reports r ON r.idMatrix = m2.idMatrix
+                        GROUP BY 
+                            t.teamName) subquery;
+                    ";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();

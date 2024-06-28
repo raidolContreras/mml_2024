@@ -45,7 +45,7 @@
 
 </style>
 
-<div class="row mb-2">
+<div class="row mb-2 teamSelect">
     <div class="col-md-6 offset-md-3">
         <label for="teamSelectEdit" class="form-label teams">Select Team</label>
         <select class="form-select" id="teamSelectEdit">

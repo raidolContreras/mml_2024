@@ -10,13 +10,13 @@
                 }],
                 chart: {
                     type: 'bar',
-                    height: 300,
+                    height: 400,
                     stacked: true,
                     toolbar: {
                         show: false
                     }
                 },
-                colors: "#3a57e8",
+                colors: ["#3a57e8", "#ff8c00", "#ff4500", "#32cd32", "#8a2be2", "#ff69b4", "#00ced1", "#ffd700"], // Colores distintos para cada barra
                 plotOptions: {
                     bar: {
                         horizontal: false,
@@ -43,8 +43,8 @@
                 xaxis: {
                     categories: data.categories,
                     labels: {
-                        minHeight: 30,
-                        maxHeight: 35,
+                        minHeight: 50,
+                        maxHeight: 55,
                         style: {
                             colors: "#8A92A6",
                             fontSize: '15px',
@@ -60,11 +60,14 @@
                         text: ''
                     },
                     labels: {
-                        minWidth: 19,
-                        maxWidth: 19,
+                        minWidth: 30, // Ajusta el ancho mínimo para que las etiquetas no se corten
+                        maxWidth: 40, // Ajusta el ancho máximo si es necesario
                         style: {
                             colors: "#8A92A6",
                         },
+                        formatter: function (val) {
+                            return val + "%";
+                        }
                     }
                 },
                 fill: {
@@ -94,20 +97,13 @@
             success: function (response) {
                 // Procesar los datos para obtener las categorías y valores
                 const categories = response.map(item => item.teamName);
-                const values = response.map(item => item.active); // Suponiendo que 'active' contiene el valor que quieres graficar
+                const values = response.map(item => Math.round(item.progress_percentage * 100) / 100); // Redondear a 2 decimales
                 
                 const data = {
                     categories: categories,
                     values: values
                 };
                 initializeChart(data);
-
-                $.ajax({
-                    url: 'controller/ajax/getPromedios.php',
-                    dataType: 'json',
-                    success: function (response) {
-                    }
-                });
             },
             error: function (error) {
                 console.error('Error al obtener los datos:', error);

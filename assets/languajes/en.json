@@ -173,5 +173,7 @@
     "error_report_delete": "Error deleting report",
 
     "structure_no_activities": "Complete the team's structure to proceed with the matrix.",
-    "message_complete_tree": "Complete the problem and objective tree before continuing."
+    "message_complete_tree": "Complete the problem and objective tree before continuing.",
+
+    "message_empty_matrix": "Complete the matrix to continue"
 }

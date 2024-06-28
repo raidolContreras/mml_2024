@@ -247,13 +247,26 @@ function getFileIcon(fileName, idMatrix) {
     }
 }
 
-$('#teamSelectEdit').on('change', function() {
-    const team = $(this).val();
-    $('#idTeamSelect').val(team);
-    if (team >= 1) {
-        getMatrix(team);
+$(document).ready(async function () {
+    var language = $('#language').val();
+    await cargarTraducciones(language);
+
+    var level = $('#level').val();
+    if (level != 0) {
+        $('.teamSelect').hide();
+        var idTeam = $('#idTeam').val();
+        getMatrix(idTeam);
     } else {
-        $('.totalReports').css('display', 'none');
+        $('#teamSelectEdit').on('change', function () {
+            var team = $('#teamSelectEdit').val();
+            $('#idTeamSelect').val(team);
+
+            if (team >= 1) {
+                getMatrix(team);
+            } else {
+                $('.totalReports').css('display', 'none');
+            }
+        });
     }
 });
 
@@ -282,6 +295,9 @@ async function getMatrix(team) {
 
         for (let structure of response) {
             if (structure.idProject == project) {
+                
+                let matrixTotal = 0;
+                
                 structureSelect = false;
 
                 const product1 = structure.product1 || '';
@@ -305,32 +321,41 @@ async function getMatrix(team) {
                     for (let index = 0; index < activities.length; index++) {
                         const matrix = await getStructureMatrix(index + 1, idStructure);
                         if (matrix) {
+                            if (matrix.idMatrix != null) {
+                                matrixTotal++;
+                            }
+                            console.log(matrixTotal);
                             idMatrixArray.push({ activityNumber: index + 1, idMatrix: matrix.idMatrix });
                             numberMatrix++;
                         }
                     }
 
                     if (numberMatrix === 8) {
-                        $('.product01').html(product1);
-                        $('.product02').html(product2);
-
-                        activities.forEach((activity, index) => {
-                            const $progressElement = $(`.totalProgress0${index + 1}`);
-                            const $totalGoal = $(`.totalGoal0${index + 1}`);
-                            const $activityTable = $(`.activity0${index + 1}`);
-
-                            $activityTable.html(activity || '');
-                            idMatrixArray.forEach(data => {
-                                if (data.activityNumber === index + 1) {
-                                    const onClickAttr = `seeReports(this, ${data.idMatrix})`;
-                                    $progressElement.attr('onclick', onClickAttr);
-                                    $totalGoal.attr('onclick', onClickAttr);
-                                    $activityTable.attr('onclick', onClickAttr);
-                                }
+                        if(matrixTotal === 8) {
+                            $('.product01').html(product1);
+                            $('.product02').html(product2);
+    
+                            activities.forEach((activity, index) => {
+                                const $progressElement = $(`.totalProgress0${index + 1}`);
+                                const $totalGoal = $(`.totalGoal0${index + 1}`);
+                                const $activityTable = $(`.activity0${index + 1}`);
+    
+                                $activityTable.html(activity || '');
+                                idMatrixArray.forEach(data => {
+                                    if (data.activityNumber === index + 1) {
+                                        const onClickAttr = `seeReports(this, ${data.idMatrix})`;
+                                        $progressElement.attr('onclick', onClickAttr);
+                                        $totalGoal.attr('onclick', onClickAttr);
+                                        $activityTable.attr('onclick', onClickAttr);
+                                    }
+                                });
                             });
-                        });
-
-                        $('.totalReports').css('display', 'block');
+    
+                            $('.totalReports').css('display', 'block');
+                        } else {
+                            $('.totalReports').css('display', 'none');
+                            showAlertBootstrap2(translations.alert, translations.message_empty_matrix, 'Matriz');
+                        }
                     }
                 }
             }
