@@ -98,6 +98,14 @@ function showAlertBootstrap1(title, message, id) {
     $('#alertModal').modal('show');
 }
 
+function showAlertBootstrap2(title, message, adress) {
+    var accept = translations.accept;
+    $('#modalLabel').text(title);
+    $('.modal-body-extra').html(message);
+    $('.modal-footer-extra').html('<button type="button" class="btn btn-success" onclick="window.location.href=\''+ adress +'\'">' + accept + '</button>');
+    $('#alertModal').modal('show');
+}
+
 function logout() {
     // Realiza la solicitud Ajax para cerrar la sesión
     $.ajax({

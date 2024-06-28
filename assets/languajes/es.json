@@ -171,5 +171,8 @@
     "confirm_delete": "Confirmar eliminación",
     "confirm_delete_message": "¿Está seguro que desea eliminar el reporte?",
     "success_report_delete": "Reporte eliminado con éxito",
-    "error_report_delete": "Error al eliminar el reporte"
+    "error_report_delete": "Error al eliminar el reporte",
+
+    "structure_no_activities": "Completa la estructura del equipo para continuar con la matriz.",
+    "message_complete_tree": "Completa el árbol de problemas y objetivos antes de continuar"
 }

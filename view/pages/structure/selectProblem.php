@@ -69,8 +69,8 @@
                 <div class="card border-result shadow-sm mt-4">
                     <div class="row">
                         <div class="col-12">
-                            <div class="alert alert-danger text-center mt-3">
-                                Completa el árbol de problemas y objetivos antes de continuar
+                            <div class="alert alert-danger text-center mt-3 message_complete_tree">
+                                
                             </div>
                         </div>
                     </div>

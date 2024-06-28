@@ -12,7 +12,6 @@
 
 	.col-body {
 		font-size: 14px;
-    	padding: 20px 10px;
 	}
 
 	select.form-select {
@@ -31,6 +30,7 @@
 		-webkit-box-flex: 0.2;
     	flex: 0.2 0 0%;
 	}
+	
 </style>
 <div class="row mb-4 teamSelect">
 	<div class="col-md-6 offset-md-3">

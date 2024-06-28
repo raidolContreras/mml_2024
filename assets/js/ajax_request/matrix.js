@@ -1,31 +1,30 @@
 $(document).ready(async function () {
     var language = $('#language').val();
     await cargarTraducciones(language);
+
+    var level = $('#level').val();
+    if (level != 0) {
+        $('.teamSelect').hide();
+        var idTeam = $('#idTeam').val();
+        getMatrix(idTeam);
+    } else {
+        $('#teamSelectEdit').on('change', function () {
+            var team = $('#teamSelectEdit').val();
+            $('#idTeamSelect').val(team);
+
+            if (team >= 1) {
+                getMatrix(team);
+            } else {
+                $('.Structure').hide();
+                $('.selectStructure').hide();
+            }
+        });
+    }
 });
-
-if ($('#level').val() != 0 ) {
-    $('.teamSelect').css('display', 'none');
-    var idTeam = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
-    getMatrix(idTeam);
-} else {
-
-    $('#teamSelectEdit').on('change', function() {
-        var team = $('#teamSelectEdit').val();
-        $('#idTeamSelect').val(team);
-        
-        if (team >= 1) {
-            getMatrix(team);
-        } else {
-            $('.Structure').css('display', 'none');
-            $('.selectStructure').css('display', 'none');
-        }
-    });
-    $('.sendMatrix').on('click', sendMatrixData);
-    
-}
 
 let activities = Array(8).fill('');
 let idStructure = 0;
+var activityNumber;
 
 function getMatrix(team) {
     $.ajax({
@@ -33,14 +32,10 @@ function getMatrix(team) {
         url: 'controller/ajax/ajax.form.php',
         data: { structureSelect: team },
         dataType: 'json',
-        success: function(data) {
-            if ($('#level').val() != 0) {
-
-            }else {
-                if (!data || Object.keys(data).length === 0) {
-                    $('.matrix').hide();
-                    return;
-                }
+        success: function (data) {
+            if (!data || Object.keys(data).length === 0) {
+                $('.matrix').hide();
+                return;
             }
 
             let project = $('#project').val();
@@ -53,7 +48,7 @@ function getMatrix(team) {
 
                     let product1 = structure.product1 || '';
                     let product2 = structure.product2 || '';
-                    
+
                     activities = [
                         structure.activity1,
                         structure.activity2,
@@ -82,6 +77,9 @@ function getMatrix(team) {
                             $('.activity0' + (index + 1)).html(activity || '');
                         });
                         $('.matrix').show();
+                    } else {
+                        $('.matrix').hide();
+                        showAlertBootstrap2(translations.alert, translations.structure_no_activities, 'Structure');
                     }
                 }
             });
@@ -90,11 +88,13 @@ function getMatrix(team) {
                 $('.matrix').hide();
             }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
             console.log("Error en la solicitud AJAX:", textStatus, errorThrown);
         }
     });
 }
+
+$('.sendMatrix').on('click', sendMatrixData);
 
 function sendMatrixData() {
     let formData = {
@@ -115,15 +115,15 @@ function sendMatrixData() {
             others: $('#others').is(':checked')
         },
         idMatrix: $('#idMatrix').val(),
-        idStructure: $('#idStructure').val(),
-        activity: $('#activityNumber').val()
+        idStructure: idStructure,
+        activity: activityNumber
     };
 
     $.ajax({
         type: "POST",
         url: "controller/ajax/ajax.form.php",
         data: formData,
-        success: function(response) {
+        success: function (response) {
             $('#editMatriz').modal('hide');
             if (response === 'ok') {
                 showAlertBootstrap(translations.success, 'Matriz agregada');
@@ -134,7 +134,7 @@ function sendMatrixData() {
             }
             getStructureMatrix(formData.activity, formData.idStructure);
         },
-        error: function(error) {
+        error: function (error) {
             console.error('Error sending data', error);
         }
     });
@@ -149,7 +149,7 @@ function getStructureMatrix(activity, structure) {
             searchStructureMatrix: structure
         },
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             if (data) {
                 $('#narrative-summary-' + activity).html(data.description);
                 let activeElements = [];
@@ -162,13 +162,15 @@ function getStructureMatrix(activity, structure) {
                 if (data.others == 1) activeElements.push(translations.Others);
 
                 let html = "<ul style='list-style-type: none; padding-left: 0;'>" + activeElements.map(el => `<li>${el}</li>`).join('') + "</ul>";
-                
+
                 $('#goal-' + activity).html(data.goal);
                 $('#risk-' + activity).html(data.risks);
                 $('#init-date-' + activity).html(data.start_date);
                 $('#end-date-' + activity).html(data.end_date);
                 $('#verification-sources-' + activity).html(html);
-                $('#indicator-' + activity).html(`${translations.Number_of} ${data.indicator_activity} ${translations.that} ${data.how}`);
+                if (data.indicator_activity != null){
+                    $('#indicator-' + activity).html(`${translations.Number_of} ${data.indicator_activity} ${translations.that} ${data.how}`);
+                }
             }
         }
     });
@@ -183,7 +185,7 @@ function getMatrixToEdit(activity, structure) {
             searchStructureMatrix: structure
         },
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             if (data) {
                 updateFormFields(data);
             } else {
@@ -194,6 +196,7 @@ function getMatrixToEdit(activity, structure) {
 }
 
 function updateFormFields(data) {
+    console.log(data);
     const fields = {
         description: data.description,
         startDate: data.start_date,
@@ -203,9 +206,7 @@ function updateFormFields(data) {
         how: data.how,
         What_goal_activity: data.goal,
         risks: data.risks,
-        idMatrix: data.idMatrix,
-        idStructure: data.idStructure,
-        activityNumber: data.activity
+        idMatrix: data.idMatrix
     };
 
     Object.keys(fields).forEach(field => {
@@ -239,6 +240,7 @@ function editMatriz(matriz) {
     $('#editMatriz').modal('show');
     $('#editMatrizLabel').text(activities[matriz - 1]);
     console.log(activities[matriz - 1]);
-    $('#activityNumber').val(matriz);
+    activityNumber = matriz;
+    $('#activityNumber').val(activityNumber);
     getMatrixToEdit(matriz, idStructure);
 }

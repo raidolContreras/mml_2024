@@ -1,11 +1,11 @@
+var team = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
+
 if ($('#level').val() != 0 ) {
     $('.teamSelect').css('display', 'none');
-    var idTeam = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
-    structureSelect(idTeam);
+    structureSelect(team);
 } else {
 
     $('#teamSelectEdit').on('change', function() {
-        var team = $('#teamSelectEdit').val();
         $('#idTeamSelect').val(team);
         
         if (team >= 1) {
@@ -125,9 +125,8 @@ function LoadTreeData(idTeam, idProject) {
 
                 if (!isComplete) {
                     $('.selectStructure').hide();
-                    $('.completeTree').show();
+                    showAlertBootstrap2(translations.alert, translations.message_complete_tree, 'Trees');
                 } else {
-                    $('.completeTree').hide();
                     $('.selectStructure').show();
                 }
             } else {
@@ -231,8 +230,7 @@ $('#editButton').on('click', function() {
                 $('#editModal').modal('hide');
                 $('#value').val('');
                 showAlertBootstrap(translations.success, translations.update_Structure_Alert);
-                var idTeam = $('#teamSelectEdit').val();
-                structureSelect(idTeam)
+                structureSelect(team)
             }
         }
     });
