@@ -174,8 +174,7 @@ $('.send_Selections_btn').on('click', function() {
     $('.form-check-input:checked').each(function() {
         selectedOptions.push($(this).attr('id'));
     });
-
-    var team = $('#teamSelectEdit').val();
+    var team = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
     var idMainProblems = $('#mainProblems').val();
 
     $.ajax({

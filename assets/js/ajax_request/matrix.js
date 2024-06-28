@@ -3,19 +3,26 @@ $(document).ready(async function () {
     await cargarTraducciones(language);
 });
 
-$(document).ready(function() {
+if ($('#level').val() != 0 ) {
+    $('.teamSelect').css('display', 'none');
+    var idTeam = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
+    getMatrix(idTeam);
+} else {
+
     $('#teamSelectEdit').on('change', function() {
-        var team = $(this).val();
+        var team = $('#teamSelectEdit').val();
         $('#idTeamSelect').val(team);
+        
         if (team >= 1) {
             getMatrix(team);
         } else {
-            $('.matrix').hide();
+            $('.Structure').css('display', 'none');
+            $('.selectStructure').css('display', 'none');
         }
     });
-
     $('.sendMatrix').on('click', sendMatrixData);
-});
+    
+}
 
 let activities = Array(8).fill('');
 let idStructure = 0;
@@ -27,9 +34,13 @@ function getMatrix(team) {
         data: { structureSelect: team },
         dataType: 'json',
         success: function(data) {
-            if (!data || Object.keys(data).length === 0) {
-                $('.matrix').hide();
-                return;
+            if ($('#level').val() != 0) {
+
+            }else {
+                if (!data || Object.keys(data).length === 0) {
+                    $('.matrix').hide();
+                    return;
+                }
             }
 
             let project = $('#project').val();

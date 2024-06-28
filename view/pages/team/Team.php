@@ -5,7 +5,12 @@
         include "teacherTeam.php";
     }
 ?>
-
+<style>
+    .col-5{
+        
+    font-size: 0.8rem;
+    }
+</style>
 <div class="modal fade" id="editParticipantsModal" tabindex="-1" aria-labelledby="editParticipantsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

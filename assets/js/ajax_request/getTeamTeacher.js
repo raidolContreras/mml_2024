@@ -23,8 +23,8 @@ function participants(idTeam) {
                     html +=`<div class="participant mb-2">
                                 <div class="row">
                                     <div class="col-4 font-weight-bold">${participant.firstnameParticipant} ${participant.lastnameParticipant}:</div>
-                                    <div class="col-6">${participant.emailParticipant}</div>
-                                    <div class="col-2 btn-group" role="group">
+                                    <div class="col-5">${participant.emailParticipant}</div>
+                                    <div class="col-3 btn-group" role="group">
                                         <button type="button" class="btn btn-primary btn-sm" onClick='editParticipant(${participant.idparticipant})'>
                                             <i class="fa-solid fa-user-pen"></i>
                                         </button>

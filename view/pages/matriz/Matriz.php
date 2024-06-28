@@ -32,7 +32,7 @@
     	flex: 0.2 0 0%;
 	}
 </style>
-<div class="row mb-4">
+<div class="row mb-4 teamSelect">
 	<div class="col-md-6 offset-md-3">
 		<label for="teamSelectEdit" class="form-label">Select Team</label>
 		<select class="form-select" id="teamSelectEdit"></select>
