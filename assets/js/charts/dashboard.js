@@ -92,7 +92,10 @@
         
         // Realiza la llamada AJAX para obtener los datos
         $.ajax({
-            url: 'controller/ajax/getTeams.php',
+            url: 'controller/ajax/getPromedios.php',
+            data: {
+                idProject: $('#project').val()
+            },
             dataType: 'json',
             success: function (response) {
                 // Procesar los datos para obtener las categorías y valores

@@ -98,7 +98,22 @@ class FormsModel {
             $stmt->execute();
             $result = $stmt->fetchAll();
         } else {
-            $sql = "SELECT 
+            $sql = "SELECT * FROM teams t
+                    LEFT JOIN projects p ON p.idProject = t.teams_idProject
+                    where t.status = 1
+                    ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlGetPromedios($idProject) {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT 
                         teamName, 
                         GREATEST(0, LEAST(100, (IFNULL(total_progress, 0) * 100.0 / IFNULL(total_goal, 1)))) AS progress_percentage,
                         IFNULL(total_progress, 0) AS total_progress,
@@ -126,13 +141,13 @@ class FormsModel {
                             matrix m2 ON m2.idStructure = s2.idStructure
                         LEFT JOIN 
                             reports r ON r.idMatrix = m2.idMatrix
+                        WHERE t.teams_idProject = :idProject
                         GROUP BY 
-                            t.teamName) subquery;
-                    ";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetchAll();
-        }
+                            t.teamName) subquery;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idProject', $idProject, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch();
         $stmt->closeCursor();
         $stmt = null;
         return $result;
@@ -948,14 +963,6 @@ class FormsModel {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idReport', $idReport, PDO::PARAM_INT);
         return $stmt->execute();
-    }
-    
-    static public function mdlGetPromedios(){
-        $pdo = Conexion::conectar();
-        $sql = "SELECT AVG(progress) as promedio FROM reports";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC)['promedio'];
     }
 
 }

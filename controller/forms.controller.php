@@ -241,8 +241,8 @@ class FormsController {
         return FormsModel::mdlDeleteReport($idReport);
     }
     
-    public static function ctrGetPromedios() {
-        return FormsModel::mdlGetPromedios();
+    public static function ctrGetPromedios($idProject) {
+        return FormsModel::mdlGetPromedios($idProject);
     }
 
 }

@@ -225,20 +225,19 @@ function loadTeamsData(idteam) {
     $.ajax({
         type: "POST",
         url: "controller/ajax/getTeams.php",
+        data:{
+            team: $('#idTeam').val()
+        },
         dataType: "json",
-        success: function (teams) {
+        success: function (team) {
             var mentorName = $('#name').val();
             var mentorEmail = $('#email').val();
             try {
-                teams.forEach(function(team) {
-                    if (team.idTeam == idteam) {
-                        teamName = team.teamName;
-                        teamSchool = team.teamSchool;
-                        teamState = team.teamState;
-                        identifiedProblem = team.identifiedProblem;
-                        mainObjective = team.mainObjective;
-                    }
-                });
+                teamName = team.teamName;
+                teamSchool = team.teamSchool;
+                teamState = team.teamState;
+                identifiedProblem = team.identifiedProblem;
+                mainObjective = team.mainObjective;
                 $("#mentorName").html(mentorName);
                 $("#mentorEmail").html(mentorEmail);
                 $("#teamName").html(teamName);

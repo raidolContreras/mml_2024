@@ -95,7 +95,6 @@ function seeReports(element, matrix) {
                                     </div>`;
                             });
 
-                            console.log(reports);
                             if (reports.videos && reports.videos.trim() !== '') {
                                 html += `
                                     <div class="file-item btn-group row" style="align-items: center;">
@@ -324,7 +323,6 @@ async function getMatrix(team) {
                             if (matrix.idMatrix != null) {
                                 matrixTotal++;
                             }
-                            console.log(matrixTotal);
                             idMatrixArray.push({ activityNumber: index + 1, idMatrix: matrix.idMatrix });
                             numberMatrix++;
                         }
@@ -443,7 +441,7 @@ const initDropzone = (selector, acceptedFiles) => {
             });
 
             this.on("sending", function(file, xhr, formData) {
-                var team = $('#teamSelectEdit').val();
+                var team = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
                 formData.append("team", team); // Add team parameter to formData
             });
 
@@ -549,7 +547,6 @@ function saveEvidence() {
 
 function updateEvidence(uploadId, files) {
     
-    console.log('Actualizar evidencia con ID:', uploadId, 'y archivos:', files);
     $.ajax({
         type: 'POST',
         url: 'controller/ajax/update_evidence.php',
@@ -560,7 +557,6 @@ function updateEvidence(uploadId, files) {
         dataType: 'json',
         success: function(response) {
             if (response.status === 'success') {
-                console.log('Evidence updated successfully:', response.message);
                 showAlert2(translations.success, translations.uploadEvidenceSuccess);
             } else {
                 console.error('Error updating evidence:', response.message);
@@ -607,8 +603,7 @@ function showAlert(title, message) {
 
 function showAlert2(title, message) {
     
-    let team = $('#teamSelectEdit').val();
-    console.log(team);
+    var team = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
     getMatrix(team);
 
     var accept = translations.accept; // Usar las traducciones cargadas
@@ -622,8 +617,7 @@ function showAlert2(title, message) {
 
 function showAlert3(title, message) {
     
-    let team = $('#teamSelectEdit').val();
-    console.log(team);
+    var team = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
     getMatrix(team);
 
     var accept = translations.accept; // Usar las traducciones cargadas
@@ -712,7 +706,7 @@ function deleteEvidence(idReport) {
             success: function(response) {
                 if (response.status === 'success') {
 
-                    let team = $('#teamSelectEdit').val();
+                    var team = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
                     getMatrix(team);
 
                     showAlert(translations.success, translations.success_report_delete);
