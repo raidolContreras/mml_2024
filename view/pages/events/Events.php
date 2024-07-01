@@ -78,9 +78,9 @@
         </div>
     </div>
     <div class="row">
-        <div id="eventDropzone" class="dropzone col-5 ml-2" style="display: none;"></div>
+        <div id="eventDropzone" class="dropzone col-6 ml-2" style="display: none;"></div>
 
-        <div class="col-2 or">ó</div>
+        <div class="col or">ó</div>
 
         <div id="videoUploadContainer" style="display: none;" class="mt-4 col-5">
             <input type="text" id="videoLink" placeholder="Enter YouTube video link" class="form-control mb-2" />
