@@ -431,10 +431,10 @@ const initDropzone = (selector, acceptedFiles) => {
         maxFilesize: 1, // MB
         acceptedFiles: acceptedFiles, // Tipos de archivos permitidos
         addRemoveLinks: true,
-        dictDefaultMessage: translations.DragAndDropFileHereOrClickToSelectOne+' <p class="subtitulo-sup">'+translations.AllowedFileTypes+ acceptedFiles + ' ('+translations.MaxSize+' 1 MB)</p>',
+        dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos: ' + acceptedFiles + ' (Tamaño máximo 1 MB)</p>',
         autoProcessQueue: false,
-        dictInvalidFileType: translations.FileNotAllowedPleaseUploadA,
-        dictFileTooBig: translations.FileIsTooLarge,
+        dictInvalidFileType: "Archivo no permitido. Por favor, sube un archivo en formato permitido.",
+        dictFileTooBig: "El archivo es demasiado grande ({{filesize}}MB). Tamaño máximo permitido: {{maxFilesize}}MB.",
         init: function() {
             this.on("addedfile", function(file) {
                 var removeButton = Dropzone.createElement('<button class="rounded-button">&times;</button>');
