@@ -30,6 +30,29 @@ if(isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
     }
 }
 
+if(isset($_POST['emailLoginStudent']) && isset($_POST['passwordLoginStudent'])) {
+    $email = $_POST['emailLoginStudent'];
+    $password = $_POST['passwordLoginStudent'];
+    $result = FormsController::ctrLoginParticipant($email, $password);
+    if($result != 'Error: Password incorrect' && $result != 'Error: Email does not contain'){
+        if ($result['sesion'] == 'ok') {
+            $_SESSION['sesion'] = $result['sesion'];
+            $_SESSION['idTeam'] = $result['idTeam'];
+            $_SESSION['idParticipant'] = $result['idParticipant'];
+            $_SESSION['firstnameParticipant'] = $result['firstnameParticipant'];
+            $_SESSION['lastnameParticipant'] = $result['lastnameParticipant'];
+            $_SESSION['emailParticipant'] = $result['emailParticipant'];
+            $_SESSION['logged'] = true;
+        }
+        echo $result['sesion'];
+    } elseif($result == 'Error: Password incorrect'){
+        echo 'Error: Password incorrect';
+    } else {
+        echo 'Error: Email does not contain';
+    }
+}
+
+
 if (isset($_POST['language']) && isset($_POST['user'])) {
     $result = FormsController::ctrChangeLanguage($_POST['language'], $_POST['user']);
     if ($result == 'ok') {

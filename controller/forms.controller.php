@@ -22,6 +22,22 @@ class FormsController {
         }
     }
 
+    public static function ctrLoginParticipant($email, $password) {
+        $table = "participants";
+        $result = FormsModel::mdlLoginParticipant($table, $email);
+
+        if($result != null) {
+            if(password_verify($password, $result["password"])) {
+                $result["sesion"] = "ok";
+                return $result;
+            } else {
+                return "Error: Password incorrect";
+            }
+        } else {
+            return "Error: Email does not contain";
+        }
+    }
+
     static public function ctrGetUsers($item, $value){
         return FormsModel::mdlGetUsers($item, $value);
     }

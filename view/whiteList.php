@@ -71,6 +71,8 @@
             include "error404.php";
         }
 
+    } elseif($pagina == 'participant_login') {
+        include "view/pages/login/participant_login.php";
     } elseif($pagina == 'Login') {
         include "view/pages/login/Login.php";
     } else {

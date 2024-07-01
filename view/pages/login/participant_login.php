@@ -38,7 +38,10 @@
     
       <div class="wrapper">
       <section class="login-content">
-         <div class="row m-0 align-items-center bg-white vh-100">            
+         <div class="row m-0 align-items-center bg-white vh-100">     
+            <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
+               <img src="assets/images/dashboard/login.webp" class="img-fluid gradient-main animated-scaleX" alt="images">
+            </div>       
             <div class="col-md-6">
                <div class="row justify-content-center">
                   <div class="col-md-10">
@@ -60,7 +63,7 @@
                               <!--logo End-->
                               <h4 class="logo-title ms-3">Radix</h4>
                            </a>
-                           <h2 class="mb-2 text-center">Sign In</h2>
+                           <h2 class="mb-2 text-center">Student access</h2>
                            <p class="text-center">Login to stay connected.</p>
                            <form class="account-wrap">
                               <div class="row">
@@ -81,7 +84,7 @@
                                        <input type="checkbox" class="form-check-input" id="customCheck1">
                                        <label class="form-check-label" for="customCheck1">Remember Me</label>
                                     </div>
-                                    <a href="participant_login">Student access</a>
+                                    <a href="Login">Access principal</a>
                                  </div>
                               </div>
                               <div class="d-flex justify-content-center">
@@ -95,9 +98,6 @@
                <div class="sign-bg">
                   <img class="logo-edradix" src="assets/images/logo.png" alt="logo Edradix">
                </div>
-            </div>
-            <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
-               <img src="assets/images/dashboard/login.webp" class="img-fluid gradient-main animated-scaleX" alt="images">
             </div>
          </div>
       </section>
@@ -125,4 +125,4 @@
     <script src="assets/js/plugins/form-wizard.js"></script>
     
     
-    <script src="assets/js/ajax_request/login.js"></script>
+    <script src="assets/js/ajax_request/participant_login.js"></script>

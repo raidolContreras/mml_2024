@@ -32,7 +32,14 @@ class FormsModel {
         $stmt->closeCursor();
         $stmt = null;
         return $result;
-    }    
+    }
+
+    public static function mdlLoginParticipant($table, $email) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table WHERE emailParticipant = :email");
+        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch();
+    } 
 
     static public function mdlChangeLanguage($language, $idUser){
         $pdo = Conexion::conectar();
