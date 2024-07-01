@@ -104,7 +104,14 @@ function reduceImageSize($filePath)
                 error_log("Failed to create image from PNG: " . $filePath);
                 return false;
             }
-            $result = imagepng($image, $filePath, 9); // 0 (sin compresión) a 9
+            $bg = imagecreatetruecolor(imagesx($image), imagesy($image));
+            imagealphablending($bg, false);
+            imagesavealpha($bg, true);
+            $transparent = imagecolorallocatealpha($bg, 0, 0, 0, 127);
+            imagefilledrectangle($bg, 0, 0, imagesx($image), imagesy($image), $transparent);
+            imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
+            $result = imagepng($bg, $filePath, 9); // 0 (sin compresión) a 9 (máxima compresión)
+            imagedestroy($bg);
             break;
 
         case 'image/gif':
