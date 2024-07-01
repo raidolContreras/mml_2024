@@ -1006,13 +1006,21 @@ class FormsModel {
         return false;
     }
 
-    public static function mdlGetReportDetails($idReport) {
+    public static function mdlGetReportDetails($idReport, $idMatrix) {
         $pdo = Conexion::conectar();
-        $sql = "SELECT * FROM reports WHERE idReport = :idReport";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':idReport', $idReport, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($idMatrix == null){
+            $sql = "SELECT * FROM reports WHERE idReport = :idReport";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':idReport', $idReport, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } else {
+            $sql = "SELECT progress FROM reports WHERE idMatrix = :idMatrix";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':idMatrix', $idMatrix, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
     
     public static function mdlUpdateReport($idReport, $description, $progress) {

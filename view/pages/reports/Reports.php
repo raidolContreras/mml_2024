@@ -207,3 +207,6 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="totalProgressAccepted">
+<input type="hidden" id="lastEditProgress">
+<input type="hidden" id="idMatrix">

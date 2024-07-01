@@ -643,6 +643,8 @@ function editEvidence(idReport) {
                 const report = response.data;
                 $('#editDescription').val(report.description);
                 $('#editProgress').val(report.progress);
+                $('#lastEditProgress').val(report.progress);
+                $('#idMatrix').val(report.idMatrix);
                 // Guardar el ID del reporte en el formulario para usarlo en la actualización
                 $('#editEvidenceForm').data('reportId', idReport);
                 // Mostrar el modal de edición
@@ -665,6 +667,8 @@ $('#editEvidenceForm').on('submit', function(event) {
     const idReport = $(this).data('reportId');
     const description = $('#editDescription').val();
     const progress = $('#editProgress').val();
+    const lastEditProgress = $('#lastEditProgress').val();
+    const idMatrix = $('#idMatrix').val();
 
     $.ajax({
         type: 'POST',
@@ -672,7 +676,9 @@ $('#editEvidenceForm').on('submit', function(event) {
         data: {
             updateReport: idReport,
             description: description,
-            progress: progress
+            progress: progress,
+            lastEditProgress: lastEditProgress,
+            idMatrixUpdate: idMatrix
         },
         dataType: 'json',
         success: function(response) {

@@ -795,7 +795,7 @@ if (isset($_POST['searchReportsToMatrix'])) {
 
 if (isset($_POST['getReportDetails'])) {
     $idReport = $_POST['getReportDetails'];
-    $report = FormsController::ctrGetReportDetails($idReport);
+    $report = FormsController::ctrGetReportDetails($idReport, null);
 
     if ($report) {
         echo json_encode(['status' => 'success', 'data' => $report]);
@@ -808,7 +808,28 @@ if (isset($_POST['getReportDetails'])) {
 if (isset($_POST['updateReport'])) {
     $idReport = $_POST['updateReport'];
     $description = $_POST['description'];
+
     $progress = $_POST['progress'];
+	$lastEditProgress = $_POST['lastEditProgress'];
+	$idMatrix = $_POST['idMatrixUpdate'];
+	$sumProgress = 0;
+
+    $reports = FormsController::ctrGetReportDetails(null, $idMatrix);
+
+	foreach ($reports as $report){
+		$sumProgress += $report['progress'];
+	}
+
+	$sumProgress -= $lastEditProgress;
+
+	$matrix = FormsModel::mdlSelectMatrix($idMatrix);
+
+	if ($progress > $matrix['goal']){
+		$progress = $matrix['goal'] - $sumProgress;
+	} else if ($progress < $matrix['goal'] && $progress > ($matrix['goal'] - $sumProgress)){
+		$progress = $matrix['goal'] - $sumProgress;
+	}
+	
     $result = FormsController::ctrUpdateReport($idReport, $description, $progress);
 
     if ($result) {

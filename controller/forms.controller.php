@@ -263,8 +263,8 @@ class FormsController {
         return $response;
     }
 
-    public static function ctrGetReportDetails($idReport) {
-        return FormsModel::mdlGetReportDetails($idReport);
+    public static function ctrGetReportDetails($idReport, $idMatrix) {
+        return FormsModel::mdlGetReportDetails($idReport, $idMatrix);
     }
     
     public static function ctrUpdateReport($idReport, $description, $progress) {
