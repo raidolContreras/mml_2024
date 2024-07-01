@@ -6,6 +6,7 @@ if ($('#level').val() != 0 ) {
 } else {
 
     $('#teamSelectEdit').on('change', function() {
+        team = $('#teamSelectEdit').val();
         $('#idTeamSelect').val(team);
         
         if (team >= 1) {
