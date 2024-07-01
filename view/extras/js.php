@@ -79,6 +79,8 @@
         echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
         echo '<script src="assets/js/ajax_request/events.js"></script>';
         echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
+    } elseif($pagina == 'Summary') {
+        echo '<script src="assets/js/ajax_request/summary.js"></script>';
     } 
     include 'view/extras/language.php';
 ?>

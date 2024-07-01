@@ -1,3 +1,9 @@
+
+$(document).ready(async function () {
+    var language = $('#language').val();
+    await cargarTraducciones(language);
+});
+
 var progress = 0;
 var maxProgress = 0;
 var seeReport;
@@ -418,6 +424,7 @@ function getStructureMatrix(activity, structure) {
 Dropzone.autoDiscover = false;
 
 const initDropzone = (selector, acceptedFiles) => {
+    
     return new Dropzone(selector, {
         url: 'controller/ajax/upload_evidence.php', // URL predeterminada para la carga
         maxFiles: 5,

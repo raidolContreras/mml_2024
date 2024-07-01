@@ -1041,4 +1041,12 @@ class FormsModel {
         return $stmt->execute();
     }
 
+    public static function mdlGetReports() {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT * FROM reports";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
