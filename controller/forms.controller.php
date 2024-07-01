@@ -23,11 +23,10 @@ class FormsController {
     }
 
     public static function ctrLoginParticipant($email, $password) {
-        $table = "participants";
-        $result = FormsModel::mdlLoginParticipant($table, $email);
-
+        $result = FormsModel::mdlLoginParticipant($email);
         if($result != null) {
-            if(password_verify($password, $result["password"])) {
+            $cryptPassword = crypt($password, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+            if($cryptPassword == $result["password"]) {
                 $result["sesion"] = "ok";
                 return $result;
             } else {
@@ -44,6 +43,11 @@ class FormsController {
 
     static public function ctrChangeLanguage($language, $idUser){
         $response = FormsModel::mdlChangeLanguage($language, $idUser);
+        return $response;
+    }
+
+    static public function ctrChangeLanguageParticipant($language, $idUser){
+        $response = FormsModel::mdlChangeLanguageParticipant($language, $idUser);
         return $response;
     }
 

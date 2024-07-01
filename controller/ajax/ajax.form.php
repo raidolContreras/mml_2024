@@ -35,13 +35,17 @@ if(isset($_POST['emailLoginStudent']) && isset($_POST['passwordLoginStudent'])) 
     $password = $_POST['passwordLoginStudent'];
     $result = FormsController::ctrLoginParticipant($email, $password);
     if($result != 'Error: Password incorrect' && $result != 'Error: Email does not contain'){
+		$team = FormsController::ctrGetTeams('idTeam', $result['idTeam'], null);
         if ($result['sesion'] == 'ok') {
             $_SESSION['sesion'] = $result['sesion'];
+			$_SESSION['idProject'] = $team['teams_idProject'];
             $_SESSION['idTeam'] = $result['idTeam'];
-            $_SESSION['idParticipant'] = $result['idParticipant'];
-            $_SESSION['firstnameParticipant'] = $result['firstnameParticipant'];
-            $_SESSION['lastnameParticipant'] = $result['lastnameParticipant'];
-            $_SESSION['emailParticipant'] = $result['emailParticipant'];
+            $_SESSION['idUser'] = $result['idparticipant'];
+            $_SESSION['firstname'] = $result['firstnameParticipant'];
+            $_SESSION['lastname'] = $result['lastnameParticipant'];
+            $_SESSION['email'] = $result['emailParticipant'];
+			$_SESSION['level'] = 2;
+			$_SESSION['language'] = $result['language'];
             $_SESSION['logged'] = true;
         }
         echo $result['sesion'];
@@ -55,6 +59,14 @@ if(isset($_POST['emailLoginStudent']) && isset($_POST['passwordLoginStudent'])) 
 
 if (isset($_POST['language']) && isset($_POST['user'])) {
     $result = FormsController::ctrChangeLanguage($_POST['language'], $_POST['user']);
+    if ($result == 'ok') {
+        $_SESSION['language'] = $_POST['language'];
+    }
+    echo $result;
+}
+
+if (isset($_POST['language']) && isset($_POST['userParticipant'])) {
+    $result = FormsController::ctrChangeLanguageParticipant($_POST['language'], $_POST['userParticipant']);
     if ($result == 'ok') {
         $_SESSION['language'] = $_POST['language'];
     }

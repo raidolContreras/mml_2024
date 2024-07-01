@@ -55,7 +55,9 @@
 						<?php if ($_SESSION['level'] == 0):?>
 							<li class="nav-item"><a class="nav-link" href="Admin" id="admin"> </a></li>
 						<?php endif ?>
-						<li class="nav-item"><a class="nav-link" href="Team" id="team"> </a></li>
+						<?php if ($_SESSION['level'] != 2):?>
+							<li class="nav-item"><a class="nav-link" href="Team" id="team"> </a></li>
+						<?php endif ?>
 						<li class="nav-item"><a class="nav-link" href="Trees" id="trees"> </a></li>
 						<li class="nav-item"><a class="nav-link" href="Structure" id="structure"> </a></li>
 						<li class="nav-item"><a class="nav-link" href="Matriz" id="matriz"> </a></li>
@@ -84,12 +86,20 @@
 							<div class="card shadow-none m-0 border-0">
 								<div class=" p-0 ">
 									<ul class="list-group list-group-flush">
-										<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguage(1)">
+											<?php if ($_SESSION['level'] != 2):?>
+												<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguage(1)">
+											<?php else:?>
+												<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguageParticipants(1)">
+											<?php endif ?>
 											<a class="p-0" href="#">
 												<img src="assets/images/Flag/flag-03.png" alt="img-flag" class="img-fluid m-2" style="width: 15px;height: 15px;min-width: 15px;" />Español
 											</a>
 										</li>
-										<li class="iq-sub-card list-group-item" id="english" onclick="changeLanguage(2)">
+											<?php if ($_SESSION['level'] != 2):?>
+												<li class="iq-sub-card list-group-item" id="english" onclick="changeLanguage(2)">
+											<?php else:?>
+												<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguageParticipants(2)">
+											<?php endif ?>
 											<a class="p-0" href="#">
 												<img src="assets/images/Flag/flag001.png" alt="img-flag" class="img-fluid m-2" style="width: 15px;height: 15px;min-width: 15px;" />English
 											</a>

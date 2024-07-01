@@ -22,7 +22,7 @@ async function cargarTraducciones(idioma) {
 }
 
 // Uso
-cargarTraducciones('<?php echo $_SESSION['language']; ?>').then(() => {
+cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['language'] : 'en'; ?>').then(() => {
     // Ahora puedes usar las traducciones en cualquier lugar de tu código
     $('#dashboard').html(translations.dashboard);
     $('#team').html(translations.team);
@@ -228,7 +228,7 @@ function changeLanguage(language) {
     $.ajax({
         type: "POST",
 		url: "controller/ajax/ajax.form.php",
-        data: {language: language, user: <?php echo $_SESSION['idUser'] ?>},
+        data: {language: language, user: <?php echo (isset($_SESSION['idUser'])) ? $_SESSION['idUser'] : '1' ?>},
         success: function(response) {
             if (response == 'ok'){
                 window.location.reload();
@@ -236,6 +236,25 @@ function changeLanguage(language) {
         }
     });
 }
+
+function changeLanguageParticipants(language) {
+    if (language == 1) {
+        language = 'es';
+    } else {
+        language = 'en';
+    }
+    $.ajax({
+        type: "POST",
+		url: "controller/ajax/ajax.form.php",
+        data: {language: language, userParticipant: <?php echo (isset($_SESSION['idUser'])) ? $_SESSION['idUser'] : '1' ?>},
+        success: function(response) {
+            if (response == 'ok'){
+                window.location.reload();
+            }
+        }
+    });
+}
+
 </script>
 
 <input type="hidden" id="language" value="<?php echo $_SESSION['language']; ?>">

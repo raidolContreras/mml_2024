@@ -34,16 +34,35 @@ class FormsModel {
         return $result;
     }
 
-    public static function mdlLoginParticipant($table, $email) {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table WHERE emailParticipant = :email");
+    public static function mdlLoginParticipant($email) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM participants WHERE emailParticipant = :email");
         $stmt->bindParam(":email", $email, PDO::PARAM_STR);
         $stmt->execute();
-        return $stmt->fetch();
+        $result = $stmt->fetch();
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
     } 
 
     static public function mdlChangeLanguage($language, $idUser){
         $pdo = Conexion::conectar();
         $sql = "UPDATE users SET language = :language WHERE idUser = :idUser";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':language', $language, PDO::PARAM_STR);
+        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    static public function mdlChangeLanguageParticipant($language, $idUser){
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE participants SET language = :language WHERE idparticipant = :idUser";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':language', $language, PDO::PARAM_STR);
         $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
