@@ -86,20 +86,20 @@
 							<div class="card shadow-none m-0 border-0">
 								<div class=" p-0 ">
 									<ul class="list-group list-group-flush">
-											<?php if ($_SESSION['level'] != 2):?>
-												<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguage(1)">
-											<?php else:?>
-												<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguageParticipants(1)">
-											<?php endif ?>
+									<?php if ($_SESSION['level'] != 2):?>
+										<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguage(1)">
+									<?php else:?>
+										<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguageParticipants(1)">
+									<?php endif ?>
 											<a class="p-0" href="#">
 												<img src="assets/images/Flag/flag-03.png" alt="img-flag" class="img-fluid m-2" style="width: 15px;height: 15px;min-width: 15px;" />Español
 											</a>
 										</li>
-											<?php if ($_SESSION['level'] != 2):?>
-												<li class="iq-sub-card list-group-item" id="english" onclick="changeLanguage(2)">
-											<?php else:?>
-												<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguageParticipants(2)">
-											<?php endif ?>
+									<?php if ($_SESSION['level'] != 2):?>
+										<li class="iq-sub-card list-group-item" id="english" onclick="changeLanguage(2)">
+									<?php else:?>
+										<li class="iq-sub-card list-group-item" id="spanish" onclick="changeLanguageParticipants(2)">
+									<?php endif ?>
 											<a class="p-0" href="#">
 												<img src="assets/images/Flag/flag001.png" alt="img-flag" class="img-fluid m-2" style="width: 15px;height: 15px;min-width: 15px;" />English
 											</a>
@@ -111,12 +111,6 @@
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link py-0 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="assets/images/avatars/01.png" alt="User-Profile" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
-							<img src="assets/images/avatars/avtar_1.png" alt="User-Profile" class="theme-color-purple-img img-fluid avatar avatar-50 avatar-rounded">
-							<img src="assets/images/avatars/avtar_2.png" alt="User-Profile" class="theme-color-blue-img img-fluid avatar avatar-50 avatar-rounded">
-							<img src="assets/images/avatars/avtar_4.png" alt="User-Profile" class="theme-color-green-img img-fluid avatar avatar-50 avatar-rounded">
-							<img src="assets/images/avatars/avtar_5.png" alt="User-Profile" class="theme-color-yellow-img img-fluid avatar avatar-50 avatar-rounded">
-							<img src="assets/images/avatars/avtar_3.png" alt="User-Profile" class="theme-color-pink-img img-fluid avatar avatar-50 avatar-rounded">
 							<div class="caption ms-3 d-none d-md-block">
 								<h6 class="mb-0 caption-title"><?php
 									echo $_SESSION['firstname'].' '.$_SESSION['lastname'];
