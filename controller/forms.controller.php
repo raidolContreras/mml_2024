@@ -65,6 +65,20 @@ class FormsController {
         $response = FormsModel::mdlGetEvents($item, $value);
         return $response;
     }
+    
+    // Método para obtener los archivos de un evento
+    public static function ctrGetEventFiles($eventId, $idTeam) {
+        return FormsModel::mdlGetEventFiles($eventId, $idTeam);
+    }
+
+    // Método para manejar la subida de archivos
+    public static function ctrUploadEventFiles($eventId, $fileName, $fileType, $idTeam) {
+        return FormsModel::mdlUploadEventFiles($eventId, $fileName, $fileType, $idTeam);
+    }
+
+    public static function ctrDeleteEventFile($idEventToTeam) {
+        return FormsModel::mdlDeleteEventFile($idEventToTeam);
+    }
 
     static public function ctrAddTeam($data) {
         $response = FormsModel::mdlAddTeam($data);

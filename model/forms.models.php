@@ -198,6 +198,48 @@ class FormsModel {
         return $result;
     }
 
+    // Método para obtener los archivos de un evento
+    public static function mdlGetEventFiles($eventId, $idTeam) {
+        if ($idTeam == 0) {
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM event_to_team WHERE idEvent = :idEvent");
+        } else {
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM event_to_team WHERE idEvent = :idEvent AND idTeam = :teamId");
+        }
+        $stmt->bindParam(":idEvent", $eventId, PDO::PARAM_INT);
+        $stmt->bindParam(":teamId", $idTeam, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    // Método para manejar la subida de archivos
+    public static function mdlUploadEventFiles($eventId, $fileName, $fileType, $idTeam) {
+        $stmt = Conexion::conectar()->prepare("INSERT INTO event_to_team (file, type, idEvent, idTeam) VALUES (:file, :type, :idEvent, :idTeam)");
+        $stmt->bindParam(":file", $fileName, PDO::PARAM_STR);
+        $stmt->bindParam(":type", $fileType, PDO::PARAM_STR);
+        $stmt->bindParam(":idEvent", $eventId, PDO::PARAM_INT);
+        $stmt->bindParam(":idTeam", $idTeam, PDO::PARAM_INT);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    public static function mdlDeleteEventFile($idEventToTeam) {
+        $stmt = Conexion::conectar()->prepare("DELETE FROM event_to_team WHERE idEventToTeam = :idEventToTeam");
+        $stmt->bindParam(":idEventToTeam", $idEventToTeam, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = "ok";
+        } else {
+            $result = "error";
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
     static public function mdlAddTeam($data){
         $teams_idProject = ($data['teams_idProject'] != '') ? $data['teams_idProject'] : NULL;
         $pdo = Conexion::conectar();

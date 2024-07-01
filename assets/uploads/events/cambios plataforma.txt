@@ -1,0 +1,43 @@
+personalizar pagina de error
+Tablero como login cortar texto del logo
+toggle en iconos
+cambiar de usuario a nombre colabolador
+solo domino montrer
+unimontrer.edu.mx
+
+Responsable de departamento
+
+(opcional) departamento
+
+
+Estimado(a) ---; ha sido registrado(a) en la plataforma de asignación de presupuesto de Universidad Montrer.
+Para acceder a la plataforma, de clic en el siguiente vinculo (ingresar a la plataforma), el usuario es: correo electrónico y su contraseña temporal: 
+
+Contraseña centrada
+
+En el primer acceso, deberá cambiar su contraseña, respetando las siguientes condiciones: 10 caracteres (obligatorio: 1 letra mayúscula, 1 letra minúscula, 1 número y 1 símbolo).
+Si requiere ayuda, por favor, mande un e-mail explicando la situación a la siguiente dirección:
+Gracias.
+
+
+Contraseña actual
+
+La contraseña debe contener 10 caracteres, de los cuáles obligatoriamente: 1 letra mayúscula, 1 letra minúscula, 1 número y 1 símbolo.
+
+
+Departamentos registrados
+
+Colaborador responsable
+
+Select
+Precargar todas las areas
+Opción de una nueva
+
+Modificar departamento
+	nombre
+	responsable
+	descripción
+
+Registrar departamento
+	
+Cambiar notificaciones al centro
