@@ -121,9 +121,9 @@
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 							<!-- <li><a class="dropdown-item profile" href="profile"></a></li> -->
-							<li>
+							<!-- <li>
 								<hr class="dropdown-divider">
-							</li>
+							</li> -->
 							<li onclick="logout()"><a class="dropdown-item">Cerrar sesión</a></li>
 						</ul>
 						<input type="hidden" id="name" value="<?php echo $_SESSION['firstname'].' '.$_SESSION['lastname']; ?>">
