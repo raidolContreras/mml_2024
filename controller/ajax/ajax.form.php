@@ -234,39 +234,88 @@ if (isset($_FILES['deleteUserList'])){
 	echo $result;
 }
 
-if (isset($_FILES['pacientList'])){
-	$result = '';
-	if (isset($_FILES['pacientList']) && $_FILES['pacientList']['error'] === UPLOAD_ERR_OK) {
-		// Ruta donde se almacenará el archivo temporalmente
-		$fileTmpPath = $_FILES['pacientList']['tmp_name'];
-	
-		// Obtener el contenido del archivo CSV
-		$csvData = file_get_contents($fileTmpPath);
-	
-		// Parsear el contenido del archivo CSV
-		$lines = explode("\n", $csvData);
-		$init = false;
-		foreach ($lines as $line) {
-			// Verificar que la línea no esté vacía
-			if (!empty($line)) {
-				if ($init) {
-					$fields = str_getcsv($line);
-					$data = array(
-						'firstname' => $fields[0],
+function generateRandomPassword($length = 8) {
+    $upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $lower = "abcdefghijklmnopqrstuvwxyz";
+    $numbers = "0123456789";
+    $all = $upper . $lower . $numbers;
+
+    $password = '';
+    $password .= $upper[rand(0, strlen($upper) - 1)];
+    $password .= $lower[rand(0, strlen($lower) - 1)];
+    $password .= $numbers[rand(0, strlen($numbers) - 1)];
+
+    for ($i = 3; $i < $length; $i++) {
+        $password .= $all[rand(0, strlen($all) - 1)];
+    }
+
+    // Mezclar la contraseña para evitar que los caracteres añadidos al principio estén en el mismo orden
+    $password = str_shuffle($password);
+
+    return $password;
+}
+
+// Función para enviar correo electrónico
+function sendEmail($to, $subject, $message) {
+    $headers = "From: no-reply@radixeducation.org\r\n";
+    $headers .= "Reply-To: no-reply@radixeducation.org\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+    mail($to, $subject, $message, $headers);
+}
+
+if (isset($_FILES['pacientList'])) {
+    $result = '';
+    if (isset($_FILES['pacientList']) && $_FILES['pacientList']['error'] === UPLOAD_ERR_OK) {
+        // Ruta donde se almacenará el archivo temporalmente
+        $fileTmpPath = $_FILES['pacientList']['tmp_name'];
+
+        // Obtener el contenido del archivo CSV
+        $csvData = file_get_contents($fileTmpPath);
+
+        // Parsear el contenido del archivo CSV
+        $lines = explode("\n", $csvData);
+        $init = false;
+        foreach ($lines as $line) {
+            // Verificar que la línea no esté vacía
+            if (!empty($line)) {
+                if ($init) {
+                    $fields = str_getcsv($line);
+                    $password = generateRandomPassword();
+                    $cryptPassword = crypt($password, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+                    $data = array(
+                        'firstname' => $fields[0],
                         'lastname' => $fields[1],
-                        'email' => $fields[2]
-					);
-					if (isset($_POST['team'])) {
-						$result = FormsController::ctrAddParticipants($data, $_POST['team']);
-					} else $result = 'Sin equipo';
-				} else {
-					$init = true;
-				}
-				
-			}
-		}
-	}
-	echo $result;
+                        'email' => $fields[2],
+                        'password' => $password, // guardar la contraseña original
+                        'cryptPassword' => $cryptPassword // guardar la contraseña encriptada
+                    );
+
+                    if (isset($_POST['team'])) {
+                        $result = FormsController::ctrAddParticipants($data, $_POST['team']);
+                        
+                        if ($result == 'ok') {
+                            // Enviar correo electrónico
+                            $to = $fields[2];
+                            $subject = "Bienvenido a nuestro equipo";
+                            $message = "Hola " . $fields[0] . " " . $fields[1] . ",<br><br>";
+                            $message .= "Tu cuenta ha sido creada exitosamente. Aquí están tus datos de acceso:<br>";
+                            $message .= "Email: " . $fields[2] . "<br>";
+                            $message .= "Contraseña: " . $password . "<br><br>";
+                            $message .= "Saludos,<br>El equipo";
+                            sendEmail($to, $subject, $message);
+                        }
+                    } else {
+                        $result = 'Sin equipo';
+                    }
+                } else {
+                    $init = true;
+                }
+            }
+        }
+    }
+    echo $result;
 }
 
 if(isset($_POST['SearchUser'])){

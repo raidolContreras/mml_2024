@@ -92,6 +92,7 @@
         
         // Realiza la llamada AJAX para obtener los datos
         $.ajax({
+            type: 'POST',
             url: 'controller/ajax/getPromedios.php',
             data: {
                 idProject: $('#project').val()

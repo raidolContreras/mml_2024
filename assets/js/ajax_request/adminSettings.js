@@ -1,9 +1,7 @@
 $(document).ready(async function () {
   var language = $('#language').val();
   await cargarTraducciones(language);
-});
-
-$(document).ready(function () {
+  
   // Obtener los proyectos y cargar las opciones en el select
   showColorsProject();
   selectProject($("#project").val());

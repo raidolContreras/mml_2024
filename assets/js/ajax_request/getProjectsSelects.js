@@ -1,9 +1,7 @@
 $(document).ready(async function () {
     var language = $('#language').val();
     await cargarTraducciones(language);
-});
-
-$(document).ready(function () {
+    
     $.ajax({
         type: "POST",
         url: "controller/ajax/getProjects.php",
