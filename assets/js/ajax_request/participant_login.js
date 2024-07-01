@@ -1,4 +1,7 @@
-$(document).ready(function () {
+$(document).ready(async function () {
+    var language = $('#language').val();
+    await cargarTraducciones(language);
+    
     $("form.account-wrap").submit(function (event) {
         // Evitar el envío del formulario por defecto
         event.preventDefault();
@@ -18,9 +21,9 @@ $(document).ready(function () {
                 if (response === 'ok') {
                     window.location.href = './';
                 } else if (response === 'status off') {
-                    showAlertBootstrap('Usuario deshabilitado', 'Comuníquese con el administrador de la plataforma, para cualquier aclaración.');
+                    showAlertBootstrap(translations.UserDisabled, translations.ContactAdministratorForClarification);
                 } else {
-                    showAlertBootstrap('¡Atención!', 'Error al iniciar sesión, verifique su correo o contraseña');
+                    showAlertBootstrap(translations.alert, translations.LoginErrorCheckEmailOrPassword);
                 }
             },
             error: function (error) {

@@ -175,5 +175,34 @@
     "structure_no_activities": "Complete the team's structure to proceed with the matrix.",
     "message_complete_tree": "Complete the problem and objective tree before continuing.",
 
-    "message_empty_matrix": "Complete the matrix to continue"
+    "message_empty_matrix": "Complete the matrix to continue",
+
+    "SelectEvent": "Select Event",
+    "DragAndDropFileHereOrClickToSelectOne": "Drag and drop the file here or click to select one",
+    "AllowedFileTypes": "Allowed file types",
+    "MaxSize": "Max size",
+    "FileNotAllowedPleaseUploadA": "File not allowed. Please upload a",
+    "FileIsTooLarge": "The file is too large ({{filesize}}MB). Maximum allowed size: {{maxFilesize}}MB.",
+    "UploadVideoLink": "Upload Video Link",
+    "EnterYouTubeVideoLink": "Enter YouTube video link",
+    "Or": "or",
+    "UploadedFilesCount": "Uploaded Files Count:",
+
+    "FileDeletedSuccessfully": "File deleted successfully",
+    "ErrorDeletingFile": "Error deleting file",
+    "ErrorGettingReportDetails": "Error getting report details",
+  "ReportUpdatedSuccessfully": "Report updated successfully",
+  "ErrorUpdatingReport": "Error updating report",
+  "UserDisabled": "User disabled",
+  "ContactAdministratorForClarification": "Contact the platform administrator for any clarification.",
+  "LoginErrorCheckEmailOrPassword": "Login error, please check your email or password",
+  "TeamDeletedSuccessfully": "The team has been deleted successfully.",
+  "TeamNotDeletedTryAgain": "The team has not been deleted, please try again.",
+  "PleaseCompleteAllFields": "Please complete all fields.",
+  "ProjectCreatedSuccessfully": "The project has been created successfully.",
+  "ProjectNotCreatedTryAgain": "The project has not been created, please try again.",
+  "ProjectUpdatedSuccessfully": "The project has been updated successfully.",
+  "ProjectDeletedSuccessfully": "The project has been deleted successfully."
+  
+
 }

@@ -176,5 +176,33 @@
     "structure_no_activities": "Completa la estructura del equipo para continuar con la matriz.",
     "message_complete_tree": "Completa el árbol de problemas y objetivos antes de continuar",
 
-    "message_empty_matrix": "Completa la matriz para continuar"
+    "message_empty_matrix": "Completa la matriz para continuar",
+
+    "SelectEvent": "Seleccionar Evento",
+    "DragAndDropFileHereOrClickToSelectOne": "Arrastra y suelta el archivo aquí o haz clic para seleccionar uno",
+    "AllowedFileTypes": "Tipos de archivo permitidos",
+    "MaxSize": "Tamaño máximo",
+    "FileNotAllowedPleaseUploadA": "Archivo no permitido. Por favor, sube un archivo en formato",
+    "FileIsTooLarge": "El archivo es demasiado grande ({{filesize}}MB). Tamaño máximo permitido: {{maxFilesize}}MB.",
+    "UploadVideoLink": "Subir Enlace de Video",
+    "EnterYouTubeVideoLink": "Ingresa el enlace del video de YouTube",
+    "Or": "o",
+    "UploadedFilesCount": "Conteo de archivos subidos:",
+
+    "FileDeletedSuccessfully": "Archivo eliminado con éxito",
+    "ErrorDeletingFile": "Error al eliminar el archivo",
+    "ErrorGettingReportDetails": "Error al obtener los detalles del reporte",
+  "ReportUpdatedSuccessfully": "Reporte actualizado con éxito",
+  "ErrorUpdatingReport": "Error al actualizar el reporte",
+  "UserDisabled": "Usuario deshabilitado",
+  "ContactAdministratorForClarification": "Comuníquese con el administrador de la plataforma, para cualquier aclaración.",
+  "LoginErrorCheckEmailOrPassword": "Error al iniciar sesión, verifique su correo o contraseña",
+  "TeamDeletedSuccessfully": "El equipo ha sido eliminado exitosamente.",
+  "TeamNotDeletedTryAgain": "El equipo no se ha eliminado, intentalo de nuevo.",
+  "PleaseCompleteAllFields": "Por favor, completa todos los campos.",
+  "ProjectCreatedSuccessfully": "El proyecto ha sido creado exitosamente.",
+  "ProjectNotCreatedTryAgain": "El proyecto no se ha creado, intentalo de nuevo.",
+  "ProjectUpdatedSuccessfully": "El proyecto ha sido actualizado exitosamente.",
+  "ProjectDeletedSuccessfully": "El proyecto ha sido eliminado exitosamente."
+
 }

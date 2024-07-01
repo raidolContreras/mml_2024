@@ -1,16 +1,42 @@
+
 var idTeam = ($('#level').val() != 0) ? $('#idTeam').val() : 0;
-$(document).ready(function () {
+$(document).ready(async function () {
+    var language = $('#language').val();
+    await cargarTraducciones(language);
 
     // Manejar el cambio de evento seleccionado
     $('#eventSelectEdit').on('change', function () {
         const eventId = $(this).val();
         if (eventId) {
-            $('#eventDropzone').css('display', 'block');
-            $('#existingFiles').css('display', 'flex');
-            $('#fileCounter').css('display', 'block');
-            $('#videoUploadContainer').css('display', 'block');
-            $('.or').css('display', 'flex');
-            loadEventFiles(eventId, idTeam);
+            if ($('#level').val() == 0) {
+                $('.teamSelect').css('display', 'block');
+                $('#teamSelectEdit').on('change', function () {
+                    if ($('#teamSelectEdit').val() > 0) {
+                        idTeam = $('#teamSelectEdit').val();
+                        $('#eventDropzone').css('display', 'block');
+                        $('#existingFiles').css('display', 'flex');
+                        $('#fileCounter').css('display', 'block');
+                        $('#videoUploadContainer').css('display', 'block');
+                        $('.or').css('display', 'flex');
+                        loadEventFiles(eventId, idTeam);
+                    } else {
+                        $('#eventDropzone').css('display', 'none');
+                        $('#existingFiles').css('display', 'none');
+                        $('#fileCounter').css('display', 'none');
+                        $('#videoUploadContainer').css('display', 'none');
+                        $('.or').css('display', 'none');
+                        $('#teamSelect').data('display', 'none');
+                    }
+                });
+            } else {
+                $('#eventDropzone').css('display', 'block');
+                $('#existingFiles').css('display', 'flex');
+                $('#fileCounter').css('display', 'block');
+                $('#videoUploadContainer').css('display', 'block');
+                $('.or').css('display', 'flex');
+                loadEventFiles(eventId, idTeam);
+            }
+
         } else {
             $('#eventDropzone').css('display', 'none');
             $('#existingFiles').css('display', 'none');
@@ -26,7 +52,11 @@ $(document).ready(function () {
         url: "controller/ajax/uploadEventFiles.php",
         paramName: "file",
         acceptedFiles: ".jpg,.jpeg,.gif,.png,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt",
+        dictDefaultMessage: translations.DragAndDropFileHereOrClickToSelectOne+' <p class="subtitulo-sup">'+translations.AllowedFileTypes+' .jpg,.jpeg,.gif,.png,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt ('+translations.MaxSize+' 1 MB)</p>',
+        maxFilesize: 10,
         addRemoveLinks: true,
+        dictInvalidFileType: translations.FileNotAllowedPleaseUploadA,
+        dictFileTooBig: translations.FileIsTooLarge,
         init: function () {
             this.on("sending", function (file, xhr, formData) {
                 formData.append("eventId", $('#eventSelectEdit').val());

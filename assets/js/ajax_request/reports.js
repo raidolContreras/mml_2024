@@ -211,16 +211,16 @@ function deleteFile(filePath, matrix, idReport) {
         dataType: 'json',
         success: function(response) {
             if (response.status === 'success') {
-                showAlert(translations.success, 'Archivo eliminado con éxito');
+                showAlert(translations.success, translations.FileDeletedSuccessfully);
                 // Reload or refresh the report
                 seeReports($(`[data-matrix="${matrix}"]`)[0], matrix);
             } else {
-                showAlert(translations.alert, 'Error al eliminar el archivo');
+                showAlert(translations.alert, translations.ErrorDeletingFile);
             }
         },
         error: function(error) {
             console.error('Error al eliminar el archivo:', error);
-            showAlert(translations.alert, 'Error al eliminar el archivo');
+            showAlert(translations.alert, translations.ErrorDeletingFile);
         }
     });
 }
@@ -424,10 +424,10 @@ const initDropzone = (selector, acceptedFiles) => {
         maxFilesize: 1, // MB
         acceptedFiles: acceptedFiles, // Tipos de archivos permitidos
         addRemoveLinks: true,
-        dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos: ' + acceptedFiles + ' (Tamaño máximo 1 MB)</p>',
+        dictDefaultMessage: translations.DragAndDropFileHereOrClickToSelectOne+' <p class="subtitulo-sup">'+translations.AllowedFileTypes+ acceptedFiles + ' ('+translations.MaxSize+' 1 MB)</p>',
         autoProcessQueue: false,
-        dictInvalidFileType: "Archivo no permitido. Por favor, sube un archivo en formato permitido.",
-        dictFileTooBig: "El archivo es demasiado grande ({{filesize}}MB). Tamaño máximo permitido: {{maxFilesize}}MB.",
+        dictInvalidFileType: translations.FileNotAllowedPleaseUploadA,
+        dictFileTooBig: translations.FileIsTooLarge,
         init: function() {
             this.on("addedfile", function(file) {
                 var removeButton = Dropzone.createElement('<button class="rounded-button">&times;</button>');
@@ -650,12 +650,11 @@ function editEvidence(idReport) {
                 // Mostrar el modal de edición
                 $('#editEvidenceModal').modal('show');
             } else {
-                showAlert(translations.alert, 'Error al obtener los detalles del reporte');
+                showAlert(translations.alert, translations.ErrorGettingReportDetails);
             }
         },
         error: function(error) {
-            console.error('Error al obtener los detalles del reporte:', error);
-            showAlert(translations.alert, 'Error al obtener los detalles del reporte');
+            showAlert(translations.alert, translations.ErrorGettingReportDetails);
         }
     });
 }
@@ -683,16 +682,15 @@ $('#editEvidenceForm').on('submit', function(event) {
         dataType: 'json',
         success: function(response) {
             if (response.status === 'success') {
-                showAlert2(translations.success, 'Reporte actualizado con éxito');
+                showAlert2(translations.success, translations.ReportUpdatedSuccessfully);
                 // Actualizar la vista de reportes
                 $('#editEvidenceModal').modal('hide');
             } else {
-                showAlert(translations.alert, 'Error al actualizar el reporte');
+                showAlert(translations.alert, translations.ErrorUpdatingReport);
             }
         },
         error: function(error) {
-            console.error('Error al actualizar el reporte:', error);
-            showAlert(translations.alert, 'Error al actualizar el reporte');
+            showAlert(translations.alert, translations.ErrorUpdatingReport);
         }
     });
 });

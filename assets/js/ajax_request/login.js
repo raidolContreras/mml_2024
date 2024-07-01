@@ -19,9 +19,9 @@ $(document).ready(function () {
 			    if (response === 'ok') {
                     window.location.href = './';
 			    }else if (response === 'status off') {
-					showAlertBootstrap('Usuario deshabilitado', 'Comuníquese con el administrador de la plataforma, para cualquier aclaración.');
-			    }else {
-					showAlertBootstrap('!Atención¡', 'Error al iniciar sesión, verifique su correo o contraseña');
+                    showAlertBootstrap(translations.UserDisabled, translations.ContactAdministratorForClarification);
+                } else {
+                    showAlertBootstrap(translations.alert, translations.LoginErrorCheckEmailOrPassword);
 			    }
 			},
 			error: function (error) {

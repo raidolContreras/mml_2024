@@ -1,9 +1,6 @@
 $(document).ready(async function () {
     var language = $('#language').val();
     await cargarTraducciones(language);
-});
-
-$(document).ready(function () {
 
     $('#teams').DataTable({
         // Resto de tus opciones de configuración...
@@ -151,10 +148,10 @@ $(document).ready(function () {
                 console.log(response);
                 $('#teamModalDelete').modal('hide');
                 if (response === 'ok') {
-                    showAlertBootstrap('¡Éxito!', 'El equipo ha sido eliminado exitosamente.');
+                    showAlertBootstrap(translations.success, translations.TeamDeletedSuccessfully);
                     $('#teams').DataTable().ajax.reload();
                 } else {
-                    showAlertBootstrap('¡Alerta!', 'El equipo no se ha eliminado, intentalo de nuevo.');
+                    showAlertBootstrap(translations.alert, translations.TeamNotDeletedTryAgain);
                 }
             },
             error: function (xhr, status, error) {

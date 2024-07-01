@@ -209,6 +209,12 @@ cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['langu
     $('.save_changes').html(translations.save_changes);
     $('.edit_evidence').html(translations.edit_evidence);
 
+    $('.SelectEvent').html(translations.SelectEvent);
+    $('.UploadVideoLink').html(translations.UploadVideoLink);
+    $('.or').html(translations.Or);
+    $('#UploadedFilesCount').html(translations.UploadedFilesCount);
+    $('#videoLink').attr('placeholder',translations.EnterYouTubeVideoLink);
+
     var html2 = `
         <option value="0">${translations.select_one}</option>
         <option value="1">${translations.Monthly}</option>

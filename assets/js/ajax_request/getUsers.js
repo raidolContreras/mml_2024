@@ -90,10 +90,10 @@ $(document).ready(async function () {
         maxFilesize: 10,
         acceptedFiles: "text/csv",
         paramName: "userList",
-        dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos .csv (Tamaño máximo 10 MB)</p>',
+        dictDefaultMessage: translations.DragAndDropFileHereOrClickToSelectOne+' <p class="subtitulo-sup">'+translations.AllowedFileTypes+' .csv ('+translations.MaxSize+' 10 MB)</p>',
         autoProcessQueue: false,
-        dictInvalidFileType: "Archivo no permitido. Por favor, sube un archivo en formato CSV.",
-        dictFileTooBig: "El archivo es demasiado grande ({{filesize}}MB). Tamaño máximo permitido: {{maxFilesize}}MB.",
+        dictInvalidFileType: translations.FileNotAllowedPleaseUploadA,
+        dictFileTooBig: translations.FileIsTooLarge,
         errorPlacement: function(error, element) {
             var $element = $(element),
                 errContent = $(error).text();
@@ -249,10 +249,10 @@ $(document).ready(async function () {
         maxFilesize: 10,
         acceptedFiles: "text/csv",
         paramName: "deleteUserList",
-        dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos .csv (Tamaño máximo 10 MB)</p>',
+        dictDefaultMessage: translations.DragAndDropFileHereOrClickToSelectOne+' <p class="subtitulo-sup">'+translations.AllowedFileTypes+' .csv ('+translations.MaxSize+' 10 MB)</p>',
         autoProcessQueue: false,
-        dictInvalidFileType: "Archivo no permitido. Por favor, sube un archivo en formato CSV.",
-        dictFileTooBig: "El archivo es demasiado grande ({{filesize}}MB). Tamaño máximo permitido: {{maxFilesize}}MB.",
+        dictInvalidFileType: translations.FileNotAllowedPleaseUploadA,
+        dictFileTooBig: translations.FileIsTooLarge,
         errorPlacement: function(error, element) {
             var $element = $(element),
                 errContent = $(error).text();

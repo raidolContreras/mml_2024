@@ -71,10 +71,10 @@ $(document).ready(async function () {
         maxFilesize: 10,
         paramName: "logo",
         acceptedFiles: "image/jpeg, image/png",
-        dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos .PNG, .JPG, .JPEG (Tamaño máximo 10 MB)</p>',
+        dictDefaultMessage: translations.DragAndDropFileHereOrClickToSelectOne+' <p class="subtitulo-sup">'+translations.AllowedFileTypes+' .PNG, .JPG, .JPEG ('+translations.MaxSize+' 10 MB)</p>',
         autoProcessQueue: false,
-        dictInvalidFileType: "Archivo no permitido. Por favor, sube un archivo en formato .PNG, .JPG, .JPEG.",
-        dictFileTooBig: "El archivo es demasiado grande ({{filesize}}MB). Tamaño máximo permitido: {{maxFilesize}}MB.",
+        dictInvalidFileType: translations.FileNotAllowedPleaseUploadA,
+        dictFileTooBig: translations.FileIsTooLarge,
         errorPlacement: function(error, element) {
             var $element = $(element),
                 errContent = $(error).text();
@@ -115,10 +115,10 @@ $(document).ready(async function () {
         maxFilesize: 10,
         paramName: "logo",
         acceptedFiles: "image/jpeg, image/png",
-        dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos .PNG, .JPG, .JPEG (Tamaño máximo 10 MB)</p>',
+        dictDefaultMessage: translations.DragAndDropFileHereOrClickToSelectOne+' <p class="subtitulo-sup">'+translations.AllowedFileTypes+' .PNG, .JPG, .JPEG ('+translations.MaxSize+' 10 MB)</p>',
         autoProcessQueue: false,
-        dictInvalidFileType: "Archivo no permitido. Por favor, sube un archivo en formato .PNG, .JPG, .JPEG.",
-        dictFileTooBig: "El archivo es demasiado grande ({{filesize}}MB). Tamaño máximo permitido: {{maxFilesize}}MB.",
+        dictInvalidFileType: translations.FileNotAllowedPleaseUploadA,
+        dictFileTooBig: translations.FileIsTooLarge,
         errorPlacement: function(error, element) {
             var $element = $(element),
                 errContent = $(error).text();
@@ -161,7 +161,7 @@ $(document).ready(async function () {
         if (projectName === '' || projectLink === '') {
             // Mostrar un mensaje de error si algún campo está vacío
             $('#projectModal').modal('hide');
-            showAlertBootstrap1('¡Alerta!','Por favor, completa todos los campos.', 'projectModal');
+            showAlertBootstrap1(translations.alert, translations.PleaseCompleteAllFields, 'projectModal');
             return; // Detener el envío del formulario si hay campos vacíos
         }
 
@@ -180,7 +180,7 @@ $(document).ready(async function () {
                 console.log(response);
                 $('#teamModal').modal('hide');
                 if (response !== 'error') {
-                    showAlertBootstrap('¡Éxito!', 'El proyecto ha sido creado exitosamente.');
+                    showAlertBootstrap(translations.success, translations.ProjectCreatedSuccessfully);
                     $('#projectName').val('');
                     $('#projectLink').val('');
                     $('#projects').DataTable().ajax.reload();
@@ -196,7 +196,7 @@ $(document).ready(async function () {
                     }, 1000);
                     
                 } else {
-                    showAlertBootstrap('¡Alerta!', 'El proyecto no se ha creado, intentalo de nuevo.');
+                    showAlertBootstrap(translations.alert, translations.ProjectNotCreatedTryAgain);
                 }
             },
             error: function (xhr, status, error) {
@@ -242,7 +242,7 @@ $(document).ready(async function () {
                         $('#projects').DataTable().ajax.reload();
                     } , 1000);
 
-                    showAlertBootstrap(translations.success, 'El proyecto ha sido actualizado exitosamente.');
+                    showAlertBootstrap(translations.success, translations.ProjectUpdatedSuccessfully);
                 }
             }
         });
@@ -263,7 +263,7 @@ $('#acceptDelete').on('click', function () {
             if (response == 'ok') {
                 $('#deleteProjectsModal').modal('hide');
                 $('#projects').DataTable().ajax.reload();
-                showAlertBootstrap(translations.success, 'El proyecto ha sido eliminado exitosamente.');
+                showAlertBootstrap(translations.success, translations.ProjectDeletedSuccessfully);
             }
         },
         error: function (xhr, status, error) {

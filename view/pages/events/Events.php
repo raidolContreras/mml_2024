@@ -73,22 +73,30 @@
 <div class="container">
     <div class="row mb-4">
         <div class="col-md-6 offset-md-3">
-            <label for="eventSelectEdit" class="form-label">Select Event</label>
+            <label for="eventSelectEdit" class="form-label SelectEvent"></label>
             <select class="form-select" id="eventSelectEdit"></select>
         </div>
     </div>
+    
+    <div class="row mb-4 teamSelect" style="display: none;">
+        <div class="col-md-6 offset-md-3">
+            <label for="teamSelectEdit" class="form-label teams"></label>
+            <select class="form-select" id="teamSelectEdit"></select>
+        </div>
+    </div>
+
     <div class="row">
         <div id="eventDropzone" class="dropzone col-6 ml-2" style="display: none;"></div>
 
-        <div class="col or">ó</div>
+        <div class="col or"></div>
 
         <div id="videoUploadContainer" style="display: none;" class="mt-4 col-5">
             <input type="text" id="videoLink" placeholder="Enter YouTube video link" class="form-control mb-2" />
-            <button id="uploadVideoLink" class="btn btn-primary">Upload Video Link</button>
+            <button id="uploadVideoLink" class="btn btn-primary UploadVideoLink"></button>
         </div>
 
         <div id="fileCounter" class="mt-3 mb-2 col-12 mr-2" style="display: none;">
-            Uploaded Files Count: <span id="uploadedFilesCount">0</span>/5
+            <span id="UploadedFilesCount"></span> <span id="uploadedFilesCount">0</span>/5
         </div>
 
         <div id="existingFiles" class="row col-12" style="display: none;"></div>
