@@ -132,37 +132,37 @@
             <h5 class="card-title col-12 attach_evidence"></h5>
             <div class="form-group col-6 mt-3">
                 <label for="description"><span class="description"></span> *</label>
-                <input type="text" class="form-control" id="description" placeholder="Ingrese una descripción">
+                <input type="text" class="form-control EnterADescription" id="description">
             </div>
             <div class="form-group col-6 mt-3">
                 <label for="progress_activity"><span class="progress_activity"></span> *</label>
-                <input min="1" type="number" class="form-control" id="progress_activity" placeholder="Ingrese el progreso">
+                <input min="1" type="number" class="form-control EnterProgress" id="progress_activity">
             </div>
             <div class="form-group col-6 mt-3 photos">
-                <label for="photos">Fotos</label>
+                <label for="photos"></label>
                 <div id="AddPhotosDropzone" class="dropzone"></div>
             </div>
             <div class="form-group col-6 mt-3 reports">
-                <label for="reports">Reportes</label>
+                <label for="reports"></label>
                 <div id="AddReportsDropzone" class="dropzone"></div>
             </div>
             <div class="form-group col-6 mt-3 attendance">
-                <label for="attendance">Lista de Asistencia</label>
+                <label for="attendance"></label>
                 <div id="AddAttendanceDropzone" class="dropzone"></div>
             </div>
             <div class="form-group col-6 mt-3 agreements">
-                <label for="agreements">Acuerdos</label>
+                <label for="agreements"></label>
                 <div id="AddAgreementsDropzone" class="dropzone"></div>
             </div>
             <div class="form-group col-6 mt-3 others">
-                <label for="others">Otros</label>
+                <label for="others"></label>
                 <div id="AddOthersDropzone" class="dropzone"></div>
             </div>
             <div class="form-group col-12 mt-3 videos">
-                <label for="video">URL del Video</label>
-                <input type="url" class="form-control" id="video" placeholder="Ingrese la URL del video de youtube">
+                <label for="video"></label>
+                <input type="url" class="form-control EnterYouTubeVideoURL" id="video">
             </div>
-            <button class="btn btn-success mt-3" onclick="saveEvidence()">Guardar Evidencia</button>
+            <button class="btn btn-success mt-3 accept" onclick="saveEvidence()"></button>
         </div>
     </div>
 </div>
@@ -172,12 +172,12 @@
     <div class="modal-dialog modal-xl custom-modal-right">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="evidencesModalLabel">Evidence</h5>
+                <h5 class="modal-title Evidence" id="evidencesModalLabel"></h5>
             </div>
             <div class="modal-body evidenceShow">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary return" data-bs-dismiss="modal">Regresar</button>
+                <button type="button" class="btn btn-secondary return Back" data-bs-dismiss="modal"></button>
             </div>
         </div>
     </div>

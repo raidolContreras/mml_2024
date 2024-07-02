@@ -124,7 +124,7 @@
 							<!-- <li>
 								<hr class="dropdown-divider">
 							</li> -->
-							<li onclick="logout()"><a class="dropdown-item">Cerrar sesión</a></li>
+							<li onclick="logout()"><a class="dropdown-item Logout"></a></li>
 						</ul>
 						<input type="hidden" id="name" value="<?php echo $_SESSION['firstname'].' '.$_SESSION['lastname']; ?>">
 						<input type="hidden" id="email" value="<?php echo $_SESSION['email'] ?>">

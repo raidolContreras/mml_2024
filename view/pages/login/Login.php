@@ -67,19 +67,17 @@
                                  <div class="col-lg-12">
                                     <div class="form-group">
                                        <label for="email" class="form-label">Email</label>
-                                       <input type="email" class="form-control" id="email" aria-describedby="email" placeholder=" ">
+                                       <input type="email" class="form-control" id="email" aria-describedby="email">
                                     </div>
                                  </div>
                                  <div class="col-lg-12">
                                     <div class="form-group">
                                        <label for="password" class="form-label">Password</label>
-                                       <input type="password" class="form-control" id="password" aria-describedby="password" placeholder=" ">
+                                       <input type="password" class="form-control" id="password" aria-describedby="password">
                                     </div>
                                  </div>
                                  <div class="col-lg-12 d-flex justify-content-between">
                                     <div class="form-check mb-3">
-                                       <input type="checkbox" class="form-check-input" id="customCheck1">
-                                       <label class="form-check-label" for="customCheck1">Remember Me</label>
                                     </div>
                                     <a href="participant_login">Student access</a>
                                  </div>

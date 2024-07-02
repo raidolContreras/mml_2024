@@ -213,7 +213,17 @@ cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['langu
     $('.UploadVideoLink').html(translations.UploadVideoLink);
     $('.or').html(translations.Or);
     $('#UploadedFilesCount').html(translations.UploadedFilesCount);
+
+    $('.Evidence').html(translations.Evidence);
+    $('.Back').html(translations.Back);
+
+    $('.Logout').html(translations.Logout);
+
+    //placeholders
     $('#videoLink').attr('placeholder',translations.EnterYouTubeVideoLink);
+    $('.EnterADescription').attr('placeholder',translations.EnterADescription);
+    $('.EnterProgress').attr('placeholder',translations.EnterProgress);
+    $('.EnterYouTubeVideoURL').attr('placeholder',translations.EnterYouTubeVideoURL);
 
     var html2 = `
         <option value="0">${translations.select_one}</option>

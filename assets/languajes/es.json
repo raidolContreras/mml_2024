@@ -203,6 +203,12 @@
   "ProjectCreatedSuccessfully": "El proyecto ha sido creado exitosamente.",
   "ProjectNotCreatedTryAgain": "El proyecto no se ha creado, intentalo de nuevo.",
   "ProjectUpdatedSuccessfully": "El proyecto ha sido actualizado exitosamente.",
-  "ProjectDeletedSuccessfully": "El proyecto ha sido eliminado exitosamente."
+  "ProjectDeletedSuccessfully": "El proyecto ha sido eliminado exitosamente.",
+  "EnterADescription": "Ingrese una descripción",
+  "EnterProgress": "Ingrese el progreso",
+  "EnterYouTubeVideoURL": "Ingrese la URL del video de YouTube",
+  "Evidence": "Evidencia",
+  "Back": "Regresar",
+  "Logout": "Cerrar sesión"
 
 }

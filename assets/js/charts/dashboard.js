@@ -5,7 +5,7 @@
         function initializeChart(data) {
             const options = {
                 series: [{
-                    name: 'Teams',
+                    name: '',
                     data: data.values
                 }],
                 chart: {

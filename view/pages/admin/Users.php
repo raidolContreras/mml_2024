@@ -6,8 +6,8 @@
                 <button class="btn btn-primary addUsersModal" data-bs-toggle="modal" data-bs-target="#addUsersModal"></button>
                 <button class="btn btn-secondary dropdown-toggle massiveActions" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><button class="dropdown-item addUser_btn" data-bs-toggle="modal" data-bs-target="#usersModal">Agregar Usuario</button></li>
-                    <li><a class="dropdown-item deleteUser_btn" data-bs-toggle="modal" data-bs-target="#deleteMassiveModal">Eliminar usuarios</a></li>
+                    <li><button class="dropdown-item addUser_btn" data-bs-toggle="modal" data-bs-target="#usersModal"></button></li>
+                    <li><a class="dropdown-item deleteUser_btn" data-bs-toggle="modal" data-bs-target="#deleteMassiveModal"></a></li>
                 </ul>
             </div>
         </div>
@@ -63,7 +63,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title addUser_btn" id="deleteMassiveLabel"></h5>
+                <h5 class="modal-title deleteUser_btn" id="deleteMassiveLabel"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

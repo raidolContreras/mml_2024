@@ -91,7 +91,7 @@
         <div class="col or"></div>
 
         <div id="videoUploadContainer" style="display: none;" class="mt-4 col-5">
-            <input type="text" id="videoLink" placeholder="Enter YouTube video link" class="form-control mb-2" />
+            <input type="text" id="videoLink" class="form-control mb-2 EnterYouTubeVideoURL" />
             <button id="uploadVideoLink" class="btn btn-primary UploadVideoLink"></button>
         </div>
 

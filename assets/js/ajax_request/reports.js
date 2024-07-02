@@ -1,7 +1,81 @@
+Dropzone.autoDiscover = false;
+
+// Definir la función initDropzone
+const initDropzone = (selector, acceptedFiles) => {
+    return new Dropzone(selector, {
+        url: 'controller/ajax/upload_evidence.php', // URL predeterminada para la carga
+        maxFiles: 5,
+        maxFilesize: 1, // MB
+        acceptedFiles: acceptedFiles, // Tipos de archivos permitidos
+        addRemoveLinks: true,
+        dictDefaultMessage: translations.DragAndDropFileHereOrClickToSelectOne + ' <p class="subtitulo-sup">' + translations.AllowedFileTypes + acceptedFiles + ' (' + translations.MaxSize + ' 1 MB)</p>',
+        autoProcessQueue: false,
+        dictInvalidFileType: translations.FileNotAllowedPleaseUploadA,
+        dictFileTooBig: translations.FileIsTooLarge,
+        init: function () {
+            this.on("addedfile", function (file) {
+                var removeButton = Dropzone.createElement('<button class="rounded-button">&times;</button>');
+                var _this = this;
+                removeButton.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    _this.removeFile(file);
+                });
+                file.previewElement.appendChild(removeButton);
+            });
+
+            this.on("sending", function (file, xhr, formData) {
+                var team = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
+                formData.append("team", team); // Add team parameter to formData
+            });
+
+            this.on("success", function (file, response) {
+                console.log('Archivo subido con éxito:', response);
+            });
+        }
+    });
+};
+
+var photoDropzone;
+var reportsDropzone;
+var attendanceDropzone;
+var agreementsDropzone;
+var othersDropzone;
 
 $(document).ready(async function () {
     var language = $('#language').val();
     await cargarTraducciones(language);
+
+    if (typeof translations !== 'undefined') {
+        console.log('Translations loaded:', translations);
+        
+        // Inicializar Dropzones aquí, después de asegurarte de que translations esté definido
+        photoDropzone = initDropzone("#AddPhotosDropzone", "image/jpeg,image/png,image/jpg");
+        reportsDropzone = initDropzone("#AddReportsDropzone", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+        attendanceDropzone = initDropzone("#AddAttendanceDropzone", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+        agreementsDropzone = initDropzone("#AddAgreementsDropzone", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+        othersDropzone = initDropzone("#AddOthersDropzone", "image/jpeg,image/png,image/jpg,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+    } else {
+        console.error('Translations is not defined');
+    }
+
+    var level = $('#level').val();
+    if (level != 0) {
+        $('.teamSelect').hide();
+        var idTeam = $('#idTeam').val();
+        getMatrix(idTeam);
+    } else {
+        $('#teamSelectEdit').on('change', function () {
+            var team = $('#teamSelectEdit').val();
+            $('#idTeamSelect').val(team);
+
+            if (team >= 1) {
+                getMatrix(team);
+            } else {
+                $('.totalReports').css('display', 'none');
+            }
+        });
+    }
 });
 
 var progress = 0;
@@ -208,7 +282,6 @@ function evidences(path, video = false) {
     });
 }
 
-
 function deleteFile(filePath, matrix, idReport) {
     $.ajax({
         type: 'POST',
@@ -230,7 +303,7 @@ function deleteFile(filePath, matrix, idReport) {
         }
     });
 }
-           
+
 function getFileIcon(fileName, idMatrix) {
     const extension = fileName.split('.').pop().toLowerCase();
     switch (extension) {
@@ -251,29 +324,6 @@ function getFileIcon(fileName, idMatrix) {
             return `assets/uploads/${idMatrix}/${fileName}`;
     }
 }
-
-$(document).ready(async function () {
-    var language = $('#language').val();
-    await cargarTraducciones(language);
-
-    var level = $('#level').val();
-    if (level != 0) {
-        $('.teamSelect').hide();
-        var idTeam = $('#idTeam').val();
-        getMatrix(idTeam);
-    } else {
-        $('#teamSelectEdit').on('change', function () {
-            var team = $('#teamSelectEdit').val();
-            $('#idTeamSelect').val(team);
-
-            if (team >= 1) {
-                getMatrix(team);
-            } else {
-                $('.totalReports').css('display', 'none');
-            }
-        });
-    }
-});
 
 let activities = Array(8).fill('');
 let idStructure = 0;
@@ -420,53 +470,6 @@ function getStructureMatrix(activity, structure) {
         });
     });
 }
-
-Dropzone.autoDiscover = false;
-
-const initDropzone = (selector, acceptedFiles) => {
-    
-    return new Dropzone(selector, {
-        url: 'controller/ajax/upload_evidence.php', // URL predeterminada para la carga
-        maxFiles: 5,
-        maxFilesize: 1, // MB
-        acceptedFiles: acceptedFiles, // Tipos de archivos permitidos
-        addRemoveLinks: true,
-        dictDefaultMessage: 'Arrastra y suelta el archivo aquí o haz clic para seleccionar uno <p class="subtitulo-sup">Tipos de archivo permitidos: ' + acceptedFiles + ' (Tamaño máximo 1 MB)</p>',
-        autoProcessQueue: false,
-        dictInvalidFileType: "Archivo no permitido. Por favor, sube un archivo en formato permitido.",
-        dictFileTooBig: "El archivo es demasiado grande ({{filesize}}MB). Tamaño máximo permitido: {{maxFilesize}}MB.",
-        init: function() {
-            this.on("addedfile", function(file) {
-                var removeButton = Dropzone.createElement('<button class="rounded-button">&times;</button>');
-                var _this = this;
-                removeButton.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    _this.removeFile(file);
-                });
-                file.previewElement.appendChild(removeButton);
-            });
-
-            this.on("sending", function(file, xhr, formData) {
-                var team = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
-                formData.append("team", team); // Add team parameter to formData
-            });
-
-            this.on("success", function(file, response) {
-                console.log('Archivo subido con éxito:', response);
-            });
-        }
-    });
-};
-
-// Inicializar Dropzones con tipos de archivos específicos
-const photoDropzone = initDropzone("#AddPhotosDropzone", "image/jpeg,image/png,image/jpg");
-const reportsDropzone = initDropzone("#AddReportsDropzone", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-const attendanceDropzone = initDropzone("#AddAttendanceDropzone", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-const agreementsDropzone = initDropzone("#AddAgreementsDropzone", "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-const othersDropzone = initDropzone("#AddOthersDropzone", "image/jpeg,image/png,image/jpg,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-
-var idMatrix = 0;
 
 function saveEvidence() {
     const videoUrl = $('#video').val();

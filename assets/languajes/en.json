@@ -202,7 +202,12 @@
   "ProjectCreatedSuccessfully": "The project has been created successfully.",
   "ProjectNotCreatedTryAgain": "The project has not been created, please try again.",
   "ProjectUpdatedSuccessfully": "The project has been updated successfully.",
-  "ProjectDeletedSuccessfully": "The project has been deleted successfully."
-  
+  "ProjectDeletedSuccessfully": "The project has been deleted successfully.",
+  "EnterADescription": "Enter a description",
+  "EnterProgress": "Enter progress",
+  "EnterYouTubeVideoURL": "Enter the YouTube video URL",
+  "Evidence": "Evidence",
+  "Back": "Back",
+  "Logout": "Logout"
 
 }
