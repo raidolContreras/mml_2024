@@ -1,6 +1,8 @@
 {
     "dashboard": "Tablero",
     "admin": "Administrador",
+    "Teacher": "Profesor",
+    "Student": "Estudiante",
     "standar": "Estándar",
     "edit": "Editar",
     "alert": "¡Alerta!",

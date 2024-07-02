@@ -217,6 +217,8 @@ cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['langu
     $('.Evidence').html(translations.Evidence);
     $('.Back').html(translations.Back);
 
+    $('.Teacher').html(translations.Teacher);
+    $('.Student').html(translations.Student);
     $('.Logout').html(translations.Logout);
 
     //placeholders

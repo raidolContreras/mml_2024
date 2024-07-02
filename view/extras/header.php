@@ -114,8 +114,8 @@
 							<div class="caption ms-3 d-none d-md-block">
 								<h6 class="mb-0 caption-title"><?php
 									echo $_SESSION['firstname'].' '.$_SESSION['lastname'];
-									$level = ($_SESSION['level'] == 0) ? 'Admin' : '';
-								?></h6>
+									$level = ($_SESSION['level'] == 0) ? 'Admin' : (($_SESSION['level'] == 1) ? 'Teacher' : 'Student');
+									?></h6>
 								<p class="mb-0 caption-sub-title <?php echo $level ?>"></p>
 							</div>
 						</a>

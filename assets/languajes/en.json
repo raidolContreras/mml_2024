@@ -1,6 +1,8 @@
 {
     "dashboard": "Dashboard",
     "admin": "Administrator",
+    "Teacher": "Teacher",
+    "Student": "Student",
     "standar": "Standard",
     "edit": "Edit",
     "alert": "Alert!",
