@@ -331,16 +331,31 @@ if (isset($_FILES['pacientList'])) {
                         $result = FormsController::ctrAddParticipants($data, $_POST['team']);
                         
                         if ($result == 'ok') {
-                            // Enviar correo electrónico
-                            $to = $fields[2];
-                            $subject = "Bienvenido a nuestro equipo";
-                            $message = "Hola " . $fields[0] . " " . $fields[1] . ",<br><br>";
-                            $message .= "Tu cuenta ha sido creada exitosamente. Aquí están tus datos de acceso:<br>";
-                            $message .= "Email: " . $fields[2] . "<br>";
-                            $message .= "Contraseña: " . $password . "<br><br>";
-                            $message .= "Saludos,<br>El equipo";
-                            sendEmail($to, $subject, $message);
-                        }
+							// Obtener la URL base del servidor
+							$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+							$domainName = $_SERVER['HTTP_HOST'];
+							$loginPageUrl = $protocol . $domainName . "/participant_login";
+						
+							// Enviar correo electrónico
+							$to = $fields[2];
+							$subject = "Bienvenido a nuestro equipo en Radix Education";
+						
+							// Crear el mensaje del correo
+							$message = "<html><body>";
+							$message .= "<h2>Bienvenido a Radix Education, " . $fields[0] . " " . $fields[1] . "!</h2>";
+							$message .= "<p>Nos complace informarte que tu cuenta ha sido creada exitosamente. A continuación, encontrarás tus datos de acceso:</p>";
+							$message .= "<p><strong>Email:</strong> " . $fields[2] . "<br>";
+							$message .= "<strong>Contraseña:</strong> " . $password . "</p>";
+							$message .= "<p>Puedes acceder a tu cuenta a través del siguiente enlace:</p>";
+							$message .= "<p><a href='" . $loginPageUrl . "' target='_blank'>Acceder a mi cuenta</a></p>";
+							$message .= "<p>Si tienes alguna pregunta o necesitas asistencia, no dudes en contactarnos.</p>";
+							$message .= "<p>Saludos,<br>El equipo de Radix Education</p>";
+							$message .= "</body></html>";
+						
+							// Enviar el correo
+							sendEmail($to, $subject, $message);
+						}
+						
                     } else {
                         $result = 'Sin equipo';
                     }
