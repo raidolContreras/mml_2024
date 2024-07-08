@@ -341,25 +341,15 @@ if (isset($_FILES['pacientList'])) {
 							$subject = "Bienvenido a nuestro equipo en Radix Education";
 						
 							// Crear el mensaje del correo
-							$message = "<html><body style='font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;'>";
-							$message .= "<div style='max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);'>";
-							$message .= "<div style='text-align: center; border-bottom: 1px solid #ddd; padding-bottom: 20px;'>";
-							$message .= "<h1 style='color: #333;'>Bienvenido a Radix Education</h1>";
-							$message .= "</div>";
-							$message .= "<p style='color: #555;'>Hola <strong>" . $fields[0] . " " . $fields[1] . "</strong>,</p>";
-							$message .= "<p style='color: #555;'>Nos complace informarte que tu cuenta ha sido creada exitosamente. A continuación, encontrarás tus datos de acceso:</p>";
-							$message .= "<table style='width: 100%; margin: 20px 0; border-collapse: collapse;'>";
-							$message .= "<tr><td style='padding: 10px; border: 1px solid #ddd; background: #f9f9f9;'><strong>Email:</strong></td><td style='padding: 10px; border: 1px solid #ddd;'>" . $fields[2] . "</td></tr>";
-							$message .= "<tr><td style='padding: 10px; border: 1px solid #ddd; background: #f9f9f9;'><strong>Contraseña:</strong></td><td style='padding: 10px; border: 1px solid #ddd;'>" . $password . "</td></tr>";
-							$message .= "</table>";
-							$message .= "<p style='color: #555;'>Puedes acceder a tu cuenta a través del siguiente enlace:</p>";
-							$message .= "<p style='text-align: center;'><a href='" . $loginPageUrl . "' style='display: inline-block; padding: 10px 20px; color: white; background-color: #007bff; text-decoration: none; border-radius: 5px;'>Acceder a mi cuenta</a></p>";
-							$message .= "<p style='color: #555;'>Si tienes alguna pregunta o necesitas asistencia, no dudes en contactarnos.</p>";
-							$message .= "<p style='color: #555;'>Saludos,<br>El equipo de Radix Education</p>";
-							$message .= "<div style='text-align: center; border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px; color: #aaa; font-size: 12px;'>";
-							$message .= "<p>&copy; " . date('Y') . " Radix Education. Todos los derechos reservados.</p>";
-							$message .= "</div>";
-							$message .= "</div>";
+							$message = "<html><body>";
+							$message .= "<h2>Bienvenido a Radix Education, " . $fields[0] . " " . $fields[1] . "!</h2>";
+							$message .= "<p>Nos complace informarte que tu cuenta ha sido creada exitosamente. A continuación, encontrarás tus datos de acceso:</p>";
+							$message .= "<p><strong>Email:</strong> " . $fields[2] . "<br>";
+							$message .= "<strong>Contraseña:</strong> " . $password . "</p>";
+							$message .= "<p>Puedes acceder a tu cuenta a través del siguiente enlace:</p>";
+							$message .= "<p><a href='" . $loginPageUrl . "' target='_blank'>Acceder a mi cuenta</a></p>";
+							$message .= "<p>Si tienes alguna pregunta o necesitas asistencia, no dudes en contactarnos.</p>";
+							$message .= "<p>Saludos,<br>El equipo de Radix Education</p>";
 							$message .= "</body></html>";
 						
 							// Enviar el correo
