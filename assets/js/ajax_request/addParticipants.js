@@ -55,6 +55,7 @@ $(document).ready(async function () {
                 $('#participantsModal').modal('hide');
                 var team = $('#teamSelectEdit').val();
                 participants(team);
+                this.removeFile(file);
             });
         }
     });
