@@ -364,7 +364,7 @@ if (isset($_FILES['pacientList'])) {
 						
 							// Enviar el correo
 							sendEmail($to, $subject, $message);
-						}						
+						}
 						
                     } else {
                         $result = 'Sin equipo';
