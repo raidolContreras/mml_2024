@@ -318,11 +318,11 @@ function editUser(user) {
         dataType: 'json',
         success: function (response) {
             if (response) {
-    
-                let html = `<option value="">${translations.select_one}</option>`;
-                $(".teamSelectEdit").html(html);
+
+                getTeamsProjects(response.users_idProjects);
 
                 $(".teamSelectEdit").prop('disabled', true);
+
                 $('#editUser').val(user);
                 $('#editUsersModal').modal('show');
                 $('.acceptEdit').html(translations.accept);
@@ -396,6 +396,12 @@ $('#projectSelectEdit').on('change', async function() {
 
 $('.projectSelectEdit').on('change', async function() {
     var project = $('.projectSelectEdit').val();
+    if (project > 0) {
+        getTeamsProjects(project);
+    }
+});
+
+async function getTeamsProjects(project) {
     
     try {
         let response = await $.ajax({
@@ -423,7 +429,7 @@ $('.projectSelectEdit').on('change', async function() {
     } catch (error) {
         console.error("Error en la solicitud AJAX:", error);
     }
-});
+};
 
 $('.addUsersModal').on('click', function(e) {
     
