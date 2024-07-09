@@ -194,10 +194,13 @@ $('.send_Selections_btn').on('click', function() {
     });
 });
 
-function updateData(columName) {
-    
+function updateData(columnName) {
     var idStructure = $('#idStructure').val();
     $('#editModal').modal('show');
+    
+    // Truncar columnName eliminando el último carácter
+    var truncatedColumnName = columnName.slice(0, -1);
+
     $.ajax({
         type: 'POST',
         url: 'controller/ajax/ajax.form.php',
@@ -206,9 +209,10 @@ function updateData(columName) {
         },
         dataType: 'json',
         success: function (data) {
-            $('#value').val(data[columName]);
-            $('#columnName').val(columName);
-            $('#modalLabelEdit').html(columName);
+            $('#value').val(data[columnName]);
+            $('#columnName').val(columnName);
+            
+            $('#modalLabelEdit').html(translations[truncatedColumnName]);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log("Error en la solicitud AJAX:", textStatus, errorThrown);
