@@ -236,6 +236,7 @@ cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['langu
     $('.title_attendance').html(translations.Attendance_lists);
     $('.title_agreements').html(translations.Agreements);
     $('.title_others').html(translations.Others);
+    $('.title_video').html(translations.Videos);
 
     var html2 = `
         <option value="0">${translations.select_one}</option>
