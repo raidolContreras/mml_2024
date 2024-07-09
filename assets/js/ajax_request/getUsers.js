@@ -319,7 +319,7 @@ function editUser(user) {
         success: function (response) {
             if (response) {
 
-                getTeamsProjects(response.users_idProjects);
+                getTeamsProjects(response.users_idProjects, response.users_idTeam);
 
                 $(".teamSelectEdit").prop('disabled', true);
 
@@ -401,7 +401,7 @@ $('.projectSelectEdit').on('change', async function() {
     }
 });
 
-async function getTeamsProjects(project) {
+async function getTeamsProjects(project, idTeam = null) {
     
     try {
         let response = await $.ajax({
@@ -420,7 +420,11 @@ async function getTeamsProjects(project) {
         html += `<option value="">${translations.select_one}</option>`;
         
         response.forEach(function(team) {
-            html += '<option value="' + team.idTeam + '">' + team.teamName + '</option>';
+            if (team.idTeam == idTeam) {
+                html += '<option value="' + team.idTeam + '" selected>' + team.teamName + '</option>';
+            } else {
+                html += '<option value="' + team.idTeam + '">' + team.teamName + '</option>';
+            }
         });
         
         $(".teamSelectEdit").prop('disabled', false);
