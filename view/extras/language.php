@@ -4,6 +4,9 @@
 var translations; // Declaración de la variable translations fuera de la función
 
 async function cargarTraducciones(idioma) {
+    if (idioma == '') {
+        idioma = 'en'; // Por defecto, se establece el idioma en inglés si no hay selección en la sesión
+    }
     var ruta = 'assets/languajes/' + idioma + '.json';
     if (idioma == 'en') {
         $('.languaje-selected').attr('src', 'assets/images/Flag/flag001.png');
