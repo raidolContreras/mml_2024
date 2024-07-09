@@ -318,6 +318,10 @@ function editUser(user) {
         dataType: 'json',
         success: function (response) {
             if (response) {
+    
+                let html = `<option value="">${translations.select_one}</option>`;
+                $(".teamSelectEdit").html(html);
+
                 $(".teamSelectEdit").prop('disabled', true);
                 $('#editUser').val(user);
                 $('#editUsersModal').modal('show');
@@ -422,5 +426,8 @@ $('.projectSelectEdit').on('change', async function() {
 });
 
 $('.addUsersModal').on('click', function(e) {
+    
+    let html = `<option value="">${translations.select_one}</option>`;
+    $("#teamSelectEdit").html(html);
     $("#teamSelectEdit").prop('disabled', true);
 })
