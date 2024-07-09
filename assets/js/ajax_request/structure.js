@@ -208,6 +208,7 @@ function updateData(columName) {
         success: function (data) {
             $('#value').val(data[columName]);
             $('#columnName').val(columName);
+            $('#modalLabelEdit').html(columName);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log("Error en la solicitud AJAX:", textStatus, errorThrown);
