@@ -1,9 +1,11 @@
+var myDropzone;
+
 $(document).ready(async function () {
     var language = $('#language').val();
     await cargarTraducciones(language);
     
 
-    var myDropzone = new Dropzone("#addParticipantsDropzone", {
+    myDropzone = new Dropzone("#addParticipantsDropzone", {
         maxFiles: 1,
         url: "controller/ajax/ajax.form.php",
         maxFilesize: 10,
