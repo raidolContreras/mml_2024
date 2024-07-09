@@ -358,36 +358,35 @@ function deleteUser(user) {
     });
 }
 
-$('#projectSelectEdit').on('change', function() {
-        var project = $('#projectSelectEdit').val();
+$('#projectSelectEdit').on('change', async function() {
+    var project = $('#projectSelectEdit').val();
+    
+    try {
+        let response = await $.ajax({
+            type: "POST",
+            url: "controller/ajax/getTeams.php",
+            data: {
+                idProject: project
+            },
+            dataType: "json"
+        });
+
+        var html = '';
+        var language = $('#language').val();
+        await cargarTraducciones(language);
+
+        html += `<option value="">${translations.select_one}</option>`;
         
-        try {
-            let response = $.ajax({
-                type: "POST",
-                url: "controller/ajax/getTeams.php",
-                data: {
-                    idProject: project
-                },
-                dataType: "json"
-            });
-    
-            var html = '';
-            var language = $('#language').val();
-            cargarTraducciones(language);
-    
-            html += `<option value="">${translations.select_one}</option>`;
-            
-            response.forEach(function(team) {
-                html += '<option value="' + team.idTeam + '">' + team.teamName + '</option>';
-            });
-            
-            $("#teamSelectEdit").attr('disabled', 'false');
-            $("#teamSelectEdit").html(html);
-            
-            $(".teamSelectEdit").html(html);
-    
-        } catch (error) {
-            console.error("Error en la solicitud AJAX:", error);
-        }
-    
+        response.forEach(function(team) {
+            html += '<option value="' + team.idTeam + '">' + team.teamName + '</option>';
+        });
+        
+        $("#teamSelectEdit").prop('disabled', false);
+        $("#teamSelectEdit").html(html);
+        
+        $(".teamSelectEdit").html(html);
+
+    } catch (error) {
+        console.error("Error en la solicitud AJAX:", error);
+    }
 });
