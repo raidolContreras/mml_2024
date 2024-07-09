@@ -33,6 +33,7 @@ if(isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
 if(isset($_POST['emailLoginStudent']) && isset($_POST['passwordLoginStudent'])) {
     $email = $_POST['emailLoginStudent'];
     $password = $_POST['passwordLoginStudent'];
+	echo $email;
     $result = FormsController::ctrLoginParticipant($email, $password);
     if($result != 'Error: Password incorrect' && $result != 'Error: Email does not contain'){
 		$team = FormsController::ctrGetTeams('idTeam', $result['idTeam'], null);
