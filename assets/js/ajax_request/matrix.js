@@ -196,7 +196,6 @@ function getMatrixToEdit(activity, structure) {
 }
 
 function updateFormFields(data) {
-    console.log(data);
     const fields = {
         description: data.description,
         startDate: data.start_date,
@@ -240,7 +239,6 @@ function editMatriz(matriz) {
     let idStructure = $('#idStructure').val();
     $('#editMatriz').modal('show');
     $('#editMatrizLabel').text(activities[matriz - 1]);
-    console.log(activities[matriz - 1]);
     activityNumber = matriz;
     $('#activityNumber').val(activityNumber);
     getMatrixToEdit(matriz, idStructure);
