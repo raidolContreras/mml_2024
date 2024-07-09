@@ -22,6 +22,7 @@ $(document).ready(async function () {
         });
         
         $("#teamSelectEdit").html(html);
+        
         $(".teamSelectEdit").html(html);
 
     } catch (error) {
