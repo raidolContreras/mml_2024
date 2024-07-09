@@ -140,5 +140,5 @@
 
 
 	<body class="auto theme-color-blue">
-		<div class="conatiner-fluid content-inner pb-0">
+		<div class="conatiner-fluid content-inner pb-0 pt-1">
 			<div class="row">
