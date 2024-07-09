@@ -214,7 +214,12 @@ function updateFormFields(data) {
 
     const evidenceTypes = ['photos', 'videos', 'reports_input', 'attendance', 'agreements', 'others'];
     evidenceTypes.forEach(type => {
-        console.log(data[type]);
+        if (type === 'reports_input'){
+            type = 'reports';
+        }
+        if (type === 'reports'){
+            type = 'reports_input';
+        }
         $('#' + type).prop('checked', data[type] == 1);
     });
 }
