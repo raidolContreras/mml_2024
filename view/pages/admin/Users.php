@@ -127,7 +127,7 @@
                     </div>
                     <div class="col-6 form-group mt-3">
                         <label for="teamSelect" class="form-label teams"></label>
-                        <select class="form-select" id="teamSelectEdit">
+                        <select class="form-select" id="teamSelectEdit" disabled>
                         </select>
                     </div>
                     <div class="col-6 form-group mt-3">
@@ -181,7 +181,7 @@
                     </div>
                     <div class="col-6 form-group mt-3">
                         <label for="teamSelectEdit" class="form-label teams"></label>
-                        <select class="form-select teamSelectEdit">
+                        <select class="form-select teamSelectEdit" disabled>
                         </select>
                     </div>
                     <div class="col-6 form-group mt-3">

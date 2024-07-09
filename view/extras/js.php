@@ -41,7 +41,6 @@
         echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
         echo '<script src="assets/js/ajax_request/getUsers.js"></script>';
         echo '<script src="assets/js/ajax_request/getProjectsSelects.js"></script>';
-        echo '<script src="assets/js/ajax_request/getTeamsSelects.js"></script>';
     } elseif($pagina == 'Projects') {
         echo '<script src="assets/vendor/dropzone/dropzone-min.js"></script>';
         echo '<script src="assets/js/ajax_request/getProjects.js"></script>';

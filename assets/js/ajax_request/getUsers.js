@@ -357,3 +357,37 @@ function deleteUser(user) {
         }
     });
 }
+
+$('#projectSelectEdit').on('change', function() {
+        var project = $('#projectSelectEdit').val();
+        
+        try {
+            let response = $.ajax({
+                type: "POST",
+                url: "controller/ajax/getTeams.php",
+                data: {
+                    idProject: project
+                },
+                dataType: "json"
+            });
+    
+            var html = '';
+            var language = $('#language').val();
+            cargarTraducciones(language);
+    
+            html += `<option value="">${translations.select_one}</option>`;
+            
+            response.forEach(function(team) {
+                html += '<option value="' + team.idTeam + '">' + team.teamName + '</option>';
+            });
+            
+            $("#teamSelectEdit").attr('disabled', 'false');
+            $("#teamSelectEdit").html(html);
+            
+            $(".teamSelectEdit").html(html);
+    
+        } catch (error) {
+            console.error("Error en la solicitud AJAX:", error);
+        }
+    
+});
