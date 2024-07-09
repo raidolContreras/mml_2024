@@ -212,12 +212,10 @@ function updateFormFields(data) {
         $('#' + field).val(fields[field]);
     });
 
-    const evidenceTypes = ['photos', 'videos', 'reports_input', 'attendance', 'agreements', 'others'];
+    const evidenceTypes = ['photos', 'videos', 'reports', 'attendance', 'agreements', 'others'];
     evidenceTypes.forEach(type => {
-        if (type === 'reports_input'){
-            type = 'reports';
-        }
-        $('#' + (type == 'reports') ? 'reports_input' : type).prop('checked', data[type] == 1);
+        const checkboxId = (type === 'reports') ? 'reports_input' : type;
+        $('#' + checkboxId).prop('checked', data[type] == 1);
     });
 }
 
