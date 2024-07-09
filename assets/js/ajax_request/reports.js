@@ -47,7 +47,6 @@ $(document).ready(async function () {
     await cargarTraducciones(language);
 
     if (typeof translations !== 'undefined') {
-        console.log('Translations loaded:', translations);
         
         // Inicializar Dropzones aquí, después de asegurarte de que translations esté definido
         photoDropzone = initDropzone("#AddPhotosDropzone", "image/jpeg,image/png,image/jpg");
