@@ -91,7 +91,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-body-edit">
-                <label for="columnName">Edita el campo</label>
+                <label for="columnName" class="EditField"></label>
                 <input type="text" class="form-control" id="value">
                 <input type="hidden" id="columnName">
                 <input type="hidden" id="idStructure">

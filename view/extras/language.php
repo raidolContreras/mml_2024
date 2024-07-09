@@ -223,6 +223,7 @@ cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['langu
     $('.Teacher').html(translations.Teacher);
     $('.Student').html(translations.Student);
     $('.Logout').html(translations.Logout);
+    $('.EditField').html(translations.EditField);
 
     //placeholders
     $('#videoLink').attr('placeholder',translations.EnterYouTubeVideoLink);

@@ -211,6 +211,7 @@
   "EnterYouTubeVideoURL": "Ingrese la URL del video de YouTube",
   "Evidence": "Evidencia",
   "Back": "Regresar",
-  "Logout": "Cerrar sesión"
+  "Logout": "Cerrar sesión",
+  "EditField": "Edita el campo"
 
 }
