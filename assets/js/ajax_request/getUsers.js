@@ -308,8 +308,6 @@ $(document).ready(async function () {
 });
 
 function editUser(user) {
-    $('#editUser').val(user);
-    $('#editUsersModal').modal('show');
 
     $.ajax({
         type: 'POST',
@@ -320,6 +318,9 @@ function editUser(user) {
         dataType: 'json',
         success: function (response) {
             if (response) {
+                $(".teamSelectEdit").prop('disabled', true);
+                $('#editUser').val(user);
+                $('#editUsersModal').modal('show');
                 $('.acceptEdit').html(translations.accept);
                 $('.firstnameEdit').val(response.firstname);
                 $('.lastnameEdit').val(response.lastname);
@@ -384,9 +385,14 @@ $('#projectSelectEdit').on('change', async function() {
         $("#teamSelectEdit").prop('disabled', false);
         $("#teamSelectEdit").html(html);
         
+        $(".teamSelectEdit").prop('disabled', false);
         $(".teamSelectEdit").html(html);
 
     } catch (error) {
         console.error("Error en la solicitud AJAX:", error);
     }
 });
+
+$('.addUsersModal').on('click', function(e) {
+    $("#teamSelectEdit").prop('disabled', true);
+})
