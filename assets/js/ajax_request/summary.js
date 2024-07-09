@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    const idTeam = 1; // Cambia esto por el ID del equipo deseado
-    loadCollage(idTeam);
+    const Project = $('#project').val();
+    loadCollage(Project);
 });
 
 function getYouTubeID(url) {
@@ -37,11 +37,11 @@ function shuffleArray(array) {
     }
 }
 
-function loadCollage(idTeam) {
+function loadCollage(Project) {
     $.ajax({
         url: 'controller/ajax/getReportFiles.php',
         method: 'POST',
-        data: { idTeam: idTeam },
+        data: { Project: Project },
         dataType: 'json',
         success: function (response) {
             const collageContainer = $('#collageContainer');

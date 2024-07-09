@@ -279,8 +279,8 @@ class FormsController {
         return FormsModel::mdlGetPromedios($idProject);
     }
 
-    static public function ctrGetReports() {
-        return FormsModel::mdlGetReports();
+    static public function ctrGetReports($idProject) {
+        return FormsModel::mdlGetReports($idProject);
     }
 
 }
