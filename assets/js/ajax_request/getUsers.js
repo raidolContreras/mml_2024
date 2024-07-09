@@ -391,7 +391,7 @@ $('#projectSelectEdit').on('change', async function() {
 });
 
 $('.projectSelectEdit').on('change', async function() {
-    var project = $('#projectSelectEdit').val();
+    var project = $('.projectSelectEdit').val();
     
     try {
         let response = await $.ajax({
