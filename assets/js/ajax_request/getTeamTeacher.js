@@ -54,6 +54,8 @@ $(document).ready(async function () {
             this.on("success", function( file, xhr, formData) {
                 $('#participantsModal').modal('hide');
                 participants(idteam);
+                // Eliminar el archivo de Dropzone
+                this.removeFile(file);
             });
         }
     });
