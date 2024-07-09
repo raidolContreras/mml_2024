@@ -217,10 +217,7 @@ function updateFormFields(data) {
         if (type === 'reports_input'){
             type = 'reports';
         }
-        if (type === 'reports'){
-            type = 'reports_input';
-        }
-        $('#' + type).prop('checked', data[type] == 1);
+        $('#' + (type == 'reports') ? 'reports_input' : type).prop('checked', data[type] == 1);
     });
 }
 
