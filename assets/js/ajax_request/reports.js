@@ -165,6 +165,7 @@ function seeReports(element, matrix) {
                                         break;
                                     default:
                                         html += `<button onclick="evidences('${file.path}', false)" target="_blank" class="btn btn-primary mt-2">${translations.view}</button>`;
+                                        html += `<a href="${file.path}" target="_blank" class="btn btn-primary mt-2">${translations.download}</a>`;
                                         break;
                                 }
 
