@@ -1,6 +1,6 @@
 
 
-<div class="conatiner-fluid content-inner pb-0 pt-1">
+<div class="conatiner-fluid content-inner pb-0 pt-5">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
