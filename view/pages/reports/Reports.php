@@ -139,27 +139,27 @@
                 <input min="1" type="number" class="form-control EnterProgress" id="progress_activity">
             </div>
             <div class="form-group col-6 mt-3 photos">
-                <label for="photos"><span class="photos"></span></label>
+                <label for="photos"><span class="title_photos"></span></label>
                 <div id="AddPhotosDropzone" class="dropzone"></div>
             </div>
             <div class="form-group col-6 mt-3 reports">
-                <label for="reports"><span class="reports"></span></label>
+                <label for="reports"><span class="title_reports"></span></label>
                 <div id="AddReportsDropzone" class="dropzone"></div>
             </div>
             <div class="form-group col-6 mt-3 attendance">
-                <label for="attendance"><span class="attendance"></span></label>
+                <label for="attendance"><span class="title_attendance"></span></label>
                 <div id="AddAttendanceDropzone" class="dropzone"></div>
             </div>
             <div class="form-group col-6 mt-3 agreements">
-                <label for="agreements"><span class="agreements"></span></label>
+                <label for="agreements"><span class="title_agreements"></span></label>
                 <div id="AddAgreementsDropzone" class="dropzone"></div>
             </div>
             <div class="form-group col-6 mt-3 others">
-                <label for="others"><span class="others"></span></label>
+                <label for="others"><span class="title_others"></span></label>
                 <div id="AddOthersDropzone" class="dropzone"></div>
             </div>
             <div class="form-group col-12 mt-3 videos">
-                <label for="video"><span class="video"></span></label>
+                <label for="video"><span class="title_video"></span></label>
                 <input type="url" class="form-control EnterYouTubeVideoURL" id="video">
             </div>
             <button class="btn btn-success mt-3 accept" onclick="saveEvidence()"></button>

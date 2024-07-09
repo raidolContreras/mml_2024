@@ -231,6 +231,11 @@ cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['langu
     $('.EnterProgress').attr('placeholder',translations.EnterProgress);
     $('.EnterYouTubeVideoURL').attr('placeholder',translations.EnterYouTubeVideoURL);
 
+    $('.title_photos').html(translations.Photos);
+    $('.title_reports').html(translations.Reports_input);
+    $('.title_attendance').html(translations.Attendance_lists);
+    $('.title_agreements').html(translations.Agreements);
+    $('.title_others').html(translations.Others);
 
     var html2 = `
         <option value="0">${translations.select_one}</option>
