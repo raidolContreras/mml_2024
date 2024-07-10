@@ -1,6 +1,6 @@
 
 <!-- Modal para agregar comentarios -->
-<div class="card container my-5 p-3 Comments">
+<div class="card container my-5 p-3 CommentsList">
     <h6 id="Comment_Title"></h6>
     <div id="commentsList" class="row" style="justify-content: center;">
     </div>

@@ -406,11 +406,7 @@ async function getMatrix(team) {
                             });
     
                             $('.totalReports').css('display', 'block');
-
-                            if (level == 0) {
-                                $('.Comments').css('display', 'block');
-                                fetchComments();
-                            }
+                            fetchComments();
                         } else {
                             $('.totalReports').css('display', 'none');
                             showAlertBootstrap2(translations.alert, translations.message_empty_matrix, 'Matriz');
@@ -749,7 +745,7 @@ function openComment() {
 }
 
 function fetchComments() {
-    const idTeam = $('#teamSelectEdit').val();
+    const idTeam = ($('#level').val() == 1) ? $('#idTeam').val() : $('#teamSelectEdit').val();
     const fromTable = 'Reports';
 
     $.ajax({
@@ -761,13 +757,19 @@ function fetchComments() {
         },
         dataType: 'json',
         success: function (data) {
+            if (level == 0) {
+                $('.Comments').css('display', 'block');
+            }
+            
             displayComments(data);
+            $('.CommentsList').css('display', 'block');
         },
         error: function (error) {
             console.error('Error:', error);
         }
     });
 }
+
 
 function displayComments(comments) {
     commentsList.innerHTML = '';
@@ -782,27 +784,22 @@ function displayComments(comments) {
         commentItem.className = 'col-5 comment-item d-flex align-items-center m-3';
         commentItem.setAttribute('data-id', comment.idComment);
 
-        let html = `
-            <div class="comment-text flex-grow-1">${comment.comment}</div>
-            <div class="comment-actions">
-        `;
+        const commentText = `<div class="comment-text flex-grow-1">${comment.comment}</div>`;
+        let actions = '<div class="comment-actions">';
 
-        if (comment.status == 1) {
-            html += `
-                <button class="btn btn-success" onclick="approveComment(this)">Aprobar</button>
-            `;
-        } else {
-            html += `
-                <button class="btn btn-success" disabled>Aprobado</button>
-            `;
+        if (comment.status != 1) {
+            actions += `<button class="btn btn-success" disabled>Aprobado</button>`;
+        } else if (level == 0) {
+            actions += `<button class="btn btn-success" onclick="approveComment(this)">Aprobar</button>`;
         }
 
-        html += `
-                <button class="btn btn-danger" onclick="deleteComment(this)">Borrar</button>
-            </div>
-        `;
+        if (level == 0) {
+            actions += `<button class="btn btn-danger" onclick="deleteComment(this)">Borrar</button>`;
+        }
 
-        commentItem.innerHTML = html;
+        actions += `</div>`;
+
+        commentItem.innerHTML = commentText + actions;
         commentsList.appendChild(commentItem);
     });
 }

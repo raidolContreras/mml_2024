@@ -78,6 +78,7 @@
         }
 
         .Comments,
+        .CommentsList,
         .chargerTree {
             display: none;
         }
