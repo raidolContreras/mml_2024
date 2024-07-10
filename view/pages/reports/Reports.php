@@ -19,7 +19,6 @@
         border-right: none;
     }
 
-    
     .col-12  {
         border-bottom: 1px solid #000;
         font-size: 15px;
@@ -43,7 +42,8 @@
         border-radius: 10px !important;
     }
 
-    .Comments {
+    .Comments,
+    .CommentsList {
         display: none;
     }
 
