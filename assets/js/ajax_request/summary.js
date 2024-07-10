@@ -8,7 +8,7 @@ $(document).ready(function() {
             team = $('#teamSelectEdit').val();
             if (team >= 1) {
                 loadCollage(Project, team);
-                $('.collage-container').css('display', 'none');
+                $('.collage-container').css('display', 'flex');
             } else {
                 $('.Comments').css('display', 'none');
                 $('.collage-container').css('display', 'none');
