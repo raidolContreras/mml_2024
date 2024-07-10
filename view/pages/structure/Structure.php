@@ -70,6 +70,7 @@
     }
     
 
+    .CommentsList,
     .Comments {
         display: none;
     }

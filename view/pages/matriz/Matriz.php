@@ -31,6 +31,7 @@
     	flex: 0.2 0 0%;
 	}
 	
+	.CommentsList,
     .Comments {
         display: none;
     }
