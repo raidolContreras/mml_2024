@@ -1,6 +1,24 @@
+var level = $('#level').val();
+var team;
 $(document).ready(function() {
     const Project = $('#project').val();
-    loadCollage(Project);
+    
+    if (level == 0) {
+        $('#teamSelectEdit').on('change', function() {
+            team = $('#teamSelectEdit').val();
+            if (team >= 1) {
+                loadCollage(Project, team);
+                $('.collage-container').css('display', 'none');
+            } else {
+                $('.Comments').css('display', 'none');
+                $('.collage-container').css('display', 'none');
+            }
+        });
+    } else {
+        var Team = (level == 1) ? level : $('#teamSelectEdit').val();
+        loadCollage(Project, Team);
+        $('.collage-container').css('display', 'flex');
+    }
 });
 
 function getYouTubeID(url) {
@@ -37,11 +55,11 @@ function shuffleArray(array) {
     }
 }
 
-function loadCollage(Project) {
+function loadCollage(Project, Team) {
     $.ajax({
         url: 'controller/ajax/getReportFiles.php',
         method: 'POST',
-        data: { Project: Project },
+        data: { Project: Project, Team: Team},
         dataType: 'json',
         success: function (response) {
             const collageContainer = $('#collageContainer');

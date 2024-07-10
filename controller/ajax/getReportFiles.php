@@ -2,7 +2,7 @@
 require_once "../forms.controller.php";
 require_once "../../model/forms.models.php";
 
-    $reports = FormsController::ctrGetReports($_POST['Project']);
+    $reports = FormsController::ctrGetReports($_POST['Project'], $_POST['Team']);
     $files = [];
     foreach ($reports as $report) {
         $reportFiles = json_decode($report['files'], true);

@@ -1,6 +1,6 @@
 <style>
 .collage-container {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center; /* Centrar los elementos horizontalmente */
@@ -93,5 +93,13 @@
 }
 
 </style>
+
+<div class="row mb-4 teamSelect">
+    <div class="col-md-6 offset-md-3">
+        <label for="teamSelectEdit" class="form-label teams"></label>
+        <select class="form-select" id="teamSelectEdit">
+        </select>
+    </div>
+</div>
 <div id="collageContainer" class="collage-container">
 </div>

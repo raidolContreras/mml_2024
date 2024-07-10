@@ -1041,16 +1041,17 @@ class FormsModel {
         return $stmt->execute();
     }
 
-    public static function mdlGetReports($idProject) {
+    public static function mdlGetReports($idProject, $idTeam) {
         $pdo = Conexion::conectar();
         $sql = "SELECT r.*, p.idProject FROM reports r 
                     LEFT JOIN matrix m ON m.idMatrix = r.idMatrix
                     LEFT JOIN structures s ON s.idStructure = m.idStructure
                     LEFT JOIN teams t ON t.idTeam = s.idTeam
                     LEFT JOIN projects p ON p.idProject = t.teams_idProject
-                WHERE p.idProject = :idproject";
+                WHERE p.idProject = :idproject AND t.idTeam = :idteam";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idproject', $idProject, PDO::PARAM_INT);
+        $stmt->bindParam(':idteam', $idTeam, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
