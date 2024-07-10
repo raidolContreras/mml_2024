@@ -238,6 +238,11 @@ cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['langu
     $('.title_others').html(translations.Others);
     $('.title_video').html(translations.Videos);
 
+    $('#Comment').html(translations.Comment);
+    $('.commetTitle').html(translations.addComment);
+    $('.Comment').html(translations.Comment);
+    $('#Comment_Title').html(translations.Comment);
+
     var html2 = `
         <option value="0">${translations.select_one}</option>
         <option value="1">${translations.Monthly}</option>

@@ -1055,4 +1055,58 @@ class FormsModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function mdlAddComment($data) {
+        $pdo = Conexion::conectar();
+        $sql = "INSERT INTO comments(comment, fromTable, idTeam) VALUES(:comment, :fromTable, :idTeam)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':comment', $data['comment'], PDO::PARAM_STR);
+        $stmt->bindParam(':fromTable', $data['fromTable'], PDO::PARAM_STR);
+        $stmt->bindParam(':idTeam', $data['idTeam'], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    public static function mdlGetComments($idTeam, $fromTable) {
+        $pdo = Conexion::conectar();
+        $sql = "SELECT * FROM comments WHERE idTeam = :idTeam AND fromTable = :fromTable ORDER BY idComment DESC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+        $stmt->bindParam(':fromTable', $fromTable, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    public static function mdlDeleteComment($idComment) {
+        $pdo = Conexion::conectar();
+        $sql = "DELETE FROM comments WHERE idComment = :idComment";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idComment', $idComment, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    public static function mdlApproveComment($idComment) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE comments SET status = 2 WHERE idComment = :idComment";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idComment', $idComment, PDO::PARAM_INT);
+        
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
 }

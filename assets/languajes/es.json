@@ -212,6 +212,8 @@
   "Evidence": "Evidencia",
   "Back": "Regresar",
   "Logout": "Cerrar sesión",
-  "EditField": "Edita el campo"
+  "EditField": "Edita el campo",
+  "Comment": "Commentarios",
+  "addComment": "Agregar Commentarios"
 
 }

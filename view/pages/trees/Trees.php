@@ -76,9 +76,41 @@
             height: 30px;
             width: 100%;
         }
-        .chargerTree_btn,
+
+        .Comments,
         .chargerTree {
             display: none;
+        }
+
+        .comment-item {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-text {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .comment-actions {
+            margin-left: auto;
+        }
+
+        .comment-actions .btn {
+            margin-left: 10px;
+        }
+
+        .comment-actions .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .comment-actions .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
         }
     </style>
 </head>
@@ -92,9 +124,9 @@
                 </select>
             </div>
         </div>
-        <div class="row chargerTree_btn">
+        <div class="row Comments">
             <div class="float-end mb-3">
-                <button class="btn btn-primary addTrees_btn" onclick="chargerTree()"></button>
+                <button class="btn btn-primary mb-4" id="Comment" data-bs-toggle="modal" data-bs-target="#commetModal" onclick="openComment()">Agregar Comentario</button>
             </div>
         </div>
         <div class="row chargerTree">
@@ -356,3 +388,7 @@
         </div>
     </div>  
 </div>
+
+<?php
+    include "view/pages/comments.php";
+?>

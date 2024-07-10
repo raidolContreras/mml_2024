@@ -211,6 +211,8 @@
   "Evidence": "Evidence",
   "Back": "Back",
   "Logout": "Logout",
-  "EditField": "Edit the field"
+  "EditField": "Edit the field",
+  "Comment": "Comments",
+  "addComment": "Add Comments"
 
 }

@@ -43,6 +43,40 @@
         border-radius: 10px !important;
     }
 
+    .Comments {
+        display: none;
+    }
+
+    .comment-item {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .comment-text {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .comment-actions {
+        margin-left: auto;
+    }
+
+    .comment-actions .btn {
+        margin-left: 10px;
+    }
+
+    .comment-actions .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .comment-actions .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
 </style>
 
 <div class="row mb-2 teamSelect">
@@ -50,6 +84,12 @@
         <label for="teamSelectEdit" class="form-label teams"></label>
         <select class="form-select" id="teamSelectEdit">
         </select>
+    </div>
+</div>
+
+<div class="row Comments">
+    <div class="float-end mb-3">
+        <button class="btn btn-primary mb-4 addComments" id="Comment" data-bs-toggle="modal" data-bs-target="#commetModal" onclick="openComment()"></button>
     </div>
 </div>
     
@@ -210,3 +250,8 @@
 <input type="hidden" id="totalProgressAccepted">
 <input type="hidden" id="lastEditProgress">
 <input type="hidden" id="idMatrix">
+
+
+<?php
+    include "view/pages/comments.php";
+?>

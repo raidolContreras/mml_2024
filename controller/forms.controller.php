@@ -283,4 +283,21 @@ class FormsController {
         return FormsModel::mdlGetReports($idProject);
     }
 
+    static public function ctrAddComment($data) {
+        return FormsModel::mdlAddComment($data);
+    }
+
+    static public function ctrGetComments($idTeam, $fromTable) {
+        return FormsModel::mdlGetComments($idTeam, $fromTable);
+    }
+
+    public static function ctrDeleteComment($id) {
+        return FormsModel::mdlDeleteComment($id);
+    }
+
+    public static function ctrApproveComment($id) {
+        return FormsModel::mdlApproveComment($id);
+    }
+        
+
 }
