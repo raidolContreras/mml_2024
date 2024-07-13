@@ -15,7 +15,7 @@ $(document).ready(function() {
             }
         });
     } else {
-        team = ($('#level').val() == 1) ? $('#team').val() : $('#teamSelectEdit').val();
+        team = ($('#level').val() == 1) ? $('#idTeam').val() : $('#teamSelectEdit').val();
         loadCollage(Project, team);
         $('.teamSelect').css('display', 'none');
         $('.collage-container').css('display', 'flex');
