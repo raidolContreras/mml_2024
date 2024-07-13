@@ -21,6 +21,8 @@ if (level != 0 ) {
 }
 
 function structureSelect(idTeam) {
+    
+    let project = $('#project').val();
     $.ajax({
         type: 'POST',
         url: 'controller/ajax/ajax.form.php',
