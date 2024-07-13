@@ -644,7 +644,7 @@ class FormsModel {
         $pdo = Conexion::conectar();
         $sql = "SELECT * FROM main_problems p
                     JOIN main_goals o ON o.idTeam = p.idTeam
-                WHERE p.idTeam = :idTeam AND p.idProject = :idProject";
+                WHERE p.idTeam = :idTeam AND p.idProject = :idProject AND o.idProject = :idProject";
         $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
             $stmt->bindParam(':idProject', $idProject, PDO::PARAM_INT);
