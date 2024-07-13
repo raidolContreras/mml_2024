@@ -24,9 +24,7 @@ function structureSelect(idTeam) {
     $.ajax({
         type: 'POST',
         url: 'controller/ajax/ajax.form.php',
-        data: {
-            structureSelect: idTeam
-        },
+        data: { structureSelect: team, project: project},
         dataType: 'json',
         success: function (data) {
             if (data && Object.keys(data).length === 0) {
