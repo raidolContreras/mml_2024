@@ -329,11 +329,12 @@ let activities = Array(8).fill('');
 let idStructure = 0;
 
 async function getMatrix(team) {
+    let project = $('#project').val();
     try {
         const response = await $.ajax({
             type: 'POST',
             url: 'controller/ajax/ajax.form.php',
-            data: { structureSelect: team },
+            data: { structureSelect: team, project: project},
             dataType: 'json'
         });
 

@@ -754,7 +754,7 @@ class FormsModel {
         return $result;
     }
 
-    static public function mdlGetStructure($idTeam) {
+    static public function mdlGetStructure($idTeam, $idProject) {
         $pdo = Conexion::conectar();
         $sql = "SELECT s.*, 
                 mp.nameMain01, mp.nameMain02, mp.nameMain03, mp.nameMain04,
@@ -765,9 +765,10 @@ class FormsModel {
                 FROM structures s
                     LEFT JOIN main_problems mp ON mp.idMainProblems = s.idMainProblems
                     LEFT JOIN main_goals mg ON mg.idTeam = mp.idTeam AND mg.idProject = mp.idProject
-                WHERE s.idTeam = :idTeam";
+                WHERE s.idTeam = :idTeam AND mp.idProject = :idProject";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+        $stmt->bindParam(':idProject', $idProject, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll();
         $stmt->closeCursor();

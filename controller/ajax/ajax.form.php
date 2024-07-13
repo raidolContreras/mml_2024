@@ -743,7 +743,7 @@ if (
 
 
 if (isset($_POST['structureSelect'])) {
-	echo json_encode(FormsController::ctrGetStructure($_POST['structureSelect']));
+	echo json_encode(FormsController::ctrGetStructure($_POST['structureSelect'], $_POST['project']));
 }
 
 if (isset($_POST['selectedOptions'])) {

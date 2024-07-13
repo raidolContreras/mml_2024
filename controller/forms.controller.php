@@ -206,8 +206,8 @@ class FormsController {
         return $response;
     }
 
-    static public function ctrGetStructure($idStructure) {
-        $response = FormsModel::mdlGetStructure($idStructure);
+    static public function ctrGetStructure($idTeam, $idProject) {
+        $response = FormsModel::mdlGetStructure($idTeam, $idProject);
         return $response;
     }
 

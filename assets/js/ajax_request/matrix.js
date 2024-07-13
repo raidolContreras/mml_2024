@@ -27,10 +27,11 @@ let idStructure = 0;
 var activityNumber;
 
 function getMatrix(team) {
+    let project = $('#project').val();
     $.ajax({
         type: 'POST',
         url: 'controller/ajax/ajax.form.php',
-        data: { structureSelect: team },
+        data: { structureSelect: team, project: project},
         dataType: 'json',
         success: function (data) {
             if (!data || Object.keys(data).length === 0) {
