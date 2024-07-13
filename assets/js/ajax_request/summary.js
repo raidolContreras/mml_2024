@@ -1,5 +1,5 @@
 var level = $('#level').val();
-var team;
+var team = $('#idTeam').val();
 $(document).ready(function() {
     const Project = $('#project').val();
     
@@ -15,7 +15,6 @@ $(document).ready(function() {
             }
         });
     } else {
-        team = ($('#level').val() == 1) ? $('#idTeam').val() : $('#teamSelectEdit').val();
         loadCollage(Project, team);
         $('.teamSelect').css('display', 'none');
         $('.collage-container').css('display', 'flex');
