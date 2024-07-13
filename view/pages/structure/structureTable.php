@@ -15,25 +15,16 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="arrow">↓</div>
-        </div>
-        <div class="col-md-5">
+        <div class="col-md-10">
             <div class="arrow">↓</div>
         </div>
     </div>
     <!-- Main Objectives -->
     <div class="row justify-content-center">
-        <div class="col-md-5">
+        <div class="col-md-10">
             <div class="card border-objetive">
                 <div class="card-header bg-objetive text-white main_objetive"></div>
                 <div class="card-body bg-light-blue main_objetive01"></div>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <div class="card border-objetive">
-                <div class="card-header bg-objetive text-white main_objetive"></div>
-                <div class="card-body bg-light-blue main_objetive02"></div>
             </div>
         </div>
     </div>
