@@ -306,13 +306,13 @@ function sendEmail($to, $subject, $message) {
 		$mail->isSMTP();
 		$mail->Host = 'smtp.hostinger.com'; // Cambia esto al servidor SMTP que estés usando
 		$mail->SMTPAuth = true;
-		$mail->Username = 'unimontrer@contreras-flota.click'; // Cambia esto a tu dirección de correo electrónico
-		$mail->Password = 'fjz6GG5l7ly{'; // Cambia esto a tu contraseña de correo electrónico
+		$mail->Username = 'noreply@jena.radixeducation.org'; // Cambia esto a tu dirección de correo electrónico
+		$mail->Password = 'FWVcp3hCY:KG8gp'; // Cambia esto a tu contraseña de correo electrónico
 		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 		$mail->Port = 587;
 
 		// Configuración del remitente y destinatario
-		$mail->setFrom('radixeducation@radixeducation.org', 'Radix Education');
+		$mail->setFrom('noreply@jena.radixeducation.org', 'Radix Education');
 
 		$mail->addAddress($to);
 
@@ -322,9 +322,9 @@ function sendEmail($to, $subject, $message) {
 		$mail->Body    = $message;
 
 		$mail->send();
-		echo 'El correo ha sido enviado correctamente';
+		return 'El correo ha sido enviado correctamente';
 	} catch (Exception $e) {
-		echo "El correo no pudo ser enviado. Mailer Error: {$mail->ErrorInfo}";
+		return "El correo no pudo ser enviado. Mailer Error: {$mail->ErrorInfo}";
 	}
 }
 
@@ -383,7 +383,7 @@ if (isset($_FILES['pacientList'])) {
 							$message .= "</body></html>";
 						
 							// Enviar el correo
-							sendEmail($to, $subject, $message);
+							echo sendEmail($to, $subject, $message);
 						}
 						
                     } else {
