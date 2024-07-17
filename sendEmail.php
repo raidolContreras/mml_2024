@@ -10,15 +10,15 @@ $mail = new PHPMailer(true);
 try {
     // Configuración del servidor
     $mail->isSMTP();
-    $mail->Host = 'smtp.example.com'; // Servidor SMTP
+    $mail->Host = '212.227.237.41'; // Cambia esto al servidor SMTP que estés usando
     $mail->SMTPAuth = true;
-    $mail->Username = 'user@example.com'; // Usuario SMTP
-    $mail->Password = 'password'; // Contraseña SMTP
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = 587;
+    $mail->Username = 'noreply@jena.radixeducation.org'; // Cambia esto a tu dirección de correo electrónico
+    $mail->Password = 'FWVcp3hCY:KG8gp'; // Cambia esto a tu contraseña de correo electrónico
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = 25;
 
     // Remitente y destinatario
-    $mail->setFrom('no-reply@radixeducation.org', 'Radix Education');
+    $mail->setFrom('noreply@radixeducation.org', 'Radix Education');
     $mail->addAddress('oscarcontrerasf91@gmail.com');
 
     // Contenido del correo
