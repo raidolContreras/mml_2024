@@ -301,13 +301,13 @@ function sendEmail($to, $subject, $message) {
     $mail = new PHPMailer(true);
     try {
         //Server settings
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.ionos.mx';  // Especifica el servidor SMTP
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'no-reply@radixeducation.org'; // SMTP username
-        $mail->Password   = '_9vsKVY8!YyhCV4'; // SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+		$mail->isSMTP();
+		$mail->Host = 'smtp.hostinger.com'; // Cambia esto al servidor SMTP que estés usando
+		$mail->SMTPAuth = true;
+		$mail->Username = 'unimontrer@contreras-flota.click'; // Cambia esto a tu dirección de correo electrónico
+		$mail->Password = 'fjz6GG5l7ly{'; // Cambia esto a tu contraseña de correo electrónico
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		$mail->Port = 587;
 
         //Recipients
         $mail->setFrom('no-reply@radixeducation.org', 'Radix Education');
