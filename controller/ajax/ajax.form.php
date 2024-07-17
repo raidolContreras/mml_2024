@@ -306,8 +306,8 @@ function sendEmail($to, $subject, $message) {
         $mail->SMTPAuth   = true;
         $mail->Username   = 'no-reply@radixeducation.org'; // SMTP username
         $mail->Password   = '_9vsKVY8!YyhCV4'; // SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = 465;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
 
         //Recipients
         $mail->setFrom('no-reply@radixeducation.org', 'Radix Education');
