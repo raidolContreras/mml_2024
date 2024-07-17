@@ -312,7 +312,7 @@ function sendEmail($to, $subject, $message) {
 		$mail->Port = 587;
 
 		// Configuración del remitente y destinatario
-		$mail->setFrom('unimontrer@contreras-flota.click', 'Radix Education');
+		$mail->setFrom('radixeducation@radixeducation.org', 'Radix Education');
 
 		$mail->addAddress($to);
 
