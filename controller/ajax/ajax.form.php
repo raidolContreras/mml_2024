@@ -304,7 +304,7 @@ function sendEmail($to, $subject, $message) {
 	try {
 		// Configuración del servidor SMTP
 		$mail->isSMTP();
-		$mail->Host = 'smtp.ionos.mx'; // Cambia esto al servidor SMTP que estés usando
+		$mail->Host = 'smtp.radixeducation.org'; // Cambia esto al servidor SMTP que estés usando
 		$mail->SMTPAuth = true;
 		$mail->Username = 'noreply@jena.radixeducation.org'; // Cambia esto a tu dirección de correo electrónico
 		$mail->Password = 'FWVcp3hCY:KG8gp'; // Cambia esto a tu contraseña de correo electrónico
