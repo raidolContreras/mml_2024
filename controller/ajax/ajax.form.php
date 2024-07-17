@@ -3,11 +3,6 @@
 require_once "../forms.controller.php";
 require_once "../../model/forms.models.php";
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require '../../assets/vendor/autoload.php';
-
 session_start();
 
 if(isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
@@ -296,38 +291,13 @@ function generateRandomPassword($length = 8) {
 }
 
 // Función para enviar correo electrónico
-
 function sendEmail($to, $subject, $message) {
-	// Configuración del correo
-	$mail = new PHPMailer(true);
+    $headers = "From: no-reply@radixeducation.org\r\n";
+    $headers .= "Reply-To: no-reply@radixeducation.org\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-	try {
-		// Configuración del servidor SMTP
-		$mail->isSMTP();
-		$mail->Host = 'smtp.radixeducation.org'; // Cambia esto al servidor SMTP que estés usando
-		$mail->SMTPAuth = true;
-		$mail->Username = 'noreply@jena.radixeducation.org'; // Cambia esto a tu dirección de correo electrónico
-		$mail->Password = 'FWVcp3hCY:KG8gp'; // Cambia esto a tu contraseña de correo electrónico
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-		$mail->Port = 465;
-
-		// Configuración del remitente y destinatario
-		$mail->setFrom('noreply@jena.radixeducation.org', 'Radix Education');
-
-		$mail->addAddress($to);
-
-		// Contenido del correo
-		$mail->isHTML(true);
-		$mail->Subject = $subject;
-		$mail->Body    = $message;
-
-		$mail->send();
-		return 'El correo ha sido enviado correctamente';
-	} catch (Exception $e) {
-		return "Mailer Error: {$mail->ErrorInfo}";
-	}
+    mail($to, $subject, $message, $headers);
 }
-
 
 if (isset($_FILES['pacientList'])) {
     $result = '';
@@ -383,7 +353,7 @@ if (isset($_FILES['pacientList'])) {
 							$message .= "</body></html>";
 						
 							// Enviar el correo
-							echo sendEmail($to, $subject, $message);
+							sendEmail($to, $subject, $message);
 						}
 						
                     } else {
