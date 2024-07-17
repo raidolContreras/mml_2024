@@ -322,9 +322,9 @@ function sendEmail($to, $subject, $message) {
 		$mail->Body    = $message;
 
 		$mail->send();
-		return 'El correo ha sido enviado correctamente';
+		echo 'El correo ha sido enviado correctamente';
 	} catch (Exception $e) {
-		return "El correo no pudo ser enviado. Mailer Error: {$mail->ErrorInfo}";
+		echo "El correo no pudo ser enviado. Mailer Error: {$mail->ErrorInfo}";
 	}
 }
 
