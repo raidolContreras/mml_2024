@@ -6,7 +6,7 @@ require_once "../../model/forms.models.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'assets/vendor/autoload.php';
+require '../../assets/vendor/autoload.php';
 
 session_start();
 
