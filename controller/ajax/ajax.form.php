@@ -298,9 +298,11 @@ function generateRandomPassword($length = 8) {
 // Función para enviar correo electrónico
 
 function sendEmail($to, $subject, $message) {
-    $mail = new PHPMailer(true);
-    try {
-        //Server settings
+	// Configuración del correo
+	$mail = new PHPMailer(true);
+
+	try {
+		// Configuración del servidor SMTP
 		$mail->isSMTP();
 		$mail->Host = 'smtp.hostinger.com'; // Cambia esto al servidor SMTP que estés usando
 		$mail->SMTPAuth = true;
@@ -309,19 +311,21 @@ function sendEmail($to, $subject, $message) {
 		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 		$mail->Port = 587;
 
-        //Recipients
-        $mail->setFrom('no-reply@radixeducation.org', 'Radix Education');
-        $mail->addAddress($to);
+		// Configuración del remitente y destinatario
+		$mail->setFrom('unimontrer@contreras-flota.click', 'Radix Education');
 
-        //Content
-        $mail->isHTML(true);
-        $mail->Subject = $subject;
-        $mail->Body    = $message;
+		$mail->addAddress($to);
 
-        $mail->send();
-    } catch (Exception $e) {
-        echo "El mensaje no pudo ser enviado. Error: {$mail->ErrorInfo}";
-    }
+		// Contenido del correo
+		$mail->isHTML(true);
+		$mail->Subject = $subject;
+		$mail->Body    = $message;
+
+		$mail->send();
+		return 'El correo ha sido enviado correctamente';
+	} catch (Exception $e) {
+		return "El correo no pudo ser enviado. Mailer Error: {$mail->ErrorInfo}";
+	}
 }
 
 
