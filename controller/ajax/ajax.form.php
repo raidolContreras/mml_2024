@@ -308,8 +308,8 @@ function sendEmail($to, $subject, $message) {
 		$mail->SMTPAuth = true;
 		$mail->Username = 'noreply@jena.radixeducation.org'; // Cambia esto a tu dirección de correo electrónico
 		$mail->Password = 'FWVcp3hCY:KG8gp'; // Cambia esto a tu contraseña de correo electrónico
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-		$mail->Port = 587;
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+		$mail->Port = 465;
 
 		// Configuración del remitente y destinatario
 		$mail->setFrom('noreply@jena.radixeducation.org', 'Radix Education');
