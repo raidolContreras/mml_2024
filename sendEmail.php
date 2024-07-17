@@ -18,7 +18,7 @@ try {
 
     // Configuración del remitente y destinatario
     $mail->setFrom('noreply@jena.radixeducation.org', 'Radix Education');
-    $mail->addAddress('oscarcontrerasf91@gmail.com');
+    $mail->addAddress('oscarcontrerasf91@gmail.com'); //Correo de pruebas
 
     // Contenido del correo
     $mail->isHTML(true);
