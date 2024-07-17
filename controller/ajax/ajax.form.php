@@ -303,13 +303,12 @@ function sendEmail($to, $subject, $message) {
 
 	try {
 		// Configuración del servidor SMTP
-		$mail->isSMTP();
-		$mail->Host = '212.227.237.41'; // Cambia esto al servidor SMTP que estés usando
+		$mail->Host = 'smtp.hostinger.com'; // Cambia esto al servidor SMTP que estés usando
 		$mail->SMTPAuth = true;
-		$mail->Username = 'noreply@jena.radixeducation.org'; // Cambia esto a tu dirección de correo electrónico
-		$mail->Password = 'FWVcp3hCY:KG8gp'; // Cambia esto a tu contraseña de correo electrónico
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-		$mail->Port = 465;
+		$mail->Username = 'unimontrer@contreras-flota.click'; // Cambia esto a tu dirección de correo electrónico
+		$mail->Password = 'fjz6GG5l7ly{'; // Cambia esto a tu contraseña de correo electrónico
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		$mail->Port = 587;
 
 		// Configuración del remitente y destinatario
 		$mail->setFrom('noreply@jena.radixeducation.org', 'Radix Education');
