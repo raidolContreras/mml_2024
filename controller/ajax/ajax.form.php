@@ -324,7 +324,7 @@ function sendEmail($to, $subject, $message) {
 		$mail->send();
 		return 'El correo ha sido enviado correctamente';
 	} catch (Exception $e) {
-		return "El correo no pudo ser enviado. Mailer Error: {$mail->ErrorInfo}";
+		return "Mailer Error: {$mail->ErrorInfo}";
 	}
 }
 
