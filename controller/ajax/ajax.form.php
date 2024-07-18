@@ -296,13 +296,14 @@ function generateRandomPassword($length = 8) {
 }
 
 // Función para enviar correo electrónico
-
 function sendEmail($to, $subject, $message) {
 	// Configuración del correo
 	$mail = new PHPMailer(true);
 
 	try {
 		// Configuración del servidor SMTP
+		$mail->SMTPDebug = 2; // Habilita el debug del SMTP (usar 3 para más detalle)
+		$mail->isSMTP(); // Asegúrate de que se usa el SMTP
 		$mail->Host = 'smtp.hostinger.com'; // Cambia esto al servidor SMTP que estés usando
 		$mail->SMTPAuth = true;
 		$mail->Username = 'unimontrer@contreras-flota.click'; // Cambia esto a tu dirección de correo electrónico
@@ -326,7 +327,6 @@ function sendEmail($to, $subject, $message) {
 		return "Mailer Error: {$mail->ErrorInfo}";
 	}
 }
-
 
 if (isset($_FILES['pacientList'])) {
     $result = '';
