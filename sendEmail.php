@@ -9,6 +9,8 @@ $mail = new PHPMailer(true);
 
 try {
     // Configuración del servidor SMTP
+    $mail->SMTPDebug = 2; // Habilita el debug del SMTP (usar 3 para más detalle)
+    $mail->isSMTP(); // Asegúrate de que se usa el SMTP
     $mail->Host = 'smtp.hostinger.com'; // Cambia esto al servidor SMTP que estés usando
     $mail->SMTPAuth = true;
     $mail->Username = 'unimontrer@contreras-flota.click'; // Cambia esto a tu dirección de correo electrónico
@@ -17,8 +19,8 @@ try {
     $mail->Port = 587;
 
     // Configuración del remitente y destinatario
-    $mail->setFrom('noreply@jena.radixeducation.org', 'Radix Education');
-    $mail->addAddress('oscarcontrerasf91@gmail.com'); //Correo de pruebas
+    $mail->setFrom('unimontrer@contreras-flota.click', 'Radix Education');
+    $mail->addAddress('oscarcontrerasf91@gmail.com');
 
     // Contenido del correo
     $mail->isHTML(true);
@@ -30,3 +32,4 @@ try {
 } catch (Exception $e) {
     echo "Fallo en el envío del correo. Error: {$mail->ErrorInfo}";
 }
+?>
