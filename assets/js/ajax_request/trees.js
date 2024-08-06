@@ -33,7 +33,7 @@ $(document).ready(function() {
         var idMainProblems = $('#idMainProblems').val();
         var idMainGoals = $('#idMainGoals').val();
 
-        var idTeam = ($('#level').val() == 1) ? $('#idTeam').val() : $('#teamSelectEdit').val();
+        var idTeam = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
         var idProject = $('#project').val();
 
         $.ajax({

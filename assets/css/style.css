@@ -70,3 +70,26 @@ border-style: dashed !important;
 .dropdown-item {
   cursor: pointer;
 }
+
+/* Ajustar la columna de acciones */
+.table .actions {
+    width: 150px; /* Ajusta el ancho según tus necesidades */
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* Ajustar el grupo de botones */
+.table .btn-group {
+    display: flex;
+    justify-content: center;
+}
+
+/* Ajustar los botones dentro del grupo */
+.table .btn-group .btn {
+    flex: 1 1 auto;
+    max-width: 70px; /* Ajusta según el contenido */
+    margin: 0 2px;
+    padding: 5px 10px;
+    font-size: 12px; /* Ajusta el tamaño de la fuente si es necesario */
+    white-space: nowrap; /* Evita que el texto del botón se desborde */
+}
