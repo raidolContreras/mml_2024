@@ -741,7 +741,7 @@ if (
             "mainAction04" => ($_POST['column'] == 'mainAction04') ? $_POST['edit'] : ''
         );
         $result = FormsController::ctrAddMainObjetive($data, $_POST['idTeam'], $_POST['idProject']);
-        
+
         // Obtener el ID recién creado
         if ($result) {
             $_POST['idMainGoals'] = $result; // Asigna el nuevo ID a idMainGoals
@@ -766,6 +766,11 @@ if (
             'idMainGoals' => $_POST['idMainGoals']
         );
         $result = FormsController::ctrUpdateMainGoals($data);
+
+        if ($_POST['column'] == 'mainAction01' || $_POST['column'] == 'mainAction02' ||$_POST['column'] == 'mainAction03' || $_POST['column'] == 'mainAction04'){
+			FormsController::ctrDeleteStructure($_POST['idTeam'], $_POST['idMainGoals']);
+		}
+		
     }
     echo $result;
 }
@@ -780,14 +785,14 @@ if (isset($_POST['selectedOptions'])) {
 
     // Asegúrate de que hay al menos dos opciones seleccionadas
     if (count($selectedOptions) >= 2) {
-        $problem1 = $selectedOptions[0];
-        $problem2 = $selectedOptions[1];
+        $mainAction1 = $selectedOptions[0];
+        $mainAction2 = $selectedOptions[1];
 
         $data = array(
-            'problem1' => $problem1,
-            'problem2' => $problem2,
+            'mainAction1' => $mainAction1,
+            'mainAction2' => $mainAction2,
 			'idTeam' => $_POST['team'],
-			'idMainProblems' => $_POST['idMainProblems'],
+			'idMainGoals' => $_POST['idMainGoals'],
         );
 
 		echo FormsController::ctrSelectProblems($data);

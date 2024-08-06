@@ -36,6 +36,7 @@ function getMatrix(team) {
         success: function (data) {
             if (!data || Object.keys(data).length === 0) {
                 $('.matrix').hide();
+                showAlertBootstrap2(translations.alert, translations.structure_no_activities, 'Structure');
                 return;
             }
 

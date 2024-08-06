@@ -86,7 +86,7 @@
     "deleteUser": "User successfully deleted.",
     "errorDeleteUser": "User not deleted, try again.",
     "updateUser": "User successfully updated.",
-    "select_Problems_Alert": "Successfully selected problems",
+    "select_Problems_Alert": "Successfully selected main actions",
     "errorUpdateUser": "User not updated, please try again.",
     "updateProject": "Project successfully updated.",
     "errorUpdateProject": "Project not updated, please try again.",
@@ -119,7 +119,7 @@
     "main_actions": "Main actions",
     "activity": "Activity",
 
-    "message_Select_Problems": "Select 2 problems to solve:",
+    "message_Select_mainActions": "Select 2 main actions to solve:",
     "send_Selections": "Send selection",
 
     "generate_product_message": "Click to generate a product",

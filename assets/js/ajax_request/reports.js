@@ -340,6 +340,7 @@ async function getMatrix(team) {
 
         if (!response || Object.keys(response).length === 0) {
             $('.totalReports').css('display', 'none');
+            showAlertBootstrap2(translations.alert, translations.message_empty_matrix, 'Matriz');
             return;
         }
 

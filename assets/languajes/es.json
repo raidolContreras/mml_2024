@@ -86,7 +86,7 @@
     "deleteUser": "Usuario eliminado exitosamente.",
     "errorDeleteUser": "Usuario no eliminado, intentalo de nuevo.",
     "updateUser": "Usuario actualizado exitosamente.",
-    "select_Problems_Alert": "Problemas seleccionados exitosamente.",
+    "select_Problems_Alert": "Acciones principales seleccionadas exitosamente.",
     "errorUpdateUser": "Usuario no actualizado, intentalo de nuevo.",
     "updateProject": "Proyecto actualizado exitosamente.",
     "errorUpdateProject": "Proyecto no actualizado, intentalo de nuevo.",
@@ -120,7 +120,7 @@
     "main_actions": "Acciones principales",
     "activity": "Actividad",
 
-    "message_Select_Problems": "Selecciona 2 problemas a resolver:",
+    "message_Select_mainActions": "Selecciona 2 acciones principales a resolver:",
     "send_Selections": "Enviar selección",
 
     "generate_product_message": "Da click para generar un producto",

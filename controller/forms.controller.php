@@ -298,6 +298,9 @@ class FormsController {
     public static function ctrApproveComment($id) {
         return FormsModel::mdlApproveComment($id);
     }
-        
+    
+    public static function ctrDeleteStructure($idTeam, $idMainGoals) {
+        return FormsModel::mdlDeleteStructure($idTeam, $idMainGoals);
+    }
 
 }

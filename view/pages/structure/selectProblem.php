@@ -34,27 +34,27 @@
             <div class="col-md-8">
                 <div class="card border-result">
                     <form>
-                        <p class="font-weight-bold message_Select_Problems"></p>
+                        <p class="font-weight-bold message_Select_mainActions"></p>
                         <div class="row">
                             <div class="col-12 form-check-inline">
                                 <div class="form-check">
-                                    <input type="checkbox" id="nameMain01" class="form-check-input" onclick="limitCheckboxes()">
-                                    <label for="nameMain01" class="form-check-label nameMain01"></label>
+                                    <input type="checkbox" id="mainAction01" class="form-check-input" onclick="limitCheckboxes()">
+                                    <label for="mainAction01" class="form-check-label mainAction01"></label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" id="nameMain02" class="form-check-input" onclick="limitCheckboxes()">
-                                    <label for="nameMain02" class="form-check-label nameMain02"></label>
+                                    <input type="checkbox" id="mainAction02" class="form-check-input" onclick="limitCheckboxes()">
+                                    <label for="mainAction02" class="form-check-label mainAction02"></label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" id="nameMain03" class="form-check-input" onclick="limitCheckboxes()">
-                                    <label for="nameMain03" class="form-check-label nameMain03"></label>
+                                    <input type="checkbox" id="mainAction03" class="form-check-input" onclick="limitCheckboxes()">
+                                    <label for="mainAction03" class="form-check-label mainAction03"></label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" id="nameMain04" class="form-check-input" onclick="limitCheckboxes()">
-                                    <label for="nameMain04" class="form-check-label nameMain04"></label>
+                                    <input type="checkbox" id="mainAction04" class="form-check-input" onclick="limitCheckboxes()">
+                                    <label for="mainAction04" class="form-check-label mainAction04"></label>
                                 </div>
                             </div>
-                            <input type="hidden" id="mainProblems">
+                            <input type="hidden" id="mainGoals">
                         </div>
                     </form>
                     <button class="btn btn-primary send_Selections_btn" disabled><i class="fa-light fa-paper-plane-top"></i> <span class="send_Selections"></span></button>

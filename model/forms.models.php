@@ -763,8 +763,8 @@ class FormsModel {
                 mg.action01, mg.action02, mg.action03, mg.action04,
                 mg.mainAction01, mg.mainAction02, mg.mainAction03, mg.mainAction04, mg.idProject
                 FROM structures s
-                    LEFT JOIN main_problems mp ON mp.idMainProblems = s.idMainProblems
-                    LEFT JOIN main_goals mg ON mg.idTeam = mp.idTeam AND mg.idProject = mp.idProject
+                    LEFT JOIN main_goals mg ON mg.idMainGoals  = s.idMainGoals
+                    LEFT JOIN main_problems mp ON mp.idTeam = mg.idTeam AND mg.idProject = mp.idProject
                 WHERE s.idTeam = :idTeam AND mp.idProject = :idProject";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
@@ -790,11 +790,11 @@ class FormsModel {
 
     static public function mdlSelectProblems($data) {
         $pdo = Conexion::conectar();
-        $sql = "INSERT INTO structures(problem1, problem2, idMainProblems, idTeam) VALUES (:problem1, :problem2, :idMainProblems, :idTeam)";
+        $sql = "INSERT INTO structures(mainAction1, mainAction2, idMainGoals, idTeam) VALUES (:mainAction1, :mainAction2, :idMainGoals, :idTeam)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':problem1', $data['problem1'], PDO::PARAM_STR);
-        $stmt->bindParam(':problem2', $data['problem2'], PDO::PARAM_STR);
-        $stmt->bindParam(':idMainProblems', $data['idMainProblems'], PDO::PARAM_INT);
+        $stmt->bindParam(':mainAction1', $data['mainAction1'], PDO::PARAM_STR);
+        $stmt->bindParam(':mainAction2', $data['mainAction2'], PDO::PARAM_STR);
+        $stmt->bindParam(':idMainGoals', $data['idMainGoals'], PDO::PARAM_INT);
         $stmt->bindParam(':idTeam', $data['idTeam'], PDO::PARAM_INT);
         if ($stmt->execute()) {
             $result = 'ok';
@@ -1100,6 +1100,23 @@ class FormsModel {
         $sql = "UPDATE comments SET status = 2 WHERE idComment = :idComment";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':idComment', $idComment, PDO::PARAM_INT);
+        
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
+    public static function mdlDeleteStructure($idTeam, $idMainGoals) {
+        $pdo = Conexion::conectar();
+        $sql = "DELETE FROM structures WHERE idTeam = :idTeam AND idMainGoals = :idMainGoals";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idTeam', $idTeam, PDO::PARAM_INT);
+        $stmt->bindParam(':idMainGoals', $idMainGoals, PDO::PARAM_INT);
         
         if ($stmt->execute()) {
             $result = 'ok';

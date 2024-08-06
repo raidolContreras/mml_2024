@@ -38,18 +38,18 @@ function structureSelect(idTeam) {
                 data.forEach(structure => {
                     if (structure.idProject == project) {
                         structureSelect = false;
-                        problem1 = structure.problem1.substr(-2);
-                        problem2 = structure.problem2.substr(-2);
+                        mainAction1 = structure.mainAction1.substr(-2);
+                        mainAction2 = structure.mainAction2.substr(-2);
 
                         $('#idStructure').val(structure.idStructure);
-                        $('.main_results01').html(structure['mainResult'+problem1]);
-                        $('.main_results02').html(structure['mainResult'+problem2]);
+                        $('.main_results01').html(structure['mainResult'+mainAction1]);
+                        $('.main_results02').html(structure['mainResult'+mainAction2]);
                         $('.main_objetive01').html(structure.mainObjetive);
                         $('.main_objetive02').html(structure.mainObjetive);
-                        $('.action01').html(structure['action'+problem1]);
-                        $('.action02').html(structure['action'+problem2]);
-                        $('.main_actions01').html(structure['mainAction'+problem1]);
-                        $('.main_actions02').html(structure['mainAction'+problem2]);
+                        $('.action01').html(structure['action'+mainAction1]);
+                        $('.action02').html(structure['action'+mainAction2]);
+                        $('.main_actions01').html(structure['mainAction'+mainAction1]);
+                        $('.main_actions02').html(structure['mainAction'+mainAction2]);
                         // Verifica si los campos de structure son nulos o indefinidos y asigna mensajes predeterminados si es necesario
                         var product1 = (structure.product1 != null) ? structure.product1 : translations.generate_product_message;
                         var product2 = (structure.product2 != null) ? structure.product2 : translations.generate_product_message;
@@ -106,11 +106,11 @@ function LoadTreeData(idTeam, idProject) {
         success: function (data) {
             if (data && Object.keys(data).length !== 0) {
                 
-                $('.nameMain01').html(data.nameMain01);
-                $('.nameMain02').html(data.nameMain02);
-                $('.nameMain03').html(data.nameMain03);
-                $('.nameMain04').html(data.nameMain04);
-                $('#mainProblems').val(data.idMainProblems);
+                $('.mainAction01').html(data.mainAction01);
+                $('.mainAction02').html(data.mainAction02);
+                $('.mainAction03').html(data.mainAction03);
+                $('.mainAction04').html(data.mainAction04);
+                $('#mainGoals').val(data.idMainGoals);
                 // Verificar si algún campo está vacío
                 const fields = [
                     data.nameMain01, data.nameMain02, data.nameMain03, data.nameMain04,
@@ -132,6 +132,7 @@ function LoadTreeData(idTeam, idProject) {
                     showAlertBootstrap2(translations.alert, translations.message_complete_tree, 'Trees');
                 } else {
                     $('.selectStructure').show();
+                    $('.Structure').hide();
                 }
             } else {
                 $('.selectStructure').hide();
@@ -178,7 +179,7 @@ $('.send_Selections_btn').on('click', function() {
         selectedOptions.push($(this).attr('id'));
     });
     var team = ($('#level').val() != 0) ? $('#idTeam').val() : $('#teamSelectEdit').val();
-    var idMainProblems = $('#mainProblems').val();
+    var idMainGoals = $('#mainGoals').val();
 
     $.ajax({
         type: 'POST',
@@ -186,7 +187,7 @@ $('.send_Selections_btn').on('click', function() {
         data: {
             selectedOptions: selectedOptions,
             team: team,
-            idMainProblems: idMainProblems
+            idMainGoals: idMainGoals
         },
         success: function (data) {
             if (data === 'ok') {
