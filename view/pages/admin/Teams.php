@@ -11,7 +11,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th class="teamName"></th>
+                        <th width="15%" class="teamName"></th>
                         <th class="description"></th>
                         <th class="school"></th>
                         <th class="projects"></th>

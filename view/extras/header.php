@@ -18,7 +18,7 @@
 					<path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
 				</svg>
 			</button>
-			<div class="col-lg-2 col-lg-3 navbar-brand">
+			<div class="col-lg-1 col-lg-2 navbar-brand">
 				<a href="./" class="navbar-brand">
 					<!--Logo start-->
 					<img src="assets/images/projects/<?php echo $project['idProject']. '/' .$project['logoProject'] ?>" class="img-fluid" style="max-height: 50px;" alt="Logo del proyecto">

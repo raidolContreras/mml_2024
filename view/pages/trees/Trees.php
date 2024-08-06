@@ -393,3 +393,48 @@
 <?php
     include "view/pages/comments.php";
 ?>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const language = document.getElementById("language").value;
+        
+        const translations = {
+            "es": {
+                "Main Actions": "Acciones Principales",
+                "Actions": "Acciones",
+                "Main Objective": "Objetivo Principal",
+                "Results": "Resultados",
+                "Main Results": "Resultados Principales",
+                "Main Causes": "Causas Principales",
+                "Causes": "Causas",
+                "Central Problem": "Problema Central",
+                "Main Effects": "Efectos Principales",
+                "Effects": "Efectos"
+            },
+            "en": {
+                "Main Actions": "Main Actions",
+                "Actions": "Actions",
+                "Main Objective": "Main Objective",
+                "Results": "Results",
+                "Main Results": "Main Results",
+                "Main Causes": "Main Causes",
+                "Causes": "Causes",
+                "Central Problem": "Central Problem",
+                "Main Effects": "Main Effects",
+                "Effects": "Effects"
+            }
+        };
+
+        if (language in translations) {
+            // Selecciona todos los elementos que tienen un atributo data-name
+            const elements = document.querySelectorAll('[data-name]');
+            
+            elements.forEach(element => {
+                const currentName = element.getAttribute('data-name');
+                if (currentName in translations[language]) {
+                    element.setAttribute('data-name', translations[language][currentName]);
+                }
+            });
+        }
+    });
+</script>
