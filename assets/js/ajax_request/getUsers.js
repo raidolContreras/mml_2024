@@ -140,6 +140,7 @@ $(document).ready(async function () {
         var projectSelectEdit = $('.projectSelectEdit').val();
         var teamSelectEdit = $('.teamSelectEdit').val();
         var level = $('.level_user_edit').val();
+        var password = $('.passwordEdit').val();
         $.ajax({
             type: 'POST',
             url: 'controller/ajax/ajax.form.php',
@@ -150,7 +151,8 @@ $(document).ready(async function () {
                 email: email,
                 projectSelectEdit: projectSelectEdit,
                 teamSelectEdit: teamSelectEdit,
-                level: level
+                level: level,
+                passwordEdit: password
             },
             dataSrc: '',
             success: function (response) {

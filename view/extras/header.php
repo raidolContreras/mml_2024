@@ -132,6 +132,7 @@
 						<input type="hidden" id="user" value="<?php echo $_SESSION['idUser'] ?>">
 						<input type="hidden" id="project" value="<?php echo $_SESSION['idProject'] ?>">
 						<input type="hidden" id="level" value="<?php echo $_SESSION['level'] ?>">
+						<input type="hidden" id="changePass" value="<?php echo $_SESSION['changePass'] ?>">
 					</li>
 				</ul>
 			</div>

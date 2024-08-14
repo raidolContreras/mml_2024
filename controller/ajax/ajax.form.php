@@ -25,6 +25,7 @@ if(isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
 			$_SESSION['email'] = $result['email'];
 			$_SESSION['level'] = $result['level'];
 			$_SESSION['language'] = $result['language'];
+			$_SESSION['changePass'] = $result['changePass'];
             $_SESSION['logged'] = true;
 		}
 		echo $result['sesion'];
@@ -328,6 +329,60 @@ function sendEmail($to, $subject, $message) {
 	}
 }
 
+if (isset($_POST['forgotPass'])) {
+	$email = $_POST['forgotPass'];
+    $user = FormsController::ctrGetUsers('email', $email);
+    if (!empty($user)) {
+        $password = generateRandomPassword();
+        $cryptPassword = crypt($password, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+		$update = FormsController::ctrUpdateUserPassword($cryptPassword, $user['idUser'], 1);
+		if ($update == 'ok') {
+			
+			// Obtener la URL base del servidor
+			$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+			$domainName = $_SERVER['HTTP_HOST'];
+			$loginPageUrl = $protocol . $domainName . "/Login";
+		
+			// Enviar correo electrónico
+			$to = $user[2];
+			$subject = "Bienvenido a nuestro equipo en Radix Education";
+		
+			// Crear el mensaje del correo
+			$message = "<html><body>";
+			$message .= "<h2>Hemos restablecido tu contraseña, " . $user[1] . " " . $user[2] . "!</h2>";
+			$message .= "<p>Nos complace informarte hemos reestablecido tu contraseña exitosamente. A continuación, encontrarás tus datos de acceso:</p>";
+			$message .= "<p><strong>Email:</strong> " . $user[2] . "<br>";
+			$message .= "<strong>Contraseña:</strong> " . $password . "</p>";
+			$message .= "<p>Puedes acceder a tu cuenta a través del siguiente enlace:</p>";
+			$message .= "<p><a href='" . $loginPageUrl . "' target='_blank'>Acceder a mi cuenta</a></p>";
+			$message .= "<p>Si tienes alguna pregunta o necesitas asistencia, no dudes en contactarnos.</p>";
+			$message .= "<p>Saludos,<br>El equipo de Radix Education</p>";
+			$message .= "</body></html>";
+
+            sendEmail($email, 'Restablecimiento de contraseña', $message);
+            echo 'ok';
+        } else {
+            echo 'Error al restablecer la contraseña.';
+        }
+    } else {
+        echo 'DontEmail';
+    }
+}
+
+if (isset($_POST['newPassword'])) {
+	$password = $_POST['newPassword'];
+    $idUser = $_POST['idUser'];
+	
+	$cryptPassword = crypt($password, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+    $update = FormsController::ctrUpdateUserPassword($cryptPassword, $idUser, 0);
+    if ($update == 'ok') {
+		$_SESSION['changePass'] = 0;
+        echo 'ok';
+    } else {
+        echo 'Error al actualizar la contraseña.';
+    }
+}
+
 if (isset($_FILES['pacientList'])) {
     $result = '';
     if (isset($_FILES['pacientList']) && $_FILES['pacientList']['error'] === UPLOAD_ERR_OK) {
@@ -434,6 +489,11 @@ if(isset($_POST['EditUser']) &&
             'level' => $_POST['level']
         );
         $result = FormsController::ctrUpdateUser($data, $_POST['EditUser']);
+		if (isset($_POST['passwordEdit']) && $_POST['passwordEdit'] != '') {
+			
+			$cryptPassword = crypt($_POST['passwordEdit'], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+			$result = FormsController::ctrUpdateUserPassword($cryptPassword, $_POST['EditUser'], 0);
+		}
         echo $result;
 }
 

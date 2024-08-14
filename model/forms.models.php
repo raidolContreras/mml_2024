@@ -382,6 +382,23 @@ class FormsModel {
         return $result;
     }
 
+    static public function mdlUpdateUserPassword($password, $idUser, $changePass) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE users SET password = :password, changePass = :changePass WHERE idUser = :idUser";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $stmt->bindParam(':changePass', $changePass, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
     static public function mdlDeleteUser($item, $value){
         $pdo = Conexion::conectar();
         $sql = "DELETE FROM users WHERE $item = :value";

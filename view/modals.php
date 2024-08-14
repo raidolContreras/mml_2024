@@ -15,3 +15,32 @@
         </div>
     </div>
 </div>
+
+<?php if ($_SESSION['changePass'] != 0):?>
+
+<!-- Bootstrap Modal for Password Change -->
+<div class="modal fade" id="passwordChangeModal" tabindex="-1" aria-labelledby="passwordChangeModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="passwordChangeModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="passwordChangeForm">
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label" id="newPasswordLabel"></label>
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger cancel" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn btn-success accept" id="changePassBtn"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php endif ?>

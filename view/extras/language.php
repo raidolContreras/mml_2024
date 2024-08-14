@@ -147,6 +147,7 @@ cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['langu
     $('.state').text(translations.state);
     $('.identifed_problem').text(translations.identifed_problem);
     $('.main_objetive').text(translations.main_objetive);
+    $('.mainObjetive_title').text(translations.main_objetive);
     $('.addUsersModal').text(translations.addUsersModal);
     $('.message_delete_participants').text(translations.message_delete_participants);
     $('#deleteParticipantsModalLabel').text(translations.deleteParticipantsModalLabel);
@@ -242,6 +243,8 @@ cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['langu
     $('.commetTitle').html(translations.addComment);
     $('.Comment').html(translations.Comment);
     $('#Comment_Title').html(translations.Comment);
+    $('#newPasswordLabel').html(translations.newPassword);
+    $('#passwordChangeModalLabel').html(translations.passwordChangeModalLabel);
 
     var html2 = `
         <option value="0">${translations.select_one}</option>
@@ -290,5 +293,7 @@ function changeLanguageParticipants(language) {
 }
 
 </script>
-
-<input type="hidden" id="language" value="<?php echo $_SESSION['language']; ?>">
+<?php
+    $language = isset($_SESSION['language']) ? $_SESSION['language'] : 'en';
+?>
+<input type="hidden" id="language" value="<?php echo $language; ?>">

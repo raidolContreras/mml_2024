@@ -35,8 +35,8 @@
                 <div class="card border-result">
                     <form>
                         <p class="font-weight-bold message_Select_mainActions"></p>
-                        <div class="row">
-                            <div class="col-12 form-check-inline">
+                        <div>
+                            <div>
                                 <div class="form-check">
                                     <input type="checkbox" id="mainAction01" class="form-check-input" onclick="limitCheckboxes()">
                                     <label for="mainAction01" class="form-check-label mainAction01"></label>

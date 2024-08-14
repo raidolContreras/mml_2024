@@ -213,6 +213,13 @@
   "Logout": "Logout",
   "EditField": "Edit the field",
   "Comment": "Comments",
-  "addComment": "Add Comments"
+  "addComment": "Add Comments",
+  "PasswordRecovery": "Password Recovery",
+  "CheckYourEmail": "Check your email",
+  "EmailNotFound": "Email not found",
+  "newPassword": "New Password",
+  "passwordChangeModalLabel": "Change password",
+  "password_change_error": "Error to change the password",
+    "password_change_success": "Success to change the password"
 
 }

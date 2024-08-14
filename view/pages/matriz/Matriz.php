@@ -67,6 +67,22 @@
         border-color: #dc3545;
     }
 	
+	.mainObjetive {
+		text-align: center;
+	}
+	
+    .bg-objetive {
+        background-color:  <?php echo $project['objetive'] ?> !important;
+		color: #fff;
+		border-radius: 10px 10px 0 0 !important;
+		align-content: center;
+		align-self: center;
+		justify-items: center;
+		display: grid;
+    }
+	.row-body {
+		text-align: center;
+	}
 </style>
 <div class="row mb-4 teamSelect">
 	<div class="col-md-6 offset-md-3">
@@ -77,10 +93,16 @@
 
 <div class="row Comments">
 	<div class="float-end mb-3">
-		<button class="btn btn-primary mb-4" id="Comment" data-bs-toggle="modal" data-bs-target="#commetModal" onclick="openComment()">Agregar Comentario</button>
+		<button class="btn btn-primary mb-4" id="Comment" data-bs-toggle="modal" data-bs-target="#commetModal" onclick="openComment()">
+		</button>
 	</div>
 </div>
 <div class="container matrix">
+	<div class="row row-body" style="justify-content: center;">
+		<div class="card-header mainObjetive_title bg-objetive"></div>
+		<div class="col-2 p-3 mainObjetive">
+		</div>
+	</div>
 	<div class="row head">
 		<div class="col-2 product"></div>
 		<div class="col-10">

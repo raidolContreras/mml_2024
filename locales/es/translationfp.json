@@ -1,0 +1,10 @@
+{
+    "forgotPasswordTitle": "Recuperar Contraseña",
+    "forgotPasswordInstructions": "Ingresa tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
+    "emailAddress": "Dirección de Correo",
+    "sendResetLink": "Enviar Enlace de Restablecimiento",
+    "backToLogin": "Volver al Inicio de Sesión",
+    "PasswordRecovery": "Recuperación de Contraseña",
+    "CheckYourEmail": "Revisa tu correo electrónico",
+    "EmailNotFound": "Correo electrónico no encontrado"
+}

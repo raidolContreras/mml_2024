@@ -86,7 +86,54 @@
 ?>
 
 <script>
-	
+
+$(document).ready(function () {
+    checkPassword();
+    $('#changePassBtn').on('click', function () {
+        var newPassword = $('#newPassword').val();
+
+        if (newPassword.length < 8) {
+            showAlert2('Error', translations.password_length_error, 'passwordChangeModal');
+            return false;
+        } else {
+            let idUser = $('#user').val();
+            $.ajax({
+                type: "POST",
+                url: "controller/ajax/ajax.form.php",
+                data: { newPassword: newPassword, idUser: idUser },
+                success: function (response) {
+                    if (response == 'ok') {
+                        $('#passwordChangeModal').modal('hide');
+                        showAlertBootstrap(translations.success, translations.password_change_success);
+                    } else {
+                        $('#passwordChangeModal').modal('hide');
+                        showAlert2(translations.alert, translations.password_change_error, 'passwordChangeModal');
+                    }
+                }
+            });
+        }
+    });
+});
+
+function showAlert2(title, message, modalId) {
+    var accept = translations.accept; // Usar las traducciones cargadas
+    $('#modalLabel').text(title); // Cambiar el título del modal
+    $('.modal-body-extra').html(message); // Cambiar el contenido del cuerpo del modal
+    $('.modal-footer-extra').html('<button type="button" class="btn btn-success" data-bs-dismiss="modal">' + accept + '</button>');
+
+    // Mostrar el modal de alerta
+    $('#alertModal').modal('show');
+
+    // Añadir evento click al botón de aceptar
+    $('.modal-footer-extra .btn-success').on('click', function() {
+        // Cerrar el modal de alerta
+        $('#alertModal').modal('hide');
+
+        // Mostrar el modal especificado por su ID
+        $('#' + modalId).modal('show');
+    });
+}
+
 function showAlertBootstrap(title, message) {
     var accept = translations.accept; // Usar las traducciones cargadas
     $('#modalLabel').text(title);
@@ -94,6 +141,7 @@ function showAlertBootstrap(title, message) {
     $('.modal-footer-extra').html('<button type="button" class="btn btn-success" data-bs-dismiss="modal">'+accept+'</button>');
     $('#alertModal').modal('show');
 }
+
 
 function showAlertBootstrap1(title, message, id) {
     var accept = translations.accept; // Asegúrate de que las traducciones estén cargadas correctamente
@@ -128,6 +176,12 @@ function logout() {
 
 function showModal(id) {
     $('#' + id).modal('show');
+}
+
+function checkPassword() {
+    if ($('#changePass').val() == 1) {
+        $('#passwordChangeModal').modal('show');
+    }
 }
 
 </script>

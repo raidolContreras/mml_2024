@@ -189,6 +189,10 @@
                         <select class="form-select level_user_edit" id="level_user_edit">
                         </select>
                     </div>
+                    <div class="col-12 form-group mt-3">
+                        <label for="password" class="form-label" id="newPasswordLabel"></label>
+                        <input class="form-control passwordEdit" type="password" id="passwordEdit">
+                    </div>
                 </div>
             </div>
             <input type="hidden" id="editUser">

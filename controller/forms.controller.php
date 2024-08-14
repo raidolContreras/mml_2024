@@ -111,6 +111,11 @@ class FormsController {
         return $response;
     }
 
+    static public function ctrUpdateUserPassword($password, $idUser, $changePass){
+        $response = FormsModel::mdlUpdateUserPassword($password, $idUser, $changePass);
+        return $response;
+    }
+
     static public function ctrDeleteUser($item, $value){
         $response = FormsModel::mdlDeleteUser($item, $value);
         return $response;

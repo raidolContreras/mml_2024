@@ -29,4 +29,26 @@ $(document).ready(function () {
 			}
 		});
 	});
+
+	$('#forgotPassForms').submit(function (event)  {
+		event.preventDefault();
+		var emailForgot = $("#email").val();
+		$.ajax({
+			type: "POST",
+            url: "controller/ajax/ajax.form.php",
+            data: {
+                forgotPass: emailForgot
+            },
+            success: function (response) {
+                if (response) {
+                    showAlertBootstrap(translations.PasswordRecovery, translations.CheckYourEmail);
+                } else {
+                    showAlertBootstrap(translations.alert, translations.EmailNotFound);
+                }
+            },
+            error: function (error) {
+                console.log("Error en la solicitud Ajax:", error);
+            }
+		});
+	});
 });

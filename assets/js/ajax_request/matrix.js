@@ -15,8 +15,9 @@ $(document).ready(async function () {
             if (team >= 1) {
                 getMatrix(team);
             } else {
-                $('.Structure').hide();
-                $('.selectStructure').hide();
+                $('.matrix').hide();
+                $('.Comments').hide();
+                $('.CommentsList').hide();
             }
         });
     }
@@ -36,6 +37,8 @@ function getMatrix(team) {
         success: function (data) {
             if (!data || Object.keys(data).length === 0) {
                 $('.matrix').hide();
+                $('.Comments').hide();
+                $('.CommentsList').hide();
                 showAlertBootstrap2(translations.alert, translations.structure_no_activities, 'Structure');
                 return;
             }
@@ -50,6 +53,7 @@ function getMatrix(team) {
 
                     let product1 = structure.product1 || '';
                     let product2 = structure.product2 || '';
+                    let mainObjetive = structure.mainObjetive || '';
 
                     activities = [
                         structure.activity1,
@@ -74,6 +78,7 @@ function getMatrix(team) {
 
                         $('.product01').html(product1);
                         $('.product02').html(product2);
+                        $('.mainObjetive').html(mainObjetive);
 
                         activities.forEach((activity, index) => {
                             $('.activity0' + (index + 1)).html(activity || '');
