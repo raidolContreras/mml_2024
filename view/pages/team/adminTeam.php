@@ -54,7 +54,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center pb-3">
-                    <h5 class="card-title mb-0 participants"></h5>
+                    <h6 class="card-title mb-0 participants"></h6>
                     <button class="btn btn-primary" id="addParticipantBtn"></button>
                 </div>
                 <div class="card-body" id="participantsList">

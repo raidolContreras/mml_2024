@@ -46,8 +46,8 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center pb-3">
-                    <h5 class="card-title mb-0 participants"></h5>
-                    <button class="btn btn-primary" id="addParticipantBtn"><i class="fas fa-plus"></i> Add Participant</button>
+                    <h6 class="card-title mb-0 participants"></h6>
+                    <button class="btn btn-primary" id="addParticipantBtn"></button>
                 </div>
                 <div class="card-body" id="participantsList">
                 </div>

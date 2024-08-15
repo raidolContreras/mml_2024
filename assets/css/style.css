@@ -93,3 +93,7 @@ border-style: dashed !important;
     font-size: 12px; /* Ajusta el tamaño de la fuente si es necesario */
     white-space: nowrap; /* Evita que el texto del botón se desborde */
 }
+
+#addParticipantBtn {
+  font-size: small;
+}

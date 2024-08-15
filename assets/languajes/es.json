@@ -100,7 +100,7 @@
     "projectActiveError": "Ha ocurrido un error al activar el proyecto.",
     "participants": "Participantes",
     "participantsModalLabel": "Añadir participantes",
-    "addParticipantBtn": "<i class='fas fa-plus'></i> Añadir participante",
+    "addParticipantBtn": "Añadir participante",
     "details_team_text": "Detalles sobre el equipo seleccionado.",
     "deleteParticipantsModalLabel": "Eliminar participante",
     "message_delete_participants": "¿Está seguro de que desea eliminar a este participante?",
