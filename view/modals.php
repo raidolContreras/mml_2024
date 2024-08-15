@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<?php if ($_SESSION['changePass'] != 0):?>
+<?php if (isset ($_SESSION['changePass']) && $_SESSION['changePass'] != 0):?>
 
 <!-- Bootstrap Modal for Password Change -->
 <div class="modal fade" id="passwordChangeModal" tabindex="-1" aria-labelledby="passwordChangeModalLabel" aria-hidden="true" data-bs-backdrop="static">

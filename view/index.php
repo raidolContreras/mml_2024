@@ -1,6 +1,7 @@
 
 <?php
     session_start();
+    $_SESSION['language'] = (isset($_SESSION['language'])) ? $_SESSION['language'] : 'en';
 ?>
 <!doctype html>
 <html dir="ltr">

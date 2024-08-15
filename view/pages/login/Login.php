@@ -139,10 +139,6 @@
     <script src="assets/js/ajax_request/login.js"></script>
 
     <!-- i18next Initialization Script -->
-     <?php
-        session_start();
-        $_SESSION['language'] = isset($_SESSION['language']) ? $_SESSION['language'] : 'en';
-     ?>
     <script>
         i18next.use(i18nextHttpBackend).init({
             lng: '<?php echo $_SESSION['language']?>', // Default language

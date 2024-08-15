@@ -24,7 +24,6 @@ if(isset($_POST['emailLogin']) && isset($_POST['passwordLogin'])) {
 			$_SESSION['lastname'] = $result['lastname'];
 			$_SESSION['email'] = $result['email'];
 			$_SESSION['level'] = $result['level'];
-			$_SESSION['language'] = $result['language'];
 			$_SESSION['changePass'] = $result['changePass'];
             $_SESSION['logged'] = true;
 		}
@@ -51,7 +50,6 @@ if(isset($_POST['emailLoginStudent']) && isset($_POST['passwordLoginStudent'])) 
             $_SESSION['lastname'] = $result['lastnameParticipant'];
             $_SESSION['email'] = $result['emailParticipant'];
 			$_SESSION['level'] = 2;
-			$_SESSION['language'] = $result['language'];
             $_SESSION['logged'] = true;
         }
         echo $result['sesion'];
