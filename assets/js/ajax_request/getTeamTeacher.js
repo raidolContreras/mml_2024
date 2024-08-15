@@ -80,7 +80,7 @@ function participants(idTeam) {
                 participants.forEach(function(participant) {
                     html +=`<div class="participant mb-2">
                                 <div class="row">
-                                    <div class="col-4 font-weight-bold">${participant.firstnameParticipant} ${participant.lastnameParticipant}:</div>
+                                    <div class="col-4 font-weight-bold" style="font-size: 12px;">${participant.firstnameParticipant} ${participant.lastnameParticipant}:</div>
                                     <div class="col-5">${participant.emailParticipant}</div>
                                     <div class="col-3 btn-group" role="group">
                                         <button type="button" class="btn btn-primary btn-sm" onClick='editParticipant(${participant.idparticipant})'>
