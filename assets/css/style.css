@@ -102,3 +102,7 @@ border-style: dashed !important;
 .btn.btn-danger.btn-sm {
   font-size: 10px;
 }
+
+.table>:not(caption)>*>* {
+  padding: 1rem 0.5rem !important;
+}
