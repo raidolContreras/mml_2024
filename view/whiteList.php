@@ -75,8 +75,8 @@
         include "view/pages/login/participant_login.php";
     } elseif($pagina == 'Login') {
         include "view/pages/login/Login.php";
-    } elseif($pagina == 'forgot_password') {
-        include "view/pages/login/forgot_password.php";
+    } elseif($pagina == 'forgot_password' || $pagina == 'forgot_password_participant') {
+        include "view/pages/login/$pagina.php";
     } else {
         header("Location: Login");
         exit();

@@ -55,7 +55,7 @@
                                  <button id="lang-en" class="btn btn-outline-primary me-2">English</button>
                                  <button id="lang-es" class="btn btn-outline-secondary">Español</button>
                            </div>
-                           <a href="index.html" class="navbar-brand d-flex align-items-center mb-3">
+                           <a href="index" class="navbar-brand d-flex align-items-center mb-3">
                               <!--Logo start-->
                               <!--logo End-->
                               
@@ -87,10 +87,13 @@
                                        <input type="password" class="form-control" id="password" aria-describedby="password">
                                     </div>
                                  </div>
-                                 <div class="col-lg-12 d-flex justify-content-between">
-                                    <div class="form-check mb-3">
+                                 <div class="row col-lg-12 d-flex justify-content-between align-items-center">
+                                    <div class="col-lg-6">
+                                       <a href="forgot_password_participant" id="forgot-password">Forgot Password?</a>
                                     </div>
+                                    <div class="col-lg-6 float-end">
                                     <a href="Login" id="principalAccess"></a>
+                                    </div>
                                  </div>
                               </div>
                               <div class="d-flex justify-content-center">
@@ -146,6 +149,7 @@
 
         function updateContent() {
             document.getElementById('studentAccess').innerHTML = i18next.t('studentAccess');
+            document.getElementById('forgot-password').innerHTML = i18next.t('forgotPassword');
             document.getElementById('loginStayConnect').innerHTML = i18next.t('loginStayConnect');
             document.getElementById('emailAddress').innerHTML = i18next.t('emailAddress');
             document.getElementById('passwordLabel').innerHTML = i18next.t('password');

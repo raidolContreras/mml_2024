@@ -314,6 +314,7 @@ function sendEmail($to, $subject, $message) {
 		$mail->setFrom('noreply@radixeducation.org', 'Radix Education');
 
 		$mail->addAddress($to);
+        $mail->CharSet = 'UTF-8'; // Asegura que se use UTF-8
 
 		// Contenido del correo
 		$mail->isHTML(true);
@@ -341,20 +342,52 @@ if (isset($_POST['forgotPass'])) {
 			$domainName = $_SERVER['HTTP_HOST'];
 			$loginPageUrl = $protocol . $domainName . "/Login";
 		
-			// Enviar correo electrónico
-			$to = $user[2];
-			$subject = "Bienvenido a nuestro equipo en Radix Education";
-		
 			// Crear el mensaje del correo
 			$message = "<html><body>";
-			$message .= "<h2>Hemos restablecido tu contraseña, " . $user[1] . " " . $user[2] . "!</h2>";
-			$message .= "<p>Nos complace informarte hemos reestablecido tu contraseña exitosamente. A continuación, encontrarás tus datos de acceso:</p>";
-			$message .= "<p><strong>Email:</strong> " . $user[2] . "<br>";
+			$message .= "<h2>Te informamos que tu contraseña se ha restablecido de forma exitosa. Ahora tus datos de acceso son:</h2>";
+			$message .= "<p><strong>Usuario:</strong> " . $email . "<br>";
 			$message .= "<strong>Contraseña:</strong> " . $password . "</p>";
 			$message .= "<p>Puedes acceder a tu cuenta a través del siguiente enlace:</p>";
 			$message .= "<p><a href='" . $loginPageUrl . "' target='_blank'>Acceder a mi cuenta</a></p>";
 			$message .= "<p>Si tienes alguna pregunta o necesitas asistencia, no dudes en contactarnos.</p>";
-			$message .= "<p>Saludos,<br>El equipo de Radix Education</p>";
+			$message .= "<p>Saludos.<br><br>Radix Education</p>";
+			$message .= "</body></html>";
+
+            sendEmail($email, 'Restablecimiento de contraseña', $message);
+            echo 'ok';
+        } else {
+            echo 'Error al restablecer la contraseña.';
+        }
+    } else {
+        echo 'DontEmail';
+    }
+}
+
+if (isset($_POST['forgotPassParticipant'])) {
+	$email = $_POST['forgotPassParticipant'];
+    $user = FormsController::ctrGetParticipant('emailParticipant', $email);
+    if (!empty($user)) {
+        $password = generateRandomPassword();
+        $cryptPassword = crypt($password, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+		print_r(($user));
+		$update = FormsController::ctrUpdateUserPasswordParticipant($cryptPassword, $user['idparticipant']);
+		if ($update == 'ok') {
+			
+			// Obtener la URL base del servidor
+			$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+			$domainName = $_SERVER['HTTP_HOST'];
+			$loginPageUrl = $protocol . $domainName . "/participant_login";
+		
+		
+			// Crear el mensaje del correo
+			$message = "<html><body>";
+			$message .= "<h2>Te informamos que tu contraseña se ha restablecido de forma exitosa. Ahora tus datos de acceso son:</h2>";
+			$message .= "<p><strong>Usuario:</strong> " . $email . "<br>";
+			$message .= "<strong>Contraseña:</strong> " . $password . "</p>";
+			$message .= "<p>Puedes acceder a tu cuenta a través del siguiente enlace:</p>";
+			$message .= "<p><a href='" . $loginPageUrl . "' target='_blank'>Acceder a mi cuenta</a></p>";
+			$message .= "<p>Si tienes alguna pregunta o necesitas asistencia, no dudes en contactarnos.</p>";
+			$message .= "<p>Saludos.<br><br>Radix Education</p>";
 			$message .= "</body></html>";
 
             sendEmail($email, 'Restablecimiento de contraseña', $message);

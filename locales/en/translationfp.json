@@ -1,6 +1,7 @@
 {
     "signIn": "Sign In",
     "forgotPasswordTitle": "Forgot Password",
+    "forgotPassword": "Forgot Password?",
     "forgotPasswordInstructions": "Enter your email address and we'll send you a link to reset your password.",
     "emailAddress": "Email Address",
     "sendResetLink": "Send Reset Link",

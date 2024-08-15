@@ -399,6 +399,22 @@ class FormsModel {
         return $result;
     }
 
+    static public function mdlUpdateUserPasswordParticipant($password, $idparticipant) {
+        $pdo = Conexion::conectar();
+        $sql = "UPDATE participants SET password = :password WHERE idparticipant = :idparticipant";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+        $stmt->bindParam(':idparticipant', $idparticipant, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $result = 'ok';
+        } else {
+            $result = 'error';
+        }
+        $stmt->closeCursor();
+        $stmt = null;
+        return $result;
+    }
+
     static public function mdlDeleteUser($item, $value){
         $pdo = Conexion::conectar();
         $sql = "DELETE FROM users WHERE $item = :value";
@@ -564,7 +580,7 @@ class FormsModel {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':value', $value, PDO::PARAM_STR);
         $stmt->execute();
-        if ($item == 'idparticipant') {
+        if ($item == 'idparticipant' || $item == 'emailParticipant') {
             $result = $stmt->fetch();
         } else {
             $result = $stmt->fetchAll();

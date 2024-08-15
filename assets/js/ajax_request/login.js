@@ -42,6 +42,36 @@ $(document).ready(function () {
             success: function (response) {
                 if (response) {
                     showAlertBootstrap(translations.PasswordRecovery, translations.CheckYourEmail);
+					setInterval(
+						function () {
+							window.location.href = 'Login';
+						}, 5000);
+                } else {
+                    showAlertBootstrap(translations.alert, translations.EmailNotFound);
+                }
+            },
+            error: function (error) {
+                console.log("Error en la solicitud Ajax:", error);
+            }
+		});
+	});
+	
+	$('#forgotPassFormsParticipant').submit(function (event)  {
+		event.preventDefault();
+		var emailForgot = $("#emailParticipant").val();
+		$.ajax({
+			type: "POST",
+            url: "controller/ajax/ajax.form.php",
+            data: {
+                forgotPassParticipant: emailForgot
+            },
+            success: function (response) {
+                if (response) {
+                    showAlertBootstrap(translations.PasswordRecovery, translations.CheckYourEmail);
+					setInterval(
+						function () {
+							window.location.href = 'participant_login';
+						}, 5000);
                 } else {
                     showAlertBootstrap(translations.alert, translations.EmailNotFound);
                 }

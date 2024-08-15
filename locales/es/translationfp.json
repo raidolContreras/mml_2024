@@ -1,5 +1,6 @@
 {   "signIn": "Iniciar sesión",
     "forgotPasswordTitle": "Recuperar Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
     "forgotPasswordInstructions": "Ingresa tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
     "emailAddress": "Dirección de Correo",
     "sendResetLink": "Enviar Enlace de Restablecimiento",
