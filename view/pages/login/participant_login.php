@@ -24,6 +24,9 @@
       <!-- RTL Css -->
       <link rel="stylesheet" href="assets/css/rtl.min.css"/>
       <link rel="stylesheet" href="assets/css/custom.css"/>
+    <!-- i18next CDN -->
+    <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@1.4.0/i18nextHttpBackend.min.js"></script>
       
       
   </head>
@@ -47,6 +50,11 @@
                   <div class="col-md-10">
                      <div class="card card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
                         <div class="card-body">
+                           <!-- Language selection -->
+                           <div class="language-select text-center mb-4">
+                                 <button id="lang-en" class="btn btn-outline-primary me-2">English</button>
+                                 <button id="lang-es" class="btn btn-outline-secondary">Español</button>
+                           </div>
                            <a href="index.html" class="navbar-brand d-flex align-items-center mb-3">
                               <!--Logo start-->
                               <!--logo End-->
@@ -63,30 +71,30 @@
                               <!--logo End-->
                               <h4 class="logo-title ms-3">Radix</h4>
                            </a>
-                           <h2 class="mb-2 text-center">Student access</h2>
-                           <p class="text-center">Login to stay connected.</p>
+                           <h2 class="mb-2 text-center" id="studentAccess"></h2>
+                           <p class="text-center" id="loginStayConnect"></p>
                            <form class="account-wrap">
                               <div class="row">
                                  <div class="col-lg-12">
                                     <div class="form-group">
-                                       <label for="email" class="form-label">Email</label>
+                                       <label for="email" class="form-label" id="emailAddress"></label>
                                        <input type="email" class="form-control" id="email" aria-describedby="email">
                                     </div>
                                  </div>
                                  <div class="col-lg-12">
                                     <div class="form-group">
-                                       <label for="password" class="form-label">Password</label>
+                                       <label for="password" class="form-label" id="passwordLabel"></label>
                                        <input type="password" class="form-control" id="password" aria-describedby="password">
                                     </div>
                                  </div>
                                  <div class="col-lg-12 d-flex justify-content-between">
                                     <div class="form-check mb-3">
                                     </div>
-                                    <a href="Login">Access principal</a>
+                                    <a href="Login" id="principalAccess"></a>
                                  </div>
                               </div>
                               <div class="d-flex justify-content-center">
-                                 <button type="submit" class="btn btn-primary">Sign In</button>
+                                 <button type="submit" class="btn btn-primary" id="signIn"></button>
                               </div>
                            </form>
                         </div>
@@ -124,3 +132,51 @@
     
     
     <script src="assets/js/ajax_request/participant_login.js"></script>
+    
+    <!-- i18next Initialization Script -->
+    <?php
+        session_start();
+        $_SESSION['language'] = (isset($_SESSION['language'])) ? $_SESSION['language'] : 'en';
+     ?>
+    <script>
+        i18next.use(i18nextHttpBackend).init({
+            lng: '<?php echo $_SESSION['language']?>', // Default language
+            backend: {
+                loadPath: 'locales/{{lng}}/translationfp.json' // Ruta a los archivos de traducción
+            }
+        }, function(err, t) {
+            updateContent();
+        });
+
+        function updateContent() {
+            document.getElementById('studentAccess').innerHTML = i18next.t('studentAccess');
+            document.getElementById('loginStayConnect').innerHTML = i18next.t('loginStayConnect');
+            document.getElementById('emailAddress').innerHTML = i18next.t('emailAddress');
+            document.getElementById('passwordLabel').innerHTML = i18next.t('password');
+            document.getElementById('signIn').innerHTML = i18next.t('signIn');
+            document.getElementById('principalAccess').innerHTML = i18next.t('principalAccess');
+        }
+
+        document.getElementById('lang-en').addEventListener('click', function() {
+            i18next.changeLanguage('en', updateContent);
+            $.ajax({
+                url: 'controller/ajax/ajax.form.php',
+                type: 'POST',
+                data: {update_language: 'en'},
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        });
+        document.getElementById('lang-es').addEventListener('click', function() {
+            i18next.changeLanguage('es', updateContent);
+            $.ajax({
+                url: 'controller/ajax/ajax.form.php',
+                type: 'POST',
+                data: {update_language: 'es'},
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        });
+    </script>

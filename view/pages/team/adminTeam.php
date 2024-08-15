@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header pb-3">
-                    <h5 class="card-title team-information"></h5>
+                    <h5 class="card-title team_information"></h5>
                     <div class="row d-flex align-items-center">
                         <p class="card-text col-11 mb-0 details_team_text"></p>
                         <button class="col-1 btn btn-primary btn-sm edit-button">

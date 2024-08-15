@@ -14,7 +14,7 @@
 
         </div>
         <div class="card-body">
-            <table class="table" id="users">
+            <table class="table" id="projects">
                 <thead>
                     <tr>
                         <th>#</th>

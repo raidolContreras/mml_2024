@@ -246,6 +246,8 @@ cargarTraducciones('<?php echo (isset($_SESSION['language'])) ? $_SESSION['langu
     $('#newPasswordLabel').html(translations.newPassword);
     $('#passwordChangeModalLabel').html(translations.passwordChangeModalLabel);
 
+    $('.team_information').html(translations.team_information);
+
     var html2 = `
         <option value="0">${translations.select_one}</option>
         <option value="1">${translations.Monthly}</option>

@@ -2,11 +2,24 @@ $(document).ready(async function () {
     var language = $('#language').val();
     await cargarTraducciones(language);
     
-
-    $('#users').DataTable({
+    $('#projects').DataTable({
         // Resto de tus opciones de configuración...
         initComplete: function(settings, json) {
             // Esto inicializa los tooltips después de que DataTables ha terminado de cargar los datos por primera vez
+            $('[data-bs-toggle="tooltip"]').tooltip();
+    
+        // Desactivar autocomplete en el campo de búsqueda
+            $('#projects_filter input')
+                .attr('autocomplete', 'off')
+                .attr('autocorrect', 'off')
+                .attr('autocapitalize', 'none')
+                .on('input', function() {
+                    // Si el campo se autocompleta, limpiarlo inmediatamente
+                    if ($(this).val() !== '' && $(this).val() === $(this).prop('defaultValue')) {
+                        $(this).val('');
+                    }
+                });
+
             $('[data-bs-toggle="tooltip"]').tooltip();
         },
         drawCallback: function(settings) {
@@ -19,11 +32,11 @@ $(document).ready(async function () {
         },
         columns: [
             {
-				data: null,
+                data: null,
                 render: function (data, type, row, meta) {
-                // Utilizando el contador proporcionado por DataTables
-                return meta.row + 1;
-				}
+                    // Utilizando el contador proporcionado por DataTables
+                    return meta.row + 1;
+                }
             },
             {
                 data: null,
@@ -83,6 +96,7 @@ $(document).ready(async function () {
             }
         ],
     });
+    
 
     var myDropzone = new Dropzone("#addUsersDropzone", {
         maxFiles: 1,

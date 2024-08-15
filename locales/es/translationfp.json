@@ -1,4 +1,4 @@
-{
+{   "signIn": "Iniciar sesión",
     "forgotPasswordTitle": "Recuperar Contraseña",
     "forgotPasswordInstructions": "Ingresa tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
     "emailAddress": "Dirección de Correo",
@@ -6,5 +6,9 @@
     "backToLogin": "Volver al Inicio de Sesión",
     "PasswordRecovery": "Recuperación de Contraseña",
     "CheckYourEmail": "Revisa tu correo electrónico",
-    "EmailNotFound": "Correo electrónico no encontrado"
+    "EmailNotFound": "Correo electrónico no encontrado",
+    "studentAccess": "Acceso de estudiantes",
+    "loginStayConnect": "Inicie sesión para mantenerse conectado.",
+    "password": "Contraseña",
+    "principalAccess": "Acceso principal"
 }

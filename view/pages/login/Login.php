@@ -139,9 +139,13 @@
     <script src="assets/js/ajax_request/login.js"></script>
 
     <!-- i18next Initialization Script -->
+     <?php
+        session_start();
+        $_SESSION['language'] = isset($_SESSION['language']) ? $_SESSION['language'] : 'en';
+     ?>
     <script>
         i18next.use(i18nextHttpBackend).init({
-            lng: 'en', // Default language
+            lng: '<?php echo $_SESSION['language']?>', // Default language
             backend: {
                 loadPath: 'locales/{{lng}}/translation.json' // Path to translation files
             }
@@ -161,8 +165,24 @@
 
         document.getElementById('lang-en').addEventListener('click', function() {
             i18next.changeLanguage('en', updateContent);
+            $.ajax({
+                url: 'controller/ajax/ajax.form.php',
+                type: 'POST',
+                data: {update_language: 'en'},
+                success: function(response) {
+                    console.log(response);
+                }
+            });
         });
         document.getElementById('lang-es').addEventListener('click', function() {
             i18next.changeLanguage('es', updateContent);
+            $.ajax({
+                url: 'controller/ajax/ajax.form.php',
+                type: 'POST',
+                data: {update_language: 'es'},
+                success: function(response) {
+                    console.log(response);
+                }
+            });
         });
     </script>

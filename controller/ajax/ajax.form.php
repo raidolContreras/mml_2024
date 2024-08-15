@@ -948,3 +948,8 @@ if (isset($_POST['updateReport'])) {
     }
     exit;
 }
+
+if (isset($_POST['update_language'])) {
+	$_SESSION['language'] = $_POST['update_language'];
+	echo 'ok';
+}
